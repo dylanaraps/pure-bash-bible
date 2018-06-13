@@ -452,7 +452,7 @@ get_cursor_pos() {
 
 ```sh
 # Tiny C Style.
-for((;i++<10)){ echo "$i";}
+for((;i++<10;)){ echo "$i";}
 
 # Undocumented method.
 for i in {1..10};{ echo "$i";}
