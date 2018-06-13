@@ -173,6 +173,8 @@ Create a temporary associative array. When setting associative array
 values and a duplicate assignment occurs, bash overwrites the key. This
 allows us to effectively remove array duplicates.
 
+**NOTE:** Requires `bash` 4+
+
 ```sh
 remove_array_dups() {
     # Usage: remove_array_dups "array"
