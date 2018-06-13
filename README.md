@@ -24,6 +24,7 @@ list, send a pull request!
 * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
 * [Get the first N lines in a file.](#get-the-first-n-lines-in-a-file)
 * [Get the last N lines in a file.](#get-the-last-n-lines-in-a-file)
+* [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
 * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
 * [Convert a hex color to RGB](#convert-a-hex-color-to-rgb)
 * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
@@ -90,6 +91,20 @@ tail() {
     # Usage: tail "n" "file"
     mapfile -tn 0 line < "$2"
     printf '%s\n' "${line[@]: -$1}"
+}
+```
+
+## Get the number of lines in a file.
+
+Alternative to `wc -l`.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+lines() {
+    # Usage lines "file"
+    mapfile -tn 0 lines < "$1"
+    printf '%s\n' "${#lines[@]}"
 }
 ```
 
