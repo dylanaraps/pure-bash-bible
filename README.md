@@ -37,6 +37,8 @@ scripts and not full blown utilities.
     * [Change a string to lowercase.](#change-a-string-to-lowercase)
     * [Change a string to uppercase.](#change-a-string-to-uppercase)
     * [Trim quotes from a string.](#trim-quotes-from-a-string)
+    * [Strip characters from start of string.](#strip-characters-from-start-of-string)
+    * [Strip characters from end of string.](#strip-characters-from-end-of-string)
 * [Arrays](#arrays)
     * [Reverse an array.](#reverse-an-array)
 * [File Paths](#file-paths)
@@ -189,6 +191,24 @@ trim_quotes() {
 }
 ```
 
+### Strip characters from start of string.
+
+```sh
+lstrip() {
+    # Usage: lstrip "string" "chars to remove"
+    printf '%s\n' "${1##$2}"
+}
+```
+
+### Strip characters from end of string.
+
+```sh
+rstrip() {
+    # Usage: rstrip "string" "chars to remove"
+    printf '%s\n' "${1%%$2}"
+}
+```
+
 ## Arrays
 
 ### Reverse an array.
@@ -228,8 +248,8 @@ Alternative to the `basename` command.
 ```sh
 basename() {
     # Usage: basename "path"
-    path="${1%/}"
-    printf '%s\n' "${path##*/}"
+    : "${1%/}"
+    printf '%s\n' "${_##*/}"
 }
 ```
 
