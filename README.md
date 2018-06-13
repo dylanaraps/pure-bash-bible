@@ -15,6 +15,10 @@ incorrectly described, buggy or outright wrong, open an issue or send a
 pull request. If you know a handy snippet that is not included in this
 list, send a pull request!
 
+**NOTE**: Error handling (*checking if a file exists, etc*) is not
+included. These are meant to be snippets you can incorporate into your
+scripts and not full blown utilities.
+
 
 ## Table of Contents
 
