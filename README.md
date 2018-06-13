@@ -132,6 +132,18 @@ done
 for file in ~/Pictures/*.png; do
     echo "$file"
 done
+
+# Iterate over directories.
+for dir in ~/Downloads/; do
+    echo "$dir"
+done
+
+# Iterate recursively.
+shopt -s globstar
+for file in ~/Pictures/**/*; do
+    echo "$file"
+done
+shopt -u globstar
 ```
 
 ### Create an empty file.
