@@ -24,14 +24,6 @@ scripts and not full blown utilities.
 
 <!-- vim-markdown-toc GFM -->
 
-* [File handling](#file-handling)
-    * [Read a file to a string.](#read-a-file-to-a-string)
-    * [Read a file to an array (*by line*).](#read-a-file-to-an-array-by-line)
-    * [Get the first N lines of a file.](#get-the-first-n-lines-of-a-file)
-    * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
-    * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
-    * [Iterate over files.](#iterate-over-files)
-    * [Create an empty file.](#create-an-empty-file)
 * [Strings](#strings)
     * [Trim white-space from string.](#trim-white-space-from-string)
     * [Split a string on a delimiter.](#split-a-string-on-a-delimiter)
@@ -42,13 +34,22 @@ scripts and not full blown utilities.
     * [Strip characters from end of string.](#strip-characters-from-end-of-string)
 * [Arrays](#arrays)
     * [Reverse an array.](#reverse-an-array)
+* [File handling](#file-handling)
+    * [Read a file to a string.](#read-a-file-to-a-string)
+    * [Read a file to an array (*by line*).](#read-a-file-to-an-array-by-line)
+    * [Get the first N lines of a file.](#get-the-first-n-lines-of-a-file)
+    * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
+    * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
+    * [Iterate over files.](#iterate-over-files)
+    * [Count files or directories in directory.](#count-files-or-directories-in-directory)
+    * [Create an empty file.](#create-an-empty-file)
 * [File Paths](#file-paths)
     * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
     * [Get the base-name of a file path.](#get-the-base-name-of-a-file-path)
 * [Colors](#colors)
     * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
-* [Information about the terminal.](#information-about-the-terminal)
+* [Information about the terminal](#information-about-the-terminal)
     * [Get the terminal size in lines and columns (*from a script*).](#get-the-terminal-size-in-lines-and-columns-from-a-script)
     * [Get the terminal size in pixels.](#get-the-terminal-size-in-pixels)
     * [Get the current cursor position.](#get-the-current-cursor-position)
@@ -56,108 +57,6 @@ scripts and not full blown utilities.
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
 
 <!-- vim-markdown-toc -->
-
-
-## File handling
-
-### Read a file to a string.
-
-Alternative to the `cat` command.
-
-```sh
-file_data="$(<"file")"
-```
-
-### Read a file to an array (*by line*).
-
-Alternative to the `cat` command.
-
-```sh
-IFS=$'\n' read -d "" -ra file_data < "file"
-```
-
-### Get the first N lines of a file.
-
-Alternative to the `head` command.
-
-**NOTE:** Requires `bash` 4+
-
-```sh
-head() {
-    # Usage: head "n" "file"
-    mapfile -tn "$1" line < "$2"
-    printf '%s\n' "${line[@]}"
-}
-```
-
-### Get the last N lines of a file.
-
-Alternative to the `tail` command.
-
-**NOTE:** Requires `bash` 4+
-
-```sh
-tail() {
-    # Usage: tail "n" "file"
-    mapfile -tn 0 line < "$2"
-    printf '%s\n' "${line[@]: -$1}"
-}
-```
-
-### Get the number of lines in a file.
-
-Alternative to `wc -l`.
-
-**NOTE:** Requires `bash` 4+
-
-```sh
-lines() {
-    # Usage lines "file"
-    mapfile -tn 0 lines < "$1"
-    printf '%s\n' "${#lines[@]}"
-}
-```
-
-### Iterate over files.
-
-Don’t use `ls`.
-
-```sh
-# Greedy example.
-for file in *; do
-    echo "$file"
-done
-
-# PNG files in dir.
-for file in ~/Pictures/*.png; do
-    echo "$file"
-done
-
-# Iterate over directories.
-for dir in ~/Downloads/; do
-    echo "$dir"
-done
-
-# Iterate recursively.
-shopt -s globstar
-for file in ~/Pictures/**/*; do
-    echo "$file"
-done
-shopt -u globstar
-```
-
-### Create an empty file.
-
-Alternative to `touch`.
-
-```sh
-:> file
-
-# Longer alternatives:
-echo -n > file
-printf '' > file
-```
-
 
 ## Strings
 
@@ -257,6 +156,120 @@ reverse_array() {
 }
 ```
 
+
+## File handling
+
+### Read a file to a string.
+
+Alternative to the `cat` command.
+
+```sh
+file_data="$(<"file")"
+```
+
+### Read a file to an array (*by line*).
+
+Alternative to the `cat` command.
+
+```sh
+IFS=$'\n' read -d "" -ra file_data < "file"
+```
+
+### Get the first N lines of a file.
+
+Alternative to the `head` command.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+head() {
+    # Usage: head "n" "file"
+    mapfile -tn "$1" line < "$2"
+    printf '%s\n' "${line[@]}"
+}
+```
+
+### Get the last N lines of a file.
+
+Alternative to the `tail` command.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+tail() {
+    # Usage: tail "n" "file"
+    mapfile -tn 0 line < "$2"
+    printf '%s\n' "${line[@]: -$1}"
+}
+```
+
+### Get the number of lines in a file.
+
+Alternative to `wc -l`.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+lines() {
+    # Usage lines "file"
+    mapfile -tn 0 lines < "$1"
+    printf '%s\n' "${#lines[@]}"
+}
+```
+
+### Iterate over files.
+
+Don’t use `ls`.
+
+```sh
+# Greedy example.
+for file in *; do
+    echo "$file"
+done
+
+# PNG files in dir.
+for file in ~/Pictures/*.png; do
+    echo "$file"
+done
+
+# Iterate over directories.
+for dir in ~/Downloads/; do
+    echo "$dir"
+done
+
+# Iterate recursively.
+shopt -s globstar
+for file in ~/Pictures/**/*; do
+    echo "$file"
+done
+shopt -u globstar
+```
+
+### Count files or directories in directory.
+
+This works by passing the output of the glob as function arguments. We
+then count the arguments and print the number.
+
+```sh
+count() {
+    # Usage: count /path/to/dir/*
+    #        count /path/to/dir/*/
+    printf '%s\n' "$#"
+}
+```
+
+### Create an empty file.
+
+Alternative to `touch`.
+
+```sh
+:> file
+
+# Longer alternatives:
+echo -n > file
+printf '' > file
+```
+
 ## File Paths
 
 ### Get the directory name of a file path.
@@ -282,7 +295,6 @@ basename() {
 }
 ```
 
-
 ## Colors
 
 ### Convert a hex color to RGB.
@@ -307,7 +319,7 @@ rgb_to_hex() {
 }
 ```
 
-## Information about the terminal.
+## Information about the terminal
 
 ### Get the terminal size in lines and columns (*from a script*).
 
