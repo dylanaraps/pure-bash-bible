@@ -60,6 +60,7 @@ scripts and not full blown utilities.
     * [Get the current cursor position.](#get-the-current-cursor-position)
 * [Code Golf](#code-golf)
     * [Shorter `for` loop syntax.](#shorter-for-loop-syntax)
+    * [Shorter infinite loops.](#shorter-infinite-loops)
     * [Shorter function declaration.](#shorter-function-declaration)
 * [Miscellaneous](#miscellaneous)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
@@ -439,6 +440,16 @@ for i in {1..10}; do echo "$i"; done
 
 # C Style.
 for((i=0;i<=10;i++)); do echo "$i"; done
+```
+
+### Shorter infinite loops.
+
+```sh
+# Normal method
+while :; do code; done
+
+# Shorter
+for((;;)){ code;}
 ```
 
 ### Shorter function declaration.
