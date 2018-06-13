@@ -281,23 +281,23 @@ Don’t use `ls`.
 ```sh
 # Greedy example.
 for file in *; do
-    echo "$file"
+    printf '%s\n' "$file"
 done
 
 # PNG files in dir.
 for file in ~/Pictures/*.png; do
-    echo "$file"
+    printf '%s\n' "$file"
 done
 
 # Iterate over directories.
 for dir in ~/Downloads/; do
-    echo "$dir"
+    printf '%s\n' "$dir"
 done
 
 # Iterate recursively.
 shopt -s globstar
 for file in ~/Pictures/**/*; do
-    echo "$file"
+    printf '%s\n' "$file"
 done
 shopt -u globstar
 ```
