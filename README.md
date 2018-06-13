@@ -21,14 +21,14 @@ list, send a pull request!
 <!-- vim-markdown-toc GFM -->
 
 * [File handling](#file-handling)
-    * [Get the first N lines in a file.](#get-the-first-n-lines-in-a-file)
-    * [Get the last N lines in a file.](#get-the-last-n-lines-in-a-file)
+    * [Get the first N lines of a file.](#get-the-first-n-lines-of-a-file)
+    * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
 * [Strings](#strings)
     * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
     * [Trim quotes from a string.](#trim-quotes-from-a-string)
 * [Colors](#colors)
-    * [Convert a hex color to RGB](#convert-a-hex-color-to-rgb)
+    * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
 * [Miscellaneous](#miscellaneous)
     * [Getting the terminal size (*in a script*).](#getting-the-terminal-size-in-a-script)
@@ -39,7 +39,7 @@ list, send a pull request!
 
 ## File handling
 
-### Get the first N lines in a file.
+### Get the first N lines of a file.
 
 Alternative to the `head` command.
 
@@ -53,7 +53,7 @@ head() {
 }
 ```
 
-### Get the last N lines in a file.
+### Get the last N lines of a file.
 
 Alternative to the `tail` command.
 
@@ -108,7 +108,7 @@ trim_quotes() {
 
 ## Colors
 
-### Convert a hex color to RGB
+### Convert a hex color to RGB.
 
 ```sh
 hex_to_rgb() {
