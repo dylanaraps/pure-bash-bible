@@ -1,4 +1,6 @@
-# PURE BASH
+# Pure `bash`
+
+A collection of pure `bash` alternatives to external processes.
 
 <!-- vim-markdown-toc GFM -->
 
