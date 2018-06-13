@@ -13,7 +13,7 @@ A collection of pure `bash` alternatives to external processes.
 <!-- vim-markdown-toc -->
 
 
-### Getting the terminal size (*in a script*).
+## Getting the terminal size (*in a script*).
 
 This is handy when writing scripts in pure bash and `stty`/`tput` can’t be
 called.
@@ -30,7 +30,7 @@ get_term_size() {
 ```
 
 
-### Convert a hex color to RGB
+## Convert a hex color to RGB
 
 ```sh
 hex_to_rgb() {
@@ -44,7 +44,7 @@ hex_to_rgb() {
 ```
 
 
-### Convert an RGB color to hex.
+## Convert an RGB color to hex.
 
 ```sh
 rgb_to_hex() {
@@ -54,7 +54,7 @@ rgb_to_hex() {
 ```
 
 
-### `printf` as a `date` replacement.
+## `printf` as a `date` replacement.
 
 Bash’s `printf` has a built-in method of getting the date which we can use
 in place of the `date` command in a lot of cases.
@@ -70,7 +70,7 @@ date() {
 ```
 
 
-### `dirname`
+## `dirname`
 
 Extract the directory from a file path.
 
