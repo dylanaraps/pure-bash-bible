@@ -20,20 +20,119 @@ list, send a pull request!
 
 <!-- vim-markdown-toc GFM -->
 
-* [Getting the terminal size (*in a script*).](#getting-the-terminal-size-in-a-script)
-* [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
-* [Get the first N lines in a file.](#get-the-first-n-lines-in-a-file)
-* [Get the last N lines in a file.](#get-the-last-n-lines-in-a-file)
-* [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
-* [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
-* [Convert a hex color to RGB](#convert-a-hex-color-to-rgb)
-* [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
-* [Trim quotes from a string.](#trim-quotes-from-a-string)
+* [File handling](#file-handling)
+    * [Get the first N lines in a file.](#get-the-first-n-lines-in-a-file)
+    * [Get the last N lines in a file.](#get-the-last-n-lines-in-a-file)
+    * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
+* [Strings](#strings)
+    * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
+    * [Trim quotes from a string.](#trim-quotes-from-a-string)
+* [Colors](#colors)
+    * [Convert a hex color to RGB](#convert-a-hex-color-to-rgb)
+    * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
+* [Miscellaneous](#miscellaneous)
+    * [Getting the terminal size (*in a script*).](#getting-the-terminal-size-in-a-script)
+    * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
 
 <!-- vim-markdown-toc -->
 
 
-## Getting the terminal size (*in a script*).
+## File handling
+
+### Get the first N lines in a file.
+
+Alternative to the `head` command.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+head() {
+    # Usage: head "n" "file"
+    mapfile -tn "$1" line < "$2"
+    printf '%s\n' "${line[@]}"
+}
+```
+
+### Get the last N lines in a file.
+
+Alternative to the `tail` command.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+tail() {
+    # Usage: tail "n" "file"
+    mapfile -tn 0 line < "$2"
+    printf '%s\n' "${line[@]: -$1}"
+}
+```
+
+### Get the number of lines in a file.
+
+Alternative to `wc -l`.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+lines() {
+    # Usage lines "file"
+    mapfile -tn 0 lines < "$1"
+    printf '%s\n' "${#lines[@]}"
+}
+```
+
+
+## Strings
+
+
+### Get the directory name of a file path.
+
+Alternative to the `dirname` command.
+
+```sh
+dirname() {
+    # Usage: dirname "path"
+    printf '%s\n' "${1%/*}/"
+}
+```
+
+### Trim quotes from a string.
+
+```sh
+trim_quotes() {
+    # Usage: trim_quotes "string"
+    : "${1//\'}"
+    printf "%s\\n" "${_//\"}"
+}
+```
+
+## Colors
+
+### Convert a hex color to RGB
+
+```sh
+hex_to_rgb() {
+    # Usage: hex_to_rgb "#FFFFFF"
+    ((r=16#${1:1:2}))
+    ((g=16#${1:3:2}))
+    ((b=16#${1:5:6}))
+
+    printf '%s\n' "$r $g $b"
+}
+```
+
+### Convert an RGB color to hex.
+
+```sh
+rgb_to_hex() {
+    # Usage: rgb_to_hex "r" "g" "b"
+    printf '#%02x%02x%02x\n' "$1" "$2" "$3"
+}
+```
+
+## Miscellaneous
+
+### Getting the terminal size (*in a script*).
 
 This is handy when writing scripts in pure bash and `stty`/`tput` can’t be
 called.
@@ -50,7 +149,7 @@ get_term_size() {
 ```
 
 
-## Get the current date using `strftime`.
+### Get the current date using `strftime`.
 
 Bash’s `printf` has a built-in method of getting the date which we can use
 in place of the `date` command in a lot of cases.
@@ -66,87 +165,3 @@ date() {
 ```
 
 
-## Get the first N lines in a file.
-
-Alternative to the `head` command.
-
-**NOTE:** Requires `bash` 4+
-
-```sh
-head() {
-    # Usage: head "n" "file"
-    mapfile -tn "$1" line < "$2"
-    printf '%s\n' "${line[@]}"
-}
-```
-
-## Get the last N lines in a file.
-
-Alternative to the `tail` command.
-
-**NOTE:** Requires `bash` 4+
-
-```sh
-tail() {
-    # Usage: tail "n" "file"
-    mapfile -tn 0 line < "$2"
-    printf '%s\n' "${line[@]: -$1}"
-}
-```
-
-## Get the number of lines in a file.
-
-Alternative to `wc -l`.
-
-**NOTE:** Requires `bash` 4+
-
-```sh
-lines() {
-    # Usage lines "file"
-    mapfile -tn 0 lines < "$1"
-    printf '%s\n' "${#lines[@]}"
-}
-```
-
-## Get the directory name of a file path.
-
-Alternative to the `dirname` command.
-
-```sh
-dirname() {
-    # Usage: dirname "path"
-    printf '%s\n' "${1%/*}/"
-}
-```
-
-## Convert a hex color to RGB
-
-```sh
-hex_to_rgb() {
-    # Usage: hex_to_rgb "#FFFFFF"
-    ((r=16#${1:1:2}))
-    ((g=16#${1:3:2}))
-    ((b=16#${1:5:6}))
-
-    printf '%s\n' "$r $g $b"
-}
-```
-
-## Convert an RGB color to hex.
-
-```sh
-rgb_to_hex() {
-    # Usage: rgb_to_hex "r" "g" "b"
-    printf '#%02x%02x%02x\n' "$1" "$2" "$3"
-}
-```
-
-## Trim quotes from a string.
-
-```sh
-trim_quotes() {
-    # Usage: trim_quotes "string"
-    : "${1//\'}"
-    printf "%s\\n" "${_//\"}"
-}
-```
