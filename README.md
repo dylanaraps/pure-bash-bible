@@ -30,6 +30,7 @@ scripts and not full blown utilities.
     * [Get the first N lines of a file.](#get-the-first-n-lines-of-a-file)
     * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
+    * [Create an empty file.](#create-an-empty-file)
 * [Strings](#strings)
     * [Trim white-space from string.](#trim-white-space-from-string)
     * [Split a string on a delimiter.](#split-a-string-on-a-delimiter)
@@ -112,6 +113,18 @@ lines() {
     mapfile -tn 0 lines < "$1"
     printf '%s\n' "${#lines[@]}"
 }
+```
+
+### Create an empty file.
+
+Alternative to `touch`.
+
+```sh
+:> file
+
+# Longer alternatives:
+echo -n > file
+printf '' > file
 ```
 
 
@@ -304,5 +317,3 @@ date() {
     printf "%($1)T\\n"
 }
 ```
-
-
