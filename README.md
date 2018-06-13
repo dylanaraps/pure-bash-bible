@@ -31,6 +31,7 @@ scripts and not full blown utilities.
     * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
 * [Strings](#strings)
+    * [Split a string on a delimiter.](#split-a-string-on-a-delimiter)
     * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
     * [Change a string to lowercase.](#change-a-string-to-lowercase)
     * [Change a string to uppercase.](#change-a-string-to-uppercase)
@@ -40,8 +41,11 @@ scripts and not full blown utilities.
 * [Colors](#colors)
     * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
+* [Information about the terminal.](#information-about-the-terminal)
+    * [Get the terminal size in lines and columns (*from a script*).](#get-the-terminal-size-in-lines-and-columns-from-a-script)
+    * [Get the terminal size in pixels.](#get-the-terminal-size-in-pixels)
+    * [Get the current cursor position.](#get-the-current-cursor-position)
 * [Miscellaneous](#miscellaneous)
-    * [Getting the terminal size (*in a script*).](#getting-the-terminal-size-in-a-script)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
 
 <!-- vim-markdown-toc -->
@@ -110,6 +114,17 @@ lines() {
 
 ## Strings
 
+
+### Split a string on a delimiter.
+
+```sh
+# To multiple variables.
+string="1,2,3"
+IFS=, read -r var1 var2 var3 <<< "$string"
+
+# To an array.
+IFS=, read -ra vars <<< "$string"
+```
 
 ### Get the directory name of a file path.
 
@@ -197,9 +212,9 @@ rgb_to_hex() {
 }
 ```
 
-## Miscellaneous
+## Information about the terminal.
 
-### Getting the terminal size (*in a script*).
+### Get the terminal size in lines and columns (*from a script*).
 
 This is handy when writing scripts in pure bash and `stty`/`tput` can’t be
 called.
@@ -215,6 +230,32 @@ get_term_size() {
 }
 ```
 
+### Get the terminal size in pixels.
+
+**NOTE**: This does not work in some terminal emulators.
+
+```sh
+get_window_size() {
+    # Usage: get_window_size
+    printf '%b' "${TMUX:+\\ePtmux;\\e}\\e[14t${TMUX:+\\e\\\\}"
+    IFS=';t' read -d t -t 0.05 -sra term_size
+    printf '%s\n' "${term_size[1]}x${term_size[2]}"
+}
+```
+
+### Get the current cursor position.
+
+This is useful when creating a TUI in pure bash.
+
+```sh
+get_cursor_pos() {
+    # Usage: get_cursor_pos
+    IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
+    printf '%s\n' "$x $y"
+}
+```
+
+## Miscellaneous
 
 ### Get the current date using `strftime`.
 
