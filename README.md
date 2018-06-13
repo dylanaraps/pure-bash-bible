@@ -31,6 +31,7 @@ scripts and not full blown utilities.
     * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
 * [Strings](#strings)
+    * [Trim white-space from string.](#trim-white-space-from-string)
     * [Split a string on a delimiter.](#split-a-string-on-a-delimiter)
     * [Change a string to lowercase.](#change-a-string-to-lowercase)
     * [Change a string to uppercase.](#change-a-string-to-uppercase)
@@ -116,6 +117,21 @@ lines() {
 
 ## Strings
 
+
+### Trim white-space from string.
+
+**NOTE**: This also truncates multiple spaces inside the string.
+
+```sh
+# shellcheck disable=SC2086,SC2048
+trim() {
+    # Usage: trim "   example   string    "
+    set -f
+    set -- $*
+    printf '%s\n' "$*"
+    set +f
+}
+```
 
 ### Split a string on a delimiter.
 
