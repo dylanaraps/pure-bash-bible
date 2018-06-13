@@ -34,6 +34,8 @@ scripts and not full blown utilities.
     * [Strip characters from end of string.](#strip-characters-from-end-of-string)
 * [Arrays](#arrays)
     * [Reverse an array.](#reverse-an-array)
+    * [Cycle through an array.](#cycle-through-an-array)
+    * [Toggle between two values.](#toggle-between-two-values)
 * [File handling](#file-handling)
     * [Read a file to a string.](#read-a-file-to-a-string)
     * [Read a file to an array (*by line*).](#read-a-file-to-an-array-by-line)
@@ -49,7 +51,6 @@ scripts and not full blown utilities.
 * [Arithmetic](#arithmetic)
     * [Simpler syntax to set variables.](#simpler-syntax-to-set-variables)
     * [Ternary tests.](#ternary-tests)
-    * [Cycle through an array.](#cycle-through-an-array)
 * [Colors](#colors)
     * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
@@ -159,6 +160,28 @@ reverse_array() {
     printf '\n'
 }
 ```
+
+### Cycle through an array.
+
+Each time the `printf` is called, the next array element is printed. When
+the print hits the last array element it starts from the first element
+again.
+
+```sh
+arr=(a b c d)
+printf '%s\n' "${arr[$((i==${#arr[@]}-1?i=0:++i))]}"
+```
+
+
+### Toggle between two values.
+
+This works the same as above, this is just a different use case.
+
+```sh
+arr=(true false)
+printf '%s\n' "${arr[$((i==${#arr[@]}-1?i=0:++i))]}"
+```
+
 
 
 ## File handling
@@ -326,22 +349,6 @@ basename() {
 # ?var2: If the test succeeds.
 # :var: If the test fails.
 ((var=var2>var?var2:var))
-```
-
-### Cycle through an array.
-
-Each time the `printf` is called, the next array element is printed. When
-the print hits the last array element it starts fromt he first element
-again.
-
-```sh
-# Cycle through multiple elements.
-arr=(a b c d)
-printf '%s\n' "${arr[$((i==${#arr[@]}-1?i=0:++i))]}"
-
-# Cycle through two elements (works like a toggle).
-arr=(true false)
-printf '%s\n' "${arr[$((i==${#arr[@]}-1?i=0:++i))]}"
 ```
 
 
