@@ -32,12 +32,14 @@ scripts and not full blown utilities.
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
 * [Strings](#strings)
     * [Split a string on a delimiter.](#split-a-string-on-a-delimiter)
-    * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
     * [Change a string to lowercase.](#change-a-string-to-lowercase)
     * [Change a string to uppercase.](#change-a-string-to-uppercase)
     * [Trim quotes from a string.](#trim-quotes-from-a-string)
 * [Arrays](#arrays)
     * [Reverse an array.](#reverse-an-array)
+* [File Paths](#file-paths)
+    * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
+    * [Get the base-name of a file path.](#get-the-base-name-of-a-file-path)
 * [Colors](#colors)
     * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
@@ -126,17 +128,6 @@ IFS=, read -r var1 var2 var3 <<< "$string"
 IFS=, read -ra vars <<< "$string"
 ```
 
-### Get the directory name of a file path.
-
-Alternative to the `dirname` command.
-
-```sh
-dirname() {
-    # Usage: dirname "path"
-    printf '%s\n' "${1%/*}/"
-}
-```
-
 ### Change a string to lowercase.
 
 **NOTE:** Requires `bash` 4+
@@ -187,6 +178,32 @@ reverse_array() {
     printf '\n'
 }
 ```
+
+## File Paths
+
+### Get the directory name of a file path.
+
+Alternative to the `dirname` command.
+
+```sh
+dirname() {
+    # Usage: dirname "path"
+    printf '%s\n' "${1%/*}/"
+}
+```
+
+### Get the base-name of a file path.
+
+Alternative to the `basename` command.
+
+```sh
+basename() {
+    # Usage: basename "path"
+    path="${1%/}"
+    printf '%s\n' "${path##*/}"
+}
+```
+
 
 ## Colors
 
