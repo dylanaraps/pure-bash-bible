@@ -6,7 +6,7 @@
 This is handy when writing scripts in pure bash and `stty`/`tput` can’t be
 called.
 
-```shell
+```sh
 get_term_size() {
     # Usage: get_term_size
 
@@ -20,7 +20,7 @@ get_term_size() {
 
 ### Convert a hex color to RGB
 
-```shell
+```sh
 hex_to_rgb() {
     # Usage: hex_to_rgb "#FFFFFF"
     ((r=16#${1:1:2}))
@@ -34,7 +34,7 @@ hex_to_rgb() {
 
 ### Convert an RGB color to hex.
 
-```shell
+```sh
 rgb_to_hex() {
     # Usage: rgb_to_hex "r" "g" "b"
     printf '#%02x%02x%02x\n' "$1" "$2" "$3"
@@ -49,7 +49,7 @@ in place of the `date` command in a lot of cases.
 
 **NOTE:** Requires bash4+
 
-```shell
+```sh
 date() {
     # Usage: date "format"
     # See: 'man strftime' for format.
@@ -62,7 +62,7 @@ date() {
 
 Extract the directory from a file path.
 
-```shell
+```sh
 dirname() {
     # Usage: dirname "path"
     printf ‘%s\n’ "${1%/*}/"
