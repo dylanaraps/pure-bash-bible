@@ -22,12 +22,12 @@ list, send a pull request!
 
 * [Getting the terminal size (*in a script*).](#getting-the-terminal-size-in-a-script)
 * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
+* [Get the first N lines in a file.](#get-the-first-n-lines-in-a-file)
+* [Get the last N lines in a file.](#get-the-last-n-lines-in-a-file)
 * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
 * [Convert a hex color to RGB](#convert-a-hex-color-to-rgb)
 * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
 * [Trim quotes from a string.](#trim-quotes-from-a-string)
-* [Get the first N lines in a file.](#get-the-first-n-lines-in-a-file)
-* [Get the last N lines in a file.](#get-the-last-n-lines-in-a-file)
 
 <!-- vim-markdown-toc -->
 
@@ -61,6 +61,35 @@ date() {
     # Usage: date "format"
     # See: 'man strftime' for format.
     printf "%($1)T\\n"
+}
+```
+
+
+## Get the first N lines in a file.
+
+Alternative to the `head` command.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+head() {
+    # Usage: head "n" "file"
+    mapfile -tn "$1" line < "$2"
+    printf '%s\n' "${line[@]}"
+}
+```
+
+## Get the last N lines in a file.
+
+Alternative to the `tail` command.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+tail() {
+    # Usage: tail "n" "file"
+    mapfile -tn 0 line < "$2"
+    printf '%s\n' "${line[@]: -$1}"
 }
 ```
 
@@ -104,34 +133,5 @@ trim_quotes() {
     # Usage: trim_quotes "string"
     : "${1//\'}"
     printf "%s\\n" "${_//\"}"
-}
-```
-
-
-## Get the first N lines in a file.
-
-Alternative to the `head` command.
-
-**NOTE:** Requires `bash` 4+
-
-```sh
-head() {
-    # Usage: head "n" "file"
-    mapfile -tn "$1" line < "$2"
-    printf '%s\n' "${line[@]}"
-}
-```
-
-## Get the last N lines in a file.
-
-Alternative to the `tail` command.
-
-**NOTE:** Requires `bash` 4+
-
-```sh
-tail() {
-    # Usage: tail "n" "file"
-    mapfile -tn 0 line < "$2"
-    printf '%s\n' "${line[@]: -$1}"
 }
 ```
