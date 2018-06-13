@@ -1,4 +1,14 @@
-## PURE BASH
+# PURE BASH
+
+<!-- vim-markdown-toc GFM -->
+
+* [Getting the terminal size (*in a script*).](#getting-the-terminal-size-in-a-script)
+* [Convert a hex color to RGB](#convert-a-hex-color-to-rgb)
+* [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
+* [`printf` as a `date` replacement.](#printf-as-a-date-replacement)
+* [`dirname`](#dirname)
+
+<!-- vim-markdown-toc -->
 
 
 ### Getting the terminal size (*in a script*).
