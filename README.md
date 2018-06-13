@@ -63,6 +63,7 @@ scripts and not full blown utilities.
     * [Shorter `for` loop syntax.](#shorter-for-loop-syntax)
     * [Shorter infinite loops.](#shorter-infinite-loops)
     * [Shorter function declaration.](#shorter-function-declaration)
+    * [Shorter if syntax.](#shorter-if-syntax)
 * [Miscellaneous](#miscellaneous)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
     * [Bypass shell aliases and functions.](#bypass-shell-aliases-and-functions)
@@ -493,6 +494,24 @@ f()(($1))
 # Note: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
 f()if true; then echo "$1"; fi
 f()for i in "$@"; do echo "$i"; done
+```
+
+### Shorter if syntax.
+
+```sh
+# One line
+[[ "$var" == hello ]] && echo hi || echo bye
+[[ "$var" == hello ]] && { echo hi; echo there; } || echo bye
+
+# Multi line (no else, single statement)
+[[ "$var" == hello ]] && \
+    echo hi
+
+# Multi line (no else)
+[[ "$var" == hello ]] && {
+    echo hi
+    # ...
+}
 ```
 
 ## Miscellaneous
