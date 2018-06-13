@@ -46,6 +46,10 @@ scripts and not full blown utilities.
 * [File Paths](#file-paths)
     * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
     * [Get the base-name of a file path.](#get-the-base-name-of-a-file-path)
+* [Arithmetic](#arithmetic)
+    * [Simpler syntax to set variables.](#simpler-syntax-to-set-variables)
+    * [Ternary tests.](#ternary-tests)
+    * [Cycle through an array.](#cycle-through-an-array)
 * [Colors](#colors)
     * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
@@ -294,6 +298,52 @@ basename() {
     printf '%s\n' "${_##*/}"
 }
 ```
+
+## Arithmetic
+
+### Simpler syntax to set variables.
+
+```sh
+# Simple math
+((var=1+2))
+
+# Decrement/Increment variable
+((var++)
+((var--))
+((var+=1))
+((var-=1))
+
+# Using variables
+((var=var2*arr[2]))
+```
+
+### Ternary tests.
+
+```sh
+# Set the value of var to var2 if var2 is greater than var.
+# var: variable to set.
+# var2>var: Condition to test.
+# ?var2: If the test succeeds.
+# :var: If the test fails.
+((var=var2>var?var2:var))
+```
+
+### Cycle through an array.
+
+Each time the `printf` is called, the next array element is printed. When
+the print hits the last array element it starts fromt he first element
+again.
+
+```sh
+# Cycle through multiple elements.
+arr=(a b c d)
+printf '%s\n' "${arr[$((i==${#arr[@]}-1?i=0:++i))]}"
+
+# Cycle through two elements (works like a toggle).
+arr=(true false)
+printf '%s\n' "${arr[$((i==${#arr[@]}-1?i=0:++i))]}"
+```
+
 
 ## Colors
 
