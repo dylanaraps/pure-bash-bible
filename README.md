@@ -68,7 +68,7 @@ Alternative to the `dirname` command.
 ```sh
 dirname() {
     # Usage: dirname "path"
-    printf ‘%s\n’ "${1%/*}/"
+    printf '%s\n' "${1%/*}/"
 }
 ```
 
