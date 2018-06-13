@@ -1,4 +1,4 @@
-# Pure `bash`
+# pure `bash`
 
 A collection of pure `bash` alternatives to external processes.
 
