@@ -31,6 +31,8 @@ scripts and not full blown utilities.
 * [Strings](#strings)
     * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
     * [Trim quotes from a string.](#trim-quotes-from-a-string)
+* [Arrays](#arrays)
+    * [Reverse an array.](#reverse-an-array)
 * [Colors](#colors)
     * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
@@ -107,6 +109,25 @@ trim_quotes() {
     # Usage: trim_quotes "string"
     : "${1//\'}"
     printf "%s\\n" "${_//\"}"
+}
+```
+
+## Arrays
+
+### Reverse an array.
+
+Enabling `extdebug` allows access to the `BASH_ARGV` array which stores
+the current function’s arguments in reverse.
+
+```sh
+reverse_array() {
+    # Usage: reverse_array "array"
+    #        reverse_array 1 2 3 4 5 6
+    shopt -s extdebug
+    f()(printf "%s " "${BASH_ARGV[@]}"); f "$@"
+    shopt -u extdebug
+
+    printf '\n'
 }
 ```
 
