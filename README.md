@@ -32,6 +32,8 @@ scripts and not full blown utilities.
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
 * [Strings](#strings)
     * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
+    * [Change a string to lowercase.](#change-a-string-to-lowercase)
+    * [Change a string to uppercase.](#change-a-string-to-uppercase)
     * [Trim quotes from a string.](#trim-quotes-from-a-string)
 * [Arrays](#arrays)
     * [Reverse an array.](#reverse-an-array)
@@ -117,6 +119,28 @@ Alternative to the `dirname` command.
 dirname() {
     # Usage: dirname "path"
     printf '%s\n' "${1%/*}/"
+}
+```
+
+### Change a string to lowercase.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+lower() {
+    # Usage: lower "string"
+    printf '%s\n' "${1,,}"
+}
+```
+
+### Change a string to uppercase.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+upper() {
+    # Usage: upper "string"
+    printf '%s\n' "${1^^}"
 }
 ```
 
