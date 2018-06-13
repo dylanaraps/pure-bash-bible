@@ -550,7 +550,9 @@ case "$(uname)" in
         exit 1
     ;;
 esac
-printf '%s\n' "$_"
+
+# Finally, set the variable.
+os="$_"
 ```
 
 
