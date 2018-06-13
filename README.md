@@ -34,6 +34,7 @@ scripts and not full blown utilities.
     * [Strip characters from end of string.](#strip-characters-from-end-of-string)
 * [Arrays](#arrays)
     * [Reverse an array.](#reverse-an-array)
+    * [Remove duplicate array elements.](#remove-duplicate-array-elements)
     * [Cycle through an array.](#cycle-through-an-array)
     * [Toggle between two values.](#toggle-between-two-values)
 * [File handling](#file-handling)
@@ -163,6 +164,25 @@ reverse_array() {
     shopt -u extdebug
 
     printf '\n'
+}
+```
+
+### Remove duplicate array elements.
+
+Create a temporary associative array. When setting associative array
+values and a duplicate assignment occurs, bash overwrites the key. This
+allows us to effectively remove array duplicates.
+
+```sh
+remove_array_dups() {
+    # Usage: remove_array_dups "array"
+    declare -A tmp_array
+
+    for i in "$@"; do
+        [[ "$i" ]] && IFS=" " tmp_array["${i:- }"]=1
+    done
+
+    printf '%s\n' "${!tmp_array[@]}"
 }
 ```
 
