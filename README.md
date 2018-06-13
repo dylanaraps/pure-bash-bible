@@ -25,6 +25,8 @@ scripts and not full blown utilities.
 <!-- vim-markdown-toc GFM -->
 
 * [File handling](#file-handling)
+    * [Read a file to a string.](#read-a-file-to-a-string)
+    * [Read a file to an array (*by line*).](#read-a-file-to-an-array-by-line)
     * [Get the first N lines of a file.](#get-the-first-n-lines-of-a-file)
     * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
@@ -44,6 +46,22 @@ scripts and not full blown utilities.
 
 
 ## File handling
+
+### Read a file to a string.
+
+Alternative to the `cat` command.
+
+```sh
+file_data="$(<"file")"
+```
+
+### Read a file to an array (*by line*).
+
+Alternative to the `cat` command.
+
+```sh
+IFS=$'\n' read -d "" -ra file_data < "file"
+```
 
 ### Get the first N lines of a file.
 
