@@ -229,7 +229,11 @@ file_data="$(<"file")"
 Alternative to the `cat` command.
 
 ```sh
+# Bash <4
 IFS=$'\n' read -d "" -ra file_data < "file"
+
+# Bash 4+
+mapfile -t file_data < "file"
 ```
 
 ### Get the first N lines of a file.
