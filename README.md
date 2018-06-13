@@ -68,6 +68,7 @@ scripts and not full blown utilities.
 * [Miscellaneous](#miscellaneous)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
     * [Bypass shell aliases and functions.](#bypass-shell-aliases-and-functions)
+* [Internal Variables](#internal-variables)
 
 <!-- vim-markdown-toc -->
 
@@ -380,7 +381,6 @@ basename() {
 ((var=var2>var?var2:var))
 ```
 
-
 ## Colors
 
 ### Convert a hex color to RGB.
@@ -591,3 +591,10 @@ ls
 # command
 \ls
 ```
+
+## Internal Variables
+
+This will most likely be expanded here. In the meantime, see:
+http://tldp.org/LDP/abs/html/internalvariables.html
+
+
