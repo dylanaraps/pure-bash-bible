@@ -30,6 +30,7 @@ scripts and not full blown utilities.
     * [Get the first N lines of a file.](#get-the-first-n-lines-of-a-file)
     * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
+    * [Iterate over files.](#iterate-over-files)
     * [Create an empty file.](#create-an-empty-file)
 * [Strings](#strings)
     * [Trim white-space from string.](#trim-white-space-from-string)
@@ -115,6 +116,22 @@ lines() {
     mapfile -tn 0 lines < "$1"
     printf '%s\n' "${#lines[@]}"
 }
+```
+
+### Iterate over files.
+
+Don’t use `ls`.
+
+```sh
+# Greedy example.
+for file in *; do
+    echo "$file"
+done
+
+# PNG files in dir.
+for file in ~/Pictures/*.png; do
+    echo "$file"
+done
 ```
 
 ### Create an empty file.
