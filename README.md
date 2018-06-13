@@ -58,8 +58,12 @@ scripts and not full blown utilities.
     * [Get the terminal size in lines and columns (*from a script*).](#get-the-terminal-size-in-lines-and-columns-from-a-script)
     * [Get the terminal size in pixels.](#get-the-terminal-size-in-pixels)
     * [Get the current cursor position.](#get-the-current-cursor-position)
+* [Code Golf](#code-golf)
+    * [Shorter `for` loop syntax.](#shorter-for-loop-syntax)
+    * [Shorter function declaration.](#shorter-function-declaration)
 * [Miscellaneous](#miscellaneous)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
+    * [Bypass shell aliases and functions.](#bypass-shell-aliases-and-functions)
 
 <!-- vim-markdown-toc -->
 
@@ -419,6 +423,45 @@ get_cursor_pos() {
 }
 ```
 
+## Code Golf
+
+### Shorter `for` loop syntax.
+
+```sh
+# Tiny C Style.
+for((;i++<10)){ echo "$i";}
+
+# Undocumented method.
+for i in {1..10};{ echo "$i";}
+
+# Expansion.
+for i in {1..10}; do echo "$i"; done
+
+# C Style.
+for((i=0;i<=10;i++)); do echo "$i"; done
+```
+
+### Shorter function declaration.
+
+```sh
+# Normal method
+f(){ echo hi;}
+
+# Using a subshell
+f()(echo hi)
+
+# Using arithmetic
+# You can use this to assign integer values.
+# Example: f a=1
+#          f a++
+f()(($1))
+
+# Using tests, loops etc.
+# Note: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
+f()if true; then echo "$1"; fi
+f()for i in "$@"; do echo "$i"; done
+```
+
 ## Miscellaneous
 
 ### Get the current date using `strftime`.
@@ -434,4 +477,25 @@ date() {
     # See: 'man strftime' for format.
     printf "%($1)T\\n"
 }
+
+# Examples:
+
+# Using date.
+date "+%a %d %b  - %l:%M %p"
+
+# Using printf.
+printf '%(%a %d %b  - %l:%M %p)T\n'
+
+# Assigning a variable.
+printf -v date '%(%a %d %b  - %l:%M %p)T\n'
+```
+
+### Bypass shell aliases and functions.
+
+```sh
+# alias
+ls
+
+# command
+\ls
 ```
