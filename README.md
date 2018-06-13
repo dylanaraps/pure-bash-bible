@@ -63,7 +63,8 @@ scripts and not full blown utilities.
     * [Shorter `for` loop syntax.](#shorter-for-loop-syntax)
     * [Shorter infinite loops.](#shorter-infinite-loops)
     * [Shorter function declaration.](#shorter-function-declaration)
-    * [Shorter if syntax.](#shorter-if-syntax)
+    * [Shorter `if` syntax.](#shorter-if-syntax)
+    * [Simpler `case` statement to set variable.](#simpler-case-statement-to-set-variable)
 * [Miscellaneous](#miscellaneous)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
     * [Bypass shell aliases and functions.](#bypass-shell-aliases-and-functions)
@@ -496,7 +497,7 @@ f()if true; then echo "$1"; fi
 f()for i in "$@"; do echo "$i"; done
 ```
 
-### Shorter if syntax.
+### Shorter `if` syntax.
 
 ```sh
 # One line
@@ -513,6 +514,45 @@ f()for i in "$@"; do echo "$i"; done
     # ...
 }
 ```
+
+### Simpler `case` statement to set variable.
+
+We can use the `:` builtin to avoid repeating `variable=` in a case
+statement. The `$_` variable stores the last argument of the last
+successful command. `:` always succeeds so we can abuse it to store the
+variable value.
+
+```sh
+# Example snippet from Neofetch.
+case "$(uname)" in
+    "SunOS"):    "Solaris" ;;
+    "Haiku"):    "Haiku" ;;
+    "MINIX"):    "MINIX" ;;
+    "AIX"):      "AIX" ;;
+    "IRIX"*):    "IRIX" ;;
+    "FreeMiNT"): "FreeMiNT" ;;
+
+    "Linux" | "GNU"*)
+        : "Linux"
+    ;;
+
+    *"BSD" | "DragonFly" | "Bitrig")
+        : "BSD"
+    ;;
+
+    "CYGWIN"* | "MSYS"* | "MINGW"*)
+        : "Windows"
+    ;;
+
+    *)
+        printf '%s\n' "Unknown OS detected: '$kernel_name', aborting..." >&2
+        printf '%s\n' "Open an issue on GitHub to add support for your OS." >&2
+        exit 1
+    ;;
+esac
+printf '%s\n' "$_"
+```
+
 
 ## Miscellaneous
 
