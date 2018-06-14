@@ -1,9 +1,8 @@
-<p align="center"> <img
-src="https://i.imgur.com/1C9VXOg.png"
-height="100px"></p><h3 align="center">pure bash bible</h3> <p align="center">A
-[WIP] collection of pure bash alternatives to external processes.</p>
+<h1 align="center">pure bash bible</h1> <p
+align="center">A [WIP] collection of pure bash alternatives to external
+processes.</p>
 
-------
+<br>
 
 The goal of this repository is to document known and unknown methods of
 doing various tasks using only built-in bash features. Using the snippets
