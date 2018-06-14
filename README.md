@@ -2,6 +2,8 @@
 align="center">A [WIP] collection of pure bash alternatives to external
 processes.</p>
 
+<a href="https://travis-ci.org/dylanaraps/pure-bash"><img src="https://travis-ci.org/dylanaraps/pure-bash.svg?branch=master"></a>
+
 <br>
 
 The goal of this repository is to document known and unknown methods of
