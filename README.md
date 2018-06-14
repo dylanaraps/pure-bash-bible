@@ -545,7 +545,7 @@ _() {
 
     # Undocumented method.
     # Note: This is commented to make shellcheck play nice.
-    for i in {1..10};{ echo "$i";}
+    # for i in {1..10};{ echo "$i";}
 
     # Expansion.
     for i in {1..10}; do echo "$i"; done
@@ -584,9 +584,10 @@ _() {
     f()(($1))
 
     # Using tests, loops etc.
-    # Note: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
-    f()if true; then echo "$1"; fi
-    f()for i in "$@"; do echo "$i"; done
+    # NOTE: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
+    # NOTE: These are commented to make shellcheck play nice.
+    # f()if true; then echo "$1"; fi
+    # f()for i in "$@"; do echo "$i"; done
 }
 ```
 
