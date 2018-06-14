@@ -71,7 +71,8 @@ scripts and not full blown utilities.
     * [Simpler `case` statement to set variable.](#simpler-case-statement-to-set-variable)
 * [Miscellaneous](#miscellaneous)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
-    * [Bypass shell aliases and functions.](#bypass-shell-aliases-and-functions)
+    * [Bypass shell aliases.](#bypass-shell-aliases)
+    * [Bypass shell functions.](#bypass-shell-functions)
 * [Internal Variables](#internal-variables)
 
 <!-- vim-markdown-toc -->
@@ -592,7 +593,7 @@ printf '%(%a %d %b  - %l:%M %p)T\n'
 printf -v date '%(%a %d %b  - %l:%M %p)T\n'
 ```
 
-### Bypass shell aliases and functions.
+### Bypass shell aliases.
 
 ```sh
 # alias
@@ -600,6 +601,16 @@ ls
 
 # command
 \ls
+```
+
+### Bypass shell functions.
+
+```sh
+# function
+ls
+
+# command
+command ls
 ```
 
 ## Internal Variables
