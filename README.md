@@ -126,12 +126,14 @@ trim() {
 ### Split a string on a delimiter.
 
 ```sh
-# To multiple variables.
-string="1,2,3"
-IFS=, read -r var1 var2 var3 <<< "$string"
+_() {
+    # To multiple variables.
+    string="1,2,3"
+    IFS=, read -r var1 var2 var3 <<< "$string"
 
-# To an array.
-IFS=, read -ra vars <<< "$string"
+    # To an array.
+    IFS=, read -ra vars <<< "$string"
+}
 ```
 
 ### Change a string to lowercase.
@@ -189,26 +191,26 @@ rstrip() {
 ### Assign and access a variable using a variable.
 
 ```sh
-# First Example.
+_() {
+    # First Example.
+    var1="world"
+    var2="hello_${var1}"
+    declare "${var2}=test_string"
+    printf '%s\n' "${!var2}"
 
-var1="world"
-var2="hello_${var1}"
-declare "${var2}=test_string"
-printf '%s\n' "${!var2}"
 
+    # Second Example.
+    # Assign to a variable named after the
+    # value stored in '$var'.
+    var="test"
+    read -rp "input text: " "${var?}"
 
-# Second Example.
+    # Access the variable indirectly.
+    printf '%s\n' "set var \$$var to '${!var}'"
 
-# Assign to a variable named after the
-# value stored in '$var'.
-var="test"
-read -rp "input text: " "${var?}"
-
-# Access the variable indirectly.
-printf '%s\n' "set var \$$var to '${!var}'"
-
-# Access the variable directly.
-printf '%s\n' "set var \$$var to '$test'"
+    # Access the variable directly.
+    printf '%s\n' "set var \$$var to '$test'"
+}
 ```
 
 
@@ -290,7 +292,9 @@ cycle() {
 Alternative to the `cat` command.
 
 ```sh
-file_data="$(<"file")"
+_() {
+    file_data="$(<"file")"
+}
 ```
 
 ### Read a file to an array (*by line*).
@@ -298,11 +302,13 @@ file_data="$(<"file")"
 Alternative to the `cat` command.
 
 ```sh
-# Bash <4
-IFS=$'\n' read -d "" -ra file_data < "file"
+_() {
+    # Bash <4
+    IFS=$'\n' read -d "" -ra file_data < "file"
 
-# Bash 4+
-mapfile -t file_data < "file"
+    # Bash 4+
+    mapfile -t file_data < "file"
+}
 ```
 
 ### Get the first N lines of a file.
@@ -352,27 +358,29 @@ lines() {
 Don’t use `ls`.
 
 ```sh
-# Greedy example.
-for file in *; do
-    printf '%s\n' "$file"
-done
+_() {
+    # Greedy example.
+    for file in *; do
+        printf '%s\n' "$file"
+    done
 
-# PNG files in dir.
-for file in ~/Pictures/*.png; do
-    printf '%s\n' "$file"
-done
+    # PNG files in dir.
+    for file in ~/Pictures/*.png; do
+        printf '%s\n' "$file"
+    done
 
-# Iterate over directories.
-for dir in ~/Downloads/*/; do
-    printf '%s\n' "$dir"
-done
+    # Iterate over directories.
+    for dir in ~/Downloads/*/; do
+        printf '%s\n' "$dir"
+    done
 
-# Iterate recursively.
-shopt -s globstar
-for file in ~/Pictures/**/*; do
-    printf '%s\n' "$file"
-done
-shopt -u globstar
+    # Iterate recursively.
+    shopt -s globstar
+    for file in ~/Pictures/**/*; do
+        printf '%s\n' "$file"
+    done
+    shopt -u globstar
+}
 ```
 
 ### Count files or directories in directory.
@@ -393,11 +401,14 @@ count() {
 Alternative to `touch`.
 
 ```sh
-:> file
+_() {
+    # Shortest.
+    :> file
 
-# Longer alternatives:
-echo -n > file
-printf '' > file
+    # Longer alternatives:
+    echo -n > file
+    printf '' > file
+}
 ```
 
 ## File Paths
@@ -430,28 +441,32 @@ basename() {
 ### Simpler syntax to set variables.
 
 ```sh
-# Simple math
-((var=1+2))
+_() {
+    # Simple math
+    ((var=1+2))
 
-# Decrement/Increment variable
-((var++))
-((var--))
-((var+=1))
-((var-=1))
+    # Decrement/Increment variable
+    ((var++))
+    ((var--))
+    ((var+=1))
+    ((var-=1))
 
-# Using variables
-((var=var2*arr[2]))
+    # Using variables
+    ((var=var2*arr[2]))
+}
 ```
 
 ### Ternary tests.
 
 ```sh
-# Set the value of var to var2 if var2 is greater than var.
-# var: variable to set.
-# var2>var: Condition to test.
-# ?var2: If the test succeeds.
-# :var: If the test fails.
-((var=var2>var?var2:var))
+_() {
+    # Set the value of var to var2 if var2 is greater than var.
+    # var: variable to set.
+    # var2>var: Condition to test.
+    # ?var2: If the test succeeds.
+    # :var: If the test fails.
+    ((var=var2>var?var2:var))
+}
 ```
 
 ## Colors
@@ -526,67 +541,74 @@ get_cursor_pos() {
 ### Shorter `for` loop syntax.
 
 ```sh
-# Tiny C Style.
-for((;i++<10;)){ echo "$i";}
+_() {
+    # Tiny C Style.
+    for((;i++<10;)){ echo "$i";}
 
-# Undocumented method.
-# Note: This is commented to make shellcheck play nice.
-# for i in {1..10};{ echo "$i";}
+    # Undocumented method.
+    # Note: This is commented to make shellcheck play nice.
+    for i in {1..10};{ echo "$i";}
 
-# Expansion.
-for i in {1..10}; do echo "$i"; done
+    # Expansion.
+    for i in {1..10}; do echo "$i"; done
 
-# C Style.
-for((i=0;i<=10;i++)); do echo "$i"; done
+    # C Style.
+    for((i=0;i<=10;i++)); do echo "$i"; done
+}
 ```
 
 ### Shorter infinite loops.
 
 ```sh
-# Normal method
-while :; do code; done
+_() {
+    # Normal method
+    while :; do echo hi; done
 
-# Shorter
-for((;;)){ code;}
+    # Shorter
+    for((;;)){ echo hi;}
+}
 ```
 
 ### Shorter function declaration.
 
 ```sh
-# Normal method
-f(){ echo hi;}
+_() {
+    # Normal method
+    f(){ echo hi;}
 
-# Using a subshell
-f()(echo hi)
+    # Using a subshell
+    f()(echo hi)
 
-# Using arithmetic
-# You can use this to assign integer values.
-# Example: f a=1
-#          f a++
-f()(($1))
+    # Using arithmetic
+    # You can use this to assign integer values.
+    # Example: f a=1
+    #          f a++
+    f()(($1))
 
-# Using tests, loops etc.
-# Note: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
-# Note: These are commented to make shellcheck play nice.
-# f()if true; then echo "$1"; fi
-# f()for i in "$@"; do echo "$i"; done
+    # Using tests, loops etc.
+    # Note: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
+    f()if true; then echo "$1"; fi
+    f()for i in "$@"; do echo "$i"; done
+}
 ```
 
 ### Shorter `if` syntax.
 
 ```sh
-# One line
-[[ "$var" == hello ]] && echo hi || echo bye
-[[ "$var" == hello ]] && { echo hi; echo there; } || echo bye
+_() {
+    # One line
+    [[ "$var" == hello ]] && echo hi || echo bye
+    [[ "$var" == hello ]] && { echo hi; echo there; } || echo bye
 
-# Multi line (no else, single statement)
-[[ "$var" == hello ]] && \
-    echo hi
+    # Multi line (no else, single statement)
+    [[ "$var" == hello ]] && \
+        echo hi
 
-# Multi line (no else)
-[[ "$var" == hello ]] && {
-    echo hi
-    # ...
+    # Multi line (no else)
+    [[ "$var" == hello ]] && {
+        echo hi
+        # ...
+    }
 }
 ```
 
@@ -598,36 +620,30 @@ successful command. `:` always succeeds so we can abuse it to store the
 variable value.
 
 ```sh
-# Example snippet from Neofetch.
-case "$(uname)" in
-    "SunOS"):    "Solaris" ;;
-    "Haiku"):    "Haiku" ;;
-    "MINIX"):    "MINIX" ;;
-    "AIX"):      "AIX" ;;
-    "IRIX"*):    "IRIX" ;;
-    "FreeMiNT"): "FreeMiNT" ;;
+_() {
+    # Example snippet from Neofetch.
+    case "$(uname)" in
+        "Linux" | "GNU"*)
+            : "Linux"
+        ;;
 
-    "Linux" | "GNU"*)
-        : "Linux"
-    ;;
+        *"BSD" | "DragonFly" | "Bitrig")
+            : "BSD"
+        ;;
 
-    *"BSD" | "DragonFly" | "Bitrig")
-        : "BSD"
-    ;;
+        "CYGWIN"* | "MSYS"* | "MINGW"*)
+            : "Windows"
+        ;;
 
-    "CYGWIN"* | "MSYS"* | "MINGW"*)
-        : "Windows"
-    ;;
+        *)
+            printf '%s\n' "Unknown OS detected, aborting..." >&2
+            exit 1
+        ;;
+    esac
 
-    *)
-        printf '%s\n' "Unknown OS detected: '$kernel_name', aborting..." >&2
-        printf '%s\n' "Open an issue on GitHub to add support for your OS." >&2
-        exit 1
-    ;;
-esac
-
-# Finally, set the variable.
-os="$_"
+    # Finally, set the variable.
+    os="$_"
+}
 ```
 
 ## Internal Variables
@@ -641,59 +657,59 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 ### Get the location to the `bash` binary.
 
 ```sh
-"$BASH"
+: "$BASH"
 ```
 
 ### Get the version of the current running `bash` process.
 
 ```sh
 # As a string.
-"$BASH_VERSION"
+: "$BASH_VERSION"
 
 # As an array.
-"${BASH_VERSINFO[@]}"
+: "${BASH_VERSINFO[@]}"
 ```
 
 ### Open the user's preferred text editor.
 
 ```sh
-"$EDITOR" "$file"
+: "$EDITOR" "$file"
 
 # NOTE: This variable may be empty, set a fallback value.
-"${EDITOR:-vi}" "$file"
+: "${EDITOR:-vi}" "$file"
 ```
 
 ### Get the name of the current function.
 
 ```sh
 # Current function.
-"${FUNCNAME[0]}"
+: "${FUNCNAME[0]}"
 
 # Parent function.
-"${FUNCNAME[1]}"
+: "${FUNCNAME[1]}"
 
 # So on and so forth.
-"${FUNCNAME[2]}"
-"${FUNCNAME[3]}"
+: "${FUNCNAME[2]}"
+: "${FUNCNAME[3]}"
 
 # All functions including parents.
-"${FUNCNAME[@]}"
+: "${FUNCNAME[@]}"
 ```
 
 ### Get the host-name of the system.
 
 ```sh
-"$HOSTNAME"
+: "$HOSTNAME"
 
 # NOTE: This variable may be empty.
 # Optionally set a fallback to the hostname command.
-"${HOSTNAME:-$(hostname)}"
+: "${HOSTNAME:-$(hostname)}"
 ```
 
 ### Get the architecture of the Operating System.
 
 ```sh
-"$HOSTTYPE"
+: "$HOSTTYPE"
 ```
 
 ### Get the name of the Operating System / Kernel.
@@ -702,7 +718,7 @@ This can be used to add conditional support for different Operating
 Systems without needing to call `uname`.
 
 ```sh
-"$OSTYPE"
+: "$OSTYPE"
 ```
 
 ### Get the current working directory.
@@ -710,13 +726,13 @@ Systems without needing to call `uname`.
 This is an alternative to the `pwd` built-in.
 
 ```sh
-"$PWD"
+: "$PWD"
 ```
 
 ### Get the number of seconds the script has been running.
 
 ```sh
-"$SECONDS"
+: "$SECONDS"
 ```
 
 ## Other
@@ -738,33 +754,33 @@ date() {
 # Examples:
 
 # Using date.
-date "+%a %d %b  - %l:%M %p"
+: date "+%a %d %b  - %l:%M %p"
 
 # Using printf.
-printf '%(%a %d %b  - %l:%M %p)T\n' '-1'
+: printf '%(%a %d %b  - %l:%M %p)T\n' '-1'
 
 # Assigning a variable.
-printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
+: printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
 ```
 
 ### Bypass shell aliases.
 
 ```sh
 # alias
-ls
+: ls
 
 # command
 # shellcheck disable=SC1001
-\ls
+: \ls
 ```
 
 ### Bypass shell functions.
 
 ```sh
 # function
-ls
+: ls
 
 # command
-command ls
+: command ls
 ```
 
