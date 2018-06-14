@@ -68,6 +68,13 @@ test_tail() {
     rm test_file
 }
 
+test_lines() {
+    printf '\n\n\n\n\n\n\n\n' > test_file
+    result="$(lines test_file)"
+    assert_equals "$result" "8"
+    rm test_file
+}
+
 test_count() {
     result="$(count ./{README.m,LICENSE.m,.travis.ym}*)"
     assert_equals "$result" "3"
@@ -133,6 +140,7 @@ main() {
     test_cycle
     test_head
     test_tail
+    test_lines
     test_count
     test_dirname
     test_basename
