@@ -104,6 +104,8 @@ scripts and not full blown utilities.
 
 ### Trim leading and trailing white-space from string.
 
+**Example Function:**
+
 ```sh
 trim_string() {
     # Usage: trim_string "   example   string    "
@@ -113,17 +115,42 @@ trim_string() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ trim_string "    Hello,  World    "
+Hello,  World
+
+$ name="   John Black  "
+$ trim_string "$name"
+John Black
+```
+
+
 ### Trim all white-space from string and truncate spaces.
+
+**Example Function:**
 
 ```sh
 # shellcheck disable=SC2086,SC2048
 trim_all() {
-    # Usage: trim "   example   string    "
+    # Usage: trim_all "   example   string    "
     set -f
     set -- $*
     printf '%s\n' "$*"
     set +f
 }
+```
+
+**Example Usage:**
+
+```shell
+$ trim_all "    Hello,    World    "
+Hello, World
+
+$ name="   John   Black  is     my    name.    "
+$ trim_all "$name"
+John Black is my name.
 ```
 
 ### Use REGEX on a string.
@@ -138,54 +165,67 @@ Stick to POSIX regex features if aiming for compatibility.
 **NOTE**: This example only prints the first matching group. When using
 multiple capture groups some modification will be needed.
 
+**Example Function:**
+
 ```sh
 regex() {
     # Usage: regex "string" "regex"
     [[ $1 =~ $2 ]] && printf '%s\n' "${BASH_REMATCH[1]}"
 }
+```
 
-# Example:
-# Trim leading white-space.
-: regex '    hello' '^\s*(.*)'
+**Example Usage:**
 
+```shell
+$ # Trim leading white-space.
+$ regex '    hello' '^\s*(.*)'
+hello
 
-# Example script usage (Validate hex colors):
-_() {
-    colors=(
-        "#FFFFFF"
-        "#000000"
-        "#CDEFDC"
-        "#12dlks"
-        "red"
-    )
+$ # Validate a hex color.
+$ regex "#FFFFFF" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$'
+#FFFFFF
 
-    for color in "${colors[@]}"; do
-        if [[ "$color" =~ ^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$ ]]; then
-            printf '%s\n' "${BASH_REMATCH[1]}"
-        else
-            printf '%s\n' "error: $color is an invalid color."
-        fi
-    done
+$ # Validate a hex color (invalid).
+$ regex "red" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$'
+# no output (invalid)
+```
+
+**Example Usage in script:**
+
+```shell
+is_hex_color() {
+    if [[ "$1" =~ ^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$ ]]; then
+        printf '%s\n' "${BASH_REMATCH[1]}"
+    else
+        printf '%s\n' "error: $1 is an invalid color."
+        return 1
+    fi
 }
+
+read -r color
+is_hex_color "$color" || color="#FFFFFF"
+
+# Do stuff.
 ```
 
 
 ### Split a string on a delimiter.
 
-```sh
-_() {
-    # To multiple variables.
-    string="1,2,3"
-    IFS=, read -r var1 var2 var3 <<< "$string"
+```shell
+string="1,2,3"
 
-    # To an array.
-    IFS=, read -ra vars <<< "$string"
-}
+# To multiple variables.
+IFS=, read -r var1 var2 var3 <<< "$string"
+
+# To an array.
+IFS=, read -ra vars <<< "$string"
 ```
 
 ### Change a string to lowercase.
 
 **NOTE:** Requires `bash` 4+
+
+**Example Function:**
 
 ```sh
 lower() {
@@ -194,9 +234,24 @@ lower() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ lower "HELLO"
+hello
+
+$ lower "HeLlO"
+hello
+
+$ lower "hello"
+hello
+```
+
 ### Change a string to uppercase.
 
 **NOTE:** Requires `bash` 4+
+
+**Example Function:**
 
 ```sh
 upper() {
@@ -205,7 +260,22 @@ upper() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ upper "hello"
+HELLO
+
+$ upper "HeLlO"
+HELLO
+
+$ upper "HELLO"
+HELLO
+```
+
 ### Trim quotes from a string.
+
+**Example Function:**
 
 ```sh
 trim_quotes() {
@@ -215,41 +285,62 @@ trim_quotes() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ var="'Hello', \"World\""
+$ trim_quotes "$var"
+Hello, World
+```
+
 ### Strip all instances of pattern from string.
+
+**Example Function:**
 
 ```sh
 strip_all() {
     # Usage: strip_all "string" "pattern"
     printf '%s\n' "${1//$2}"
 }
+```
 
-# Examples:
+**Example Usage:**
 
-# Output: "Th Qck Brwn Fx"
-: strip_all "The Quick Brown Fox" "[aeiou]"
+```shell
+$ strip_all "The Quick Brown Fox" "[aeiou]"
+Th Qck Brwn Fx
 
-# Output: "TheQuickBrownFox"
-: strip_all "The Quick Brown Fox" "[[:space:]]"
+$ strip_all "The Quick Brown Fox" "[[:space:]]"
+TheQuickBrownFox
+
+$ strip_all "The Quick Brown Fox" "Quick "
+The Brown Fox
 ```
 
 ### Strip first occurrence of pattern from string.
+
+**Example Function:**
 
 ```sh
 strip() {
     # Usage: strip "string" "pattern"
     printf '%s\n' "${1/$2}"
 }
+```
 
-# Examples:
+**Example Usage:**
 
-# Output: "Th Quick Brown Fox"
-: strip_all "The Quick Brown Fox" "[aeiou]"
+```shell
+$ strip "The Quick Brown Fox" "[aeiou]"
+Th Quick Brown Fox
 
-# Output: "TheQuick Brown Fox"
-: strip_all "The Quick Brown Fox" "[[:space:]]"
+$ strip "The Quick Brown Fox" "[[:space:]]"
+TheQuick Brown Fox
 ```
 
 ### Strip pattern from start of string.
+
+**Example Function:**
 
 ```sh
 lstrip() {
@@ -258,7 +349,16 @@ lstrip() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ lstrip "The Quick Brown Fox" "The "
+Quick Brown Fox
+```
+
 ### Strip pattern from end of string.
+
+**Example Function:**
 
 ```sh
 rstrip() {
@@ -267,21 +367,26 @@ rstrip() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ rstrip "The Quick Brown Fox" " Fox"
+The Quick Brown
+```
+
 ## Variables
 
 ### Assign and access a variable using a variable.
 
-```sh
-_() {
-    hello_world="test"
+```shell
+hello_world="test"
 
-    # Create the variable name.
-    var1="world"
-    var2="hello_${var1}"
+# Create the variable name.
+var1="world"
+var2="hello_${var1}"
 
-    # Print the value of the variable name stored in 'hello_$var1'.
-    printf '%s\n' "${!var2}"
-}
+# Print the value of the variable name stored in 'hello_$var1'.
+printf '%s\n' "${!var2}"
 ```
 
 
@@ -292,14 +397,32 @@ _() {
 Enabling `extdebug` allows access to the `BASH_ARGV` array which stores
 the current function’s arguments in reverse.
 
+**Example Function:**
+
 ```sh
 reverse_array() {
     # Usage: reverse_array "array"
-    #        reverse_array 1 2 3 4 5 6
     shopt -s extdebug
     f()(printf '%s\n' "${BASH_ARGV[@]}"); f "$@"
     shopt -u extdebug
 }
+```
+
+**Example Usage:**
+
+```shell
+$ reverse_array 1 2 3 4 5
+5
+4
+3
+2
+1
+
+$ arr=(red blue green)
+$ reverse_array "${arr[@]}"
+green
+blue
+red
 ```
 
 ### Remove duplicate array elements.
@@ -309,6 +432,8 @@ values and a duplicate assignment occurs, bash overwrites the key. This
 allows us to effectively remove array duplicates.
 
 **NOTE:** Requires `bash` 4+
+
+**Example Function:**
 
 ```sh
 remove_array_dups() {
@@ -321,6 +446,21 @@ remove_array_dups() {
 
     printf '%s\n' "${!tmp_array[@]}"
 }
+```
+
+```shell
+$ remove_array_dups 1 1 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 5
+1
+2
+3
+4
+5
+
+$ arr=(red red green blue blue)
+$ remove_array_dups "${arr[@]}"
+red
+green
+blue
 ```
 
 ### Cycle through an array.
@@ -360,24 +500,20 @@ cycle() {
 
 Alternative to the `cat` command.
 
-```sh
-_() {
-    file_data="$(<"file")"
-}
+```shell
+file_data="$(<"file")"
 ```
 
 ### Read a file to an array (*by line*).
 
 Alternative to the `cat` command.
 
-```sh
-_() {
-    # Bash <4
-    IFS=$'\n' read -d "" -ra file_data < "file"
+```shell
+# Bash <4
+IFS=$'\n' read -d "" -ra file_data < "file"
 
-    # Bash 4+
-    mapfile -t file_data < "file"
-}
+# Bash 4+
+mapfile -t file_data < "file"
 ```
 
 ### Get the first N lines of a file.

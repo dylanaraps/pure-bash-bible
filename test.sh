@@ -138,7 +138,7 @@ assert_equals() {
 }
 
 main() {
-    source <(awk '/```sh/{f=1;next}/```/{f=0}f' README.md) 2>/dev/null
+    source <(awk '/```sh$/{f=1;next}/```/{f=0}f' README.md) 2>/dev/null
 
     head="-> Running tests on the Pure Bash Bible.."
     printf '\n%s\n%s\n' "$head" "${head//?/-}"
