@@ -76,6 +76,15 @@ scripts and not full blown utilities.
     * [Bypass shell aliases.](#bypass-shell-aliases)
     * [Bypass shell functions.](#bypass-shell-functions)
 * [Internal Variables](#internal-variables)
+    * [Get the location to the `bash` binary.](#get-the-location-to-the-bash-binary)
+    * [Get the version of the current running `bash` process.](#get-the-version-of-the-current-running-bash-process)
+    * [Open the user's preferred text editor.](#open-the-users-preferred-text-editor)
+    * [Get the name of the current function.](#get-the-name-of-the-current-function)
+    * [Get the host-name of the system.](#get-the-host-name-of-the-system)
+    * [Get the architecture of the Operating System.](#get-the-architecture-of-the-operating-system)
+    * [Get the name of the Operating System / Kernel.](#get-the-name-of-the-operating-system--kernel)
+    * [Get the current working directory.](#get-the-current-working-directory)
+    * [Get the number of seconds the script has been running.](#get-the-number-of-seconds-the-script-has-been-running)
 
 <!-- vim-markdown-toc -->
 
@@ -645,7 +654,72 @@ command ls
 
 ## Internal Variables
 
-This will most likely be expanded here. In the meantime, see:
-http://tldp.org/LDP/abs/html/internalvariables.html
+### Get the location to the `bash` binary.
 
+```sh
+$BASH
+```
 
+### Get the version of the current running `bash` process.
+
+```sh
+# As a string.
+$BASH_VERSION
+
+# As an array.
+${BASH_VERSINFO[@]}
+```
+
+### Open the user's preferred text editor.
+
+```sh
+"$EDITOR" "$file"
+
+# NOTE: This variable may be empty, set a fallback value.
+"${EDITOR:-vi}" "$file"
+```
+
+### Get the name of the current function.
+
+```sh
+$FUNCNAME
+```
+
+### Get the host-name of the system.
+
+```sh
+$HOSTNAME
+
+# NOTE: This variable may be empty.
+# Optionally set a fallback to the hostname command.
+${HOSTNAME:-$(hostname)}
+```
+
+### Get the architecture of the Operating System.
+
+```sh
+$HOSTTYPE
+```
+
+### Get the name of the Operating System / Kernel.
+
+This can be used to add conditional support for different Operating
+Systems without needing to call `uname`.
+
+```sh
+$OSTYPE
+```
+
+### Get the current working directory.
+
+This is an alternative to the `pwd` built-in.
+
+```sh
+$PWD
+```
+
+### Get the number of seconds the script has been running.
+
+```sh
+$SECONDS
+```
