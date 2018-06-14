@@ -409,7 +409,7 @@ basename() {
 ((var=1+2))
 
 # Decrement/Increment variable
-((var++)
+((var++))
 ((var--))
 ((var+=1))
 ((var-=1))
