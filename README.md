@@ -38,6 +38,7 @@ scripts and not full blown utilities.
 * [Strings](#strings)
     * [Trim leading and trailing white-space from string.](#trim-leading-and-trailing-white-space-from-string)
     * [Trim all white-space from string and truncate spaces.](#trim-all-white-space-from-string-and-truncate-spaces)
+    * [Use REGEX on a string.](#use-regex-on-a-string)
     * [Split a string on a delimiter.](#split-a-string-on-a-delimiter)
     * [Change a string to lowercase.](#change-a-string-to-lowercase)
     * [Change a string to uppercase.](#change-a-string-to-uppercase)
@@ -122,6 +123,50 @@ trim_all() {
     set +f
 }
 ```
+
+### Use REGEX on a string.
+
+We can use the result of `bash`'s regex matching to create a simple `sed`
+replacement.
+
+**NOTE**: This is one of the few platform dependant `bash` features.
+`bash` will use whatever regex engine is installed on the user's system.
+Stick to POSIX regex features if aiming for compatibility.
+
+**NOTE**: This example only prints the first matching group. When using
+multiple capture groups some modification will be needed.
+
+```sh
+regex() {
+    # Usage: regex "string" "regex"
+    [[ $1 =~ $2 ]] && printf '%s\n' "${BASH_REMATCH[1]}"
+}
+
+# Example:
+# Trim leading white-space.
+: regex '    hello' '^\s*(.*)'
+
+
+# Example script usage (Validate hex colors):
+_() {
+    colors=(
+        "#FFFFFF"
+        "#000000"
+        "#CDEFDC"
+        "#12dlks"
+        "red"
+    )
+
+    for color in "${colors[@]}"; do
+        if [[ "$color" =~ ^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$ ]]; then
+            printf '%s\n' "${BASH_REMATCH[1]}"
+        else
+            printf '%s\n' "error: $color is an invalid color."
+        fi
+    done
+}
+```
+
 
 ### Split a string on a delimiter.
 

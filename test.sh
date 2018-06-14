@@ -12,6 +12,11 @@ test_trim_all() {
     assert_equals "$result" "Hello, World"
 }
 
+test_regex() {
+    result="$(regex "     Hello,   World" '^[[:space:]]*(.*)')"
+    assert_equals "$result" "Hello,   World"
+}
+
 test_lower() {
     result="$(lower "HeLlO")"
     assert_equals "$result" "hello"
@@ -130,6 +135,7 @@ main() {
 
     test_trim_string
     test_trim_all
+    test_regex
     test_lower
     test_upper
     test_trim_quotes
