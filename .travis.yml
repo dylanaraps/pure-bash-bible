@@ -1,0 +1,7 @@
+language: bash
+
+os:
+    - linux
+
+script:
+    - shellcheck <(awk '/```sh/{f=1;next}/```/{f=0}f' README.md)

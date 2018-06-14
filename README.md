@@ -243,7 +243,11 @@ again.
 
 ```sh
 arr=(a b c d)
-printf '%s\n' "${arr[$((i==${#arr[@]}-1?i=0:++i))]}"
+
+cycle() {
+    printf '%s ' "${arr[${i:=0}]}"
+    ((i=i>=${#arr[@]}-1?0:++i))
+}
 ```
 
 
@@ -253,7 +257,11 @@ This works the same as above, this is just a different use case.
 
 ```sh
 arr=(true false)
-printf '%s\n' "${arr[$((i==${#arr[@]}-1?i=0:++i))]}"
+
+cycle() {
+    printf '%s ' "${arr[${i:=0}]}"
+    ((i=i>=${#arr[@]}-1?0:++i))
+}
 ```
 
 
