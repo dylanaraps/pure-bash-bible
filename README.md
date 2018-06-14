@@ -163,6 +163,16 @@ rstrip() {
 ### Assign and access a variable using a variable.
 
 ```sh
+# First Example.
+
+var1="world"
+var2="hello_${var1}"
+declare "${var2}=test_string"
+printf '%s\n' "${!var2}"
+
+
+# Second Example.
+
 # Assign to a variable named after the
 # value stored in '$var'.
 var="test"
