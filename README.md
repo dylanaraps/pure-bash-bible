@@ -559,6 +559,17 @@ tail() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ tail 2 ~/.bashrc
+# Enable tmux.
+# [[ -z "$TMUX"  ]] && exec tmux
+
+$ tail 1 ~/.bashrc
+# [[ -z "$TMUX"  ]] && exec tmux
+```
+
 ### Get the number of lines in a file.
 
 Alternative to `wc -l`.
@@ -575,34 +586,39 @@ lines() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ lines ~/.bashrc
+48
+```
+
 ### Iterate over files.
 
 Don’t use `ls`.
 
-```sh
-_() {
-    # Greedy example.
-    for file in *; do
-        printf '%s\n' "$file"
-    done
+```shell
+# Greedy example.
+for file in *; do
+    printf '%s\n' "$file"
+done
 
-    # PNG files in dir.
-    for file in ~/Pictures/*.png; do
-        printf '%s\n' "$file"
-    done
+# PNG files in dir.
+for file in ~/Pictures/*.png; do
+    printf '%s\n' "$file"
+done
 
-    # Iterate over directories.
-    for dir in ~/Downloads/*/; do
-        printf '%s\n' "$dir"
-    done
+# Iterate over directories.
+for dir in ~/Downloads/*/; do
+    printf '%s\n' "$dir"
+done
 
-    # Iterate recursively.
-    shopt -s globstar
-    for file in ~/Pictures/**/*; do
-        printf '%s\n' "$file"
-    done
-    shopt -u globstar
-}
+# Iterate recursively.
+shopt -s globstar
+for file in ~/Pictures/**/*; do
+    printf '%s\n' "$file"
+done
+shopt -u globstar
 ```
 
 ### Count files or directories in directory.
@@ -620,19 +636,33 @@ count() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+# Count all files in dir.
+$ count ~/Downloads/*
+232
+
+# Count all dirs in dir.
+$ count ~/Downloads/*/
+45
+
+# Count all jpg files in dir.
+$ count ~/Pictures/*.jpg
+64
+```
+
 ### Create an empty file.
 
 Alternative to `touch`.
 
-```sh
-_() {
-    # Shortest.
-    :> file
+```shell
+# Shortest.
+:> file
 
-    # Longer alternatives:
-    echo -n > file
-    printf '' > file
-}
+# Longer alternatives:
+echo -n > file
+printf '' > file
 ```
 
 ## File Paths
@@ -650,6 +680,16 @@ dirname() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ dirname ~/Pictures/Wallpapers/1.jpg
+/home/black/Pictures/Wallpapers/
+
+$ dirname ~/Pictures/Downloads/
+/home/black/Pictures/
+```
+
 ### Get the base-name of a file path.
 
 Alternative to the `basename` command.
@@ -664,37 +704,44 @@ basename() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ basename ~/Pictures/Wallpapers/1.jpg
+1.jpg
+
+$ basename ~/Pictures/Downloads/
+Downloads
+```
+
+
 ## Arithmetic
 
 ### Simpler syntax to set variables.
 
-```sh
-_() {
-    # Simple math
-    ((var=1+2))
+```shell
+# Simple math
+((var=1+2))
 
-    # Decrement/Increment variable
-    ((var++))
-    ((var--))
-    ((var+=1))
-    ((var-=1))
+# Decrement/Increment variable
+((var++))
+((var--))
+((var+=1))
+((var-=1))
 
-    # Using variables
-    ((var=var2*arr[2]))
-}
+# Using variables
+((var=var2*arr[2]))
 ```
 
 ### Ternary tests.
 
-```sh
-_() {
-    # Set the value of var to var2 if var2 is greater than var.
-    # var: variable to set.
-    # var2>var: Condition to test.
-    # ?var2: If the test succeeds.
-    # :var: If the test fails.
-    ((var=var2>var?var2:var))
-}
+```shell
+# Set the value of var to var2 if var2 is greater than var.
+# var: variable to set.
+# var2>var: Condition to test.
+# ?var2: If the test succeeds.
+# :var: If the test fails.
+((var=var2>var?var2:var))
 ```
 
 ## Colors
@@ -714,6 +761,14 @@ hex_to_rgb() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ hex_to_rgb "#FFFFFF"
+255 255 255
+```
+
+
 ### Convert an RGB color to hex.
 
 **Example Function:**
@@ -723,6 +778,13 @@ rgb_to_hex() {
     # Usage: rgb_to_hex "r" "g" "b"
     printf '#%02x%02x%02x\n' "$1" "$2" "$3"
 }
+```
+
+**Example Usage:**
+
+```shell
+$ rgb_to_hex "255" "255" "255"
+#FFFFFF
 ```
 
 ## Information about the terminal
@@ -745,6 +807,14 @@ get_term_size() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+# Output: LINES COLUMNS
+$ get_term_size
+15 55
+```
+
 ### Get the terminal size in pixels.
 
 **NOTE**: This does not work in some terminal emulators.
@@ -760,6 +830,19 @@ get_window_size() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+# Output: WIDTHxHEIGHT
+$ get_window_size
+1200x800
+
+# Output (fail):
+$ get_window_size
+x
+```
+
+
 ### Get the current cursor position.
 
 This is useful when creating a TUI in pure bash.
@@ -774,6 +857,14 @@ get_cursor_pos() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+# Output: X Y
+$ get_cursor_pos
+1 8
+```
+
 ## Code Golf
 
 ### Shorter `for` loop syntax.
@@ -783,8 +874,7 @@ get_cursor_pos() {
 for((;i++<10;)){ echo "$i";}
 
 # Undocumented method.
-# Note: This is commented to make shellcheck play nice.
-# for i in {1..10};{ echo "$i";}
+for i in {1..10};{ echo "$i";}
 
 # Expansion.
 for i in {1..10}; do echo "$i"; done
