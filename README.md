@@ -737,6 +737,7 @@ printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
 ls
 
 # command
+# shellcheck disable=SC1001
 \ls
 ```
 
