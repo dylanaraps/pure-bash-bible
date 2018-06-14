@@ -102,8 +102,8 @@ scripts and not full blown utilities.
 ### Trim leading and trailing white-space from string.
 
 ```sh
-trim() {
-    # Usage: trim "   example   string    "
+trim_string() {
+    # Usage: trim_string "   example   string    "
     : "${1#"${1%%[![:space:]]*}"}"
     : "${_%"${_##*[![:space:]]}"}"
     printf '%s\n' "$_"
@@ -114,7 +114,7 @@ trim() {
 
 ```sh
 # shellcheck disable=SC2086,SC2048
-trim() {
+trim_all() {
     # Usage: trim "   example   string    "
     set -f
     set -- $*
