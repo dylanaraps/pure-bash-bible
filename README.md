@@ -71,10 +71,6 @@ scripts and not full blown utilities.
     * [Shorter function declaration.](#shorter-function-declaration)
     * [Shorter `if` syntax.](#shorter-if-syntax)
     * [Simpler `case` statement to set variable.](#simpler-case-statement-to-set-variable)
-* [Miscellaneous](#miscellaneous)
-    * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
-    * [Bypass shell aliases.](#bypass-shell-aliases)
-    * [Bypass shell functions.](#bypass-shell-functions)
 * [Internal Variables](#internal-variables)
     * [Get the location to the `bash` binary.](#get-the-location-to-the-bash-binary)
     * [Get the version of the current running `bash` process.](#get-the-version-of-the-current-running-bash-process)
@@ -85,6 +81,10 @@ scripts and not full blown utilities.
     * [Get the name of the Operating System / Kernel.](#get-the-name-of-the-operating-system--kernel)
     * [Get the current working directory.](#get-the-current-working-directory)
     * [Get the number of seconds the script has been running.](#get-the-number-of-seconds-the-script-has-been-running)
+* [Other](#other)
+    * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
+    * [Bypass shell aliases.](#bypass-shell-aliases)
+    * [Bypass shell functions.](#bypass-shell-functions)
 
 <!-- vim-markdown-toc -->
 
@@ -603,55 +603,6 @@ esac
 os="$_"
 ```
 
-
-## Miscellaneous
-
-### Get the current date using `strftime`.
-
-Bash’s `printf` has a built-in method of getting the date which we can use
-in place of the `date` command in a lot of cases.
-
-**NOTE:** Requires `bash` 4+
-
-```sh
-date() {
-    # Usage: date "format"
-    # See: 'man strftime' for format.
-    printf "%($1)T\\n"
-}
-
-# Examples:
-
-# Using date.
-date "+%a %d %b  - %l:%M %p"
-
-# Using printf.
-printf '%(%a %d %b  - %l:%M %p)T\n'
-
-# Assigning a variable.
-printf -v date '%(%a %d %b  - %l:%M %p)T\n'
-```
-
-### Bypass shell aliases.
-
-```sh
-# alias
-ls
-
-# command
-\ls
-```
-
-### Bypass shell functions.
-
-```sh
-# function
-ls
-
-# command
-command ls
-```
-
 ## Internal Variables
 
 ### Get the location to the `bash` binary.
@@ -723,3 +674,52 @@ $PWD
 ```sh
 $SECONDS
 ```
+
+## Other
+
+### Get the current date using `strftime`.
+
+Bash’s `printf` has a built-in method of getting the date which we can use
+in place of the `date` command in a lot of cases.
+
+**NOTE:** Requires `bash` 4+
+
+```sh
+date() {
+    # Usage: date "format"
+    # See: 'man strftime' for format.
+    printf "%($1)T\\n"
+}
+
+# Examples:
+
+# Using date.
+date "+%a %d %b  - %l:%M %p"
+
+# Using printf.
+printf '%(%a %d %b  - %l:%M %p)T\n'
+
+# Assigning a variable.
+printf -v date '%(%a %d %b  - %l:%M %p)T\n'
+```
+
+### Bypass shell aliases.
+
+```sh
+# alias
+ls
+
+# command
+\ls
+```
+
+### Bypass shell functions.
+
+```sh
+# function
+ls
+
+# command
+command ls
+```
+
