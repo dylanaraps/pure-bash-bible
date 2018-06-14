@@ -48,6 +48,7 @@ test_remove_array_dups() {
 }
 
 test_cycle() {
+    # shellcheck disable=2034
     arr=(a b c d)
     result="$(cycle; cycle; cycle)"
     assert_equals "$result" "a b c "
@@ -99,7 +100,6 @@ test_date() {
 
 assert_equals() {
     local status
-
     ((tests+=1))
 
     [[ "$1" == "$2" ]] && status="✔"
