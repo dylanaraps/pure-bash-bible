@@ -43,8 +43,10 @@ scripts and not full blown utilities.
     * [Change a string to lowercase.](#change-a-string-to-lowercase)
     * [Change a string to uppercase.](#change-a-string-to-uppercase)
     * [Trim quotes from a string.](#trim-quotes-from-a-string)
-    * [Strip characters from start of string.](#strip-characters-from-start-of-string)
-    * [Strip characters from end of string.](#strip-characters-from-end-of-string)
+    * [Strip all instances of pattern from string.](#strip-all-instances-of-pattern-from-string)
+    * [Strip first occurrence of pattern from string.](#strip-first-occurrence-of-pattern-from-string)
+    * [Strip pattern from start of string.](#strip-pattern-from-start-of-string)
+    * [Strip pattern from end of string.](#strip-pattern-from-end-of-string)
 * [Variables](#variables)
     * [Assign and access a variable using a variable.](#assign-and-access-a-variable-using-a-variable)
 * [Arrays](#arrays)
@@ -213,20 +215,54 @@ trim_quotes() {
 }
 ```
 
-### Strip characters from start of string.
+### Strip all instances of pattern from string.
+
+```sh
+strip_all() {
+    # Usage: strip_all "string" "pattern"
+    printf '%s\n' "${1//$2}"
+}
+
+# Examples:
+
+# Output: "Th Qck Brwn Fx"
+: strip_all "The Quick Brown Fox" "[aeiou]"
+
+# Output: "TheQuickBrownFox"
+: strip_all "The Quick Brown Fox" "[[:space:]]"
+```
+
+### Strip first occurrence of pattern from string.
+
+```sh
+strip() {
+    # Usage: strip "string" "pattern"
+    printf '%s\n' "${1/$2}"
+}
+
+# Examples:
+
+# Output: "Th Quick Brown Fox"
+: strip_all "The Quick Brown Fox" "[aeiou]"
+
+# Output: "TheQuick Brown Fox"
+: strip_all "The Quick Brown Fox" "[[:space:]]"
+```
+
+### Strip pattern from start of string.
 
 ```sh
 lstrip() {
-    # Usage: lstrip "string" "chars to remove"
+    # Usage: lstrip "string" "pattern"
     printf '%s\n' "${1##$2}"
 }
 ```
 
-### Strip characters from end of string.
+### Strip pattern from end of string.
 
 ```sh
 rstrip() {
-    # Usage: rstrip "string" "chars to remove"
+    # Usage: rstrip "string" "pattern"
     printf '%s\n' "${1%%$2}"
 }
 ```

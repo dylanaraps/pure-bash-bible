@@ -32,6 +32,16 @@ test_trim_quotes() {
     assert_equals "$result" "test string"
 }
 
+test_strip_all() {
+    result="$(strip_all "The Quick Brown Fox" "[aeiou]")"
+    assert_equals "$result" "Th Qck Brwn Fx"
+}
+
+test_strip() {
+    result="$(strip "The Quick Brown Fox" "[aeiou]")"
+    assert_equals "$result" "Th Quick Brown Fox"
+}
+
 test_lstrip() {
     result="$(lstrip "!:IHello" "!:I")"
     assert_equals "$result" "Hello"
@@ -139,6 +149,8 @@ main() {
     test_lower
     test_upper
     test_trim_quotes
+    test_strip_all
+    test_strip
     test_lstrip
     test_rstrip
     test_reverse_array
