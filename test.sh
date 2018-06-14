@@ -82,15 +82,44 @@ test_basename() {
     assert_equals "$result" "1.jpg"
 }
 
+test_hex_to_rgb() {
+    result="$(hex_to_rgb "#FFFFFF")"
+    assert_equals "$result" "255 255 255"
+}
+
+test_rgb_to_hex() {
+    result="$(rgb_to_hex 0 0 0)"
+    assert_equals "$result" "#000000"
+}
+
+test_date() {
+    result="$(date "%C")"
+    assert_equals "$result" "20"
+}
+
 assert_equals() {
     local status
+
+    ((tests+=1))
+
     [[ "$1" == "$2" ]] && status="✔"
-    printf '%s\n' "  ${status:-✖} : ${FUNCNAME[1]/test_}"
-    [[ "$1" == "$2" ]] || { :>/tmp/err; return 1; } && return 0
+    printf '%s\n' " ${status:-✖} | ${FUNCNAME[1]/test_}"
+
+    if [[ "$1" == "$2" ]]; then
+        ((pass+=1))
+        return 0
+    else
+        :>/tmp/err
+        ((err+=1))
+        return 1
+    fi
 }
 
 main() {
     source <(awk '/```sh/{f=1;next}/```/{f=0}f' README.md) 2>/dev/null
+
+    head="-> Running tests on the Pure Bash Bible.."
+    printf '\n%s\n%s\n' "$head" "${head//?/-}"
 
     test_trim_string
     test_trim_all
@@ -107,6 +136,12 @@ main() {
     test_count
     test_dirname
     test_basename
+    test_hex_to_rgb
+    test_rgb_to_hex
+    test_date
+
+    comp="Completed $tests tests. ${pass:-0} passed, ${err:-0} errored."
+    printf '%s\n%s\n\n' "${comp//?/-}" "$comp"
 
     [[ -f /tmp/err ]] || exit 0 && { rm /tmp/err; exit 1; }
 }
