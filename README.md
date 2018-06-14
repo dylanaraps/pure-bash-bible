@@ -36,7 +36,8 @@ scripts and not full blown utilities.
 <!-- vim-markdown-toc GFM -->
 
 * [Strings](#strings)
-    * [Trim white-space from string.](#trim-white-space-from-string)
+    * [Trim leading and trailing white-space from string.](#trim-leading-and-trailing-white-space-from-string)
+    * [Trim all white-space from string and truncate spaces.](#trim-all-white-space-from-string-and-truncate-spaces)
     * [Split a string on a delimiter.](#split-a-string-on-a-delimiter)
     * [Change a string to lowercase.](#change-a-string-to-lowercase)
     * [Change a string to uppercase.](#change-a-string-to-uppercase)
@@ -98,9 +99,18 @@ scripts and not full blown utilities.
 
 ## Strings
 
-### Trim white-space from string.
+### Trim leading and trailing white-space from string.
 
-**NOTE**: This also truncates multiple spaces inside the string.
+```sh
+trim() {
+    # Usage: trim "   example   string    "
+    : "${1#"${1%%[![:space:]]*}"}"
+    : "${_%"${_##*[![:space:]]}"}"
+    printf '%s\n' "$_"
+}
+```
+
+### Trim all white-space from string and truncate spaces.
 
 ```sh
 # shellcheck disable=SC2086,SC2048
