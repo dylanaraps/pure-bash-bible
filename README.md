@@ -5,7 +5,7 @@ processes.</p>
 <p align="center">
 <a href="https://travis-ci.com/dylanaraps/pure-bash"><img
 src="https://travis-ci.com/dylanaraps/pure-bash.svg?branch=master"></a> <a
-href="./LICENSE.md"><imgcom
+href="./LICENSE.md"><img
 src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 </p>
 
