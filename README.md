@@ -192,24 +192,14 @@ rstrip() {
 
 ```sh
 _() {
-    # First Example.
+    hello_world="test"
+
+    # Create the variable name.
     var1="world"
     var2="hello_${var1}"
-    declare "${var2}=test_string"
+
+    # Print the value of the variable name stored in 'hello_$var1'.
     printf '%s\n' "${!var2}"
-
-
-    # Second Example.
-    # Assign to a variable named after the
-    # value stored in '$var'.
-    var="test"
-    read -rp "input text: " "${var?}"
-
-    # Access the variable indirectly.
-    printf '%s\n' "set var \$$var to '${!var}'"
-
-    # Access the variable directly.
-    printf '%s\n' "set var \$$var to '$test'"
 }
 ```
 
