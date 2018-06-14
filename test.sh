@@ -13,8 +13,8 @@ test_trim_all() {
 }
 
 test_regex() {
-    result="$(regex "     Hello,   World" '^[[:space:]]*(.*)')"
-    assert_equals "$result" "Hello,   World"
+    result="$(regex "#FFFFFF" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$')"
+    assert_equals "$result" "#FFFFFF"
 }
 
 test_lower() {
