@@ -53,6 +53,35 @@ test_cycle() {
     assert_equals "$result" "a b c "
 }
 
+test_head() {
+    printf '%s\n%s\n\n\n' "hello" "world" > test_file
+    result="$(head 2 test_file)"
+    assert_equals "$result" $'hello\nworld'
+    rm test_file
+}
+
+test_tail() {
+    printf '\n\n\n%s\n%s\n' "hello" "world" > test_file
+    result="$(tail 2 test_file)"
+    assert_equals "$result" $'hello\nworld'
+    rm test_file
+}
+
+test_count() {
+    result="$(count ./{README.m,LICENSE.m,.travis.ym}*)"
+    assert_equals "$result" "3"
+}
+
+test_dirname() {
+    result="$(dirname "/home/black/Pictures/Wallpapers/1.jpg")"
+    assert_equals "$result" "/home/black/Pictures/Wallpapers/"
+}
+
+test_basename() {
+    result="$(basename "/home/black/Pictures/Wallpapers/1.jpg")"
+    assert_equals "$result" "1.jpg"
+}
+
 assert_equals() {
     local status
     [[ "$1" == "$2" ]] && status="✔"
@@ -73,6 +102,11 @@ main() {
     test_reverse_array
     test_remove_array_dups
     test_cycle
+    test_head
+    test_tail
+    test_count
+    test_dirname
+    test_basename
 
     [[ -f /tmp/err ]] || exit 0 && { rm /tmp/err; exit 1; }
 }
