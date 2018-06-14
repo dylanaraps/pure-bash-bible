@@ -36,6 +36,8 @@ scripts and not full blown utilities.
     * [Trim quotes from a string.](#trim-quotes-from-a-string)
     * [Strip characters from start of string.](#strip-characters-from-start-of-string)
     * [Strip characters from end of string.](#strip-characters-from-end-of-string)
+* [Variables](#variables)
+    * [Assign and access a variable using a variable.](#assign-and-access-a-variable-using-a-variable)
 * [Arrays](#arrays)
     * [Reverse an array.](#reverse-an-array)
     * [Remove duplicate array elements.](#remove-duplicate-array-elements)
@@ -77,8 +79,8 @@ scripts and not full blown utilities.
 
 <!-- vim-markdown-toc -->
 
-## Strings
 
+## Strings
 
 ### Trim white-space from string.
 
@@ -155,6 +157,24 @@ rstrip() {
     printf '%s\n' "${1%%$2}"
 }
 ```
+
+## Variables
+
+### Assign and access a variable using a variable.
+
+```sh
+# Assign to a variable named after the
+# value stored in '$var'.
+var="test"
+read -rp "input text: " "$var"
+
+# Access the variable indirectly.
+printf '%s\n' "set var \$$var to '${!var}'"
+
+# Access the variable directly.
+printf '%s\n' "set var \$$var to '$test'"
+```
+
 
 ## Arrays
 
