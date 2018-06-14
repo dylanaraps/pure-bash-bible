@@ -3,6 +3,7 @@ align="center">A [WIP] collection of pure bash alternatives to external
 processes.</p>
 
 <a href="https://travis-ci.org/dylanaraps/pure-bash"><img src="https://travis-ci.org/dylanaraps/pure-bash.svg?branch=master"></a>
+<a href="./LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 
 <br>
 
