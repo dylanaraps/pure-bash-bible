@@ -226,10 +226,8 @@ reverse_array() {
     # Usage: reverse_array "array"
     #        reverse_array 1 2 3 4 5 6
     shopt -s extdebug
-    f()(printf '%s ' "${BASH_ARGV[@]}"); f "$@"
+    f()(printf '%s\n' "${BASH_ARGV[@]}"); f "$@"
     shopt -u extdebug
-
-    printf '\n'
 }
 ```
 

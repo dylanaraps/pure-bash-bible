@@ -27,11 +27,36 @@ test_trim_quotes() {
     assert_equals "$result" "test string"
 }
 
+test_lstrip() {
+    result="$(lstrip "!:IHello" "!:I")"
+    assert_equals "$result" "Hello"
+}
+
+test_rstrip() {
+    result="$(rstrip "Hello!:I" "!:I")"
+    assert_equals "$result" "Hello"
+}
+
+test_reverse_array() {
+    IFS=$'\n' read -d "" -ra result < <(reverse_array 1 2 3 4 5)
+    assert_equals "${result[*]}" "5 4 3 2 1"
+}
+
+test_remove_array_dups() {
+    IFS=$'\n' read -d "" -ra result < <(remove_array_dups 1 1 2 2 3 3 4 5)
+    assert_equals "${result[*]}" "1 2 3 4 5"
+}
+
+test_cycle() {
+    arr=(a b c d)
+    result="$(cycle; cycle; cycle)"
+    assert_equals "$result" "a b c "
+}
+
 assert_equals() {
-    # Test equality.
     local status
     [[ "$1" == "$2" ]] && status="✔"
-    printf '%s\n' "  ${status:-✖} : ${FUNCNAME[1]}"
+    printf '%s\n' "  ${status:-✖} : ${FUNCNAME[1]/test_}"
     [[ "$1" == "$2" ]] || { :>/tmp/err; return 1; } && return 0
 }
 
@@ -43,9 +68,13 @@ main() {
     test_lower
     test_upper
     test_trim_quotes
+    test_lstrip
+    test_rstrip
+    test_reverse_array
+    test_remove_array_dups
+    test_cycle
 
     [[ -f /tmp/err ]] || exit 0 && { rm /tmp/err; exit 1; }
 }
 
 main "$@"
-
