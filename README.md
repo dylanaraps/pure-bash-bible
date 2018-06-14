@@ -346,7 +346,7 @@ for file in ~/Pictures/*.png; do
 done
 
 # Iterate over directories.
-for dir in ~/Downloads/; do
+for dir in ~/Downloads/*/; do
     printf '%s\n' "$dir"
 done
 
@@ -513,7 +513,8 @@ get_cursor_pos() {
 for((;i++<10;)){ echo "$i";}
 
 # Undocumented method.
-for i in {1..10};{ echo "$i";}
+# Note: This is commented to make shellcheck play nice.
+# for i in {1..10};{ echo "$i";}
 
 # Expansion.
 for i in {1..10}; do echo "$i"; done
@@ -549,8 +550,9 @@ f()(($1))
 
 # Using tests, loops etc.
 # Note: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
-f()if true; then echo "$1"; fi
-f()for i in "$@"; do echo "$i"; done
+# Note: These are commented to make shellcheck play nice.
+# f()if true; then echo "$1"; fi
+# f()for i in "$@"; do echo "$i"; done
 ```
 
 ### Shorter `if` syntax.
@@ -622,17 +624,17 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 ### Get the location to the `bash` binary.
 
 ```sh
-$BASH
+"$BASH"
 ```
 
 ### Get the version of the current running `bash` process.
 
 ```sh
 # As a string.
-$BASH_VERSION
+"$BASH_VERSION"
 
 # As an array.
-${BASH_VERSINFO[@]}
+"${BASH_VERSINFO[@]}"
 ```
 
 ### Open the user's preferred text editor.
@@ -647,23 +649,23 @@ ${BASH_VERSINFO[@]}
 ### Get the name of the current function.
 
 ```sh
-$FUNCNAME
+"$FUNCNAME"
 ```
 
 ### Get the host-name of the system.
 
 ```sh
-$HOSTNAME
+"$HOSTNAME"
 
 # NOTE: This variable may be empty.
 # Optionally set a fallback to the hostname command.
-${HOSTNAME:-$(hostname)}
+"${HOSTNAME:-$(hostname)}"
 ```
 
 ### Get the architecture of the Operating System.
 
 ```sh
-$HOSTTYPE
+"$HOSTTYPE"
 ```
 
 ### Get the name of the Operating System / Kernel.
@@ -672,7 +674,7 @@ This can be used to add conditional support for different Operating
 Systems without needing to call `uname`.
 
 ```sh
-$OSTYPE
+"$OSTYPE"
 ```
 
 ### Get the current working directory.
@@ -680,13 +682,13 @@ $OSTYPE
 This is an alternative to the `pwd` built-in.
 
 ```sh
-$PWD
+"$PWD"
 ```
 
 ### Get the number of seconds the script has been running.
 
 ```sh
-$SECONDS
+"$SECONDS"
 ```
 
 ## Other
@@ -702,7 +704,7 @@ in place of the `date` command in a lot of cases.
 date() {
     # Usage: date "format"
     # See: 'man strftime' for format.
-    printf "%($1)T\\n"
+    printf "%($1)T\\n" "-1"
 }
 
 # Examples:
@@ -711,10 +713,10 @@ date() {
 date "+%a %d %b  - %l:%M %p"
 
 # Using printf.
-printf '%(%a %d %b  - %l:%M %p)T\n'
+printf '%(%a %d %b  - %l:%M %p)T\n' '-1'
 
 # Assigning a variable.
-printf -v date '%(%a %d %b  - %l:%M %p)T\n'
+printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
 ```
 
 ### Bypass shell aliases.
