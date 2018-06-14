@@ -522,6 +522,8 @@ Alternative to the `head` command.
 
 **NOTE:** Requires `bash` 4+
 
+**Example Function:**
+
 ```sh
 head() {
     # Usage: head "n" "file"
@@ -530,11 +532,24 @@ head() {
 }
 ```
 
+**Example Usage:**
+
+```shell
+$ head 2 ~/.bashrc
+# Prompt
+PS1='➜ '
+
+$ head 1 ~/.bashrc
+# Prompt
+```
+
 ### Get the last N lines of a file.
 
 Alternative to the `tail` command.
 
 **NOTE:** Requires `bash` 4+
+
+**Example Function:**
 
 ```sh
 tail() {
@@ -549,6 +564,8 @@ tail() {
 Alternative to `wc -l`.
 
 **NOTE:** Requires `bash` 4+
+
+**Example Function:**
 
 ```sh
 lines() {
@@ -593,6 +610,8 @@ _() {
 This works by passing the output of the glob as function arguments. We
 then count the arguments and print the number.
 
+**Example Function:**
+
 ```sh
 count() {
     # Usage: count /path/to/dir/*
@@ -622,6 +641,8 @@ _() {
 
 Alternative to the `dirname` command.
 
+**Example Function:**
+
 ```sh
 dirname() {
     # Usage: dirname "path"
@@ -632,6 +653,8 @@ dirname() {
 ### Get the base-name of a file path.
 
 Alternative to the `basename` command.
+
+**Example Function:**
 
 ```sh
 basename() {
@@ -678,6 +701,8 @@ _() {
 
 ### Convert a hex color to RGB.
 
+**Example Function:**
+
 ```sh
 hex_to_rgb() {
     # Usage: hex_to_rgb "#FFFFFF"
@@ -690,6 +715,8 @@ hex_to_rgb() {
 ```
 
 ### Convert an RGB color to hex.
+
+**Example Function:**
 
 ```sh
 rgb_to_hex() {
@@ -704,6 +731,8 @@ rgb_to_hex() {
 
 This is handy when writing scripts in pure bash and `stty`/`tput` can’t be
 called.
+
+**Example Function:**
 
 ```sh
 get_term_size() {
@@ -720,6 +749,8 @@ get_term_size() {
 
 **NOTE**: This does not work in some terminal emulators.
 
+**Example Function:**
+
 ```sh
 get_window_size() {
     # Usage: get_window_size
@@ -733,6 +764,8 @@ get_window_size() {
 
 This is useful when creating a TUI in pure bash.
 
+**Example Function:**
+
 ```sh
 get_cursor_pos() {
     # Usage: get_cursor_pos
@@ -745,76 +778,67 @@ get_cursor_pos() {
 
 ### Shorter `for` loop syntax.
 
-```sh
-_() {
-    # Tiny C Style.
-    for((;i++<10;)){ echo "$i";}
+```shell
+# Tiny C Style.
+for((;i++<10;)){ echo "$i";}
 
-    # Undocumented method.
-    # Note: This is commented to make shellcheck play nice.
-    # for i in {1..10};{ echo "$i";}
+# Undocumented method.
+# Note: This is commented to make shellcheck play nice.
+# for i in {1..10};{ echo "$i";}
 
-    # Expansion.
-    for i in {1..10}; do echo "$i"; done
+# Expansion.
+for i in {1..10}; do echo "$i"; done
 
-    # C Style.
-    for((i=0;i<=10;i++)); do echo "$i"; done
-}
+# C Style.
+for((i=0;i<=10;i++)); do echo "$i"; done
 ```
 
 ### Shorter infinite loops.
 
-```sh
-_() {
-    # Normal method
-    while :; do echo hi; done
+```shell
+# Normal method
+while :; do echo hi; done
 
-    # Shorter
-    for((;;)){ echo hi;}
-}
+# Shorter
+for((;;)){ echo hi;}
 ```
 
 ### Shorter function declaration.
 
-```sh
-_() {
-    # Normal method
-    f(){ echo hi;}
+```shell
+# Normal method
+f(){ echo hi;}
 
-    # Using a subshell
-    f()(echo hi)
+# Using a subshell
+f()(echo hi)
 
-    # Using arithmetic
-    # You can use this to assign integer values.
-    # Example: f a=1
-    #          f a++
-    f()(($1))
+# Using arithmetic
+# You can use this to assign integer values.
+# Example: f a=1
+#          f a++
+f()(($1))
 
-    # Using tests, loops etc.
-    # NOTE: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
-    # NOTE: These are commented to make shellcheck play nice.
-    # f()if true; then echo "$1"; fi
-    # f()for i in "$@"; do echo "$i"; done
-}
+# Using tests, loops etc.
+# NOTE: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
+f()if true; then echo "$1"; fi
+f()for i in "$@"; do echo "$i"; done
 ```
 
 ### Shorter `if` syntax.
 
-```sh
-_() {
-    # One line
-    [[ "$var" == hello ]] && echo hi || echo bye
-    [[ "$var" == hello ]] && { echo hi; echo there; } || echo bye
+```shell
+# One line
+[[ "$var" == hello ]] && echo hi || echo bye
+[[ "$var" == hello ]] && { echo hi; echo there; } || echo bye
 
-    # Multi line (no else, single statement)
-    [[ "$var" == hello ]] && \
-        echo hi
+# Multi line (no else, single statement)
+[[ "$var" == hello ]] && \
+    echo hi
 
-    # Multi line (no else)
-    [[ "$var" == hello ]] && {
-        echo hi
-        # ...
-    }
+# Multi line (no else)
+[[ "$var" == hello ]] && {
+    echo hi
+    # ...
 }
 ```
 
@@ -825,31 +849,29 @@ statement. The `$_` variable stores the last argument of the last
 successful command. `:` always succeeds so we can abuse it to store the
 variable value.
 
-```sh
-_() {
-    # Example snippet from Neofetch.
-    case "$(uname)" in
-        "Linux" | "GNU"*)
-            : "Linux"
-        ;;
+```shell
+# Example snippet from Neofetch.
+case "$(uname)" in
+    "Linux" | "GNU"*)
+        : "Linux"
+    ;;
 
-        *"BSD" | "DragonFly" | "Bitrig")
-            : "BSD"
-        ;;
+    *"BSD" | "DragonFly" | "Bitrig")
+        : "BSD"
+    ;;
 
-        "CYGWIN"* | "MSYS"* | "MINGW"*)
-            : "Windows"
-        ;;
+    "CYGWIN"* | "MSYS"* | "MINGW"*)
+        : "Windows"
+    ;;
 
-        *)
-            printf '%s\n' "Unknown OS detected, aborting..." >&2
-            exit 1
-        ;;
-    esac
+    *)
+        printf '%s\n' "Unknown OS detected, aborting..." >&2
+        exit 1
+    ;;
+esac
 
-    # Finally, set the variable.
-    os="$_"
-}
+# Finally, set the variable.
+os="$_"
 ```
 
 ## Internal Variables
@@ -862,60 +884,60 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 
 ### Get the location to the `bash` binary.
 
-```sh
-: "$BASH"
+```shell
+"$BASH"
 ```
 
 ### Get the version of the current running `bash` process.
 
-```sh
+```shell
 # As a string.
-: "$BASH_VERSION"
+"$BASH_VERSION"
 
 # As an array.
-: "${BASH_VERSINFO[@]}"
+"${BASH_VERSINFO[@]}"
 ```
 
 ### Open the user's preferred text editor.
 
-```sh
-: "$EDITOR" "$file"
+```shell
+"$EDITOR" "$file"
 
 # NOTE: This variable may be empty, set a fallback value.
-: "${EDITOR:-vi}" "$file"
+"${EDITOR:-vi}" "$file"
 ```
 
 ### Get the name of the current function.
 
-```sh
+```shell
 # Current function.
-: "${FUNCNAME[0]}"
+"${FUNCNAME[0]}"
 
 # Parent function.
-: "${FUNCNAME[1]}"
+"${FUNCNAME[1]}"
 
 # So on and so forth.
-: "${FUNCNAME[2]}"
-: "${FUNCNAME[3]}"
+"${FUNCNAME[2]}"
+"${FUNCNAME[3]}"
 
 # All functions including parents.
-: "${FUNCNAME[@]}"
+"${FUNCNAME[@]}"
 ```
 
 ### Get the host-name of the system.
 
-```sh
-: "$HOSTNAME"
+```shell
+"$HOSTNAME"
 
 # NOTE: This variable may be empty.
 # Optionally set a fallback to the hostname command.
-: "${HOSTNAME:-$(hostname)}"
+"${HOSTNAME:-$(hostname)}"
 ```
 
 ### Get the architecture of the Operating System.
 
-```sh
-: "$HOSTTYPE"
+```shell
+"$HOSTTYPE"
 ```
 
 ### Get the name of the Operating System / Kernel.
@@ -923,22 +945,22 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 This can be used to add conditional support for different Operating
 Systems without needing to call `uname`.
 
-```sh
-: "$OSTYPE"
+```shell
+"$OSTYPE"
 ```
 
 ### Get the current working directory.
 
 This is an alternative to the `pwd` built-in.
 
-```sh
-: "$PWD"
+```shell
+"$PWD"
 ```
 
 ### Get the number of seconds the script has been running.
 
-```sh
-: "$SECONDS"
+```shell
+"$SECONDS"
 ```
 
 ## Other
@@ -949,6 +971,8 @@ Bash’s `printf` has a built-in method of getting the date which we can use
 in place of the `date` command in a lot of cases.
 
 **NOTE:** Requires `bash` 4+
+
+**Example Function:**
 
 ```sh
 date() {
@@ -971,22 +995,22 @@ date() {
 
 ### Bypass shell aliases.
 
-```sh
+```shell
 # alias
-: ls
+ls
 
 # command
 # shellcheck disable=SC1001
-: \ls
+\ls
 ```
 
 ### Bypass shell functions.
 
-```sh
+```shell
 # function
-: ls
+ls
 
 # command
-: command ls
+command ls
 ```
 
