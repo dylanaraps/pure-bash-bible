@@ -185,7 +185,7 @@ printf '%s\n' "${!var2}"
 # Assign to a variable named after the
 # value stored in '$var'.
 var="test"
-read -rp "input text: " "$var"
+read -rp "input text: " "${var?}"
 
 # Access the variable indirectly.
 printf '%s\n' "set var \$$var to '${!var}'"
@@ -649,7 +649,18 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 ### Get the name of the current function.
 
 ```sh
-"$FUNCNAME"
+# Current function.
+"${FUNCNAME[0]}"
+
+# Parent function.
+"${FUNCNAME[1]}"
+
+# So on and so forth.
+"${FUNCNAME[2]}"
+"${FUNCNAME[3]}"
+
+# All functions including parents.
+"${FUNCNAME[@]}"
 ```
 
 ### Get the host-name of the system.

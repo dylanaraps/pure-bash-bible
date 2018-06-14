@@ -4,4 +4,4 @@ os:
     - linux
 
 script:
-    - shellcheck <(awk '/```sh/{f=1;next}/```/{f=0}f' README.md)
+    - shellcheck -s bash --exclude=SC2034,SC2154 <(awk '/```sh/{f=1;next}/```/{f=0}f' README.md)
