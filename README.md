@@ -605,6 +605,12 @@ os="$_"
 
 ## Internal Variables
 
+**NOTE**: This list does not include every internal variable (*You can
+help by adding a missing entry!*).
+
+For a complete list, see:
+http://tldp.org/LDP/abs/html/internalvariables.html
+
 ### Get the location to the `bash` binary.
 
 ```sh
