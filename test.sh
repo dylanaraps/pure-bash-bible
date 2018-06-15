@@ -91,6 +91,13 @@ test_lines() {
     rm test_file
 }
 
+test_lines_loop() {
+    printf '\n\n\n\n\n\n\n\n' > test_file
+    result="$(lines_loop test_file)"
+    assert_equals "$result" "8"
+    rm test_file
+}
+
 test_count() {
     result="$(count ./{README.m,LICENSE.m,.travis.ym}*)"
     assert_equals "$result" "3"

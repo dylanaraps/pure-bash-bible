@@ -755,9 +755,7 @@ $ tail 1 ~/.bashrc
 
 Alternative to `wc -l`.
 
-**CAVEAT:** Requires `bash` 4+
-
-**Example Function:**
+**Example Function (bash 4):**
 
 ```sh
 lines() {
@@ -767,10 +765,29 @@ lines() {
 }
 ```
 
+**Example Function (bash 3):**
+
+This method uses less memory than the `mapfile` method and it's more
+compatible but it's slower for bigger files.
+
+```sh
+lines_loop() {
+    # Usage lines_loop "file"
+    count=0
+    while IFS= read -r _; do
+        ((count++))
+    done < "$1"
+    printf '%s\n' "$count"
+}
+```
+
 **Example Usage:**
 
 ```shell
 $ lines ~/.bashrc
+48
+
+$ lines_loop ~/.bashrc
 48
 ```
 
