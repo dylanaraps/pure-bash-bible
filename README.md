@@ -99,6 +99,7 @@ scripts and not full blown utilities.
     * [Get the current working directory.](#get-the-current-working-directory)
     * [Get the number of seconds the script has been running.](#get-the-number-of-seconds-the-script-has-been-running)
 * [Other](#other)
+    * [Check if a program is in the user's PATH.](#check-if-a-program-is-in-the-users-path)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
     * [Bypass shell aliases.](#bypass-shell-aliases)
     * [Bypass shell functions.](#bypass-shell-functions)
@@ -1112,6 +1113,29 @@ This is an alternative to the `pwd` built-in.
 ```
 
 # Other
+
+## Check if a program is in the user's PATH.
+
+```shell
+# Bare.
+type -p executable_name &>/dev/null
+
+# As a test.
+if type -p executable_name &>/dev/null; then
+    # Program is in PATH.
+fi
+
+# Inverse.
+if ! type -p executable_name &>/dev/null; then
+    # Program is not in PATH.
+fi
+
+# Example (Exit early if program isn't installed).
+if ! type -p convert &>/dev/null; then
+    printf '%s\n' "error: convert isn't installed, exiting..."
+    exit 1
+fi
+```
 
 ## Get the current date using `strftime`.
 
