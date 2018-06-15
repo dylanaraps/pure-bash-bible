@@ -121,6 +121,13 @@ test_date() {
     assert_equals "$result" "20"
 }
 
+test_parameter_assign_default_if() {
+    declare -i x=20
+    unset x
+    result="${x:=600}"
+    assert_equals "${result}" "600"
+}
+
 assert_equals() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))

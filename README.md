@@ -982,6 +982,18 @@ esac
 os="$_"
 ```
 
+
+# Parameter Expansion
+
+``` shell
+declare x
+# result will be empty
+printf '%s' "${x}"
+# result is 6 and the variable x is set to 6
+printf '%s' "${x:=}"
+```
+
+
 # Internal Variables
 
 **NOTE**: This list does not include every internal variable (*You can
@@ -1127,4 +1139,3 @@ ls
 # command
 command ls
 ```
-
