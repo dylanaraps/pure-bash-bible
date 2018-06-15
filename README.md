@@ -52,6 +52,7 @@ scripts and not full blown utilities.
     * [Strip first occurrence of pattern from string.](#strip-first-occurrence-of-pattern-from-string)
     * [Strip pattern from start of string.](#strip-pattern-from-start-of-string)
     * [Strip pattern from end of string.](#strip-pattern-from-end-of-string)
+    * [Check if string contains a substring.](#check-if-string-contains-a-substring)
 * [Variables](#variables)
     * [Assign and access a variable using a variable.](#assign-and-access-a-variable-using-a-variable)
 * [Arrays](#arrays)
@@ -388,6 +389,25 @@ rstrip() {
 ```shell
 $ rstrip "The Quick Brown Fox" " Fox"
 The Quick Brown
+```
+
+## Check if string contains a substring.
+
+```shell
+# Normal
+if [[ "$var" == *sub_string* ]]; then
+    printf '%s\n' "sub_string is in var"
+fi
+
+# Inverse (substring not in string).
+if [[ "$var" != *sub_string* ]]; then
+    printf '%s\n' "sub_string is not in var"
+fi
+
+# This works for arrays too!
+if [[ "${arr[*]}" == *sub_string* ]]; then
+    printf '%s\n' "sub_string is in array."
+fi
 ```
 
 # Variables
