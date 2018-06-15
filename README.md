@@ -2,12 +2,11 @@
 align="center">A [WIP] collection of pure bash alternatives to external
 processes.</p>
 
-<p align="center">
-<a href="https://travis-ci.com/dylanaraps/pure-bash"><img
-src="https://travis-ci.com/dylanaraps/pure-bash.svg?branch=master"></a> <a
-href="./LICENSE.md"><img
-src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-</p>
+<p align="center"> <a
+href="https://travis-ci.com/dylanaraps/pure-bash-bible"><img
+src="https://travis-ci.com/dylanaraps/pure-bash-bible.svg?branch=master"></a>
+<a href="./LICENSE.md"><img
+src="https://img.shields.io/badge/license-MIT-blue.svg"></a> </p>
 
 <br>
 
