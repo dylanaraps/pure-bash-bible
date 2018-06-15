@@ -59,11 +59,10 @@ Steps:
 
 1. Write the test.
     - Naming is `test_func_name`
-    - Store the function output in a variable.
+    - Store the function output in a variable (`$result` or `${result[@]}`).
     - Use `assert_equals` to test equality between the variable and the
       expected output.
-2. ???
-3. The test script will automatically execute it. :+1:
+2. The test script will automatically execute it. :+1:
 
 
 ## Running the tests
