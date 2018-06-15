@@ -1117,8 +1117,11 @@ This is an alternative to the `pwd` built-in.
 ## Check if a program is in the user's PATH.
 
 ```shell
-# Bare.
+# There are 3 ways to do this and you can use either of
+# these in the same way.
 type -p executable_name &>/dev/null
+hash executable_name &>/dev/null
+command -v executable_name &>/dev/null
 
 # As a test.
 if type -p executable_name &>/dev/null; then
