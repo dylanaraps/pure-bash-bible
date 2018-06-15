@@ -62,7 +62,9 @@ scripts and not full blown utilities.
     * [Toggle between two values.](#toggle-between-two-values)
 * [Loops](#loops)
     * [Loop over a range of numbers.](#loop-over-a-range-of-numbers)
+    * [Loop over a variable range of numbers.](#loop-over-a-variable-range-of-numbers)
     * [Loop over an array.](#loop-over-an-array)
+    * [Loop over an array with an index.](#loop-over-an-array-with-an-index)
     * [Loop over files and directories.](#loop-over-files-and-directories)
 * [File handling](#file-handling)
     * [Read a file to a string.](#read-a-file-to-a-string)
@@ -565,7 +567,13 @@ Don't use `seq`.
 for i in {0..100}; do
     printf '%s\n' "$i"
 done
+```
 
+## Loop over a variable range of numbers.
+
+Don't use `seq`.
+
+```shell
 # Loop from 0-VAR.
 VAR=50
 for ((i=0;i<=VAR;i++)); do
@@ -582,7 +590,11 @@ arr=(apples oranges tomatoes)
 for element in "${arr[@]}"; do
     printf '%s\n' "$element"
 done
+```
 
+## Loop over an array with an index.
+
+```shell
 # Elements and index.
 for i in "${!arr[@]}"; do
     printf '%s\n' "${arr[$i]}"
