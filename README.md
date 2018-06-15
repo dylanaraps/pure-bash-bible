@@ -767,7 +767,7 @@ lines() {
     while IFS= read -r line; do
         ((count++))
     done < "$1"
-    printf "%s\n" "$count"
+    printf '%s\n' "$count"
 }
 ```
 
