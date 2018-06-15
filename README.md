@@ -60,13 +60,16 @@ scripts and not full blown utilities.
     * [Remove duplicate array elements.](#remove-duplicate-array-elements)
     * [Cycle through an array.](#cycle-through-an-array)
     * [Toggle between two values.](#toggle-between-two-values)
+* [Loops](#loops)
+    * [Loop over a range of numbers.](#loop-over-a-range-of-numbers)
+    * [Loop over an array.](#loop-over-an-array)
+    * [Loop over files and directories.](#loop-over-files-and-directories)
 * [File handling](#file-handling)
     * [Read a file to a string.](#read-a-file-to-a-string)
     * [Read a file to an array (*by line*).](#read-a-file-to-an-array-by-line)
     * [Get the first N lines of a file.](#get-the-first-n-lines-of-a-file)
     * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
-    * [Iterate over files.](#iterate-over-files)
     * [Count files or directories in directory.](#count-files-or-directories-in-directory)
     * [Create an empty file.](#create-an-empty-file)
 * [File Paths](#file-paths)
@@ -551,6 +554,68 @@ cycle() {
 }
 ```
 
+# Loops
+
+## Loop over a range of numbers.
+
+Don't use `seq`.
+
+```shell
+# Loop from 0-100 (no variable support).
+for i in {0..100}; do
+    printf '%s\n' "$i"
+done
+
+# Loop from 0-VAR.
+VAR=50
+for ((i=0;i<=VAR;i++)); do
+    printf '%s\n' "$i"
+done
+```
+
+## Loop over an array.
+
+```shell
+arr=(apples oranges tomatoes)
+
+# Just elements.
+for element in "${arr[@]}"; do
+    printf '%s\n' "$element"
+done
+
+# Elements and index.
+for i in "${!arr[@]}"; do
+    printf '%s\n' "${arr[$i]}"
+done
+```
+
+## Loop over files and directories.
+
+Don’t use `ls`.
+
+```shell
+# Greedy example.
+for file in *; do
+    printf '%s\n' "$file"
+done
+
+# PNG files in dir.
+for file in ~/Pictures/*.png; do
+    printf '%s\n' "$file"
+done
+
+# Iterate over directories.
+for dir in ~/Downloads/*/; do
+    printf '%s\n' "$dir"
+done
+
+# Iterate recursively.
+shopt -s globstar
+for file in ~/Pictures/**/*; do
+    printf '%s\n' "$file"
+done
+shopt -u globstar
+```
 
 
 # File handling
@@ -650,34 +715,6 @@ lines() {
 ```shell
 $ lines ~/.bashrc
 48
-```
-
-## Iterate over files.
-
-Don’t use `ls`.
-
-```shell
-# Greedy example.
-for file in *; do
-    printf '%s\n' "$file"
-done
-
-# PNG files in dir.
-for file in ~/Pictures/*.png; do
-    printf '%s\n' "$file"
-done
-
-# Iterate over directories.
-for dir in ~/Downloads/*/; do
-    printf '%s\n' "$dir"
-done
-
-# Iterate recursively.
-shopt -s globstar
-for file in ~/Pictures/**/*; do
-    printf '%s\n' "$file"
-done
-shopt -u globstar
 ```
 
 ## Count files or directories in directory.
