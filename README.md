@@ -759,7 +759,7 @@ Alternative to `wc -l`.
 
 ```sh
 lines() {
-    # Usage lines "file"
+    # Usage: lines "file"
     mapfile -tn 0 lines < "$1"
     printf '%s\n' "${#lines[@]}"
 }
@@ -772,7 +772,7 @@ compatible but it's slower for bigger files.
 
 ```sh
 lines_loop() {
-    # Usage lines_loop "file"
+    # Usage: lines_loop "file"
     count=0
     while IFS= read -r _; do
         ((count++))
@@ -1367,4 +1367,3 @@ ls
 # command
 command ls
 ```
-
