@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck source=/dev/null
 #
 # Tests for the Pure Bash Bible.
 
@@ -134,8 +135,12 @@ assert_equals() {
 }
 
 main() {
+    # Run shellcheck on the code.
+    awk '/```sh$/{f=1;next}/```/{f=0}f' README.md > readme_code
+    shellcheck -s bash --exclude=SC2034,SC2154 readme_code || exit 1
+
     # Get the code blocks from README.md
-    source <(awk '/```sh$/{f=1;next}/```/{f=0}f' README.md) 2>/dev/null
+    . readme_code
 
     head="-> Running tests on the Pure Bash Bible.."
     printf '\n%s\n%s\n' "$head" "${head//?/-}"
@@ -146,6 +151,7 @@ main() {
 
     comp="Completed ${#funcs[@]} tests. ${pass:-0} passed, ${err:-0} errored."
     printf '%s\n%s\n\n' "${comp//?/-}" "$comp"
+    rm readme_code
 
     # If a test failed, exit with '1'.
     [[ -f /tmp/err ]] || exit 0 && { rm /tmp/err; exit 1; }
