@@ -177,7 +177,7 @@ large number of use-cases.
 Stick to POSIX regex features if aiming for compatibility.
 
 **CAVEAT**: This example only prints the first matching group. When using
-multiple capture groups some modification will be needed.
+multiple capture groups some modification is needed.
 
 **Example Function:**
 
