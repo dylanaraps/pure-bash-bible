@@ -107,6 +107,7 @@ scripts and not full blown utilities.
     * [Get the current working directory.](#get-the-current-working-directory)
     * [Get the number of seconds the script has been running.](#get-the-number-of-seconds-the-script-has-been-running)
 * [Other](#other)
+    * [Use `read` as an alternative to the `sleep` command.](#use-read-as-an-alternative-to-the-sleep-command)
     * [Check if a program is in the user's PATH.](#check-if-a-program-is-in-the-users-path)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
     * [Bypass shell aliases.](#bypass-shell-aliases)
@@ -1205,6 +1206,29 @@ This is an alternative to the `pwd` built-in.
 ```
 
 # Other
+
+## Use `read` as an alternative to the `sleep` command.
+
+I was surprised to find out `sleep` is an external command and isn't a
+built-in.
+
+**Example Funcrion:**
+
+```sh
+read_sleep() {
+    # Usage: sleep 1
+    #        sleep 0.2
+    read -rst "${1:-1}" -N 999
+}
+```
+
+**Example Usage:**
+
+```shell
+read_sleep 1
+read_sleep 0.1
+read_sleep 30
+```
 
 ## Check if a program is in the user's PATH.
 

@@ -121,6 +121,12 @@ test_date() {
     assert_equals "$result" "20"
 }
 
+test_read_sleep() {
+    result="$SECONDS"
+    read_sleep 1
+    assert_equals "$((result+1))" "$SECONDS"
+}
+
 assert_equals() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))
