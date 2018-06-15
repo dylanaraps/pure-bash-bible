@@ -121,20 +121,18 @@ test_date() {
 }
 
 assert_equals() {
-    local status
     ((tests+=1))
-
-    [[ "$1" == "$2" ]] && status="✔"
-    printf '%s\n' " ${status:-✖} | ${FUNCNAME[1]/test_}"
 
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))
-        return 0
+        status=$'\e[32m✔'
     else
         :>/tmp/err
         ((err+=1))
-        return 1
+        status=$'\e[31m✖'
     fi
+
+    printf ' %s\e[m | %s\n' "$status" "${FUNCNAME[1]/test_}"
 }
 
 main() {
