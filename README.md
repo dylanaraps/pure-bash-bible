@@ -19,10 +19,16 @@ tips and discovered a few while developing
 [pxltrm](https://github.com/dylanaraps/pxltrm) and some other smaller
 projects.
 
-This repository is open to contribution. If you see something that is
-incorrectly described, buggy or outright wrong, open an issue or send a
-pull request. If you know a handy snippet that is not included in this
-list, send a pull request!
+The snippets below are linted using `shellcheck` and tests have been
+written where applicable. If you're looking to contribute, have a read of
+the
+[CONTRIBUTING.md](https://github.com/dylanaraps/pure-bash-bible/blob/master/CONTRIBUTING.md).
+It outlines how the unit tests work and what's required when adding
+snippets.
+
+If you see something that is incorrectly described, buggy or outright
+wrong, open an issue or send a pull request. If you know a handy snippet
+that is not included in this list, contribute!
 
 **NOTE**: Error handling (*checking if a file exists, etc*) is not
 included. These are meant to be snippets you can incorporate into your
@@ -103,6 +109,11 @@ scripts and not full blown utilities.
 
 ## Trim leading and trailing white-space from string.
 
+This is an alternative to `sed`, `awk`, `perl` and other tools. The
+function below works by finding all leading and trailing white-space and
+removing it from the start and end of the string. The `:` built-in is used
+in place of a temporary variable.
+
 **Example Function:**
 
 ```sh
@@ -127,6 +138,10 @@ John Black
 
 
 ## Trim all white-space from string and truncate spaces.
+
+This is an alternative to `sed`, `awk`, `perl` and other tools. The
+function below works by abusing word splitting to create a new string
+without leading/trailing white-space and with truncated spaces.
 
 **Example Function:**
 
@@ -154,14 +169,14 @@ John Black is my name.
 
 ## Use REGEX on a string.
 
-We can use the result of `bash`'s regex matching to create a simple `sed`
-replacement.
+We can use the result of `bash`'s regex matching to replace `sed` for a
+large number of use-cases.
 
-**NOTE**: This is one of the few platform dependant `bash` features.
+**CAVEAT**: This is one of the few platform dependant `bash` features.
 `bash` will use whatever regex engine is installed on the user's system.
 Stick to POSIX regex features if aiming for compatibility.
 
-**NOTE**: This example only prints the first matching group. When using
+**CAVEAT**: This example only prints the first matching group. When using
 multiple capture groups some modification will be needed.
 
 **Example Function:**
@@ -210,6 +225,8 @@ is_hex_color "$color" || color="#FFFFFF"
 
 ## Split a string on a delimiter.
 
+This is an alternative to `cut`, `awk` and other tools.
+
 ```shell
 string="1,2,3"
 
@@ -222,7 +239,7 @@ IFS=, read -ra vars <<< "$string"
 
 ## Change a string to lowercase.
 
-**NOTE:** Requires `bash` 4+
+**CAVEAT:** Requires `bash` 4+
 
 **Example Function:**
 
@@ -248,7 +265,7 @@ hello
 
 ## Change a string to uppercase.
 
-**NOTE:** Requires `bash` 4+
+**CAVEAT:** Requires `bash` 4+
 
 **Example Function:**
 
@@ -430,7 +447,7 @@ Create a temporary associative array. When setting associative array
 values and a duplicate assignment occurs, bash overwrites the key. This
 allows us to effectively remove array duplicates.
 
-**NOTE:** Requires `bash` 4+
+**CAVEAT:** Requires `bash` 4+
 
 **Example Function:**
 
@@ -521,7 +538,7 @@ mapfile -t file_data < "file"
 
 Alternative to the `head` command.
 
-**NOTE:** Requires `bash` 4+
+**CAVEAT:** Requires `bash` 4+
 
 **Example Function:**
 
@@ -548,7 +565,7 @@ $ head 1 ~/.bashrc
 
 Alternative to the `tail` command.
 
-**NOTE:** Requires `bash` 4+
+**CAVEAT:** Requires `bash` 4+
 
 **Example Function:**
 
@@ -575,7 +592,7 @@ $ tail 1 ~/.bashrc
 
 Alternative to `wc -l`.
 
-**NOTE:** Requires `bash` 4+
+**CAVEAT:** Requires `bash` 4+
 
 **Example Function:**
 
@@ -818,7 +835,7 @@ $ get_term_size
 
 ## Get the terminal size in pixels.
 
-**NOTE**: This does not work in some terminal emulators.
+**CAVEAT**: This does not work in some terminal emulators.
 
 **Example Function:**
 
@@ -1061,7 +1078,7 @@ This is an alternative to the `pwd` built-in.
 Bash’s `printf` has a built-in method of getting the date which we can use
 in place of the `date` command in a lot of cases.
 
-**NOTE:** Requires `bash` 4+
+**CAVEAT:** Requires `bash` 4+
 
 **Example Function:**
 
