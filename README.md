@@ -762,8 +762,12 @@ Alternative to `wc -l`.
 ```sh
 lines() {
     # Usage lines "file"
-    mapfile -tn 0 lines < "$1"
-    printf '%s\n' "${#lines[@]}"
+    local count
+    count=0
+    while IFS= read -r line; do
+        ((count++))
+    done < "$1"
+    printf '%s\n' "$count"
 }
 ```
 
