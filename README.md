@@ -52,6 +52,9 @@ scripts and not full blown utilities.
     * [Strip first occurrence of pattern from string.](#strip-first-occurrence-of-pattern-from-string)
     * [Strip pattern from start of string.](#strip-pattern-from-start-of-string)
     * [Strip pattern from end of string.](#strip-pattern-from-end-of-string)
+    * [Check if string contains a sub-string.](#check-if-string-contains-a-sub-string)
+    * [Check if string starts with sub-string.](#check-if-string-starts-with-sub-string)
+    * [Check if string ends with sub-string.](#check-if-string-ends-with-sub-string)
 * [Variables](#variables)
     * [Assign and access a variable using a variable.](#assign-and-access-a-variable-using-a-variable)
 * [Arrays](#arrays)
@@ -59,13 +62,19 @@ scripts and not full blown utilities.
     * [Remove duplicate array elements.](#remove-duplicate-array-elements)
     * [Cycle through an array.](#cycle-through-an-array)
     * [Toggle between two values.](#toggle-between-two-values)
+* [Loops](#loops)
+    * [Loop over a range of numbers.](#loop-over-a-range-of-numbers)
+    * [Loop over a variable range of numbers.](#loop-over-a-variable-range-of-numbers)
+    * [Loop over an array.](#loop-over-an-array)
+    * [Loop over an array with an index.](#loop-over-an-array-with-an-index)
+    * [Loop over the contents of a file.](#loop-over-the-contents-of-a-file)
+    * [Loop over files and directories.](#loop-over-files-and-directories)
 * [File handling](#file-handling)
     * [Read a file to a string.](#read-a-file-to-a-string)
     * [Read a file to an array (*by line*).](#read-a-file-to-an-array-by-line)
     * [Get the first N lines of a file.](#get-the-first-n-lines-of-a-file)
     * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
-    * [Iterate over files.](#iterate-over-files)
     * [Count files or directories in directory.](#count-files-or-directories-in-directory)
     * [Create an empty file.](#create-an-empty-file)
 * [File Paths](#file-paths)
@@ -98,7 +107,10 @@ scripts and not full blown utilities.
     * [Get the current working directory.](#get-the-current-working-directory)
     * [Get the number of seconds the script has been running.](#get-the-number-of-seconds-the-script-has-been-running)
 * [Other](#other)
+    * [Use `read` as an alternative to the `sleep` command.](#use-read-as-an-alternative-to-the-sleep-command)
+    * [Check if a program is in the user's PATH.](#check-if-a-program-is-in-the-users-path)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
+    * [Progress bars.](#progress-bars)
     * [Bypass shell aliases.](#bypass-shell-aliases)
     * [Bypass shell functions.](#bypass-shell-functions)
 
@@ -390,6 +402,70 @@ $ rstrip "The Quick Brown Fox" " Fox"
 The Quick Brown
 ```
 
+## Check if string contains a sub-string.
+
+**Using a test:**
+
+```shell
+if [[ "$var" == *sub_string* ]]; then
+    printf '%s\n' "sub_string is in var."
+fi
+
+# Inverse (substring not in string).
+if [[ "$var" != *sub_string* ]]; then
+    printf '%s\n' "sub_string is not in var."
+fi
+
+# This works for arrays too!
+if [[ "${arr[*]}" == *sub_string* ]]; then
+    printf '%s\n' "sub_string is in array."
+fi
+```
+
+## Check if string starts with sub-string.
+
+```shell
+if [[ "$var" == sub_string* ]]; then
+    printf '%s\n' "var starts with sub_string."
+fi
+
+# Inverse (var doesn't start with sub_string).
+if [[ "$var" != sub_string* ]]; then
+    printf '%s\n' "var does not start with sub_string."
+fi
+```
+
+## Check if string ends with sub-string.
+
+```shell
+if [[ "$var" == *sub_string ]]; then
+    printf '%s\n' "var ends with sub_string."
+fi
+
+# Inverse (var doesn't start with sub_string).
+if [[ "$var" != *sub_string ]]; then
+    printf '%s\n' "var does not end with sub_string."
+fi
+```
+
+**Using a case statement:**
+
+```shell
+case "$var" in
+    *sub_string*)
+        # Do stuff
+    ;;
+
+    *sub_string2*)
+        # Do more stuff
+    ;;
+
+    *)
+        # Else
+    ;;
+esac
+```
+
 # Variables
 
 ## Assign and access a variable using a variable.
@@ -510,6 +586,93 @@ cycle() {
 }
 ```
 
+# Loops
+
+## Loop over a range of numbers.
+
+Don't use `seq`.
+
+```shell
+# Loop from 0-100 (no variable support).
+for i in {0..100}; do
+    printf '%s\n' "$i"
+done
+```
+
+## Loop over a variable range of numbers.
+
+Don't use `seq`.
+
+```shell
+# Loop from 0-VAR.
+VAR=50
+for ((i=0;i<=VAR;i++)); do
+    printf '%s\n' "$i"
+done
+```
+
+## Loop over an array.
+
+```shell
+arr=(apples oranges tomatoes)
+
+# Just elements.
+for element in "${arr[@]}"; do
+    printf '%s\n' "$element"
+done
+```
+
+## Loop over an array with an index.
+
+```shell
+arr=(apples oranges tomatoes)
+
+# Elements and index.
+for i in "${!arr[@]}"; do
+    printf '%s\n' "${arr[$i]}"
+done
+
+# Alternative method.
+for ((i=0;i<${#arr[@]};i++)); do
+    printf '%s\n' "${arr[$i]}"
+done
+```
+
+## Loop over the contents of a file.
+
+```shell
+while read -r line; do
+    printf '%s\n' "$line"
+done < "file"
+```
+
+## Loop over files and directories.
+
+Don’t use `ls`.
+
+```shell
+# Greedy example.
+for file in *; do
+    printf '%s\n' "$file"
+done
+
+# PNG files in dir.
+for file in ~/Pictures/*.png; do
+    printf '%s\n' "$file"
+done
+
+# Iterate over directories.
+for dir in ~/Downloads/*/; do
+    printf '%s\n' "$dir"
+done
+
+# Iterate recursively.
+shopt -s globstar
+for file in ~/Pictures/**/*; do
+    printf '%s\n' "$file"
+done
+shopt -u globstar
+```
 
 
 # File handling
@@ -609,34 +772,6 @@ lines() {
 ```shell
 $ lines ~/.bashrc
 48
-```
-
-## Iterate over files.
-
-Don’t use `ls`.
-
-```shell
-# Greedy example.
-for file in *; do
-    printf '%s\n' "$file"
-done
-
-# PNG files in dir.
-for file in ~/Pictures/*.png; do
-    printf '%s\n' "$file"
-done
-
-# Iterate over directories.
-for dir in ~/Downloads/*/; do
-    printf '%s\n' "$dir"
-done
-
-# Iterate recursively.
-shopt -s globstar
-for file in ~/Pictures/**/*; do
-    printf '%s\n' "$file"
-done
-shopt -u globstar
 ```
 
 ## Count files or directories in directory.
@@ -1113,6 +1248,55 @@ This is an alternative to the `pwd` built-in.
 
 # Other
 
+## Use `read` as an alternative to the `sleep` command.
+
+I was surprised to find out `sleep` is an external command and isn't a
+built-in.
+
+**Example Funcrion:**
+
+```sh
+read_sleep() {
+    # Usage: sleep 1
+    #        sleep 0.2
+    read -rst "${1:-1}" -N 999
+}
+```
+
+**Example Usage:**
+
+```shell
+read_sleep 1
+read_sleep 0.1
+read_sleep 30
+```
+
+## Check if a program is in the user's PATH.
+
+```shell
+# There are 3 ways to do this and you can use either of
+# these in the same way.
+type -p executable_name &>/dev/null
+hash executable_name &>/dev/null
+command -v executable_name &>/dev/null
+
+# As a test.
+if type -p executable_name &>/dev/null; then
+    # Program is in PATH.
+fi
+
+# Inverse.
+if ! type -p executable_name &>/dev/null; then
+    # Program is not in PATH.
+fi
+
+# Example (Exit early if program isn't installed).
+if ! type -p convert &>/dev/null; then
+    printf '%s\n' "error: convert isn't installed, exiting..."
+    exit 1
+fi
+```
+
 ## Get the current date using `strftime`.
 
 Bash’s `printf` has a built-in method of getting the date which we can use
@@ -1146,6 +1330,43 @@ $ printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
 $ printf '%s\n' "$date"
 Fri 15 Jun  - 10:00 AM
 ```
+
+## Progress bars.
+
+This is a simple way of drawing progress bars without needing a for loop
+in the function itself.
+
+**Example Function:**
+
+```sh
+bar() {
+    # Usage: bar 1 10
+    #            ^----- Elapsed Percentage (0-100).
+    #               ^-- Total length in chars.
+    ((elapsed=$1*$2/100))
+
+    # Create the bar with spaces.
+    printf -v prog  "%${elapsed}s"
+    printf -v total "%$(($2-elapsed))s"
+
+    printf '%s\r' "[${prog// /-}${total}]"
+}
+```
+
+**Example Usage:**
+
+```shell
+for ((i=0;i<=100;i++)); do
+    # Pure bash micro sleeps (for the example).
+    (:;:) && (:;:) && (:;:) && (:;:) && (:;:)
+
+    # Print the bar.
+    bar "$i" "10"
+done
+
+printf '\n'
+```
+
 
 ## Bypass shell aliases.
 

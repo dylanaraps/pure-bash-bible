@@ -142,6 +142,15 @@ test_parameter_use_if() {
     unset x
     result="${x:+$y}"
     assert_equals "${result}" ""
+test_read_sleep() {
+    result="$SECONDS"
+    read_sleep 1
+    assert_equals "$((result+1))" "$SECONDS"
+}
+
+test_bar() {
+    result="$(bar 50 10)"
+    assert_equals "${result//$'\r'}" "[-----     ]"
 }
 
 assert_equals() {
