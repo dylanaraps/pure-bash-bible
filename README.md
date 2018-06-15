@@ -31,7 +31,7 @@ scripts and not full blown utilities.
 
 <br>
 
-## Table of Contents
+# Table of Contents
 
 <!-- vim-markdown-toc GFM -->
 
@@ -100,9 +100,9 @@ scripts and not full blown utilities.
 <!-- vim-markdown-toc -->
 
 
-## Strings
+# Strings
 
-### Trim leading and trailing white-space from string.
+## Trim leading and trailing white-space from string.
 
 **Example Function:**
 
@@ -127,7 +127,7 @@ John Black
 ```
 
 
-### Trim all white-space from string and truncate spaces.
+## Trim all white-space from string and truncate spaces.
 
 **Example Function:**
 
@@ -153,7 +153,7 @@ $ trim_all "$name"
 John Black is my name.
 ```
 
-### Use REGEX on a string.
+## Use REGEX on a string.
 
 We can use the result of `bash`'s regex matching to create a simple `sed`
 replacement.
@@ -209,7 +209,7 @@ is_hex_color "$color" || color="#FFFFFF"
 ```
 
 
-### Split a string on a delimiter.
+## Split a string on a delimiter.
 
 ```shell
 string="1,2,3"
@@ -221,7 +221,7 @@ IFS=, read -r var1 var2 var3 <<< "$string"
 IFS=, read -ra vars <<< "$string"
 ```
 
-### Change a string to lowercase.
+## Change a string to lowercase.
 
 **NOTE:** Requires `bash` 4+
 
@@ -247,7 +247,7 @@ $ lower "hello"
 hello
 ```
 
-### Change a string to uppercase.
+## Change a string to uppercase.
 
 **NOTE:** Requires `bash` 4+
 
@@ -273,7 +273,7 @@ $ upper "HELLO"
 HELLO
 ```
 
-### Trim quotes from a string.
+## Trim quotes from a string.
 
 **Example Function:**
 
@@ -293,7 +293,7 @@ $ trim_quotes "$var"
 Hello, World
 ```
 
-### Strip all instances of pattern from string.
+## Strip all instances of pattern from string.
 
 **Example Function:**
 
@@ -317,7 +317,7 @@ $ strip_all "The Quick Brown Fox" "Quick "
 The Brown Fox
 ```
 
-### Strip first occurrence of pattern from string.
+## Strip first occurrence of pattern from string.
 
 **Example Function:**
 
@@ -338,7 +338,7 @@ $ strip "The Quick Brown Fox" "[[:space:]]"
 TheQuick Brown Fox
 ```
 
-### Strip pattern from start of string.
+## Strip pattern from start of string.
 
 **Example Function:**
 
@@ -356,7 +356,7 @@ $ lstrip "The Quick Brown Fox" "The "
 Quick Brown Fox
 ```
 
-### Strip pattern from end of string.
+## Strip pattern from end of string.
 
 **Example Function:**
 
@@ -374,9 +374,9 @@ $ rstrip "The Quick Brown Fox" " Fox"
 The Quick Brown
 ```
 
-## Variables
+# Variables
 
-### Assign and access a variable using a variable.
+## Assign and access a variable using a variable.
 
 ```shell
 hello_world="test"
@@ -390,9 +390,9 @@ printf '%s\n' "${!var2}"
 ```
 
 
-## Arrays
+# Arrays
 
-### Reverse an array.
+## Reverse an array.
 
 Enabling `extdebug` allows access to the `BASH_ARGV` array which stores
 the current function’s arguments in reverse.
@@ -425,7 +425,7 @@ blue
 red
 ```
 
-### Remove duplicate array elements.
+## Remove duplicate array elements.
 
 Create a temporary associative array. When setting associative array
 values and a duplicate assignment occurs, bash overwrites the key. This
@@ -465,7 +465,7 @@ green
 blue
 ```
 
-### Cycle through an array.
+## Cycle through an array.
 
 Each time the `printf` is called, the next array element is printed. When
 the print hits the last array element it starts from the first element
@@ -481,7 +481,7 @@ cycle() {
 ```
 
 
-### Toggle between two values.
+## Toggle between two values.
 
 This works the same as above, this is just a different use case.
 
@@ -496,9 +496,9 @@ cycle() {
 
 
 
-## File handling
+# File handling
 
-### Read a file to a string.
+## Read a file to a string.
 
 Alternative to the `cat` command.
 
@@ -506,7 +506,7 @@ Alternative to the `cat` command.
 file_data="$(<"file")"
 ```
 
-### Read a file to an array (*by line*).
+## Read a file to an array (*by line*).
 
 Alternative to the `cat` command.
 
@@ -518,7 +518,7 @@ IFS=$'\n' read -d "" -ra file_data < "file"
 mapfile -t file_data < "file"
 ```
 
-### Get the first N lines of a file.
+## Get the first N lines of a file.
 
 Alternative to the `head` command.
 
@@ -545,7 +545,7 @@ $ head 1 ~/.bashrc
 # Prompt
 ```
 
-### Get the last N lines of a file.
+## Get the last N lines of a file.
 
 Alternative to the `tail` command.
 
@@ -572,7 +572,7 @@ $ tail 1 ~/.bashrc
 # [[ -z "$TMUX"  ]] && exec tmux
 ```
 
-### Get the number of lines in a file.
+## Get the number of lines in a file.
 
 Alternative to `wc -l`.
 
@@ -595,7 +595,7 @@ $ lines ~/.bashrc
 48
 ```
 
-### Iterate over files.
+## Iterate over files.
 
 Don’t use `ls`.
 
@@ -623,7 +623,7 @@ done
 shopt -u globstar
 ```
 
-### Count files or directories in directory.
+## Count files or directories in directory.
 
 This works by passing the output of the glob as function arguments. We
 then count the arguments and print the number.
@@ -654,7 +654,7 @@ $ count ~/Pictures/*.jpg
 64
 ```
 
-### Create an empty file.
+## Create an empty file.
 
 Alternative to `touch`.
 
@@ -667,9 +667,9 @@ echo -n > file
 printf '' > file
 ```
 
-## File Paths
+# File Paths
 
-### Get the directory name of a file path.
+## Get the directory name of a file path.
 
 Alternative to the `dirname` command.
 
@@ -692,7 +692,7 @@ $ dirname ~/Pictures/Downloads/
 /home/black/Pictures/
 ```
 
-### Get the base-name of a file path.
+## Get the base-name of a file path.
 
 Alternative to the `basename` command.
 
@@ -717,9 +717,9 @@ Downloads
 ```
 
 
-## Arithmetic
+# Arithmetic
 
-### Simpler syntax to set variables.
+## Simpler syntax to set variables.
 
 ```shell
 # Simple math
@@ -735,7 +735,7 @@ Downloads
 ((var=var2*arr[2]))
 ```
 
-### Ternary tests.
+## Ternary tests.
 
 ```shell
 # Set the value of var to var2 if var2 is greater than var.
@@ -746,9 +746,9 @@ Downloads
 ((var=var2>var?var2:var))
 ```
 
-## Colors
+# Colors
 
-### Convert a hex color to RGB.
+## Convert a hex color to RGB.
 
 **Example Function:**
 
@@ -771,7 +771,7 @@ $ hex_to_rgb "#FFFFFF"
 ```
 
 
-### Convert an RGB color to hex.
+## Convert an RGB color to hex.
 
 **Example Function:**
 
@@ -789,9 +789,9 @@ $ rgb_to_hex "255" "255" "255"
 #FFFFFF
 ```
 
-## Information about the terminal
+# Information about the terminal
 
-### Get the terminal size in lines and columns (*from a script*).
+## Get the terminal size in lines and columns (*from a script*).
 
 This is handy when writing scripts in pure bash and `stty`/`tput` can’t be
 called.
@@ -817,7 +817,7 @@ $ get_term_size
 15 55
 ```
 
-### Get the terminal size in pixels.
+## Get the terminal size in pixels.
 
 **NOTE**: This does not work in some terminal emulators.
 
@@ -845,7 +845,7 @@ x
 ```
 
 
-### Get the current cursor position.
+## Get the current cursor position.
 
 This is useful when creating a TUI in pure bash.
 
@@ -867,9 +867,9 @@ $ get_cursor_pos
 1 8
 ```
 
-## Code Golf
+# Code Golf
 
-### Shorter `for` loop syntax.
+## Shorter `for` loop syntax.
 
 ```shell
 # Tiny C Style.
@@ -885,7 +885,7 @@ for i in {1..10}; do echo "$i"; done
 for((i=0;i<=10;i++)); do echo "$i"; done
 ```
 
-### Shorter infinite loops.
+## Shorter infinite loops.
 
 ```shell
 # Normal method
@@ -895,7 +895,7 @@ while :; do echo hi; done
 for((;;)){ echo hi;}
 ```
 
-### Shorter function declaration.
+## Shorter function declaration.
 
 ```shell
 # Normal method
@@ -916,7 +916,7 @@ f()if true; then echo "$1"; fi
 f()for i in "$@"; do echo "$i"; done
 ```
 
-### Shorter `if` syntax.
+## Shorter `if` syntax.
 
 ```shell
 # One line
@@ -934,7 +934,7 @@ f()for i in "$@"; do echo "$i"; done
 }
 ```
 
-### Simpler `case` statement to set variable.
+## Simpler `case` statement to set variable.
 
 We can use the `:` builtin to avoid repeating `variable=` in a case
 statement. The `$_` variable stores the last argument of the last
@@ -966,7 +966,7 @@ esac
 os="$_"
 ```
 
-## Internal Variables
+# Internal Variables
 
 **NOTE**: This list does not include every internal variable (*You can
 help by adding a missing entry!*).
@@ -974,13 +974,13 @@ help by adding a missing entry!*).
 For a complete list, see:
 http://tldp.org/LDP/abs/html/internalvariables.html
 
-### Get the location to the `bash` binary.
+## Get the location to the `bash` binary.
 
 ```shell
 "$BASH"
 ```
 
-### Get the version of the current running `bash` process.
+## Get the version of the current running `bash` process.
 
 ```shell
 # As a string.
@@ -990,7 +990,7 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 "${BASH_VERSINFO[@]}"
 ```
 
-### Open the user's preferred text editor.
+## Open the user's preferred text editor.
 
 ```shell
 "$EDITOR" "$file"
@@ -999,7 +999,7 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 "${EDITOR:-vi}" "$file"
 ```
 
-### Get the name of the current function.
+## Get the name of the current function.
 
 ```shell
 # Current function.
@@ -1016,7 +1016,7 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 "${FUNCNAME[@]}"
 ```
 
-### Get the host-name of the system.
+## Get the host-name of the system.
 
 ```shell
 "$HOSTNAME"
@@ -1026,13 +1026,13 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 "${HOSTNAME:-$(hostname)}"
 ```
 
-### Get the architecture of the Operating System.
+## Get the architecture of the Operating System.
 
 ```shell
 "$HOSTTYPE"
 ```
 
-### Get the name of the Operating System / Kernel.
+## Get the name of the Operating System / Kernel.
 
 This can be used to add conditional support for different Operating
 Systems without needing to call `uname`.
@@ -1041,7 +1041,7 @@ Systems without needing to call `uname`.
 "$OSTYPE"
 ```
 
-### Get the current working directory.
+## Get the current working directory.
 
 This is an alternative to the `pwd` built-in.
 
@@ -1049,15 +1049,15 @@ This is an alternative to the `pwd` built-in.
 "$PWD"
 ```
 
-### Get the number of seconds the script has been running.
+## Get the number of seconds the script has been running.
 
 ```shell
 "$SECONDS"
 ```
 
-## Other
+# Other
 
-### Get the current date using `strftime`.
+## Get the current date using `strftime`.
 
 Bash’s `printf` has a built-in method of getting the date which we can use
 in place of the `date` command in a lot of cases.
@@ -1072,20 +1072,26 @@ date() {
     # See: 'man strftime' for format.
     printf "%($1)T\\n" "-1"
 }
-
-# Examples:
-
-# Using date.
-: date "+%a %d %b  - %l:%M %p"
-
-# Using printf.
-: printf '%(%a %d %b  - %l:%M %p)T\n' '-1'
-
-# Assigning a variable.
-: printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
 ```
 
-### Bypass shell aliases.
+**Example Usage:**
+
+```shell
+# Using above function.
+$ date "%a %d %b  - %l:%M %p"
+Fri 15 Jun  - 10:00 AM
+
+# Using printf directly.
+$ printf '%(%a %d %b  - %l:%M %p)T\n' "-1"
+Fri 15 Jun  - 10:00 AM
+
+# Assigning a variable using printf.
+$ printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
+$ printf '%s\n' "$date"
+Fri 15 Jun  - 10:00 AM
+```
+
+## Bypass shell aliases.
 
 ```shell
 # alias
@@ -1096,7 +1102,7 @@ ls
 \ls
 ```
 
-### Bypass shell functions.
+## Bypass shell functions.
 
 ```shell
 # function
