@@ -65,6 +65,7 @@ scripts and not full blown utilities.
     * [Loop over a variable range of numbers.](#loop-over-a-variable-range-of-numbers)
     * [Loop over an array.](#loop-over-an-array)
     * [Loop over an array with an index.](#loop-over-an-array-with-an-index)
+    * [Loop over the contents of a file.](#loop-over-the-contents-of-a-file)
     * [Loop over files and directories.](#loop-over-files-and-directories)
 * [File handling](#file-handling)
     * [Read a file to a string.](#read-a-file-to-a-string)
@@ -599,6 +600,14 @@ done
 for i in "${!arr[@]}"; do
     printf '%s\n' "${arr[$i]}"
 done
+```
+
+## Loop over the contents of a file.
+
+```shell
+while read -r line; do
+    printf '%s\n' "$line"
+done < "file"
 ```
 
 ## Loop over files and directories.
