@@ -128,6 +128,22 @@ test_parameter_assign_default_if() {
     assert_equals "${result}" "600"
 }
 
+test_paramter_replace_if() {
+    declare -i x=20
+    declare -i y=30
+    unset x
+    result="${x:-$y}"
+    assert_equals "${result}" "30"
+}
+
+test_parameter_use_if() {
+    declare -i x=20
+    declare -i y=30
+    unset x
+    result="${x:+$y}"
+    assert_equals "${result}" ""
+}
+
 assert_equals() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))
