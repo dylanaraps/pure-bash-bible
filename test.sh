@@ -121,8 +121,6 @@ test_date() {
 }
 
 assert_equals() {
-    ((tests+=1))
-
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))
         status=$'\e[32m✔'
@@ -136,37 +134,20 @@ assert_equals() {
 }
 
 main() {
+    # Get the code blocks from README.md
     source <(awk '/```sh$/{f=1;next}/```/{f=0}f' README.md) 2>/dev/null
 
     head="-> Running tests on the Pure Bash Bible.."
     printf '\n%s\n%s\n' "$head" "${head//?/-}"
 
-    test_trim_string
-    test_trim_all
-    test_regex
-    test_lower
-    test_upper
-    test_trim_quotes
-    test_strip_all
-    test_strip
-    test_lstrip
-    test_rstrip
-    test_reverse_array
-    test_remove_array_dups
-    test_cycle
-    test_head
-    test_tail
-    test_lines
-    test_count
-    test_dirname
-    test_basename
-    test_hex_to_rgb
-    test_rgb_to_hex
-    test_date
+    # Generate the list of tests to run.
+    IFS=$'\n' read -d "" -ra funcs < <(awk -F'(' '/^test_/ {print $1}' "$0")
+    for func in "${funcs[@]}"; do "$func"; done
 
-    comp="Completed $tests tests. ${pass:-0} passed, ${err:-0} errored."
+    comp="Completed ${#funcs[@]} tests. ${pass:-0} passed, ${err:-0} errored."
     printf '%s\n%s\n\n' "${comp//?/-}" "$comp"
 
+    # If a test failed, exit with '1'.
     [[ -f /tmp/err ]] || exit 0 && { rm /tmp/err; exit 1; }
 }
 
