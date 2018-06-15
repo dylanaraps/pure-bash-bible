@@ -149,7 +149,7 @@ main() {
     IFS=$'\n' read -d "" -ra funcs < <(awk -F'(' '/^test_/ {print $1}' "$0")
     for func in "${funcs[@]}"; do "$func"; done
 
-    comp="Completed ${#funcs[@]} tests. ${pass:-0} passed, ${err:-0} errored."
+    comp="Completed ${#funcs[@]} tests. ${pass:-0} passed, ${err:-0} failed."
     printf '%s\n%s\n\n' "${comp//?/-}" "$comp"
     rm readme_code
 
