@@ -393,6 +393,8 @@ The Quick Brown
 
 ## Check if string contains a substring.
 
+**Using a test:**
+
 ```shell
 # Normal
 if [[ "$var" == *sub_string* ]]; then
@@ -408,6 +410,24 @@ fi
 if [[ "${arr[*]}" == *sub_string* ]]; then
     printf '%s\n' "sub_string is in array."
 fi
+```
+
+**Using a case statement:**
+
+```shell
+case "$var" in
+    *sub_string*)
+        # Do stuff
+    ;;
+
+    *sub_string2*)
+        # Do more stuff
+    ;;
+
+    *)
+        # Else
+    ;;
+esac
 ```
 
 # Variables
