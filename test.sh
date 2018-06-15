@@ -129,9 +129,10 @@ assert_equals() {
         :>/tmp/err
         ((err+=1))
         status=$'\e[31m✖'
+        err="($1 != $2)"
     fi
 
-    printf ' %s\e[m | %s\n' "$status" "${FUNCNAME[1]/test_}"
+    printf ' %s\e[m | %s\n' "$status" "${FUNCNAME[1]/test_} $err"
 }
 
 main() {
