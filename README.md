@@ -52,7 +52,9 @@ scripts and not full blown utilities.
     * [Strip first occurrence of pattern from string.](#strip-first-occurrence-of-pattern-from-string)
     * [Strip pattern from start of string.](#strip-pattern-from-start-of-string)
     * [Strip pattern from end of string.](#strip-pattern-from-end-of-string)
-    * [Check if string contains a substring.](#check-if-string-contains-a-substring)
+    * [Check if string contains a sub-string.](#check-if-string-contains-a-sub-string)
+    * [Check if string starts with sub-string.](#check-if-string-starts-with-sub-string)
+    * [Check if string ends with sub-string.](#check-if-string-ends-with-sub-string)
 * [Variables](#variables)
     * [Assign and access a variable using a variable.](#assign-and-access-a-variable-using-a-variable)
 * [Arrays](#arrays)
@@ -398,24 +400,49 @@ $ rstrip "The Quick Brown Fox" " Fox"
 The Quick Brown
 ```
 
-## Check if string contains a substring.
+## Check if string contains a sub-string.
 
 **Using a test:**
 
 ```shell
-# Normal
 if [[ "$var" == *sub_string* ]]; then
-    printf '%s\n' "sub_string is in var"
+    printf '%s\n' "sub_string is in var."
 fi
 
 # Inverse (substring not in string).
 if [[ "$var" != *sub_string* ]]; then
-    printf '%s\n' "sub_string is not in var"
+    printf '%s\n' "sub_string is not in var."
 fi
 
 # This works for arrays too!
 if [[ "${arr[*]}" == *sub_string* ]]; then
     printf '%s\n' "sub_string is in array."
+fi
+```
+
+## Check if string starts with sub-string.
+
+```shell
+if [[ "$var" == sub_string* ]]; then
+    printf '%s\n' "var starts with sub_string."
+fi
+
+# Inverse (var doesn't start with sub_string).
+if [[ "$var" != sub_string* ]]; then
+    printf '%s\n' "var does not start with sub_string."
+fi
+```
+
+## Check if string ends with sub-string.
+
+```shell
+if [[ "$var" == *sub_string ]]; then
+    printf '%s\n' "var ends with sub_string."
+fi
+
+# Inverse (var doesn't start with sub_string).
+if [[ "$var" != *sub_string ]]; then
+    printf '%s\n' "var does not end with sub_string."
 fi
 ```
 
