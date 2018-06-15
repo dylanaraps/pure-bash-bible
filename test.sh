@@ -127,6 +127,11 @@ test_read_sleep() {
     assert_equals "$((result+1))" "$SECONDS"
 }
 
+test_bar() {
+    result="$(bar 50 10)"
+    assert_equals "${result//$'\r'}" "[-----     ]"
+}
+
 assert_equals() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))

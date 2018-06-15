@@ -110,6 +110,7 @@ scripts and not full blown utilities.
     * [Use `read` as an alternative to the `sleep` command.](#use-read-as-an-alternative-to-the-sleep-command)
     * [Check if a program is in the user's PATH.](#check-if-a-program-is-in-the-users-path)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
+    * [Progress bars.](#progress-bars)
     * [Bypass shell aliases.](#bypass-shell-aliases)
     * [Bypass shell functions.](#bypass-shell-functions)
 
@@ -1289,6 +1290,43 @@ $ printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
 $ printf '%s\n' "$date"
 Fri 15 Jun  - 10:00 AM
 ```
+
+## Progress bars.
+
+This is a simple way of drawing progress bars without needing a for loop
+in the function itself.
+
+**Example Function:**
+
+```sh
+bar() {
+    # Usage: bar 1 10
+    #            ^----- Elapsed Percentage (0-100).
+    #               ^-- Total length in chars.
+    ((elapsed=$1*$2/100))
+
+    # Create the bar with spaces.
+    printf -v prog  "%${elapsed}s"
+    printf -v total "%$(($2-elapsed))s"
+
+    printf '%s\r' "[${prog// /-}${total}]"
+}
+```
+
+**Example Usage:**
+
+```shell
+for ((i=0;i<=100;i++)); do
+    # Pure bash micro sleeps (for the example).
+    (:;:) && (:;:) && (:;:) && (:;:) && (:;:)
+
+    # Print the bar.
+    bar "$i" "10"
+done
+
+printf '\n'
+```
+
 
 ## Bypass shell aliases.
 
