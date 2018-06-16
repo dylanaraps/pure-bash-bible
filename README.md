@@ -85,19 +85,10 @@ scripts and not full blown utilities.
 * [Arithmetic](#arithmetic)
     * [Simpler syntax to set variables.](#simpler-syntax-to-set-variables)
     * [Ternary tests.](#ternary-tests)
-* [Colors](#colors)
-    * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
-    * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
-* [Information about the terminal](#information-about-the-terminal)
-    * [Get the terminal size in lines and columns (*from a script*).](#get-the-terminal-size-in-lines-and-columns-from-a-script)
-    * [Get the terminal size in pixels.](#get-the-terminal-size-in-pixels)
-    * [Get the current cursor position.](#get-the-current-cursor-position)
-* [Code Golf](#code-golf)
-    * [Shorter `for` loop syntax.](#shorter-for-loop-syntax)
-    * [Shorter infinite loops.](#shorter-infinite-loops)
-    * [Shorter function declaration.](#shorter-function-declaration)
-    * [Shorter `if` syntax.](#shorter-if-syntax)
-    * [Simpler `case` statement to set variable.](#simpler-case-statement-to-set-variable)
+* [Obsolete Syntax](#obsolete-syntax)
+    * [Shebang.](#shebang)
+    * [Command Substitution.](#command-substitution)
+    * [Function Declaration.](#function-declaration)
 * [Internal Variables](#internal-variables)
     * [Get the location to the `bash` binary.](#get-the-location-to-the-bash-binary)
     * [Get the version of the current running `bash` process.](#get-the-version-of-the-current-running-bash-process)
@@ -108,6 +99,19 @@ scripts and not full blown utilities.
     * [Get the name of the Operating System / Kernel.](#get-the-name-of-the-operating-system--kernel)
     * [Get the current working directory.](#get-the-current-working-directory)
     * [Get the number of seconds the script has been running.](#get-the-number-of-seconds-the-script-has-been-running)
+* [Information about the terminal](#information-about-the-terminal)
+    * [Get the terminal size in lines and columns (*from a script*).](#get-the-terminal-size-in-lines-and-columns-from-a-script)
+    * [Get the terminal size in pixels.](#get-the-terminal-size-in-pixels)
+    * [Get the current cursor position.](#get-the-current-cursor-position)
+* [Colors](#colors)
+    * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
+    * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
+* [Code Golf](#code-golf)
+    * [Shorter `for` loop syntax.](#shorter-for-loop-syntax)
+    * [Shorter infinite loops.](#shorter-infinite-loops)
+    * [Shorter function declaration.](#shorter-function-declaration)
+    * [Shorter `if` syntax.](#shorter-if-syntax)
+    * [Simpler `case` statement to set variable.](#simpler-case-statement-to-set-variable)
 * [Other](#other)
     * [Use `read` as an alternative to the `sleep` command.](#use-read-as-an-alternative-to-the-sleep-command)
     * [Check if a program is in the user's PATH.](#check-if-a-program-is-in-the-users-path)
@@ -916,47 +920,144 @@ Downloads
 ((var=var2>var?var2:var))
 ```
 
-# Colors
+# Obsolete Syntax
 
-## Convert a hex color to RGB.
+## Shebang.
 
-**Example Function:**
+Use `#!/usr/bin/env bash` instead of `#!/bin/bash`.
 
-```sh
-hex_to_rgb() {
-    # Usage: hex_to_rgb "#FFFFFF"
-    ((r=16#${1:1:2}))
-    ((g=16#${1:3:2}))
-    ((b=16#${1:5:6}))
+- The former searches the user's `PATH` to find the `bash` binary.
+- The latter assumes it is always installed to `/bin/` which can cause issues.
 
-    printf '%s\n' "$r $g $b"
+```shell
+# Right:
+
+    #!/usr/bin/env bash
+
+# Wrong:
+
+    #!/bin/bash
+```
+
+## Command Substitution.
+
+Use `$()` instead of `` ` ` ``.
+
+```shell
+# Right.
+var="$(command)"
+
+# Wrong.
+var=`command`
+
+# $() can easily be nested whereas `` cannot.
+var="$(command "$(command)")"
+```
+
+## Function Declaration.
+
+Don't use the `function` keyword, it reduces compatibility with older versions of `bash`.
+
+```shell
+# Right.
+do_something() {
+    # ...
+}
+
+# Wrong.
+function do_something() {
+    # ...
 }
 ```
 
-**Example Usage:**
+
+# Internal Variables
+
+**NOTE**: This list does not include every internal variable (*You can
+help by adding a missing entry!*).
+
+For a complete list, see:
+http://tldp.org/LDP/abs/html/internalvariables.html
+
+## Get the location to the `bash` binary.
 
 ```shell
-$ hex_to_rgb "#FFFFFF"
-255 255 255
+"$BASH"
 ```
 
-
-## Convert an RGB color to hex.
-
-**Example Function:**
-
-```sh
-rgb_to_hex() {
-    # Usage: rgb_to_hex "r" "g" "b"
-    printf '#%02x%02x%02x\n' "$1" "$2" "$3"
-}
-```
-
-**Example Usage:**
+## Get the version of the current running `bash` process.
 
 ```shell
-$ rgb_to_hex "255" "255" "255"
-#FFFFFF
+# As a string.
+"$BASH_VERSION"
+
+# As an array.
+"${BASH_VERSINFO[@]}"
+```
+
+## Open the user's preferred text editor.
+
+```shell
+"$EDITOR" "$file"
+
+# NOTE: This variable may be empty, set a fallback value.
+"${EDITOR:-vi}" "$file"
+```
+
+## Get the name of the current function.
+
+```shell
+# Current function.
+"${FUNCNAME[0]}"
+
+# Parent function.
+"${FUNCNAME[1]}"
+
+# So on and so forth.
+"${FUNCNAME[2]}"
+"${FUNCNAME[3]}"
+
+# All functions including parents.
+"${FUNCNAME[@]}"
+```
+
+## Get the host-name of the system.
+
+```shell
+"$HOSTNAME"
+
+# NOTE: This variable may be empty.
+# Optionally set a fallback to the hostname command.
+"${HOSTNAME:-$(hostname)}"
+```
+
+## Get the architecture of the Operating System.
+
+```shell
+"$HOSTTYPE"
+```
+
+## Get the name of the Operating System / Kernel.
+
+This can be used to add conditional support for different Operating
+Systems without needing to call `uname`.
+
+```shell
+"$OSTYPE"
+```
+
+## Get the current working directory.
+
+This is an alternative to the `pwd` built-in.
+
+```shell
+"$PWD"
+```
+
+## Get the number of seconds the script has been running.
+
+```shell
+"$SECONDS"
 ```
 
 # Information about the terminal
@@ -1036,6 +1137,50 @@ get_cursor_pos() {
 $ get_cursor_pos
 1 8
 ```
+
+# Colors
+
+## Convert a hex color to RGB.
+
+**Example Function:**
+
+```sh
+hex_to_rgb() {
+    # Usage: hex_to_rgb "#FFFFFF"
+    ((r=16#${1:1:2}))
+    ((g=16#${1:3:2}))
+    ((b=16#${1:5:6}))
+
+    printf '%s\n' "$r $g $b"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ hex_to_rgb "#FFFFFF"
+255 255 255
+```
+
+
+## Convert an RGB color to hex.
+
+**Example Function:**
+
+```sh
+rgb_to_hex() {
+    # Usage: rgb_to_hex "r" "g" "b"
+    printf '#%02x%02x%02x\n' "$1" "$2" "$3"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ rgb_to_hex "255" "255" "255"
+#FFFFFF
+```
+
 
 # Code Golf
 
@@ -1136,95 +1281,6 @@ esac
 
 # Finally, set the variable.
 os="$_"
-```
-
-# Internal Variables
-
-**NOTE**: This list does not include every internal variable (*You can
-help by adding a missing entry!*).
-
-For a complete list, see:
-http://tldp.org/LDP/abs/html/internalvariables.html
-
-## Get the location to the `bash` binary.
-
-```shell
-"$BASH"
-```
-
-## Get the version of the current running `bash` process.
-
-```shell
-# As a string.
-"$BASH_VERSION"
-
-# As an array.
-"${BASH_VERSINFO[@]}"
-```
-
-## Open the user's preferred text editor.
-
-```shell
-"$EDITOR" "$file"
-
-# NOTE: This variable may be empty, set a fallback value.
-"${EDITOR:-vi}" "$file"
-```
-
-## Get the name of the current function.
-
-```shell
-# Current function.
-"${FUNCNAME[0]}"
-
-# Parent function.
-"${FUNCNAME[1]}"
-
-# So on and so forth.
-"${FUNCNAME[2]}"
-"${FUNCNAME[3]}"
-
-# All functions including parents.
-"${FUNCNAME[@]}"
-```
-
-## Get the host-name of the system.
-
-```shell
-"$HOSTNAME"
-
-# NOTE: This variable may be empty.
-# Optionally set a fallback to the hostname command.
-"${HOSTNAME:-$(hostname)}"
-```
-
-## Get the architecture of the Operating System.
-
-```shell
-"$HOSTTYPE"
-```
-
-## Get the name of the Operating System / Kernel.
-
-This can be used to add conditional support for different Operating
-Systems without needing to call `uname`.
-
-```shell
-"$OSTYPE"
-```
-
-## Get the current working directory.
-
-This is an alternative to the `pwd` built-in.
-
-```shell
-"$PWD"
-```
-
-## Get the number of seconds the script has been running.
-
-```shell
-"$SECONDS"
 ```
 
 # Other
