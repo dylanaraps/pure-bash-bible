@@ -128,6 +128,29 @@ test_date() {
     assert_equals "$result" "20"
 }
 
+test_parameter_assign_default_if() {
+    declare -i x=20
+    unset x
+    result="${x:=600}"
+    assert_equals "${result}" "600"
+}
+
+test_paramter_replace_if() {
+    declare -i x=20
+    declare -i y=30
+    unset x
+    result="${x:-$y}"
+    assert_equals "${result}" "30"
+}
+
+test_parameter_use_if() {
+    declare -i x=20
+    declare -i y=30
+    unset x
+    result="${x:+$y}"
+    assert_equals "${result}" ""
+}
+
 test_read_sleep() {
     result="$SECONDS"
     read_sleep 1

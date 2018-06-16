@@ -1138,6 +1138,46 @@ esac
 os="$_"
 ```
 
+
+# Parameter Expansion
+
+``` shell
+declare x
+# result will be empty
+printf '%s' "${x}"
+# result is 6 and the variable x is set to 6
+printf '%s' "${x:=6}"
+# result is 6
+printf '%s' "${x}"
+```
+
+``` shell
+declare -i x=20
+declare -i y=30
+unset x
+# result is y (30)
+printf '%s' "${x:-$y}"
+declare -i x=20
+# result is x (20)
+printf '%s' "${x:-$y}"
+
+```
+
+``` shell
+declare -i x=20
+declare -i y=30
+unset x
+# result is x (null)
+printf '%s' "${x:+$y}"
+:
+declare -i x=20
+# result is y(30)
+printf '%s' "${x:+$y}"
+
+```
+
+
+
 # Internal Variables
 
 **NOTE**: This list does not include every internal variable (*You can
