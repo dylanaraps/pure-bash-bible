@@ -144,8 +144,7 @@ assert_equals() {
         ((pass+=1))
         status=$'\e[32m✔'
     else
-        :>/tmp/err
-        ((err+=1))
+        ((fail+=1))
         status=$'\e[31m✖'
         err="($1 != $2)"
     fi
@@ -168,12 +167,12 @@ main() {
     IFS=$'\n' read -d "" -ra funcs < <(awk -F'(' '/^test_/ {print $1}' "$0")
     for func in "${funcs[@]}"; do "$func"; done
 
-    comp="Completed ${#funcs[@]} tests. ${pass:-0} passed, ${err:-0} failed."
+    comp="Completed ${#funcs[@]} tests. ${pass:-0} passed, ${fail:-0} failed."
     printf '%s\n%s\n\n' "${comp//?/-}" "$comp"
     rm readme_code
 
     # If a test failed, exit with '1'.
-    [[ -f /tmp/err ]] || exit 0 && { rm /tmp/err; exit 1; }
+    ((fail>0)) || exit 0 && exit 1
 }
 
 main "$@"
