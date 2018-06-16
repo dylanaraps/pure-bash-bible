@@ -158,7 +158,7 @@ main() {
     awk '/```sh$/{f=1;next}/```/{f=0}f' README.md > readme_code
     shellcheck -s bash --exclude=SC2034,SC2154 readme_code || exit 1
 
-    # Get the code blocks from README.md
+    # Source the code blocks from README.md
     . readme_code
 
     head="-> Running tests on the Pure Bash Bible.."
