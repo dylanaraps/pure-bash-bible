@@ -7,6 +7,7 @@ href="https://travis-ci.com/dylanaraps/pure-bash-bible"><img
 src="https://travis-ci.com/dylanaraps/pure-bash-bible.svg?branch=master"></a>
 <a href="./LICENSE.md"><img
 src="https://img.shields.io/badge/license-MIT-blue.svg"></a> </p>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7QNJNKS3WYVS"><img src="https://img.shields.io/badge/donate-paypal-green.svg"></a>
 
 <br>
 
