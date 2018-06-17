@@ -134,16 +134,6 @@ test_read_sleep() {
     assert_equals "$((result+1))" "$SECONDS"
 }
 
-test_brace_expansion() {
-    printf -v result %s {a,{q,x}}c
-    assert_equals "$result" "acqcxc"
-}
-
-test_brace_expansion_numeric_sequence() {
-    printf -v result '%s ' {1..10}
-    assert_equals "$result" "1 2 3 4 5 6 7 8 9 10 "
-}
-
 test_bar() {
     result="$(bar 50 10)"
     assert_equals "${result//$'\r'}" "[-----     ]"
