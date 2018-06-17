@@ -144,7 +144,6 @@ test_brace_expansion_numeric_sequence() {
     assert_equals "$result" "1 2 3 4 5 6 7 8 9 10 "
 }
 
-
 test_bar() {
     result="$(bar 50 10)"
     assert_equals "${result//$'\r'}" "[-----     ]"
