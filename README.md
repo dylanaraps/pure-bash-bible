@@ -692,6 +692,7 @@ Alternative to the `cat` command.
 ```shell
 file_data="$(<"file")"
 ```
+**CAVEAT:** *beware that `bash` can not handle binary data in strings (i.e. nul byte)*
 
 ## Read a file to an array (*by line*).
 
