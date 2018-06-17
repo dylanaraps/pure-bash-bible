@@ -685,6 +685,8 @@ shopt -u globstar
 
 # File handling
 
+**CAVEAT:** `bash` doesn't handle binary data properly in versions `< 4.4`.
+
 ## Read a file to a string.
 
 Alternative to the `cat` command.
