@@ -92,6 +92,9 @@ scripts and not full blown utilities.
 * [Arithmetic](#arithmetic)
     * [Simpler syntax to set variables.](#simpler-syntax-to-set-variables)
     * [Ternary tests.](#ternary-tests)
+* [Brace Expansion](#brace-expansion)
+    * [Ranges](#ranges)
+    * [String Lists](#string-lists)
 * [Obsolete Syntax](#obsolete-syntax)
     * [Shebang.](#shebang)
     * [Command Substitution.](#command-substitution)
@@ -991,6 +994,40 @@ Downloads
 # ?var2: If the test succeeds.
 # :var: If the test fails.
 ((var=var2>var?var2:var))
+```
+
+# Brace Expansion
+
+## Ranges
+
+```shell
+# Syntax: {<START>..<END>}
+
+# Print numbers 1-100.
+echo {1..100}
+
+# Print zero-padded numbers.
+echo {01..100}
+
+# Print range of floats.
+echo 1.{1..9}
+
+# Print chars a-z.
+echo {a..z}
+echo {A..Z}
+
+# Nesting.
+echo {A..Z}{0..9}
+```
+
+## String Lists
+
+```shell
+echo {apples,oranges,pears,grapes}
+
+# Example Usage:
+# Remove dirs Movies, Music and ISOS from ~/Downloads/.
+rm -rf ~/Downloads/{Movies,Music,ISOS}
 ```
 
 # Obsolete Syntax
