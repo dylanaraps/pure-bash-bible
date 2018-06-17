@@ -139,6 +139,11 @@ test_bar() {
     assert_equals "${result//$'\r'}" "[-----     ]"
 }
 
+test_get_functions() {
+    IFS=$'\n' read -d "" -ra functions < <(get_functions)
+    assert_equals "${functions[0]}" "assert_equals"
+}
+
 assert_equals() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))

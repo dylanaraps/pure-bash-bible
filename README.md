@@ -127,6 +127,7 @@ scripts and not full blown utilities.
     * [Check if a program is in the user's PATH.](#check-if-a-program-is-in-the-users-path)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
     * [Progress bars.](#progress-bars)
+    * [Get the list of functions from your script.](#get-the-list-of-functions-from-your-script)
     * [Bypass shell aliases.](#bypass-shell-aliases)
     * [Bypass shell functions.](#bypass-shell-functions)
 
@@ -753,7 +754,6 @@ for file in ~/Pictures/**/*; do
 done
 shopt -u globstar
 ```
-
 
 # File handling
 
@@ -1520,6 +1520,15 @@ done
 printf '\n'
 ```
 
+## Get the list of functions from your script.
+
+```sh
+get_functions() {
+    # Usage: get_functions
+    IFS=$'\n' read -d "" -ra functions < <(declare -F)
+    printf '%s\n' "${functions[@]//declare -f }"
+}
+```
 
 ## Bypass shell aliases.
 
