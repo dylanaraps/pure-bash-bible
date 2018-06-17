@@ -129,9 +129,9 @@ test_date() {
 }
 
 test_read_sleep() {
-    result="$SECONDS"
+    result="$((SECONDS+1))"
     read_sleep 1
-    assert_equals "$((result+1))" "$SECONDS"
+    assert_equals "$result" "$SECONDS"
 }
 
 test_bar() {
@@ -164,10 +164,12 @@ main() {
     printf '\n%s\n%s\n' "$head" "${head//?/-}"
 
     # Generate the list of tests to run.
-    IFS=$'\n' read -d "" -ra funcs < <(awk -F'(' '/^test_/ {print $1}' "$0")
-    for func in "${funcs[@]}"; do "$func"; done
+    IFS=$'\n' read -d "" -ra funcs < <(declare -F)
+    for func in "${funcs[@]//declare -f }"; do
+        [[ "$func" == test_* ]] && { "$func"; ((tot+=1)); }
+    done
 
-    comp="Completed ${#funcs[@]} tests. ${pass:-0} passed, ${fail:-0} failed."
+    comp="Completed $tot tests. ${pass:-0} passed, ${fail:-0} failed."
     printf '%s\n%s\n\n' "${comp//?/-}" "$comp"
     rm readme_code
 
