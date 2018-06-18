@@ -87,6 +87,7 @@ scripts and not full blown utilities.
     * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
     * [Count files or directories in directory.](#count-files-or-directories-in-directory)
     * [Create an empty file.](#create-an-empty-file)
+    * [Extract lines between two markers.](#extract-lines-between-two-markers)
 * [File Paths](#file-paths)
     * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
     * [Get the base-name of a file path.](#get-the-base-name-of-a-file-path)
@@ -922,6 +923,31 @@ Alternative to `touch`.
 echo -n > file
 printf '' > file
 ```
+
+## Extract lines between two markers.
+
+**Example Function:**
+
+```sh
+extract() {
+    # Usage: extract file "opening marker" "closing marker"
+    while IFS=$'\n' read -r line; do
+        [[ "$extract" && "$line" != "$3" ]] && \
+            printf '%s\n' "$line"
+
+        [[ "$line" == "$2" ]] && extract=1
+        [[ "$line" == "$3" ]] && extract=
+    done < "$1"
+}
+```
+
+**Example Usage:**
+
+```shell
+# Extract code blocks from MarkDown file.
+extract ~/projects/pure-bash/README.md '```sh' '```'
+```
+
 
 # File Paths
 

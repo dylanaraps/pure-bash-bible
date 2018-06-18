@@ -144,6 +144,13 @@ test_get_functions() {
     assert_equals "${functions[0]}" "assert_equals"
 }
 
+test_extract() {
+    printf '{\nhello, world\n}\n' > test_file
+    result="$(extract test_file "{" "}")"
+    assert_equals "$result" "hello, world"
+    rm test_file
+}
+
 assert_equals() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))
@@ -161,7 +168,7 @@ main() {
     trap 'rm readme_code' EXIT
 
     # Extract code blocks from the README.
-    while read -r line; do
+    while IFS=$'\n' read -r line; do
         [[ "$code" && "$line" != \`\`\` ]] && printf '%s\n' "$line"
         [[ "$line" =~ ^\`\`\`sh$ ]] && code=1
         [[ "$line" =~ ^\`\`\`$ ]]   && code=
