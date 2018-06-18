@@ -1320,7 +1320,6 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 | `\e[3m` | Italic text. |
 | `\e[4m` | Underline text. |
 | `\e[5m` | Slow blink. |
-| `\e[5m` | Slow blink. |
 | `\e[7m` | Swap foreground and background colors. |
 
 
