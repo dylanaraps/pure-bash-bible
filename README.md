@@ -1376,17 +1376,21 @@ successful command. `:` always succeeds so we can abuse it to store the
 variable value.
 
 ```shell
-# Example snippet from Neofetch.
-case "$(uname)" in
-    "Linux" | "GNU"*)
+# Modified snippet from Neofetch.
+case "$OSTYPE" in
+    "darwin"*)
+        : "MacOS"
+    ;;
+
+    "linux"*)
         : "Linux"
     ;;
 
-    *"BSD" | "DragonFly" | "Bitrig")
+    *"bsd"* | "dragonfly" | "bitrig")
         : "BSD"
     ;;
 
-    "CYGWIN"* | "MSYS"* | "MINGW"*)
+    "cygwin" | "msys" | "win32")
         : "Windows"
     ;;
 
