@@ -62,14 +62,6 @@ Any donations are appreciated, they give me the time to make this the best resou
     * [Check if string contains a sub-string.](#check-if-string-contains-a-sub-string)
     * [Check if string starts with sub-string.](#check-if-string-starts-with-sub-string)
     * [Check if string ends with sub-string.](#check-if-string-ends-with-sub-string)
-* [Variables](#variables)
-    * [Assign and access a variable using a variable.](#assign-and-access-a-variable-using-a-variable)
-    * [Indirection](#indirection)
-    * [Replacement](#replacement)
-    * [Length](#length)
-    * [Expansion](#expansion)
-    * [Case Modification](#case-modification)
-    * [Default Value](#default-value)
 * [Arrays](#arrays)
     * [Reverse an array.](#reverse-an-array)
     * [Remove duplicate array elements.](#remove-duplicate-array-elements)
@@ -94,12 +86,26 @@ Any donations are appreciated, they give me the time to make this the best resou
 * [File Paths](#file-paths)
     * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
     * [Get the base-name of a file path.](#get-the-base-name-of-a-file-path)
-* [Arithmetic](#arithmetic)
-    * [Simpler syntax to set variables.](#simpler-syntax-to-set-variables)
-    * [Ternary tests.](#ternary-tests)
+* [Variables](#variables)
+    * [Assign and access a variable using a variable.](#assign-and-access-a-variable-using-a-variable)
+* [Escape Sequences](#escape-sequences)
+    * [Text Colors.](#text-colors)
+    * [Text Attributes.](#text-attributes)
+    * [Cursor Movement.](#cursor-movement)
+    * [Erasing Text.](#erasing-text)
+* [Parameter Expansion.](#parameter-expansion)
+    * [Indirection](#indirection)
+    * [Replacement](#replacement)
+    * [Length](#length)
+    * [Expansion](#expansion)
+    * [Case Modification](#case-modification)
+    * [Default Value](#default-value)
 * [Brace Expansion](#brace-expansion)
     * [Ranges](#ranges)
     * [String Lists](#string-lists)
+* [Arithmetic](#arithmetic)
+    * [Simpler syntax to set variables.](#simpler-syntax-to-set-variables)
+    * [Ternary tests.](#ternary-tests)
 * [Obsolete Syntax](#obsolete-syntax)
     * [Shebang.](#shebang)
     * [Command Substitution.](#command-substitution)
@@ -118,12 +124,7 @@ Any donations are appreciated, they give me the time to make this the best resou
     * [Get the terminal size in lines and columns (*from a script*).](#get-the-terminal-size-in-lines-and-columns-from-a-script)
     * [Get the terminal size in pixels.](#get-the-terminal-size-in-pixels)
     * [Get the current cursor position.](#get-the-current-cursor-position)
-* [Escape Sequences](#escape-sequences)
-    * [Text Colors.](#text-colors)
-    * [Text Attributes.](#text-attributes)
-    * [Cursor Movement.](#cursor-movement)
-    * [Erasing Text.](#erasing-text)
-* [Colors](#colors)
+* [Conversion](#conversion)
     * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
 * [Code Golf](#code-golf)
@@ -493,85 +494,6 @@ case "$var" in
     ;;
 esac
 ```
-
-# Variables
-
-## Assign and access a variable using a variable.
-
-```shell
-hello_world="test"
-
-# Create the variable name.
-var1="world"
-var2="hello_${var1}"
-
-# Print the value of the variable name stored in 'hello_$var1'.
-printf '%s\n' "${!var2}"
-```
-
-## Indirection
-
-| Parameter | What does it do? |
-| --------- | ---------------- |
-| `${!VAR}` | Access a variable based on the value of `VAR`. See: [link](#assign-and-access-a-variable-using-a-variable)
-| `${!VAR*}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
-| `${!VAR@}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
-
-
-## Replacement
-
-| Parameter | What does it do? |
-| --------- | ---------------- |
-| `${VAR#PATTERN}` | Remove shortest match of pattern from start of string. |
-| `${VAR##PATTERN}` | Remove longest match of pattern from start of string. |
-| `${VAR%PATTERN}` | Remove shortest match of pattern from end of string. |
-| `${VAR%%PATTERN}` | Remove longest match of pattern from end of string. |
-| `${VAR/PATTERN/REPLACE}` | Replace first match with string.
-| `${VAR//PATTERN/REPLACE}` | Replace all matches with string.
-| `${VAR/PATTERN}` | Remove first match.
-| `${VAR//PATTERN}` | Remove all matches.
-
-## Length
-
-| Parameter | What does it do? |
-| --------- | ---------------- |
-| `${#VAR}` | Length of var in characters.
-| `${#ARR[@]}` | Length of array in elements.
-
-## Expansion
-
-| Parameter | What does it do? |
-| --------- | ---------------- |
-| `${VAR:OFFSET}` | Remove first `N` chars from variable.
-| `${VAR:OFFSET:LENGTH}` | Get substring from `N` character to `N` character. <br> (`${VAR:10:10}`: Get sub-string from char `10` to char `20`)
-| `${VAR:: OFFSET}` | Get first `N` chars from variable.
-| `${VAR:: -OFFSET}` | Remove last `N` chars from variable.
-| `${VAR: -OFFSET}` | Get last `N` chars from variable.
-| `${VAR:OFFSET:-OFFSET}` | Cut first `N` chars and last `N` chars. | `bash 4.2+` |
-
-## Case Modification
-
-| Parameter | What does it do? | CAVEAT |
-| --------- | ---------------- | ------ |
-| `${VAR^}` | Uppercase first character. | `bash 4+` |
-| `${VAR^^}` | Uppercase all characters. | `bash 4+` |
-| `${VAR,}` | Lowercase first character. | `bash 4+` |
-| `${VAR,,}` | Lowercase all characters. | `bash 4+` |
-
-
-## Default Value
-
-| Parameter | What does it do? |
-| --------- | ---------------- |
-| `${VAR:-STRING}` | If `VAR` is empty or unset, use `STRING` as it's value.
-| `${VAR-STRING}` | If `VAR` is unset, use `STRING` as it's value.
-| `${VAR:=STRING}` | If `VAR` is empty or unset, set the value of `VAR` to `STRING`.
-| `${VAR=STRING}` | If `VAR` is unset, set the value of `VAR` to `STRING`.
-| `${VAR:+STRING}` | If `VAR` isn't empty, use `STRING` as it's value.
-| `${VAR+STRING}` | If `VAR` is set, use `STRING` as it's value.
-| `${VAR:?STRING}` | Display an error if empty or unset.
-| `${VAR?STRING}` | Display an error if unset.
-
 
 # Arrays
 
@@ -1007,35 +929,142 @@ $ basename ~/Pictures/Downloads/
 Downloads
 ```
 
+# Variables
 
-# Arithmetic
-
-## Simpler syntax to set variables.
-
-```shell
-# Simple math
-((var=1+2))
-
-# Decrement/Increment variable
-((var++))
-((var--))
-((var+=1))
-((var-=1))
-
-# Using variables
-((var=var2*arr[2]))
-```
-
-## Ternary tests.
+## Assign and access a variable using a variable.
 
 ```shell
-# Set the value of var to var2 if var2 is greater than var.
-# var: variable to set.
-# var2>var: Condition to test.
-# ?var2: If the test succeeds.
-# :var: If the test fails.
-((var=var2>var?var2:var))
+hello_world="test"
+
+# Create the variable name.
+var1="world"
+var2="hello_${var1}"
+
+# Print the value of the variable name stored in 'hello_$var1'.
+printf '%s\n' "${!var2}"
 ```
+
+# Escape Sequences
+
+Contrary to popular belief, there's no issue in using raw escape sequences. Using `tput` just abstracts the same ANSI escape sequences. What's worse is that `tput` isn't actually portable, there are a number of different `tput` variants on different Operating Systems each with different commands (*try and run `tput setaf 3` on a FreeBSD system*). The easiest solution ends up being raw ANSI sequences.
+
+## Text Colors.
+
+**NOTE:** Sequences requiring RGB values only work in True-Color Terminal Emulators.
+
+| Sequence | What does it do? | Value |
+| -------- | ---------------- | ----- |
+| `\e[38;5;<NUM>m` | Set text foreground color. | `0-255`
+| `\e[48;5;<NUM>m` | Set text background color. | `0-255`
+| `\e[38;2;<R>;<G>;<B>m` | Set text foreground color to RGB color. | `R`, `G`, `B`
+| `\e[48;2;<R>;<G>;<B>m` | Set text background color to RGB color. | `R`, `G`, `B`
+
+## Text Attributes.
+
+| Sequence | What does it do? |
+| -------- | ---------------- |
+| `\e[m`  | Reset text formatting and colors.
+| `\e[1m` | Bold text. |
+| `\e[2m` | Faint text. |
+| `\e[3m` | Italic text. |
+| `\e[4m` | Underline text. |
+| `\e[5m` | Slow blink. |
+| `\e[7m` | Swap foreground and background colors. |
+
+
+## Cursor Movement.
+
+| Sequence | What does it do? | Value |
+| -------- | ---------------- | ----- |
+| `\e[<LINE>;<COLUMN>H` | Move cursor to absolute position. | `line`, `column`
+| `\e[H` | Move cursor to home position (`0,0`). |
+| `\e[<NUM>A` | Move cursor up N lines. | `num`
+| `\e[<NUM>B` | Move cursor down N lines. | `num`
+| `\e[<NUM>C` | Move cursor right N columns. | `num`
+| `\e[<NUM>D` | Move cursor left N columns. | `num`
+| `\e[s` | Save cursor position. |
+| `\e[u` | Restore cursor position. |
+
+
+## Erasing Text.
+
+| Sequence | What does it do? |
+| -------- | ---------------- |
+| `\e[K` | Erase from cursor position to end of line.
+| `\e[1K` | Erase from cursor position to start of line.
+| `\e[2K` | Erase the entire current line.
+| `\e[J` | Erase from the current line to the bottom of the screen.
+| `\e[1J` | Erase from the current line to the top of the screen.
+| `\e[2J` | Clear the screen.
+| `\e[2J\e[H` | Clear the screen and move cursor to `0,0`.
+
+
+
+# Parameter Expansion.
+
+## Indirection
+
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${!VAR}` | Access a variable based on the value of `VAR`. See: [link](#assign-and-access-a-variable-using-a-variable)
+| `${!VAR*}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
+| `${!VAR@}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
+
+
+## Replacement
+
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${VAR#PATTERN}` | Remove shortest match of pattern from start of string. |
+| `${VAR##PATTERN}` | Remove longest match of pattern from start of string. |
+| `${VAR%PATTERN}` | Remove shortest match of pattern from end of string. |
+| `${VAR%%PATTERN}` | Remove longest match of pattern from end of string. |
+| `${VAR/PATTERN/REPLACE}` | Replace first match with string.
+| `${VAR//PATTERN/REPLACE}` | Replace all matches with string.
+| `${VAR/PATTERN}` | Remove first match.
+| `${VAR//PATTERN}` | Remove all matches.
+
+## Length
+
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${#VAR}` | Length of var in characters.
+| `${#ARR[@]}` | Length of array in elements.
+
+## Expansion
+
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${VAR:OFFSET}` | Remove first `N` chars from variable.
+| `${VAR:OFFSET:LENGTH}` | Get substring from `N` character to `N` character. <br> (`${VAR:10:10}`: Get sub-string from char `10` to char `20`)
+| `${VAR:: OFFSET}` | Get first `N` chars from variable.
+| `${VAR:: -OFFSET}` | Remove last `N` chars from variable.
+| `${VAR: -OFFSET}` | Get last `N` chars from variable.
+| `${VAR:OFFSET:-OFFSET}` | Cut first `N` chars and last `N` chars. | `bash 4.2+` |
+
+## Case Modification
+
+| Parameter | What does it do? | CAVEAT |
+| --------- | ---------------- | ------ |
+| `${VAR^}` | Uppercase first character. | `bash 4+` |
+| `${VAR^^}` | Uppercase all characters. | `bash 4+` |
+| `${VAR,}` | Lowercase first character. | `bash 4+` |
+| `${VAR,,}` | Lowercase all characters. | `bash 4+` |
+
+
+## Default Value
+
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${VAR:-STRING}` | If `VAR` is empty or unset, use `STRING` as it's value.
+| `${VAR-STRING}` | If `VAR` is unset, use `STRING` as it's value.
+| `${VAR:=STRING}` | If `VAR` is empty or unset, set the value of `VAR` to `STRING`.
+| `${VAR=STRING}` | If `VAR` is unset, set the value of `VAR` to `STRING`.
+| `${VAR:+STRING}` | If `VAR` isn't empty, use `STRING` as it's value.
+| `${VAR+STRING}` | If `VAR` is set, use `STRING` as it's value.
+| `${VAR:?STRING}` | Display an error if empty or unset.
+| `${VAR?STRING}` | Display an error if unset.
+
 
 # Brace Expansion
 
@@ -1076,6 +1105,36 @@ echo {apples,oranges,pears,grapes}
 # Remove dirs Movies, Music and ISOS from ~/Downloads/.
 rm -rf ~/Downloads/{Movies,Music,ISOS}
 ```
+
+# Arithmetic
+
+## Simpler syntax to set variables.
+
+```shell
+# Simple math
+((var=1+2))
+
+# Decrement/Increment variable
+((var++))
+((var--))
+((var+=1))
+((var-=1))
+
+# Using variables
+((var=var2*arr[2]))
+```
+
+## Ternary tests.
+
+```shell
+# Set the value of var to var2 if var2 is greater than var.
+# var: variable to set.
+# var2>var: Condition to test.
+# ?var2: If the test succeeds.
+# :var: If the test fails.
+((var=var2>var?var2:var))
+```
+
 
 # Obsolete Syntax
 
@@ -1272,7 +1331,6 @@ $ get_window_size
 x
 ```
 
-
 ## Get the current cursor position.
 
 This is useful when creating a TUI in pure bash.
@@ -1295,62 +1353,7 @@ $ get_cursor_pos
 1 8
 ```
 
-# Escape Sequences
-
-Contrary to popular belief, there's no issue in using raw escape sequences. Using `tput` just abstracts the same ANSI escape sequences. What's worse is that `tput` isn't actually portable, there are a number of different `tput` variants on different Operating Systems each with different commands (*try and run `tput setaf 3` on a FreeBSD system*). The easiest solution ends up being raw ANSI sequences.
-
-## Text Colors.
-
-**NOTE:** Sequences requiring RGB values only work in True-Color Terminal Emulators.
-
-| Sequence | What does it do? | Value |
-| -------- | ---------------- | ----- |
-| `\e[38;5;<NUM>m` | Set text foreground color. | `0-255`
-| `\e[48;5;<NUM>m` | Set text background color. | `0-255`
-| `\e[38;2;<R>;<G>;<B>m` | Set text foreground color to RGB color. | `R`, `G`, `B`
-| `\e[48;2;<R>;<G>;<B>m` | Set text background color to RGB color. | `R`, `G`, `B`
-
-## Text Attributes.
-
-| Sequence | What does it do? |
-| -------- | ---------------- |
-| `\e[m`  | Reset text formatting and colors.
-| `\e[1m` | Bold text. |
-| `\e[2m` | Faint text. |
-| `\e[3m` | Italic text. |
-| `\e[4m` | Underline text. |
-| `\e[5m` | Slow blink. |
-| `\e[7m` | Swap foreground and background colors. |
-
-
-## Cursor Movement.
-
-| Sequence | What does it do? | Value |
-| -------- | ---------------- | ----- |
-| `\e[<LINE>;<COLUMN>H` | Move cursor to absolute position. | `line`, `column`
-| `\e[H` | Move cursor to home position (`0,0`). |
-| `\e[<NUM>A` | Move cursor up N lines. | `num`
-| `\e[<NUM>B` | Move cursor down N lines. | `num`
-| `\e[<NUM>C` | Move cursor right N columns. | `num`
-| `\e[<NUM>D` | Move cursor left N columns. | `num`
-| `\e[s` | Save cursor position. |
-| `\e[u` | Restore cursor position. |
-
-
-## Erasing Text.
-
-| Sequence | What does it do? |
-| -------- | ---------------- |
-| `\e[K` | Erase from cursor position to end of line.
-| `\e[1K` | Erase from cursor position to start of line.
-| `\e[2K` | Erase the entire current line.
-| `\e[J` | Erase from the current line to the bottom of the screen.
-| `\e[1J` | Erase from the current line to the top of the screen.
-| `\e[2J` | Clear the screen.
-| `\e[2J\e[H` | Clear the screen and move cursor to `0,0`.
-
-
-# Colors
+# Conversion
 
 ## Convert a hex color to RGB.
 
