@@ -122,6 +122,7 @@ Any donations are appreciated, they give me the time to make this the best resou
     * [Text Colors.](#text-colors)
     * [Text Attributes.](#text-attributes)
     * [Cursor Movement.](#cursor-movement)
+    * [Erasing Text.](#erasing-text)
 * [Colors](#colors)
     * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
@@ -1300,6 +1301,8 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 
 ## Text Colors.
 
+**NOTE:** Sequences requiring RGB values only work in True-Color Terminal Emulators.
+
 | Sequence | What does it do? | Value |
 | -------- | ---------------- | ----- |
 | `\e[38;5;<NUM>m` | Set text foreground color. | `0-255`
@@ -1326,12 +1329,26 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 | Sequence | What does it do? | Value |
 | -------- | ---------------- | ----- |
 | `\e[<LINE>;<COLUMN>H` | Move cursor to absolute position. | `line`, `column`
+| `\e[H` | Move cursor to home position (`0,0`). |
 | `\e[<NUM>A` | Move cursor up N lines. | `num`
 | `\e[<NUM>B` | Move cursor down N lines. | `num`
 | `\e[<NUM>C` | Move cursor right N columns. | `num`
 | `\e[<NUM>D` | Move cursor left N columns. | `num`
 | `\e[s` | Save cursor position. |
 | `\e[u` | Restore cursor position. |
+
+
+## Erasing Text.
+
+| Sequence | What does it do? |
+| -------- | ---------------- |
+| `\e[K` | Erase from cursor position to end of line.
+| `\e[1K` | Erase from cursor position to start of line.
+| `\e[2K` | Erase the entire current line.
+| `\e[J` | Erase from the current line to the bottom of the screen.
+| `\e[1J` | Erase from the current line to the top of the screen.
+| `\e[2J` | Clear the screen.
+| `\e[2J\e[H` | Clear the screen and move cursor to `0,0`.
 
 
 # Colors
