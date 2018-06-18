@@ -675,7 +675,7 @@ for dir in ~/Downloads/*/; do
 done
 
 # Leverage brace expansion to loop, explicit reference
-for file in /path/to/parentdir/{fil1,file2,subdir/file3}; do
+for file in /path/to/parentdir/{file1,file2,subdir/file3}; do
     printf '%s\n' "$file"
 done
 
