@@ -121,6 +121,7 @@ Any donations are appreciated, they give me the time to make this the best resou
 * [Escape Sequences](#escape-sequences)
     * [Text Colors.](#text-colors)
     * [Text Attributes.](#text-attributes)
+    * [Cursor Movement.](#cursor-movement)
 * [Colors](#colors)
     * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
@@ -1319,6 +1320,18 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 | `\e[5m` | Slow blink. |
 | `\e[7m` | Swap foreground and background colors. |
 
+
+## Cursor Movement.
+
+| Sequence | What does it do? | Value |
+| -------- | ---------------- | ----- |
+| `\e[<LINE>;<COLUMN>H` | Move cursor to absolute position. | `line`, `column`
+| `\e[<NUM>A` | Move cursor up N lines. | `num`
+| `\e[<NUM>B` | Move cursor down N lines. | `num`
+| `\e[<NUM>C` | Move cursor right N columns. | `num`
+| `\e[<NUM>D` | Move cursor left N columns. | `num`
+| `\e[s` | Save cursor position. |
+| `\e[u` | Restore cursor position. |
 
 
 # Colors
