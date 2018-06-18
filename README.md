@@ -945,7 +945,8 @@ extract() {
 
 ```shell
 # Extract code blocks from MarkDown file.
-extract ~/projects/pure-bash/README.md '```sh' '```'
+$ extract ~/projects/pure-bash/README.md '```sh' '```'
+# Output here...
 ```
 
 
