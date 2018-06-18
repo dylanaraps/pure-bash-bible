@@ -118,6 +118,9 @@ Any donations are appreciated, they give me the time to make this the best resou
     * [Get the terminal size in lines and columns (*from a script*).](#get-the-terminal-size-in-lines-and-columns-from-a-script)
     * [Get the terminal size in pixels.](#get-the-terminal-size-in-pixels)
     * [Get the current cursor position.](#get-the-current-cursor-position)
+* [Escape Sequences](#escape-sequences)
+    * [Text Colors.](#text-colors)
+    * [Text Attributes.](#text-attributes)
 * [Colors](#colors)
     * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
@@ -1289,6 +1292,34 @@ get_cursor_pos() {
 $ get_cursor_pos
 1 8
 ```
+
+# Escape Sequences
+
+Contrary to popular belief, there's no issue in using raw escape sequences. Using `tput` just abstracts the same ANSI escape sequences. What's worse is that `tput` isn't actually portable, there are a number of different `tput` variants on different Operating Systems each with different commands (*try and run `tput setaf 3` on a FreeBSD system*). The easiest solution ends up being raw ANSI sequences.
+
+## Text Colors.
+
+| Sequence | What does it do? | Value |
+| -------- | ---------------- | ----- |
+| `\e[38;5;<NUM>m` | Set text foreground color. | `0-255`
+| `\e[48;5;<NUM>m` | Set text background color. | `0-255`
+| `\e[38;2;<R>;<G>;<B>m` | Set text foreground color to RGB color. | `R`, `G`, `B`
+| `\e[48;2;<R>;<G>;<B>m` | Set text background color to RGB color. | `R`, `G`, `B`
+
+## Text Attributes.
+
+| Sequence | What does it do? |
+| -------- | ---------------- |
+| `\e[m`  | Reset text formatting and colors.
+| `\e[1m` | Bold text. |
+| `\e[2m` | Faint text. |
+| `\e[3m` | Italic text. |
+| `\e[4m` | Underline text. |
+| `\e[5m` | Slow blink. |
+| `\e[5m` | Slow blink. |
+| `\e[7m` | Swap foreground and background colors. |
+
+
 
 # Colors
 

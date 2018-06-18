@@ -158,7 +158,7 @@ assert_equals() {
     else
         ((fail+=1))
         status=$'\e[31m✖'
-        err="($1 != $2)"
+        local err="($1 != $2)"
     fi
 
     printf ' %s\e[m | %s\n' "$status" "${FUNCNAME[1]/test_} $err"
