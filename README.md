@@ -1196,6 +1196,17 @@ Systems without needing to call `uname`.
 
 ```shell
 "$OSTYPE"
+
+# NOTE: $OSTYPE will return 'linux' when using Bash on Windows 10.
+# In this instance, you can check /proc/version instead.
+
+file="/proc/version"
+if [ -f "$file" ]; then
+  file_data="$(<"$file")"
+  if [[ "$file_data" == *Microsoft* ]] || [[ "$file_data" == *WSL* ]]; then
+      os="Windows"
+  fi
+fi
 ```
 
 ## Get the current working directory.
