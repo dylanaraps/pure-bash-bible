@@ -158,11 +158,17 @@ assert_equals() {
 }
 
 main() {
-    # Run shellcheck on the code.
-    awk '/```sh$/{f=1;next}/```/{f=0}f' README.md > readme_code
-    shellcheck -s bash --exclude=SC2034,SC2154 readme_code || exit 1
+    trap 'rm readme_code' EXIT
 
-    # Source the code blocks from README.md
+    # Extract code blocks from the README.
+    while read -r line; do
+        [[ "$code" && "$line" != \`\`\` ]] && printf '%s\n' "$line"
+        [[ "$line" =~ ^\`\`\`sh$ ]] && code=1
+        [[ "$line" =~ ^\`\`\`$ ]]   && code=
+    done < README.md > readme_code
+
+    # Run shellcheck and source the code.
+    shellcheck -s bash readme_code || exit 1
     . readme_code
 
     head="-> Running tests on the Pure Bash Bible.."
@@ -176,7 +182,6 @@ main() {
 
     comp="Completed $tot tests. ${pass:-0} passed, ${fail:-0} failed."
     printf '%s\n%s\n\n' "${comp//?/-}" "$comp"
-    rm readme_code
 
     # If a test failed, exit with '1'.
     ((fail>0)) || exit 0 && exit 1
