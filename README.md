@@ -748,6 +748,11 @@ for dir in ~/Downloads/*/; do
     printf '%s\n' "$dir"
 done
 
+# Leverage brace expansion to loop, explicit reference
+for file in /path/to/parentdir/{file1,file2,subdir/file3}; do
+    printf '%s\n' "$file"
+done
+
 # Iterate recursively.
 shopt -s globstar
 for file in ~/Pictures/**/*; do
@@ -1376,17 +1381,21 @@ successful command. `:` always succeeds so we can abuse it to store the
 variable value.
 
 ```shell
-# Example snippet from Neofetch.
-case "$(uname)" in
-    "Linux" | "GNU"*)
+# Modified snippet from Neofetch.
+case "$OSTYPE" in
+    "darwin"*)
+        : "MacOS"
+    ;;
+
+    "linux"*)
         : "Linux"
     ;;
 
-    *"BSD" | "DragonFly" | "Bitrig")
+    *"bsd"* | "dragonfly" | "bitrig")
         : "BSD"
     ;;
 
-    "CYGWIN"* | "MSYS"* | "MINGW"*)
+    "cygwin" | "msys" | "win32")
         : "Windows"
     ;;
 
