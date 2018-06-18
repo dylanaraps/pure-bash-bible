@@ -65,6 +65,7 @@ Any donations are appreciated, they give me the time to make this the best resou
 * [Arrays](#arrays)
     * [Reverse an array.](#reverse-an-array)
     * [Remove duplicate array elements.](#remove-duplicate-array-elements)
+    * [Random array element.](#random-array-element)
     * [Cycle through an array.](#cycle-through-an-array)
     * [Toggle between two values.](#toggle-between-two-values)
 * [Loops](#loops)
@@ -568,6 +569,30 @@ $ remove_array_dups "${arr[@]}"
 red
 green
 blue
+```
+
+## Random array element.
+
+**Example Function:**
+
+```sh
+random_array_element() {
+    # Usage: random_array_element "array"
+    arr=("$@")
+    printf '%s\n' "${arr[RANDOM % $#]}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ array=(red green blue yellow brown)
+$ random_array_element "${array[@]}"
+yellow
+
+# You can also just pass multiple arguments.
+$ random_array_element 1 2 3 4 5 6 7
+3
 ```
 
 ## Cycle through an array.
