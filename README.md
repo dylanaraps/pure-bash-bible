@@ -138,6 +138,7 @@ Any donations are appreciated, they give me the time to make this the best resou
     * [Use `read` as an alternative to the `sleep` command.](#use-read-as-an-alternative-to-the-sleep-command)
     * [Check if a program is in the user's PATH.](#check-if-a-program-is-in-the-users-path)
     * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
+    * [Generate a UUID V4.](#generate-a-uuid-v4)
     * [Progress bars.](#progress-bars)
     * [Get the list of functions from your script.](#get-the-list-of-functions-from-your-script)
     * [Bypass shell aliases.](#bypass-shell-aliases)
@@ -1610,6 +1611,43 @@ Fri 15 Jun  - 10:00 AM
 $ printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
 $ printf '%s\n' "$date"
 Fri 15 Jun  - 10:00 AM
+```
+
+## Generate a UUID V4.
+
+**Example Function:**
+
+```sh
+uuid() {
+    # Usage: uuid
+    C="89ab"
+
+    for ((N=0;N<16;++N)); do
+        B="$((RANDOM%256))"
+
+        case "$N" in
+            6)  printf '4%x' "$((B%16))" ;;
+            8)  printf '%c%x' "${C:$RANDOM%${#C}:1}" "$((B%16))" ;;
+
+            3|5|7|9)
+                printf '%02x-' "$B"
+            ;;
+
+            *)
+                printf '%02x' "$B"
+            ;;
+        esac
+    done
+
+    printf '\n'
+}
+```
+
+**Example Usage:**
+
+```shell
+$ uuid
+d5b6c731-1310-4c24-9fe3-55d556d44374
 ```
 
 ## Progress bars.
