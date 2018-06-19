@@ -453,6 +453,24 @@ if [[ "${arr[*]}" == *sub_string* ]]; then
 fi
 ```
 
+**Using a case statement:**
+
+```shell
+case "$var" in
+    *sub_string*)
+        # Do stuff
+    ;;
+
+    *sub_string2*)
+        # Do more stuff
+    ;;
+
+    *)
+        # Else
+    ;;
+esac
+```
+
 ## Check if string starts with sub-string.
 
 ```shell
@@ -479,23 +497,6 @@ if [[ "$var" != *sub_string ]]; then
 fi
 ```
 
-**Using a case statement:**
-
-```shell
-case "$var" in
-    *sub_string*)
-        # Do stuff
-    ;;
-
-    *sub_string2*)
-        # Do more stuff
-    ;;
-
-    *)
-        # Else
-    ;;
-esac
-```
 
 # Arrays
 
