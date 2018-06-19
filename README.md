@@ -50,7 +50,7 @@ Any donations are appreciated, they give me the time to make this the best resou
 * [Strings](#strings)
     * [Trim leading and trailing white-space from string](#trim-leading-and-trailing-white-space-from-string)
     * [Trim all white-space from string and truncate spaces](#trim-all-white-space-from-string-and-truncate-spaces)
-    * [Use REGEX on a string](#use-regex-on-a-string)
+    * [Use regex on a string](#use-regex-on-a-string)
     * [Split a string on a delimiter](#split-a-string-on-a-delimiter)
     * [Change a string to lowercase](#change-a-string-to-lowercase)
     * [Change a string to uppercase](#change-a-string-to-uppercase)
@@ -210,7 +210,7 @@ $ trim_all "$name"
 John Black is my name.
 ```
 
-## Use REGEX on a string
+## Use regex on a string
 
 We can use the result of `bash`'s regex matching to replace `sed` for a
 large number of use-cases.
