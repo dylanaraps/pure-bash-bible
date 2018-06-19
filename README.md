@@ -94,7 +94,7 @@ Any donations are appreciated, they give me the time to make this the best resou
     * [Text Attributes](#text-attributes)
     * [Cursor Movement](#cursor-movement)
     * [Erasing Text](#erasing-text)
-* [Parameter Expansion.](#parameter-expansion)
+* [Parameter Expansion](#parameter-expansion)
     * [Indirection](#indirection)
     * [Replacement](#replacement)
     * [Length](#length)
@@ -1027,7 +1027,7 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 
 
 
-# Parameter Expansion.
+# Parameter Expansion
 
 ## Indirection
 
