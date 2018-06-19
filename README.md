@@ -121,6 +121,7 @@ Any donations are appreciated, they give me the time to make this the best resou
     * [Get the name of the Operating System / Kernel.](#get-the-name-of-the-operating-system--kernel)
     * [Get the current working directory.](#get-the-current-working-directory)
     * [Get the number of seconds the script has been running.](#get-the-number-of-seconds-the-script-has-been-running)
+    * [Get a pseudorandom integer.](#get-a-pseudorandom-integer)
 * [Information about the terminal](#information-about-the-terminal)
     * [Get the terminal size in lines and columns (*from a script*).](#get-the-terminal-size-in-lines-and-columns-from-a-script)
     * [Get the terminal size in pixels.](#get-the-terminal-size-in-pixels)
@@ -154,8 +155,7 @@ Any donations are appreciated, they give me the time to make this the best resou
 
 This is an alternative to `sed`, `awk`, `perl` and other tools. The
 function below works by finding all leading and trailing white-space and
-removing it from the start and end of the string. The `:` built-in is used
-in place of a temporary variable.
+removing it from the start and end of the string. The `:` built-in is used in place of a temporary variable.
 
 **Example Function:**
 
@@ -1301,6 +1301,15 @@ This is an alternative to the `pwd` built-in.
 
 ```shell
 "$SECONDS"
+```
+
+## Get a pseudorandom integer.
+
+Each time `$RANDOM` is used, a different integer between `0` and `32767` is returned. This variable should not be used for anything related to security (*this includes encryption keys etc*).
+
+
+```shell
+"$RANDOM"
 ```
 
 # Information about the terminal
