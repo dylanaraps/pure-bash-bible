@@ -605,7 +605,7 @@ blue
 ```sh
 random_array_element() {
     # Usage: random_array_element "array"
-    arr=("$@")
+    local arr=("$@")
     printf '%s\n' "${arr[RANDOM % $#]}"
 }
 ```
@@ -1570,7 +1570,9 @@ os="$_"
 I was surprised to find out `sleep` is an external command and isn't a
 built-in.
 
-**Example Funcrion:**
+**CAVEAT:** Requires `bash` 4+
+
+**Example Function:**
 
 ```sh
 read_sleep() {
