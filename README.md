@@ -105,6 +105,14 @@ scripts and not full blown utilities.
 * [Arithmetic](#arithmetic)
     * [Simpler syntax to set variables](#simpler-syntax-to-set-variables)
     * [Ternary tests](#ternary-tests)
+* [Traps](#traps)
+    * [Do something on script exit](#do-something-on-script-exit)
+    * [Ignore terminal interrupt (CTRL+C, SIGINT)](#ignore-terminal-interrupt-ctrlc-sigint)
+    * [React to window resize.](#react-to-window-resize)
+    * [Do something before every command.](#do-something-before-every-command)
+    * [Do something when a shell function or a sourced file finishes executing](#do-something-when-a-shell-function-or-a-sourced-file-finishes-executing)
+* [Performance](#performance)
+    * [Disable Unicode](#disable-unicode)
 * [Obsolete Syntax](#obsolete-syntax)
     * [Shebang](#shebang)
     * [Command Substitution](#command-substitution)
@@ -1187,6 +1195,58 @@ rm -rf ~/Downloads/{Movies,Music,ISOS}
 ((var=var2>var?var2:var))
 ```
 
+# Traps
+
+Traps allow you to execute code on various signals. In `pxltrm` I'm using traps to redraw the user interface on window resize. Another use case is cleaning up temporary files on script exit.
+
+These `trap` lines should be added near the start of your script so any early errors are also caught.
+
+**NOTE:** For a full list of signals, see `trap -l`.
+
+
+## Do something on script exit
+
+```shell
+# Clear screen on script exit.
+trap 'printf \\e[2J\\e[H\\e[m' EXIT
+```
+
+## Ignore terminal interrupt (CTRL+C, SIGINT)
+
+```shell
+trap '' INT
+```
+
+## React to window resize.
+
+```shell
+# Call a function on window resize.
+trap 'code_here' SIGWINCH
+```
+
+## Do something before every command.
+
+```shell
+trap 'code_here' DEBUG
+```
+
+## Do something when a shell function or a sourced file finishes executing
+
+```shell
+trap 'code_here' RETURN
+```
+
+# Performance
+
+## Disable Unicode
+
+If your script doesn't require unicode, you can disable it for a speed boost. Results may vary but I've seen an improvement in Neofetch and some other smaller programs.
+
+```shell
+# Disable unicode.
+LC_ALL=C
+LANG=C
+```
 
 # Obsolete Syntax
 
