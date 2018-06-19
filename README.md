@@ -365,7 +365,7 @@ HELLO
 trim_quotes() {
     # Usage: trim_quotes "string"
     : "${1//\'}"
-    printf "%s\\n" "${_//\"}"
+    printf '%s\n' "${_//\"}"
 }
 ```
 
