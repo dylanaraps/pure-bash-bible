@@ -15,8 +15,8 @@ src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 <br>
 
 The goal of this repository is to document known and unknown methods of
-doing various tasks using only built-in bash features. Using the snippets
-from this guide can help to remove unneeded dependencies from your scripts
+doing various tasks using only built-in `bash` features. Using the snippets
+from this bible can help to remove unneeded dependencies from your scripts
 and in most cases make them that little bit faster. I came across these
 tips and discovered a few while developing
 [neofetch](https://github.com/dylanaraps/neofetch),
@@ -28,7 +28,7 @@ written where applicable. If you're looking to contribute, have a read of
 the
 [CONTRIBUTING.md](https://github.com/dylanaraps/pure-bash-bible/blob/master/CONTRIBUTING.md).
 It outlines how the unit tests work and what's required when adding
-snippets.
+snippets to the bible.
 
 If you see something that is incorrectly described, buggy or outright
 wrong, open an issue or send a pull request. If you know a handy snippet
@@ -269,14 +269,40 @@ is_hex_color "$color" || color="#FFFFFF"
 
 This is an alternative to `cut`, `awk` and other tools.
 
+**Example Function:**
+
+```sh
+split() {
+   # Usage: split "string" "delimiter"
+   IFS=$'\n' read -d "" -ra arr <<< "${1//$2/$'\n'}"
+   printf '%s\n' "${arr[@]}"
+}
+```
+
+**Example Usage:**
+
 ```shell
-string="1,2,3"
+$ split "apples,oranges,pears,grapes" ","
+apples
+oranges
+pears
+grapes
 
-# To multiple variables.
-IFS=, read -r var1 var2 var3 <<< "$string"
+$ split "1, 2, 3, 4, 5" ", "
+1
+2
+3
+4
+5
 
-# To an array.
-IFS=, read -ra vars <<< "$string"
+# Multi char delimiters work too!
+$ split "hello---world---my---name---is---john" "---"
+hello
+world
+my
+name
+is
+john
 ```
 
 ## Change a string to lowercase

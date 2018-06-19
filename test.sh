@@ -151,6 +151,11 @@ test_extract() {
     rm test_file
 }
 
+test_split() {
+    IFS=$'\n' read -d "" -ra result < <(split "hello,world,my,name,is,john" ",")
+    assert_equals "${result[*]}" "hello world my name is john"
+}
+
 assert_equals() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))
