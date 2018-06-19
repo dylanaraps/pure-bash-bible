@@ -38,8 +38,6 @@ that is not included in this list, contribute! If the bible is missing something
 included. These are meant to be snippets you can incorporate into your
 scripts and not full blown utilities.
 
-Any donations are appreciated, they give me the time to make this the best resource possible. <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7QNJNKS3WYVS"><img src="https://img.shields.io/badge/donate-paypal-green.svg"></a> <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/donate-patreon-yellow.svg"></a>
-
 
 <br>
 
@@ -144,6 +142,7 @@ Any donations are appreciated, they give me the time to make this the best resou
     * [Get the list of functions from your script](#get-the-list-of-functions-from-your-script)
     * [Bypass shell aliases](#bypass-shell-aliases)
     * [Bypass shell functions](#bypass-shell-functions)
+* [Afterword](#afterword)
 
 <!-- vim-markdown-toc -->
 
@@ -1726,3 +1725,11 @@ ls
 # command
 command ls
 ```
+
+# Afterword
+
+Thanks for reading! If this bible helped you in any way and you'd like to give back, consider donating. Donations give me the time to make this the best resource possible. Can't donate? That's OK, star the repo and share it with your friends!
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7QNJNKS3WYVS"><img src="https://img.shields.io/badge/donate-paypal-green.svg"></a> <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/donate-patreon-yellow.svg"></a>
+
+Rock on. 🤘
