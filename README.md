@@ -32,7 +32,7 @@ snippets.
 
 If you see something that is incorrectly described, buggy or outright
 wrong, open an issue or send a pull request. If you know a handy snippet
-that is not included in this list, contribute!
+that is not included in this list, contribute! If the bible is missing something, open an issue and I or others will come up with a solution.
 
 **NOTE**: Error handling (*checking if a file exists, etc*) is not
 included. These are meant to be snippets you can incorporate into your
