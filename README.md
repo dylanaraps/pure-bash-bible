@@ -48,52 +48,52 @@ Any donations are appreciated, they give me the time to make this the best resou
 <!-- vim-markdown-toc GFM -->
 
 * [Strings](#strings)
-    * [Trim leading and trailing white-space from string.](#trim-leading-and-trailing-white-space-from-string)
-    * [Trim all white-space from string and truncate spaces.](#trim-all-white-space-from-string-and-truncate-spaces)
-    * [Use REGEX on a string.](#use-regex-on-a-string)
-    * [Split a string on a delimiter.](#split-a-string-on-a-delimiter)
-    * [Change a string to lowercase.](#change-a-string-to-lowercase)
-    * [Change a string to uppercase.](#change-a-string-to-uppercase)
-    * [Trim quotes from a string.](#trim-quotes-from-a-string)
-    * [Strip all instances of pattern from string.](#strip-all-instances-of-pattern-from-string)
-    * [Strip first occurrence of pattern from string.](#strip-first-occurrence-of-pattern-from-string)
-    * [Strip pattern from start of string.](#strip-pattern-from-start-of-string)
-    * [Strip pattern from end of string.](#strip-pattern-from-end-of-string)
-    * [Check if string contains a sub-string.](#check-if-string-contains-a-sub-string)
-    * [Check if string starts with sub-string.](#check-if-string-starts-with-sub-string)
-    * [Check if string ends with sub-string.](#check-if-string-ends-with-sub-string)
+    * [Trim leading and trailing white-space from string](#trim-leading-and-trailing-white-space-from-string)
+    * [Trim all white-space from string and truncate spaces](#trim-all-white-space-from-string-and-truncate-spaces)
+    * [Use REGEX on a string](#use-regex-on-a-string)
+    * [Split a string on a delimiter](#split-a-string-on-a-delimiter)
+    * [Change a string to lowercase](#change-a-string-to-lowercase)
+    * [Change a string to uppercase](#change-a-string-to-uppercase)
+    * [Trim quotes from a string](#trim-quotes-from-a-string)
+    * [Strip all instances of pattern from string](#strip-all-instances-of-pattern-from-string)
+    * [Strip first occurrence of pattern from string](#strip-first-occurrence-of-pattern-from-string)
+    * [Strip pattern from start of string](#strip-pattern-from-start-of-string)
+    * [Strip pattern from end of string](#strip-pattern-from-end-of-string)
+    * [Check if string contains a sub-string](#check-if-string-contains-a-sub-string)
+    * [Check if string starts with sub-string](#check-if-string-starts-with-sub-string)
+    * [Check if string ends with sub-string](#check-if-string-ends-with-sub-string)
 * [Arrays](#arrays)
-    * [Reverse an array.](#reverse-an-array)
-    * [Remove duplicate array elements.](#remove-duplicate-array-elements)
-    * [Random array element.](#random-array-element)
-    * [Cycle through an array.](#cycle-through-an-array)
-    * [Toggle between two values.](#toggle-between-two-values)
+    * [Reverse an array](#reverse-an-array)
+    * [Remove duplicate array elements](#remove-duplicate-array-elements)
+    * [Random array element](#random-array-element)
+    * [Cycle through an array](#cycle-through-an-array)
+    * [Toggle between two values](#toggle-between-two-values)
 * [Loops](#loops)
-    * [Loop over a range of numbers.](#loop-over-a-range-of-numbers)
-    * [Loop over a variable range of numbers.](#loop-over-a-variable-range-of-numbers)
-    * [Loop over an array.](#loop-over-an-array)
-    * [Loop over an array with an index.](#loop-over-an-array-with-an-index)
-    * [Loop over the contents of a file.](#loop-over-the-contents-of-a-file)
-    * [Loop over files and directories.](#loop-over-files-and-directories)
+    * [Loop over a range of numbers](#loop-over-a-range-of-numbers)
+    * [Loop over a variable range of numbers](#loop-over-a-variable-range-of-numbers)
+    * [Loop over an array](#loop-over-an-array)
+    * [Loop over an array with an index](#loop-over-an-array-with-an-index)
+    * [Loop over the contents of a file](#loop-over-the-contents-of-a-file)
+    * [Loop over files and directories](#loop-over-files-and-directories)
 * [File handling](#file-handling)
-    * [Read a file to a string.](#read-a-file-to-a-string)
-    * [Read a file to an array (*by line*).](#read-a-file-to-an-array-by-line)
-    * [Get the first N lines of a file.](#get-the-first-n-lines-of-a-file)
-    * [Get the last N lines of a file.](#get-the-last-n-lines-of-a-file)
-    * [Get the number of lines in a file.](#get-the-number-of-lines-in-a-file)
-    * [Count files or directories in directory.](#count-files-or-directories-in-directory)
-    * [Create an empty file.](#create-an-empty-file)
-    * [Extract lines between two markers.](#extract-lines-between-two-markers)
+    * [Read a file to a string](#read-a-file-to-a-string)
+    * [Read a file to an array (*by line*)](#read-a-file-to-an-array-by-line)
+    * [Get the first N lines of a file](#get-the-first-n-lines-of-a-file)
+    * [Get the last N lines of a file](#get-the-last-n-lines-of-a-file)
+    * [Get the number of lines in a file](#get-the-number-of-lines-in-a-file)
+    * [Count files or directories in directory](#count-files-or-directories-in-directory)
+    * [Create an empty file](#create-an-empty-file)
+    * [Extract lines between two markers](#extract-lines-between-two-markers)
 * [File Paths](#file-paths)
-    * [Get the directory name of a file path.](#get-the-directory-name-of-a-file-path)
-    * [Get the base-name of a file path.](#get-the-base-name-of-a-file-path)
+    * [Get the directory name of a file path](#get-the-directory-name-of-a-file-path)
+    * [Get the base-name of a file path](#get-the-base-name-of-a-file-path)
 * [Variables](#variables)
-    * [Assign and access a variable using a variable.](#assign-and-access-a-variable-using-a-variable)
+    * [Assign and access a variable using a variable](#assign-and-access-a-variable-using-a-variable)
 * [Escape Sequences](#escape-sequences)
-    * [Text Colors.](#text-colors)
-    * [Text Attributes.](#text-attributes)
-    * [Cursor Movement.](#cursor-movement)
-    * [Erasing Text.](#erasing-text)
+    * [Text Colors](#text-colors)
+    * [Text Attributes](#text-attributes)
+    * [Cursor Movement](#cursor-movement)
+    * [Erasing Text](#erasing-text)
 * [Parameter Expansion.](#parameter-expansion)
     * [Indirection](#indirection)
     * [Replacement](#replacement)
@@ -105,45 +105,45 @@ Any donations are appreciated, they give me the time to make this the best resou
     * [Ranges](#ranges)
     * [String Lists](#string-lists)
 * [Arithmetic](#arithmetic)
-    * [Simpler syntax to set variables.](#simpler-syntax-to-set-variables)
-    * [Ternary tests.](#ternary-tests)
+    * [Simpler syntax to set variables](#simpler-syntax-to-set-variables)
+    * [Ternary tests](#ternary-tests)
 * [Obsolete Syntax](#obsolete-syntax)
-    * [Shebang.](#shebang)
-    * [Command Substitution.](#command-substitution)
-    * [Function Declaration.](#function-declaration)
+    * [Shebang](#shebang)
+    * [Command Substitution](#command-substitution)
+    * [Function Declaration](#function-declaration)
 * [Internal Variables](#internal-variables)
-    * [Get the location to the `bash` binary.](#get-the-location-to-the-bash-binary)
-    * [Get the version of the current running `bash` process.](#get-the-version-of-the-current-running-bash-process)
-    * [Open the user's preferred text editor.](#open-the-users-preferred-text-editor)
-    * [Get the name of the current function.](#get-the-name-of-the-current-function)
-    * [Get the host-name of the system.](#get-the-host-name-of-the-system)
-    * [Get the architecture of the Operating System.](#get-the-architecture-of-the-operating-system)
-    * [Get the name of the Operating System / Kernel.](#get-the-name-of-the-operating-system--kernel)
-    * [Get the current working directory.](#get-the-current-working-directory)
-    * [Get the number of seconds the script has been running.](#get-the-number-of-seconds-the-script-has-been-running)
-    * [Get a pseudorandom integer.](#get-a-pseudorandom-integer)
+    * [Get the location to the `bash` binary](#get-the-location-to-the-bash-binary)
+    * [Get the version of the current running `bash` process](#get-the-version-of-the-current-running-bash-process)
+    * [Open the user's preferred text editor](#open-the-users-preferred-text-editor)
+    * [Get the name of the current function](#get-the-name-of-the-current-function)
+    * [Get the host-name of the system](#get-the-host-name-of-the-system)
+    * [Get the architecture of the Operating System](#get-the-architecture-of-the-operating-system)
+    * [Get the name of the Operating System / Kernel](#get-the-name-of-the-operating-system--kernel)
+    * [Get the current working directory](#get-the-current-working-directory)
+    * [Get the number of seconds the script has been running](#get-the-number-of-seconds-the-script-has-been-running)
+    * [Get a pseudorandom integer](#get-a-pseudorandom-integer)
 * [Information about the terminal](#information-about-the-terminal)
-    * [Get the terminal size in lines and columns (*from a script*).](#get-the-terminal-size-in-lines-and-columns-from-a-script)
-    * [Get the terminal size in pixels.](#get-the-terminal-size-in-pixels)
-    * [Get the current cursor position.](#get-the-current-cursor-position)
+    * [Get the terminal size in lines and columns (*from a script*)](#get-the-terminal-size-in-lines-and-columns-from-a-script)
+    * [Get the terminal size in pixels](#get-the-terminal-size-in-pixels)
+    * [Get the current cursor position](#get-the-current-cursor-position)
 * [Conversion](#conversion)
-    * [Convert a hex color to RGB.](#convert-a-hex-color-to-rgb)
-    * [Convert an RGB color to hex.](#convert-an-rgb-color-to-hex)
+    * [Convert a hex color to RGB](#convert-a-hex-color-to-rgb)
+    * [Convert an RGB color to hex](#convert-an-rgb-color-to-hex)
 * [Code Golf](#code-golf)
-    * [Shorter `for` loop syntax.](#shorter-for-loop-syntax)
-    * [Shorter infinite loops.](#shorter-infinite-loops)
-    * [Shorter function declaration.](#shorter-function-declaration)
-    * [Shorter `if` syntax.](#shorter-if-syntax)
-    * [Simpler `case` statement to set variable.](#simpler-case-statement-to-set-variable)
+    * [Shorter `for` loop syntax](#shorter-for-loop-syntax)
+    * [Shorter infinite loops](#shorter-infinite-loops)
+    * [Shorter function declaration](#shorter-function-declaration)
+    * [Shorter `if` syntax](#shorter-if-syntax)
+    * [Simpler `case` statement to set variable](#simpler-case-statement-to-set-variable)
 * [Other](#other)
-    * [Use `read` as an alternative to the `sleep` command.](#use-read-as-an-alternative-to-the-sleep-command)
-    * [Check if a program is in the user's PATH.](#check-if-a-program-is-in-the-users-path)
-    * [Get the current date using `strftime`.](#get-the-current-date-using-strftime)
-    * [Generate a UUID V4.](#generate-a-uuid-v4)
-    * [Progress bars.](#progress-bars)
-    * [Get the list of functions from your script.](#get-the-list-of-functions-from-your-script)
-    * [Bypass shell aliases.](#bypass-shell-aliases)
-    * [Bypass shell functions.](#bypass-shell-functions)
+    * [Use `read` as an alternative to the `sleep` command](#use-read-as-an-alternative-to-the-sleep-command)
+    * [Check if a program is in the user's PATH](#check-if-a-program-is-in-the-users-path)
+    * [Get the current date using `strftime`](#get-the-current-date-using-strftime)
+    * [Generate a UUID V4](#generate-a-uuid-v4)
+    * [Progress bars](#progress-bars)
+    * [Get the list of functions from your script](#get-the-list-of-functions-from-your-script)
+    * [Bypass shell aliases](#bypass-shell-aliases)
+    * [Bypass shell functions](#bypass-shell-functions)
 
 <!-- vim-markdown-toc -->
 
@@ -151,7 +151,7 @@ Any donations are appreciated, they give me the time to make this the best resou
 
 # Strings
 
-## Trim leading and trailing white-space from string.
+## Trim leading and trailing white-space from string
 
 This is an alternative to `sed`, `awk`, `perl` and other tools. The
 function below works by finding all leading and trailing white-space and
@@ -180,7 +180,7 @@ John Black
 ```
 
 
-## Trim all white-space from string and truncate spaces.
+## Trim all white-space from string and truncate spaces
 
 This is an alternative to `sed`, `awk`, `perl` and other tools. The
 function below works by abusing word splitting to create a new string
@@ -210,7 +210,7 @@ $ trim_all "$name"
 John Black is my name.
 ```
 
-## Use REGEX on a string.
+## Use REGEX on a string
 
 We can use the result of `bash`'s regex matching to replace `sed` for a
 large number of use-cases.
@@ -266,7 +266,7 @@ is_hex_color "$color" || color="#FFFFFF"
 ```
 
 
-## Split a string on a delimiter.
+## Split a string on a delimiter
 
 This is an alternative to `cut`, `awk` and other tools.
 
@@ -280,7 +280,7 @@ IFS=, read -r var1 var2 var3 <<< "$string"
 IFS=, read -ra vars <<< "$string"
 ```
 
-## Change a string to lowercase.
+## Change a string to lowercase
 
 **CAVEAT:** Requires `bash` 4+
 
@@ -306,7 +306,7 @@ $ lower "hello"
 hello
 ```
 
-## Change a string to uppercase.
+## Change a string to uppercase
 
 **CAVEAT:** Requires `bash` 4+
 
@@ -332,7 +332,7 @@ $ upper "HELLO"
 HELLO
 ```
 
-## Trim quotes from a string.
+## Trim quotes from a string
 
 **Example Function:**
 
@@ -352,7 +352,7 @@ $ trim_quotes "$var"
 Hello, World
 ```
 
-## Strip all instances of pattern from string.
+## Strip all instances of pattern from string
 
 **Example Function:**
 
@@ -376,7 +376,7 @@ $ strip_all "The Quick Brown Fox" "Quick "
 The Brown Fox
 ```
 
-## Strip first occurrence of pattern from string.
+## Strip first occurrence of pattern from string
 
 **Example Function:**
 
@@ -397,7 +397,7 @@ $ strip "The Quick Brown Fox" "[[:space:]]"
 TheQuick Brown Fox
 ```
 
-## Strip pattern from start of string.
+## Strip pattern from start of string
 
 **Example Function:**
 
@@ -415,7 +415,7 @@ $ lstrip "The Quick Brown Fox" "The "
 Quick Brown Fox
 ```
 
-## Strip pattern from end of string.
+## Strip pattern from end of string
 
 **Example Function:**
 
@@ -433,7 +433,7 @@ $ rstrip "The Quick Brown Fox" " Fox"
 The Quick Brown
 ```
 
-## Check if string contains a sub-string.
+## Check if string contains a sub-string
 
 **Using a test:**
 
@@ -471,7 +471,7 @@ case "$var" in
 esac
 ```
 
-## Check if string starts with sub-string.
+## Check if string starts with sub-string
 
 ```shell
 if [[ "$var" == sub_string* ]]; then
@@ -484,7 +484,7 @@ if [[ "$var" != sub_string* ]]; then
 fi
 ```
 
-## Check if string ends with sub-string.
+## Check if string ends with sub-string
 
 ```shell
 if [[ "$var" == *sub_string ]]; then
@@ -500,7 +500,7 @@ fi
 
 # Arrays
 
-## Reverse an array.
+## Reverse an array
 
 Enabling `extdebug` allows access to the `BASH_ARGV` array which stores
 the current function’s arguments in reverse.
@@ -533,7 +533,7 @@ blue
 red
 ```
 
-## Remove duplicate array elements.
+## Remove duplicate array elements
 
 Create a temporary associative array. When setting associative array
 values and a duplicate assignment occurs, bash overwrites the key. This
@@ -573,7 +573,7 @@ green
 blue
 ```
 
-## Random array element.
+## Random array element
 
 **Example Function:**
 
@@ -597,7 +597,7 @@ $ random_array_element 1 2 3 4 5 6 7
 3
 ```
 
-## Cycle through an array.
+## Cycle through an array
 
 Each time the `printf` is called, the next array element is printed. When
 the print hits the last array element it starts from the first element
@@ -613,7 +613,7 @@ cycle() {
 ```
 
 
-## Toggle between two values.
+## Toggle between two values
 
 This works the same as above, this is just a different use case.
 
@@ -628,7 +628,7 @@ cycle() {
 
 # Loops
 
-## Loop over a range of numbers.
+## Loop over a range of numbers
 
 Don't use `seq`.
 
@@ -639,7 +639,7 @@ for i in {0..100}; do
 done
 ```
 
-## Loop over a variable range of numbers.
+## Loop over a variable range of numbers
 
 Don't use `seq`.
 
@@ -651,7 +651,7 @@ for ((i=0;i<=VAR;i++)); do
 done
 ```
 
-## Loop over an array.
+## Loop over an array
 
 ```shell
 arr=(apples oranges tomatoes)
@@ -662,7 +662,7 @@ for element in "${arr[@]}"; do
 done
 ```
 
-## Loop over an array with an index.
+## Loop over an array with an index
 
 ```shell
 arr=(apples oranges tomatoes)
@@ -678,7 +678,7 @@ for ((i=0;i<${#arr[@]};i++)); do
 done
 ```
 
-## Loop over the contents of a file.
+## Loop over the contents of a file
 
 ```shell
 while read -r line; do
@@ -686,7 +686,7 @@ while read -r line; do
 done < "file"
 ```
 
-## Loop over files and directories.
+## Loop over files and directories
 
 Don’t use `ls`.
 
@@ -723,7 +723,7 @@ shopt -u globstar
 
 **CAVEAT:** `bash` doesn't handle binary data properly in versions `< 4.4`.
 
-## Read a file to a string.
+## Read a file to a string
 
 Alternative to the `cat` command.
 
@@ -731,7 +731,7 @@ Alternative to the `cat` command.
 file_data="$(<"file")"
 ```
 
-## Read a file to an array (*by line*).
+## Read a file to an array (*by line*)
 
 Alternative to the `cat` command.
 
@@ -743,7 +743,7 @@ IFS=$'\n' read -d "" -ra file_data < "file"
 mapfile -t file_data < "file"
 ```
 
-## Get the first N lines of a file.
+## Get the first N lines of a file
 
 Alternative to the `head` command.
 
@@ -770,7 +770,7 @@ $ head 1 ~/.bashrc
 # Prompt
 ```
 
-## Get the last N lines of a file.
+## Get the last N lines of a file
 
 Alternative to the `tail` command.
 
@@ -797,7 +797,7 @@ $ tail 1 ~/.bashrc
 # [[ -z "$TMUX"  ]] && exec tmux
 ```
 
-## Get the number of lines in a file.
+## Get the number of lines in a file
 
 Alternative to `wc -l`.
 
@@ -837,7 +837,7 @@ $ lines_loop ~/.bashrc
 48
 ```
 
-## Count files or directories in directory.
+## Count files or directories in directory
 
 This works by passing the output of the glob as function arguments. We
 then count the arguments and print the number.
@@ -868,7 +868,7 @@ $ count ~/Pictures/*.jpg
 64
 ```
 
-## Create an empty file.
+## Create an empty file
 
 Alternative to `touch`.
 
@@ -881,7 +881,7 @@ echo -n > file
 printf '' > file
 ```
 
-## Extract lines between two markers.
+## Extract lines between two markers
 
 **Example Function:**
 
@@ -909,7 +909,7 @@ $ extract ~/projects/pure-bash/README.md '```sh' '```'
 
 # File Paths
 
-## Get the directory name of a file path.
+## Get the directory name of a file path
 
 Alternative to the `dirname` command.
 
@@ -932,7 +932,7 @@ $ dirname ~/Pictures/Downloads/
 /home/black/Pictures/
 ```
 
-## Get the base-name of a file path.
+## Get the base-name of a file path
 
 Alternative to the `basename` command.
 
@@ -958,7 +958,7 @@ Downloads
 
 # Variables
 
-## Assign and access a variable using a variable.
+## Assign and access a variable using a variable
 
 ```shell
 hello_world="test"
@@ -975,7 +975,7 @@ printf '%s\n' "${!var2}"
 
 Contrary to popular belief, there's no issue in using raw escape sequences. Using `tput` just abstracts the same ANSI escape sequences. What's worse is that `tput` isn't actually portable, there are a number of different `tput` variants on different Operating Systems each with different commands (*try and run `tput setaf 3` on a FreeBSD system*). The easiest solution ends up being raw ANSI sequences.
 
-## Text Colors.
+## Text Colors
 
 **NOTE:** Sequences requiring RGB values only work in True-Color Terminal Emulators.
 
@@ -986,7 +986,7 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 | `\e[38;2;<R>;<G>;<B>m` | Set text foreground color to RGB color. | `R`, `G`, `B`
 | `\e[48;2;<R>;<G>;<B>m` | Set text background color to RGB color. | `R`, `G`, `B`
 
-## Text Attributes.
+## Text Attributes
 
 | Sequence | What does it do? |
 | -------- | ---------------- |
@@ -999,7 +999,7 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 | `\e[7m` | Swap foreground and background colors. |
 
 
-## Cursor Movement.
+## Cursor Movement
 
 | Sequence | What does it do? | Value |
 | -------- | ---------------- | ----- |
@@ -1013,7 +1013,7 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 | `\e[u` | Restore cursor position. |
 
 
-## Erasing Text.
+## Erasing Text
 
 | Sequence | What does it do? |
 | -------- | ---------------- |
@@ -1135,7 +1135,7 @@ rm -rf ~/Downloads/{Movies,Music,ISOS}
 
 # Arithmetic
 
-## Simpler syntax to set variables.
+## Simpler syntax to set variables
 
 ```shell
 # Simple math
@@ -1151,7 +1151,7 @@ rm -rf ~/Downloads/{Movies,Music,ISOS}
 ((var=var2*arr[2]))
 ```
 
-## Ternary tests.
+## Ternary tests
 
 ```shell
 # Set the value of var to var2 if var2 is greater than var.
@@ -1165,7 +1165,7 @@ rm -rf ~/Downloads/{Movies,Music,ISOS}
 
 # Obsolete Syntax
 
-## Shebang.
+## Shebang
 
 Use `#!/usr/bin/env bash` instead of `#!/bin/bash`.
 
@@ -1182,7 +1182,7 @@ Use `#!/usr/bin/env bash` instead of `#!/bin/bash`.
     #!/bin/bash
 ```
 
-## Command Substitution.
+## Command Substitution
 
 Use `$()` instead of `` ` ` ``.
 
@@ -1197,7 +1197,7 @@ var=`command`
 var="$(command "$(command)")"
 ```
 
-## Function Declaration.
+## Function Declaration
 
 Don't use the `function` keyword, it reduces compatibility with older versions of `bash`.
 
@@ -1222,13 +1222,13 @@ help by adding a missing entry!*).
 For a complete list, see:
 http://tldp.org/LDP/abs/html/internalvariables.html
 
-## Get the location to the `bash` binary.
+## Get the location to the `bash` binary
 
 ```shell
 "$BASH"
 ```
 
-## Get the version of the current running `bash` process.
+## Get the version of the current running `bash` process
 
 ```shell
 # As a string.
@@ -1238,7 +1238,7 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 "${BASH_VERSINFO[@]}"
 ```
 
-## Open the user's preferred text editor.
+## Open the user's preferred text editor
 
 ```shell
 "$EDITOR" "$file"
@@ -1247,7 +1247,7 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 "${EDITOR:-vi}" "$file"
 ```
 
-## Get the name of the current function.
+## Get the name of the current function
 
 ```shell
 # Current function.
@@ -1264,7 +1264,7 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 "${FUNCNAME[@]}"
 ```
 
-## Get the host-name of the system.
+## Get the host-name of the system
 
 ```shell
 "$HOSTNAME"
@@ -1274,13 +1274,13 @@ http://tldp.org/LDP/abs/html/internalvariables.html
 "${HOSTNAME:-$(hostname)}"
 ```
 
-## Get the architecture of the Operating System.
+## Get the architecture of the Operating System
 
 ```shell
 "$HOSTTYPE"
 ```
 
-## Get the name of the Operating System / Kernel.
+## Get the name of the Operating System / Kernel
 
 This can be used to add conditional support for different Operating
 Systems without needing to call `uname`.
@@ -1289,7 +1289,7 @@ Systems without needing to call `uname`.
 "$OSTYPE"
 ```
 
-## Get the current working directory.
+## Get the current working directory
 
 This is an alternative to the `pwd` built-in.
 
@@ -1297,13 +1297,13 @@ This is an alternative to the `pwd` built-in.
 "$PWD"
 ```
 
-## Get the number of seconds the script has been running.
+## Get the number of seconds the script has been running
 
 ```shell
 "$SECONDS"
 ```
 
-## Get a pseudorandom integer.
+## Get a pseudorandom integer
 
 Each time `$RANDOM` is used, a different integer between `0` and `32767` is returned. This variable should not be used for anything related to security (*this includes encryption keys etc*).
 
@@ -1314,7 +1314,7 @@ Each time `$RANDOM` is used, a different integer between `0` and `32767` is retu
 
 # Information about the terminal
 
-## Get the terminal size in lines and columns (*from a script*).
+## Get the terminal size in lines and columns (*from a script*)
 
 This is handy when writing scripts in pure bash and `stty`/`tput` can’t be
 called.
@@ -1340,7 +1340,7 @@ $ get_term_size
 15 55
 ```
 
-## Get the terminal size in pixels.
+## Get the terminal size in pixels
 
 **CAVEAT**: This does not work in some terminal emulators.
 
@@ -1367,7 +1367,7 @@ $ get_window_size
 x
 ```
 
-## Get the current cursor position.
+## Get the current cursor position
 
 This is useful when creating a TUI in pure bash.
 
@@ -1391,7 +1391,7 @@ $ get_cursor_pos
 
 # Conversion
 
-## Convert a hex color to RGB.
+## Convert a hex color to RGB
 
 **Example Function:**
 
@@ -1414,7 +1414,7 @@ $ hex_to_rgb "#FFFFFF"
 ```
 
 
-## Convert an RGB color to hex.
+## Convert an RGB color to hex
 
 **Example Function:**
 
@@ -1435,7 +1435,7 @@ $ rgb_to_hex "255" "255" "255"
 
 # Code Golf
 
-## Shorter `for` loop syntax.
+## Shorter `for` loop syntax
 
 ```shell
 # Tiny C Style.
@@ -1451,7 +1451,7 @@ for i in {1..10}; do echo "$i"; done
 for((i=0;i<=10;i++)); do echo "$i"; done
 ```
 
-## Shorter infinite loops.
+## Shorter infinite loops
 
 ```shell
 # Normal method
@@ -1461,7 +1461,7 @@ while :; do echo hi; done
 for((;;)){ echo hi;}
 ```
 
-## Shorter function declaration.
+## Shorter function declaration
 
 ```shell
 # Normal method
@@ -1482,7 +1482,7 @@ f()if true; then echo "$1"; fi
 f()for i in "$@"; do echo "$i"; done
 ```
 
-## Shorter `if` syntax.
+## Shorter `if` syntax
 
 ```shell
 # One line
@@ -1502,7 +1502,7 @@ f()for i in "$@"; do echo "$i"; done
 }
 ```
 
-## Simpler `case` statement to set variable.
+## Simpler `case` statement to set variable
 
 We can use the `:` builtin to avoid repeating `variable=` in a case
 statement. The `$_` variable stores the last argument of the last
@@ -1540,7 +1540,7 @@ os="$_"
 
 # Other
 
-## Use `read` as an alternative to the `sleep` command.
+## Use `read` as an alternative to the `sleep` command
 
 I was surprised to find out `sleep` is an external command and isn't a
 built-in.
@@ -1563,7 +1563,7 @@ read_sleep 0.1
 read_sleep 30
 ```
 
-## Check if a program is in the user's PATH.
+## Check if a program is in the user's PATH
 
 ```shell
 # There are 3 ways to do this and you can use either of
@@ -1589,7 +1589,7 @@ if ! type -p convert &>/dev/null; then
 fi
 ```
 
-## Get the current date using `strftime`.
+## Get the current date using `strftime`
 
 Bash’s `printf` has a built-in method of getting the date which we can use
 in place of the `date` command in a lot of cases.
@@ -1623,7 +1623,7 @@ $ printf '%s\n' "$date"
 Fri 15 Jun  - 10:00 AM
 ```
 
-## Generate a UUID V4.
+## Generate a UUID V4
 
 **Example Function:**
 
@@ -1660,7 +1660,7 @@ $ uuid
 d5b6c731-1310-4c24-9fe3-55d556d44374
 ```
 
-## Progress bars.
+## Progress bars
 
 This is a simple way of drawing progress bars without needing a for loop
 in the function itself.
@@ -1696,7 +1696,7 @@ done
 printf '\n'
 ```
 
-## Get the list of functions from your script.
+## Get the list of functions from your script
 
 ```sh
 get_functions() {
@@ -1706,7 +1706,7 @@ get_functions() {
 }
 ```
 
-## Bypass shell aliases.
+## Bypass shell aliases
 
 ```shell
 # alias
@@ -1717,7 +1717,7 @@ ls
 \ls
 ```
 
-## Bypass shell functions.
+## Bypass shell functions
 
 ```shell
 # function
