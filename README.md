@@ -1099,7 +1099,7 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 
 | Parameter | What does it do? |
 | --------- | ---------------- |
-| `${!VAR}` | Access a variable based on the value of `VAR`. See: [link](#assign-and-access-a-variable-using-a-variable)
+| `${!VAR}` | Access a variable based on the value of `VAR`.
 | `${!VAR*}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
 | `${!VAR@}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
 
