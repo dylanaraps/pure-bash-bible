@@ -48,8 +48,8 @@ wrong? Open an issue or send a pull request. If the bible is missing something, 
 
 <!-- vim-markdown-toc GFM -->
 
-* [Foreword](#foreword)
-* [Strings](#strings)
+* [FOREWORD](#foreword)
+* [STRINGS](#strings)
     * [Trim leading and trailing white-space from string](#trim-leading-and-trailing-white-space-from-string)
     * [Trim all white-space from string and truncate spaces](#trim-all-white-space-from-string-and-truncate-spaces)
     * [Use regex on a string](#use-regex-on-a-string)
@@ -64,20 +64,20 @@ wrong? Open an issue or send a pull request. If the bible is missing something, 
     * [Check if string contains a sub-string](#check-if-string-contains-a-sub-string)
     * [Check if string starts with sub-string](#check-if-string-starts-with-sub-string)
     * [Check if string ends with sub-string](#check-if-string-ends-with-sub-string)
-* [Arrays](#arrays)
+* [ARRAYS](#arrays)
     * [Reverse an array](#reverse-an-array)
     * [Remove duplicate array elements](#remove-duplicate-array-elements)
     * [Random array element](#random-array-element)
     * [Cycle through an array](#cycle-through-an-array)
     * [Toggle between two values](#toggle-between-two-values)
-* [Loops](#loops)
+* [LOOPS](#loops)
     * [Loop over a range of numbers](#loop-over-a-range-of-numbers)
     * [Loop over a variable range of numbers](#loop-over-a-variable-range-of-numbers)
     * [Loop over an array](#loop-over-an-array)
     * [Loop over an array with an index](#loop-over-an-array-with-an-index)
     * [Loop over the contents of a file](#loop-over-the-contents-of-a-file)
     * [Loop over files and directories](#loop-over-files-and-directories)
-* [File handling](#file-handling)
+* [FILE HANDLING](#file-handling)
     * [Read a file to a string](#read-a-file-to-a-string)
     * [Read a file to an array (*by line*)](#read-a-file-to-an-array-by-line)
     * [Get the first N lines of a file](#get-the-first-n-lines-of-a-file)
@@ -86,42 +86,42 @@ wrong? Open an issue or send a pull request. If the bible is missing something, 
     * [Count files or directories in directory](#count-files-or-directories-in-directory)
     * [Create an empty file](#create-an-empty-file)
     * [Extract lines between two markers](#extract-lines-between-two-markers)
-* [File Paths](#file-paths)
+* [FILE PATHS](#file-paths)
     * [Get the directory name of a file path](#get-the-directory-name-of-a-file-path)
     * [Get the base-name of a file path](#get-the-base-name-of-a-file-path)
-* [Variables](#variables)
+* [VARIABLES](#variables)
     * [Assign and access a variable using a variable](#assign-and-access-a-variable-using-a-variable)
-* [Escape Sequences](#escape-sequences)
+* [ESCAPE SEQUENCES](#escape-sequences)
     * [Text Colors](#text-colors)
     * [Text Attributes](#text-attributes)
     * [Cursor Movement](#cursor-movement)
     * [Erasing Text](#erasing-text)
-* [Parameter Expansion](#parameter-expansion)
+* [PARAMETER EXPANSION](#parameter-expansion)
     * [Indirection](#indirection)
     * [Replacement](#replacement)
     * [Length](#length)
     * [Expansion](#expansion)
     * [Case Modification](#case-modification)
     * [Default Value](#default-value)
-* [Brace Expansion](#brace-expansion)
+* [BRACE EXPANSION](#brace-expansion)
     * [Ranges](#ranges)
     * [String Lists](#string-lists)
-* [Arithmetic](#arithmetic)
+* [ARITHMETIC](#arithmetic)
     * [Simpler syntax to set variables](#simpler-syntax-to-set-variables)
-    * [Ternary tests](#ternary-tests)
-* [Traps](#traps)
+    * [Ternary Tests](#ternary-tests)
+* [TRAPS](#traps)
     * [Do something on script exit](#do-something-on-script-exit)
     * [Ignore terminal interrupt (CTRL+C, SIGINT)](#ignore-terminal-interrupt-ctrlc-sigint)
     * [React to window resize.](#react-to-window-resize)
     * [Do something before every command.](#do-something-before-every-command)
     * [Do something when a shell function or a sourced file finishes executing](#do-something-when-a-shell-function-or-a-sourced-file-finishes-executing)
-* [Performance](#performance)
+* [PERFORMANCE](#performance)
     * [Disable Unicode](#disable-unicode)
-* [Obsolete Syntax](#obsolete-syntax)
+* [OBSOLETE SYNTAX](#obsolete-syntax)
     * [Shebang](#shebang)
     * [Command Substitution](#command-substitution)
     * [Function Declaration](#function-declaration)
-* [Internal Variables](#internal-variables)
+* [INTERNAL VARIABLES](#internal-variables)
     * [Get the location to the `bash` binary](#get-the-location-to-the-bash-binary)
     * [Get the version of the current running `bash` process](#get-the-version-of-the-current-running-bash-process)
     * [Open the user's preferred text editor](#open-the-users-preferred-text-editor)
@@ -132,20 +132,20 @@ wrong? Open an issue or send a pull request. If the bible is missing something, 
     * [Get the current working directory](#get-the-current-working-directory)
     * [Get the number of seconds the script has been running](#get-the-number-of-seconds-the-script-has-been-running)
     * [Get a pseudorandom integer](#get-a-pseudorandom-integer)
-* [Information about the terminal](#information-about-the-terminal)
+* [INFORMATION ABOUT THE TERMINAL](#information-about-the-terminal)
     * [Get the terminal size in lines and columns (*from a script*)](#get-the-terminal-size-in-lines-and-columns-from-a-script)
     * [Get the terminal size in pixels](#get-the-terminal-size-in-pixels)
     * [Get the current cursor position](#get-the-current-cursor-position)
-* [Conversion](#conversion)
+* [CONVERSION](#conversion)
     * [Convert a hex color to RGB](#convert-a-hex-color-to-rgb)
     * [Convert an RGB color to hex](#convert-an-rgb-color-to-hex)
-* [Code Golf](#code-golf)
+* [CODE GOLF](#code-golf)
     * [Shorter `for` loop syntax](#shorter-for-loop-syntax)
     * [Shorter infinite loops](#shorter-infinite-loops)
     * [Shorter function declaration](#shorter-function-declaration)
     * [Shorter `if` syntax](#shorter-if-syntax)
     * [Simpler `case` statement to set variable](#simpler-case-statement-to-set-variable)
-* [Other](#other)
+* [OTHER](#other)
     * [Use `read` as an alternative to the `sleep` command](#use-read-as-an-alternative-to-the-sleep-command)
     * [Check if a program is in the user's PATH](#check-if-a-program-is-in-the-users-path)
     * [Get the current date using `strftime`](#get-the-current-date-using-strftime)
@@ -154,14 +154,14 @@ wrong? Open an issue or send a pull request. If the bible is missing something, 
     * [Get the list of functions in a script](#get-the-list-of-functions-in-a-script)
     * [Bypass shell aliases](#bypass-shell-aliases)
     * [Bypass shell functions](#bypass-shell-functions)
-* [Afterword](#afterword)
+* [AFTERWORD](#afterword)
 
 <!-- vim-markdown-toc -->
 
 <br>
 
 <!-- CHAPTER START -->
-# Foreword
+# FOREWORD
 
 A collection of pure `bash` alternatives to external processes and programs. The `bash` scripting language is more powerful than people realise and most tasks can be accomplished without the need for or dependence on external programs.
 
@@ -172,7 +172,7 @@ The content of this book provides a reference for solving problems encountered w
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Strings
+# STRINGS
 
 ## Trim leading and trailing white-space from string
 
@@ -549,7 +549,7 @@ fi
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Arrays
+# ARRAYS
 
 ## Reverse an array
 
@@ -680,7 +680,7 @@ cycle() {
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Loops
+# LOOPS
 
 ## Loop over a range of numbers
 
@@ -776,7 +776,7 @@ shopt -u globstar
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# File handling
+# FILE HANDLING
 
 **CAVEAT:** `bash` does not handle binary data properly in versions `< 4.4`.
 
@@ -965,7 +965,7 @@ $ extract ~/projects/pure-bash/README.md '```sh' '```'
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# File Paths
+# FILE PATHS
 
 ## Get the directory name of a file path
 
@@ -1017,7 +1017,7 @@ Downloads
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Variables
+# VARIABLES
 
 ## Assign and access a variable using a variable
 
@@ -1035,7 +1035,7 @@ printf '%s\n' "${!var2}"
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Escape Sequences
+# ESCAPE SEQUENCES
 
 Contrary to popular belief, there is no issue in utilizing raw escape sequences. Using `tput` abstracts the same ANSI sequences as if printed manually. Worse still, `tput` is not actually portable. There are a number of `tput` variants each with different commands and syntaxes (*try `tput setaf 3` on a FreeBSD system*). Raw sequences are fine.
 
@@ -1093,7 +1093,7 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Parameter Expansion
+# PARAMETER EXPANSION
 
 ## Indirection
 
@@ -1162,7 +1162,7 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Brace Expansion
+# BRACE EXPANSION
 
 ## Ranges
 
@@ -1205,7 +1205,7 @@ rm -rf ~/Downloads/{Movies,Music,ISOS}
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Arithmetic
+# ARITHMETIC
 
 ## Simpler syntax to set variables
 
@@ -1223,7 +1223,7 @@ rm -rf ~/Downloads/{Movies,Music,ISOS}
 ((var=var2*arr[2]))
 ```
 
-## Ternary tests
+## Ternary Tests
 
 ```shell
 # Set the value of var to var2 if var2 is greater than var.
@@ -1237,7 +1237,7 @@ rm -rf ~/Downloads/{Movies,Music,ISOS}
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Traps
+# TRAPS
 
 Traps allow a script to execute code on various signals. In [pxltrm](https://github.com/dylanaraps/pxltrm) (*a pixel art editor written in bash*)  traps are used to redraw the user interface on window resize. Another use case is cleaning up temporary files on script exit.
 
@@ -1281,7 +1281,7 @@ trap 'code_here' RETURN
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Performance
+# PERFORMANCE
 
 ## Disable Unicode
 
@@ -1296,7 +1296,7 @@ LANG=C
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Obsolete Syntax
+# OBSOLETE SYNTAX
 
 ## Shebang
 
@@ -1349,7 +1349,7 @@ function do_something() {
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Internal Variables
+# INTERNAL VARIABLES
 
 ## Get the location to the `bash` binary
 
@@ -1444,7 +1444,7 @@ Each time `$RANDOM` is used, a different integer between `0` and `32767` is retu
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Information about the terminal
+# INFORMATION ABOUT THE TERMINAL
 
 ## Get the terminal size in lines and columns (*from a script*)
 
@@ -1524,7 +1524,7 @@ $ get_cursor_pos
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Conversion
+# CONVERSION
 
 ## Convert a hex color to RGB
 
@@ -1568,7 +1568,7 @@ $ rgb_to_hex "255" "255" "255"
 ```
 
 
-# Code Golf
+# CODE GOLF
 
 ## Shorter `for` loop syntax
 
@@ -1676,7 +1676,7 @@ os="$_"
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
-# Other
+# OTHER
 
 ## Use `read` as an alternative to the `sleep` command
 
@@ -1867,7 +1867,7 @@ command ls
 
 <!-- CHAPTER END -->
 
-# Afterword
+# AFTERWORD
 
 Thanks for reading! If this bible helped you in any way and you'd like to give back, consider donating. Donations give me the time to make this the best resource possible. Can't donate? That's OK, star the repo and share it with your friends!
 
