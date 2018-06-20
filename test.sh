@@ -180,7 +180,7 @@ main() {
     done < README.md > readme_code
 
     # Run shellcheck and source the code.
-    shellcheck -s bash readme_code || exit 1
+    shellcheck -s bash readme_code test.sh build.sh || exit 1
     . readme_code
 
     head="-> Running tests on the Pure Bash Bible.."

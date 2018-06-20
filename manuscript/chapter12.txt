@@ -1,0 +1,14 @@
+# Performance
+
+## Disable Unicode
+
+If your script doesn't require unicode, you can disable it for a speed boost. Results may vary but I've seen an improvement in Neofetch and some other smaller programs.
+
+```shell
+# Disable unicode.
+LC_ALL=C
+LANG=C
+```
+
+<!-- CHAPTER END -->
+

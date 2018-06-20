@@ -41,6 +41,7 @@ scripts and not full blown utilities.
 
 <br>
 
+<!-- CHAPTER START -->
 # Table of Contents
 
 <!-- vim-markdown-toc GFM -->
@@ -154,8 +155,11 @@ scripts and not full blown utilities.
 
 <!-- vim-markdown-toc -->
 
+<!-- CHAPTER END -->
+
 <br>
 
+<!-- CHAPTER START -->
 # Strings
 
 ## Trim leading and trailing white-space from string
@@ -530,7 +534,9 @@ if [[ "$var" != *sub_string ]]; then
 fi
 ```
 
+<!-- CHAPTER END -->
 
+<!-- CHAPTER START -->
 # Arrays
 
 ## Reverse an array
@@ -659,6 +665,9 @@ cycle() {
 }
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Loops
 
 ## Loop over a range of numbers
@@ -752,6 +761,9 @@ done
 shopt -u globstar
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # File handling
 
 **CAVEAT:** `bash` doesn't handle binary data properly in versions `< 4.4`.
@@ -939,7 +951,9 @@ $ extract ~/projects/pure-bash/README.md '```sh' '```'
 # Output here...
 ```
 
+<!-- CHAPTER END -->
 
+<!-- CHAPTER START -->
 # File Paths
 
 ## Get the directory name of a file path
@@ -989,6 +1003,9 @@ $ basename ~/Pictures/Downloads/
 Downloads
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Variables
 
 ## Assign and access a variable using a variable
@@ -1004,6 +1021,9 @@ var2="hello_${var1}"
 printf '%s\n' "${!var2}"
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Escape Sequences
 
 Contrary to popular belief, there's no issue in using raw escape sequences. Using `tput` just abstracts the same ANSI escape sequences. What's worse is that `tput` isn't actually portable, there are a number of different `tput` variants on different Operating Systems each with different commands (*try and run `tput setaf 3` on a FreeBSD system*). The easiest solution ends up being raw ANSI sequences.
@@ -1059,7 +1079,9 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 | `\e[2J\e[H` | Clear the screen and move cursor to `0,0`.
 
 
+<!-- CHAPTER END -->
 
+<!-- CHAPTER START -->
 # Parameter Expansion
 
 ## Indirection
@@ -1126,6 +1148,9 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 | `${VAR?STRING}` | Display an error if unset.
 
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Brace Expansion
 
 ## Ranges
@@ -1166,6 +1191,9 @@ echo {apples,oranges,pears,grapes}
 rm -rf ~/Downloads/{Movies,Music,ISOS}
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Arithmetic
 
 ## Simpler syntax to set variables
@@ -1195,6 +1223,9 @@ rm -rf ~/Downloads/{Movies,Music,ISOS}
 ((var=var2>var?var2:var))
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Traps
 
 Traps allow you to execute code on various signals. In `pxltrm` I'm using traps to redraw the user interface on window resize. Another use case is cleaning up temporary files on script exit.
@@ -1236,6 +1267,9 @@ trap 'code_here' DEBUG
 trap 'code_here' RETURN
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Performance
 
 ## Disable Unicode
@@ -1248,6 +1282,9 @@ LC_ALL=C
 LANG=C
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Obsolete Syntax
 
 ## Shebang
@@ -1298,7 +1335,9 @@ function do_something() {
 }
 ```
 
+<!-- CHAPTER END -->
 
+<!-- CHAPTER START -->
 # Internal Variables
 
 **NOTE**: This list does not include every internal variable (*You can
@@ -1397,6 +1436,9 @@ Each time `$RANDOM` is used, a different integer between `0` and `32767` is retu
 "$RANDOM"
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Information about the terminal
 
 ## Get the terminal size in lines and columns (*from a script*)
@@ -1474,6 +1516,9 @@ $ get_cursor_pos
 1 8
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Conversion
 
 ## Convert a hex color to RGB
@@ -1623,6 +1668,9 @@ esac
 os="$_"
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Other
 
 ## Use `read` as an alternative to the `sleep` command
@@ -1814,6 +1862,9 @@ ls
 command ls
 ```
 
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 # Afterword
 
 Thanks for reading! If this bible helped you in any way and you'd like to give back, consider donating. Donations give me the time to make this the best resource possible. Can't donate? That's OK, star the repo and share it with your friends!

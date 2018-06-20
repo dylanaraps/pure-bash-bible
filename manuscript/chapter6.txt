@@ -1,0 +1,17 @@
+# Variables
+
+## Assign and access a variable using a variable
+
+```shell
+hello_world="test"
+
+# Create the variable name.
+var1="world"
+var2="hello_${var1}"
+
+# Print the value of the variable name stored in 'hello_$var1'.
+printf '%s\n' "${!var2}"
+```
+
+<!-- CHAPTER END -->
+

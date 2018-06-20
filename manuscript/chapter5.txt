@@ -1,0 +1,51 @@
+# File Paths
+
+## Get the directory name of a file path
+
+Alternative to the `dirname` command.
+
+**Example Function:**
+
+```sh
+dirname() {
+    # Usage: dirname "path"
+    printf '%s\n' "${1%/*}/"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ dirname ~/Pictures/Wallpapers/1.jpg
+/home/black/Pictures/Wallpapers/
+
+$ dirname ~/Pictures/Downloads/
+/home/black/Pictures/
+```
+
+## Get the base-name of a file path
+
+Alternative to the `basename` command.
+
+**Example Function:**
+
+```sh
+basename() {
+    # Usage: basename "path"
+    : "${1%/}"
+    printf '%s\n' "${_##*/}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ basename ~/Pictures/Wallpapers/1.jpg
+1.jpg
+
+$ basename ~/Pictures/Downloads/
+Downloads
+```
+
+<!-- CHAPTER END -->
+
