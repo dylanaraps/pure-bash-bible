@@ -166,7 +166,7 @@ scripts and not full blown utilities.
 <!-- CHAPTER START -->
 # Foreword
 
-A collection of pure `bash` alternatives to external processes and programs. The `bash` scripting language is more powerful than people realise and you can accomplish most tasks without the need or dependency of external programs.
+A collection of pure `bash` alternatives to external processes and programs. The `bash` scripting language is more powerful than people realise and most tasks can be accomplished without the need or dependency of external programs.
 
 Calling an external process in `bash` is expensive and excessive use will cause a noticeable slowdown. By sticking to built-in methods (*where possible*) your scripts and programs will be faster, require less dependencies and you'll gain a better understanding of the language itself.
 
