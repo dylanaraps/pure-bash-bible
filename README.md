@@ -9,7 +9,6 @@ src="https://travis-ci.com/dylanaraps/pure-bash-bible.svg?branch=master"></a>
 <a href="https://discord.gg/yfa5BDw"><img src="https://img.shields.io/discord/440354555197128704.svg"></a>
 <a href="./LICENSE.md"><img
 src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7QNJNKS3WYVS"><img src="https://img.shields.io/badge/donate-paypal-green.svg"></a>
 </p>
 
 <br>
@@ -44,6 +43,9 @@ scripts and not full blown utilities.
 
 <br>
 <p align="center"><b>This book is available to purchase on leanpub. https://leanpub.com/bash</b></p>
+<p align="center"><b>Or you can buy me a coffee.</b>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7QNJNKS3WYVS"><img src="https://img.shields.io/badge/donate-paypal-yellow.svg"></a> <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/donate-patreon-yellow.svg"> </a><a href="https://liberapay.com/2211/"><img src="https://img.shields.io/badge/donate-liberapay-yellow.svg"></a>
+</p>
 
 <br>
 
