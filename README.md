@@ -30,7 +30,7 @@ The snippets below are linted using `shellcheck` and tests have been
 written where applicable. Want to contribute? Have a read of
 the
 [CONTRIBUTING.md](https://github.com/dylanaraps/pure-bash-bible/blob/master/CONTRIBUTING.md).
-It outlines how the unit tests work and what's required when adding
+It outlines how the unit tests work and what is required when adding
 snippets to the bible.
 
 See something that is incorrectly described, buggy or outright
@@ -151,7 +151,7 @@ wrong? Open an issue or send a pull request. If the bible is missing something, 
     * [Get the current date using `strftime`](#get-the-current-date-using-strftime)
     * [Generate a UUID V4](#generate-a-uuid-v4)
     * [Progress bars](#progress-bars)
-    * [Get the list of functions from your script](#get-the-list-of-functions-from-your-script)
+    * [Get the list of functions in a script](#get-the-list-of-functions-in-a-script)
     * [Bypass shell aliases](#bypass-shell-aliases)
     * [Bypass shell functions](#bypass-shell-functions)
 * [Afterword](#afterword)
@@ -165,9 +165,9 @@ wrong? Open an issue or send a pull request. If the bible is missing something, 
 
 A collection of pure `bash` alternatives to external processes and programs. The `bash` scripting language is more powerful than people realise and most tasks can be accomplished without the need for or dependence on external programs.
 
-Calling an external process in `bash` is expensive and excessive use will cause a noticeable slowdown. By sticking to built-in methods *where possible* your scripts and programs will be faster, require less dependencies and you'll gain a better understanding of the language itself.
+Calling an external process in `bash` is expensive and excessive use will cause a noticeable slowdown. Scripts and programs written using built-in methods (*where applicable*) will be faster, require less dependencies and afford a better understanding of the language itself.
 
-The contents of this book provide a reference for solving the problems encountered when writing programs and scripts in `bash`. The examples are in function format showcasing how to incorporate these solutions into your code.
+The content of this book provides a reference for solving problems encountered when writing programs and scripts in `bash`. All examples are in function format showcasing how to incorporate these solutions into code.
 
 <!-- CHAPTER END -->
 
@@ -527,7 +527,7 @@ if [[ "$var" == sub_string* ]]; then
     printf '%s\n' "var starts with sub_string."
 fi
 
-# Inverse (var doesn't start with sub_string).
+# Inverse (var does not start with sub_string).
 if [[ "$var" != sub_string* ]]; then
     printf '%s\n' "var does not start with sub_string."
 fi
@@ -540,7 +540,7 @@ if [[ "$var" == *sub_string ]]; then
     printf '%s\n' "var ends with sub_string."
 fi
 
-# Inverse (var doesn't start with sub_string).
+# Inverse (var does not start with sub_string).
 if [[ "$var" != *sub_string ]]; then
     printf '%s\n' "var does not end with sub_string."
 fi
@@ -643,7 +643,7 @@ $ array=(red green blue yellow brown)
 $ random_array_element "${array[@]}"
 yellow
 
-# You can also just pass multiple arguments.
+# Multiple arguments can also be passed.
 $ random_array_element 1 2 3 4 5 6 7
 3
 ```
@@ -684,7 +684,7 @@ cycle() {
 
 ## Loop over a range of numbers
 
-Don't use `seq`.
+Alternative to `seq`.
 
 ```shell
 # Loop from 0-100 (no variable support).
@@ -695,7 +695,7 @@ done
 
 ## Loop over a variable range of numbers
 
-Don't use `seq`.
+Alternative to `seq`.
 
 ```shell
 # Loop from 0-VAR.
@@ -778,7 +778,7 @@ shopt -u globstar
 <!-- CHAPTER START -->
 # File handling
 
-**CAVEAT:** `bash` doesn't handle binary data properly in versions `< 4.4`.
+**CAVEAT:** `bash` does not handle binary data properly in versions `< 4.4`.
 
 ## Read a file to a string
 
@@ -870,8 +870,7 @@ lines() {
 
 **Example Function (bash 3):**
 
-This method uses less memory than the `mapfile` method and it's more
-compatible but it's slower for bigger files.
+This method uses less memory than the `mapfile` method and works in `bash` 3 but it is slower for bigger files.
 
 ```sh
 lines_loop() {
@@ -1038,7 +1037,7 @@ printf '%s\n' "${!var2}"
 <!-- CHAPTER START -->
 # Escape Sequences
 
-Contrary to popular belief, there's no issue in using raw escape sequences. Using `tput` just abstracts the same ANSI escape sequences. What's worse is that `tput` isn't actually portable, there are a number of different `tput` variants on different Operating Systems each with different commands (*try and run `tput setaf 3` on a FreeBSD system*). The easiest solution ends up being raw ANSI sequences.
+Contrary to popular belief, there is no issue in utilizing raw escape sequences. Using `tput` abstracts the same ANSI sequences as if printed manually. Worse still, `tput` is not actually portable. There are a number of `tput` variants each with different commands and syntaxes (*try `tput setaf 3` on a FreeBSD system*). Raw sequences are fine.
 
 ## Text Colors
 
@@ -1154,7 +1153,7 @@ Contrary to popular belief, there's no issue in using raw escape sequences. Usin
 | `${VAR-STRING}` | If `VAR` is unset, use `STRING` as it's value.
 | `${VAR:=STRING}` | If `VAR` is empty or unset, set the value of `VAR` to `STRING`.
 | `${VAR=STRING}` | If `VAR` is unset, set the value of `VAR` to `STRING`.
-| `${VAR:+STRING}` | If `VAR` isn't empty, use `STRING` as it's value.
+| `${VAR:+STRING}` | If `VAR` is not empty, use `STRING` as it's value.
 | `${VAR+STRING}` | If `VAR` is set, use `STRING` as it's value.
 | `${VAR:?STRING}` | Display an error if empty or unset.
 | `${VAR?STRING}` | Display an error if unset.
@@ -1240,9 +1239,9 @@ rm -rf ~/Downloads/{Movies,Music,ISOS}
 <!-- CHAPTER START -->
 # Traps
 
-Traps allow you to execute code on various signals. In `pxltrm` I'm using traps to redraw the user interface on window resize. Another use case is cleaning up temporary files on script exit.
+Traps allow a script to execute code on various signals. In [pxltrm](https://github.com/dylanaraps/pxltrm) (*a pixel art editor written in bash*)  traps are used to redraw the user interface on window resize. Another use case is cleaning up temporary files on script exit.
 
-These `trap` lines should be added near the start of your script so any early errors are also caught.
+Traps should be added near the start of scripts so any early errors are also caught.
 
 **NOTE:** For a full list of signals, see `trap -l`.
 
@@ -1286,7 +1285,7 @@ trap 'code_here' RETURN
 
 ## Disable Unicode
 
-If your script doesn't require unicode, you can disable it for a speed boost. Results may vary but I've seen an improvement in Neofetch and some other smaller programs.
+If unicode is not required, it can be disabled for a performance increase. Results may vary however there have been noticeable improvements in [neofetch](https://github.com/dylanaraps/neofetch) and other programs.
 
 ```shell
 # Disable unicode.
@@ -1333,7 +1332,7 @@ var="$(command "$(command)")"
 
 ## Function Declaration
 
-Don't use the `function` keyword, it reduces compatibility with older versions of `bash`.
+Do not use the `function` keyword, it reduces compatibility with older versions of `bash`.
 
 ```shell
 # Right.
@@ -1351,12 +1350,6 @@ function do_something() {
 
 <!-- CHAPTER START -->
 # Internal Variables
-
-**NOTE**: This list does not include every internal variable (*You can
-help by adding a missing entry!*).
-
-For a complete list, see:
-http://tldp.org/LDP/abs/html/internalvariables.html
 
 ## Get the location to the `bash` binary
 
@@ -1613,13 +1606,13 @@ f(){ echo hi;}
 f()(echo hi)
 
 # Using arithmetic
-# You can use this to assign integer values.
+# This can be used to assign integet values.
 # Example: f a=1
 #          f a++
 f()(($1))
 
 # Using tests, loops etc.
-# NOTE: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
+# NOTE: ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’ can also be used.
 f()if true; then echo "$1"; fi
 f()for i in "$@"; do echo "$i"; done
 ```
@@ -1687,8 +1680,7 @@ os="$_"
 
 ## Use `read` as an alternative to the `sleep` command
 
-I was surprised to find out `sleep` is an external command and isn't a
-built-in.
+Surprisingly, `sleep` is an external command and not a `bash` built-in.
 
 **CAVEAT:** Requires `bash` 4+
 
@@ -1713,8 +1705,7 @@ read_sleep 30
 ## Check if a program is in the user's PATH
 
 ```shell
-# There are 3 ways to do this and you can use either of
-# these in the same way.
+# There are 3 ways to do this and either one can be used.
 type -p executable_name &>/dev/null
 hash executable_name &>/dev/null
 command -v executable_name &>/dev/null
@@ -1729,9 +1720,9 @@ if ! type -p executable_name &>/dev/null; then
     # Program is not in PATH.
 fi
 
-# Example (Exit early if program isn't installed).
+# Example (Exit early if program is not installed).
 if ! type -p convert &>/dev/null; then
-    printf '%s\n' "error: convert isn't installed, exiting..."
+    printf '%s\n' "error: convert is not installed, exiting..."
     exit 1
 fi
 ```
@@ -1843,7 +1834,7 @@ done
 printf '\n'
 ```
 
-## Get the list of functions from your script
+## Get the list of functions in a script
 
 ```sh
 get_functions() {
