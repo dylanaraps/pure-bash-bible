@@ -19,7 +19,7 @@ src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 
 The goal of this book is to document known and unknown methods of
 doing various tasks using only built-in `bash` features. Using the snippets
-from this bible can help to remove unneeded dependencies from your scripts
+from this bible can help to remove unneeded dependencies from scripts
 and in most cases make them that little bit faster. I came across these
 tips and discovered a few while developing
 [neofetch](https://github.com/dylanaraps/neofetch),
@@ -27,24 +27,19 @@ tips and discovered a few while developing
 projects.
 
 The snippets below are linted using `shellcheck` and tests have been
-written where applicable. If you're looking to contribute, have a read of
+written where applicable. Want to contribute? Have a read of
 the
 [CONTRIBUTING.md](https://github.com/dylanaraps/pure-bash-bible/blob/master/CONTRIBUTING.md).
 It outlines how the unit tests work and what's required when adding
 snippets to the bible.
 
-If you see something that is incorrectly described, buggy or outright
-wrong, open an issue or send a pull request. If you know a handy snippet
-that is not included in this list, contribute! If the bible is missing something, open an issue and I or others will come up with a solution.
-
-**NOTE**: Error handling (*checking if a file exists, etc*) is not
-included. These are meant to be snippets you can incorporate into your
-scripts and not full blown utilities.
+See something that is incorrectly described, buggy or outright
+wrong? Open an issue or send a pull request. If the bible is missing something, open an issue and a solution will be found.
 
 <br>
 <p align="center"><b>This book is available to purchase on leanpub. https://leanpub.com/bash</b></p>
 <p align="center"><b>Or you can buy me a coffee.</b>
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7QNJNKS3WYVS"><img src="https://img.shields.io/badge/donate-paypal-yellow.svg"></a> <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/donate-patreon-yellow.svg"> </a><a href="https://liberapay.com/2211/"><img src="https://img.shields.io/badge/donate-liberapay-yellow.svg"></a>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7QNJNKS3WYVS"><img src="https://img.shields.io/badge/don-paypal-yellow.svg"></a> <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/don-patreon-yellow.svg"> </a><a href="https://liberapay.com/2211/"><img src="https://img.shields.io/badge/don-liberapay-yellow.svg"></a>
 </p>
 
 <br>
