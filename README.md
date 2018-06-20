@@ -14,6 +14,10 @@ src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 
 <br>
 
+<a href="https://leanpub.com/bash/">
+<img src="https://s3.amazonaws.com/titlepages.leanpub.com/bash/hero" width="40%" align="right">
+</a>
+
 The goal of this book is to document known and unknown methods of
 doing various tasks using only built-in `bash` features. Using the snippets
 from this bible can help to remove unneeded dependencies from your scripts
@@ -38,6 +42,8 @@ that is not included in this list, contribute! If the bible is missing something
 included. These are meant to be snippets you can incorporate into your
 scripts and not full blown utilities.
 
+<br>
+<p align="center"><b>This book is available to purchase on leanpub. https://leanpub.com/bash</b></p>
 
 <br>
 
