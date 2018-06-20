@@ -1,8 +1,8 @@
-# Performance
+# PERFORMANCE
 
 ## Disable Unicode
 
-If your script doesn't require unicode, you can disable it for a speed boost. Results may vary but I've seen an improvement in Neofetch and some other smaller programs.
+If unicode is not required, it can be disabled for a performance increase. Results may vary however there have been noticeable improvements in [neofetch](https://github.com/dylanaraps/neofetch) and other programs.
 
 ```shell
 # Disable unicode.

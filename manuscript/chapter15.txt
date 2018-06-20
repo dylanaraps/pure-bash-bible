@@ -1,4 +1,4 @@
-# Information about the terminal
+# INFORMATION ABOUT THE TERMINAL
 
 ## Get the terminal size in lines and columns (*from a script*)
 

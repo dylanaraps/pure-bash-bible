@@ -1,4 +1,4 @@
-# Arithmetic
+# ARITHMETIC
 
 ## Simpler syntax to set variables
 
@@ -16,7 +16,7 @@
 ((var=var2*arr[2]))
 ```
 
-## Ternary tests
+## Ternary Tests
 
 ```shell
 # Set the value of var to var2 if var2 is greater than var.

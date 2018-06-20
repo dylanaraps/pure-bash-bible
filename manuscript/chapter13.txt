@@ -1,4 +1,4 @@
-# Obsolete Syntax
+# OBSOLETE SYNTAX
 
 ## Shebang
 
@@ -34,7 +34,7 @@ var="$(command "$(command)")"
 
 ## Function Declaration
 
-Don't use the `function` keyword, it reduces compatibility with older versions of `bash`.
+Do not use the `function` keyword, it reduces compatibility with older versions of `bash`.
 
 ```shell
 # Right.

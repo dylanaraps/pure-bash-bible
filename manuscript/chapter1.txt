@@ -1,4 +1,4 @@
-# Strings
+# STRINGS
 
 ## Trim leading and trailing white-space from string
 
@@ -353,7 +353,7 @@ if [[ "$var" == sub_string* ]]; then
     printf '%s\n' "var starts with sub_string."
 fi
 
-# Inverse (var doesn't start with sub_string).
+# Inverse (var does not start with sub_string).
 if [[ "$var" != sub_string* ]]; then
     printf '%s\n' "var does not start with sub_string."
 fi
@@ -366,7 +366,7 @@ if [[ "$var" == *sub_string ]]; then
     printf '%s\n' "var ends with sub_string."
 fi
 
-# Inverse (var doesn't start with sub_string).
+# Inverse (var does not start with sub_string).
 if [[ "$var" != *sub_string ]]; then
     printf '%s\n' "var does not end with sub_string."
 fi

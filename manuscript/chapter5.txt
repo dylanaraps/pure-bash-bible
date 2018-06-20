@@ -1,4 +1,4 @@
-# File Paths
+# FILE PATHS
 
 ## Get the directory name of a file path
 

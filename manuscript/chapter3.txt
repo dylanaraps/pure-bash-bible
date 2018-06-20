@@ -1,8 +1,8 @@
-# Loops
+# LOOPS
 
 ## Loop over a range of numbers
 
-Don't use `seq`.
+Alternative to `seq`.
 
 ```shell
 # Loop from 0-100 (no variable support).
@@ -13,7 +13,7 @@ done
 
 ## Loop over a variable range of numbers
 
-Don't use `seq`.
+Alternative to `seq`.
 
 ```shell
 # Loop from 0-VAR.

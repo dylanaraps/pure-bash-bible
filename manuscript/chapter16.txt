@@ -1,4 +1,4 @@
-# Conversion
+# CONVERSION
 
 ## Convert a hex color to RGB
 
@@ -42,7 +42,7 @@ $ rgb_to_hex "255" "255" "255"
 ```
 
 
-# Code Golf
+# CODE GOLF
 
 ## Shorter `for` loop syntax
 
@@ -80,13 +80,13 @@ f(){ echo hi;}
 f()(echo hi)
 
 # Using arithmetic
-# You can use this to assign integer values.
+# This can be used to assign integer values.
 # Example: f a=1
 #          f a++
 f()(($1))
 
 # Using tests, loops etc.
-# NOTE: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
+# NOTE: ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’ can also be used.
 f()if true; then echo "$1"; fi
 f()for i in "$@"; do echo "$i"; done
 ```

@@ -1,9 +1,8 @@
-# Other
+# OTHER
 
 ## Use `read` as an alternative to the `sleep` command
 
-I was surprised to find out `sleep` is an external command and isn't a
-built-in.
+Surprisingly, `sleep` is an external command and not a `bash` built-in.
 
 **CAVEAT:** Requires `bash` 4+
 
@@ -28,8 +27,7 @@ read_sleep 30
 ## Check if a program is in the user's PATH
 
 ```shell
-# There are 3 ways to do this and you can use either of
-# these in the same way.
+# There are 3 ways to do this and either one can be used.
 type -p executable_name &>/dev/null
 hash executable_name &>/dev/null
 command -v executable_name &>/dev/null
@@ -44,9 +42,9 @@ if ! type -p executable_name &>/dev/null; then
     # Program is not in PATH.
 fi
 
-# Example (Exit early if program isn't installed).
+# Example (Exit early if program is not installed).
 if ! type -p convert &>/dev/null; then
-    printf '%s\n' "error: convert isn't installed, exiting..."
+    printf '%s\n' "error: convert is not installed, exiting..."
     exit 1
 fi
 ```
@@ -158,7 +156,7 @@ done
 printf '\n'
 ```
 
-## Get the list of functions from your script
+## Get the list of functions in a script
 
 ```sh
 get_functions() {

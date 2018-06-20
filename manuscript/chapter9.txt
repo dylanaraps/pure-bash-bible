@@ -1,4 +1,4 @@
-# Brace Expansion
+# BRACE EXPANSION
 
 ## Ranges
 

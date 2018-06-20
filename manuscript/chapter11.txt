@@ -1,8 +1,8 @@
-# Traps
+# TRAPS
 
-Traps allow you to execute code on various signals. In `pxltrm` I'm using traps to redraw the user interface on window resize. Another use case is cleaning up temporary files on script exit.
+Traps allow a script to execute code on various signals. In [pxltrm](https://github.com/dylanaraps/pxltrm) (*a pixel art editor written in bash*)  traps are used to redraw the user interface on window resize. Another use case is cleaning up temporary files on script exit.
 
-These `trap` lines should be added near the start of your script so any early errors are also caught.
+Traps should be added near the start of scripts so any early errors are also caught.
 
 **NOTE:** For a full list of signals, see `trap -l`.
 

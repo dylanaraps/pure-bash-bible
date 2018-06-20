@@ -1,4 +1,4 @@
-# Variables
+# VARIABLES
 
 ## Assign and access a variable using a variable
 

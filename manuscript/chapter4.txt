@@ -1,6 +1,6 @@
-# File handling
+# FILE HANDLING
 
-**CAVEAT:** `bash` doesn't handle binary data properly in versions `< 4.4`.
+**CAVEAT:** `bash` does not handle binary data properly in versions `< 4.4`.
 
 ## Read a file to a string
 
@@ -92,8 +92,7 @@ lines() {
 
 **Example Function (bash 3):**
 
-This method uses less memory than the `mapfile` method and it's more
-compatible but it's slower for bigger files.
+This method uses less memory than the `mapfile` method and works in `bash` 3 but it is slower for bigger files.
 
 ```sh
 lines_loop() {
