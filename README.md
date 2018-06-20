@@ -167,7 +167,7 @@ A collection of pure `bash` alternatives to external processes and programs. The
 
 Calling an external process in `bash` is expensive and excessive use will cause a noticeable slowdown. Scripts and programs written using built-in methods (*where applicable*) will be faster, require less dependencies and afford a better understanding of the language itself.
 
-The content of this book provides a reference for solving problems encountered when writing programs and scripts in `bash`. All examples are in function format showcasing how to incorporate these solutions into code.
+The content of this book provides a reference for solving problems encountered when writing programs and scripts in `bash`. Examples are in function format showcasing how to incorporate these solutions into code.
 
 <!-- CHAPTER END -->
 
@@ -1606,7 +1606,7 @@ f(){ echo hi;}
 f()(echo hi)
 
 # Using arithmetic
-# This can be used to assign integet values.
+# This can be used to assign integer values.
 # Example: f a=1
 #          f a++
 f()(($1))
