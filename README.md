@@ -45,7 +45,7 @@ scripts and not full blown utilities.
 
 <!-- vim-markdown-toc GFM -->
 
-* [Introduction](#introduction)
+* [Foreword](#foreword)
 * [Strings](#strings)
     * [Trim leading and trailing white-space from string](#trim-leading-and-trailing-white-space-from-string)
     * [Trim all white-space from string and truncate spaces](#trim-all-white-space-from-string-and-truncate-spaces)
@@ -158,7 +158,7 @@ scripts and not full blown utilities.
 <br>
 
 <!-- CHAPTER START -->
-# Introduction
+# Foreword
 
 A collection of pure `bash` alternatives to external processes and programs. The `bash` scripting language is more powerful than people realise and you can accomplish most tasks without the need or dependency of external programs.
 
