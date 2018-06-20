@@ -61,7 +61,7 @@ John Black is my name.
 
 ## Use regex on a string
 
-We can use the result of `bash`'s regex matching to replace `sed` for a
+The result of `bash`'s regex matching can be used to replace `sed` for a
 large number of use-cases.
 
 **CAVEAT**: This is one of the few platform dependant `bash` features.

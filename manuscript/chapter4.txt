@@ -117,8 +117,7 @@ $ lines_loop ~/.bashrc
 
 ## Count files or directories in directory
 
-This works by passing the output of the glob as function arguments. We
-then count the arguments and print the number.
+This works by passing the output of the glob to the function and then counting the number of arguments.
 
 **Example Function:**
 

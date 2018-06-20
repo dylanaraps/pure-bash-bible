@@ -51,8 +51,7 @@ fi
 
 ## Get the current date using `strftime`
 
-Bash’s `printf` has a built-in method of getting the date which we can use
-in place of the `date` command in a lot of cases.
+Bash’s `printf` has a built-in method of getting the date which can be used in place of the `date` command.
 
 **CAVEAT:** Requires `bash` 4+
 
