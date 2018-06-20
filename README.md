@@ -235,7 +235,7 @@ John Black is my name.
 
 ## Use regex on a string
 
-We can use the result of `bash`'s regex matching to replace `sed` for a
+The result of `bash`'s regex matching can be used to replace `sed` for a
 large number of use-cases.
 
 **CAVEAT**: This is one of the few platform dependant `bash` features.
@@ -895,8 +895,7 @@ $ lines_loop ~/.bashrc
 
 ## Count files or directories in directory
 
-This works by passing the output of the glob as function arguments. We
-then count the arguments and print the number.
+This works by passing the output of the glob to the function and then counting the number of arguments.
 
 **Example Function:**
 
@@ -1639,10 +1638,7 @@ f()for i in "$@"; do echo "$i"; done
 
 ## Simpler `case` statement to set variable
 
-We can use the `:` builtin to avoid repeating `variable=` in a case
-statement. The `$_` variable stores the last argument of the last
-successful command. `:` always succeeds so we can abuse it to store the
-variable value.
+The `:` built-in can be used to avoid repeating `variable=` in a case statement. The `$_` variable stores the last argument of the last command. `:` always succeeds so it can be used to store the variable value.
 
 ```shell
 # Modified snippet from Neofetch.
@@ -1729,8 +1725,7 @@ fi
 
 ## Get the current date using `strftime`
 
-Bash’s `printf` has a built-in method of getting the date which we can use
-in place of the `date` command in a lot of cases.
+Bash’s `printf` has a built-in method of getting the date which can be used in place of the `date` command.
 
 **CAVEAT:** Requires `bash` 4+
 
