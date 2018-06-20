@@ -1,99 +1,51 @@
-# Internal Variables
+# Obsolete Syntax
 
-**NOTE**: This list does not include every internal variable (*You can
-help by adding a missing entry!*).
+## Shebang
 
-For a complete list, see:
-http://tldp.org/LDP/abs/html/internalvariables.html
+Use `#!/usr/bin/env bash` instead of `#!/bin/bash`.
 
-## Get the location to the `bash` binary
+- The former searches the user's `PATH` to find the `bash` binary.
+- The latter assumes it is always installed to `/bin/` which can cause issues.
 
 ```shell
-"$BASH"
+# Right:
+
+    #!/usr/bin/env bash
+
+# Wrong:
+
+    #!/bin/bash
 ```
 
-## Get the version of the current running `bash` process
+## Command Substitution
+
+Use `$()` instead of `` ` ` ``.
 
 ```shell
-# As a string.
-"$BASH_VERSION"
+# Right.
+var="$(command)"
 
-# As an array.
-"${BASH_VERSINFO[@]}"
+# Wrong.
+var=`command`
+
+# $() can easily be nested whereas `` cannot.
+var="$(command "$(command)")"
 ```
 
-## Open the user's preferred text editor
+## Function Declaration
+
+Don't use the `function` keyword, it reduces compatibility with older versions of `bash`.
 
 ```shell
-"$EDITOR" "$file"
+# Right.
+do_something() {
+    # ...
+}
 
-# NOTE: This variable may be empty, set a fallback value.
-"${EDITOR:-vi}" "$file"
-```
-
-## Get the name of the current function
-
-```shell
-# Current function.
-"${FUNCNAME[0]}"
-
-# Parent function.
-"${FUNCNAME[1]}"
-
-# So on and so forth.
-"${FUNCNAME[2]}"
-"${FUNCNAME[3]}"
-
-# All functions including parents.
-"${FUNCNAME[@]}"
-```
-
-## Get the host-name of the system
-
-```shell
-"$HOSTNAME"
-
-# NOTE: This variable may be empty.
-# Optionally set a fallback to the hostname command.
-"${HOSTNAME:-$(hostname)}"
-```
-
-## Get the architecture of the Operating System
-
-```shell
-"$HOSTTYPE"
-```
-
-## Get the name of the Operating System / Kernel
-
-This can be used to add conditional support for different Operating
-Systems without needing to call `uname`.
-
-```shell
-"$OSTYPE"
-```
-
-## Get the current working directory
-
-This is an alternative to the `pwd` built-in.
-
-```shell
-"$PWD"
-```
-
-## Get the number of seconds the script has been running
-
-```shell
-"$SECONDS"
-```
-
-## Get a pseudorandom integer
-
-Each time `$RANDOM` is used, a different integer between `0` and `32767` is returned. This variable should not be used for anything related to security (*this includes encryption keys etc*).
-
-
-```shell
-"$RANDOM"
+# Wrong.
+function do_something() {
+    # ...
+}
 ```
 
 <!-- CHAPTER END -->

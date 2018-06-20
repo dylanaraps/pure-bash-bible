@@ -1,94 +1,129 @@
-# Loops
+# Arrays
 
-## Loop over a range of numbers
+## Reverse an array
 
-Don't use `seq`.
+Enabling `extdebug` allows access to the `BASH_ARGV` array which stores
+the current function’s arguments in reverse.
 
-```shell
-# Loop from 0-100 (no variable support).
-for i in {0..100}; do
-    printf '%s\n' "$i"
-done
+**Example Function:**
+
+```sh
+reverse_array() {
+    # Usage: reverse_array "array"
+    shopt -s extdebug
+    f()(printf '%s\n' "${BASH_ARGV[@]}"); f "$@"
+    shopt -u extdebug
+}
 ```
 
-## Loop over a variable range of numbers
-
-Don't use `seq`.
+**Example Usage:**
 
 ```shell
-# Loop from 0-VAR.
-VAR=50
-for ((i=0;i<=VAR;i++)); do
-    printf '%s\n' "$i"
-done
+$ reverse_array 1 2 3 4 5
+5
+4
+3
+2
+1
+
+$ arr=(red blue green)
+$ reverse_array "${arr[@]}"
+green
+blue
+red
 ```
 
-## Loop over an array
+## Remove duplicate array elements
 
-```shell
-arr=(apples oranges tomatoes)
+Create a temporary associative array. When setting associative array
+values and a duplicate assignment occurs, bash overwrites the key. This
+allows us to effectively remove array duplicates.
 
-# Just elements.
-for element in "${arr[@]}"; do
-    printf '%s\n' "$element"
-done
+**CAVEAT:** Requires `bash` 4+
+
+**Example Function:**
+
+```sh
+remove_array_dups() {
+    # Usage: remove_array_dups "array"
+    declare -A tmp_array
+
+    for i in "$@"; do
+        [[ "$i" ]] && IFS=" " tmp_array["${i:- }"]=1
+    done
+
+    printf '%s\n' "${!tmp_array[@]}"
+}
 ```
 
-## Loop over an array with an index
+**Example Usage:**
 
 ```shell
-arr=(apples oranges tomatoes)
+$ remove_array_dups 1 1 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 5
+1
+2
+3
+4
+5
 
-# Elements and index.
-for i in "${!arr[@]}"; do
-    printf '%s\n' "${arr[$i]}"
-done
-
-# Alternative method.
-for ((i=0;i<${#arr[@]};i++)); do
-    printf '%s\n' "${arr[$i]}"
-done
+$ arr=(red red green blue blue)
+$ remove_array_dups "${arr[@]}"
+red
+green
+blue
 ```
 
-## Loop over the contents of a file
+## Random array element
 
-```shell
-while read -r line; do
-    printf '%s\n' "$line"
-done < "file"
+**Example Function:**
+
+```sh
+random_array_element() {
+    # Usage: random_array_element "array"
+    local arr=("$@")
+    printf '%s\n' "${arr[RANDOM % $#]}"
+}
 ```
 
-## Loop over files and directories
-
-Don’t use `ls`.
+**Example Usage:**
 
 ```shell
-# Greedy example.
-for file in *; do
-    printf '%s\n' "$file"
-done
+$ array=(red green blue yellow brown)
+$ random_array_element "${array[@]}"
+yellow
 
-# PNG files in dir.
-for file in ~/Pictures/*.png; do
-    printf '%s\n' "$file"
-done
+# You can also just pass multiple arguments.
+$ random_array_element 1 2 3 4 5 6 7
+3
+```
 
-# Iterate over directories.
-for dir in ~/Downloads/*/; do
-    printf '%s\n' "$dir"
-done
+## Cycle through an array
 
-# Brace Expansion.
-for file in /path/to/parentdir/{file1,file2,subdir/file3}; do
-    printf '%s\n' "$file"
-done
+Each time the `printf` is called, the next array element is printed. When
+the print hits the last array element it starts from the first element
+again.
 
-# Iterate recursively.
-shopt -s globstar
-for file in ~/Pictures/**/*; do
-    printf '%s\n' "$file"
-done
-shopt -u globstar
+```sh
+arr=(a b c d)
+
+cycle() {
+    printf '%s ' "${arr[${i:=0}]}"
+    ((i=i>=${#arr[@]}-1?0:++i))
+}
+```
+
+
+## Toggle between two values
+
+This works the same as above, this is just a different use case.
+
+```sh
+arr=(true false)
+
+cycle() {
+    printf '%s ' "${arr[${i:=0}]}"
+    ((i=i>=${#arr[@]}-1?0:++i))
+}
 ```
 
 <!-- CHAPTER END -->

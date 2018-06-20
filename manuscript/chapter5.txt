@@ -1,16 +1,50 @@
-# Variables
+# File Paths
 
-## Assign and access a variable using a variable
+## Get the directory name of a file path
+
+Alternative to the `dirname` command.
+
+**Example Function:**
+
+```sh
+dirname() {
+    # Usage: dirname "path"
+    printf '%s\n' "${1%/*}/"
+}
+```
+
+**Example Usage:**
 
 ```shell
-hello_world="test"
+$ dirname ~/Pictures/Wallpapers/1.jpg
+/home/black/Pictures/Wallpapers/
 
-# Create the variable name.
-var1="world"
-var2="hello_${var1}"
+$ dirname ~/Pictures/Downloads/
+/home/black/Pictures/
+```
 
-# Print the value of the variable name stored in 'hello_$var1'.
-printf '%s\n' "${!var2}"
+## Get the base-name of a file path
+
+Alternative to the `basename` command.
+
+**Example Function:**
+
+```sh
+basename() {
+    # Usage: basename "path"
+    : "${1%/}"
+    printf '%s\n' "${_##*/}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ basename ~/Pictures/Wallpapers/1.jpg
+1.jpg
+
+$ basename ~/Pictures/Downloads/
+Downloads
 ```
 
 <!-- CHAPTER END -->

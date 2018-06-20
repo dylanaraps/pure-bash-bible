@@ -1,192 +1,150 @@
-# Other
+# Conversion
 
-## Use `read` as an alternative to the `sleep` command
-
-I was surprised to find out `sleep` is an external command and isn't a
-built-in.
-
-**CAVEAT:** Requires `bash` 4+
+## Convert a hex color to RGB
 
 **Example Function:**
 
 ```sh
-read_sleep() {
-    # Usage: sleep 1
-    #        sleep 0.2
-    read -rst "${1:-1}" -N 999
+hex_to_rgb() {
+    # Usage: hex_to_rgb "#FFFFFF"
+    ((r=16#${1:1:2}))
+    ((g=16#${1:3:2}))
+    ((b=16#${1:5:6}))
+
+    printf '%s\n' "$r $g $b"
 }
 ```
 
 **Example Usage:**
 
 ```shell
-read_sleep 1
-read_sleep 0.1
-read_sleep 30
+$ hex_to_rgb "#FFFFFF"
+255 255 255
 ```
 
-## Check if a program is in the user's PATH
 
-```shell
-# There are 3 ways to do this and you can use either of
-# these in the same way.
-type -p executable_name &>/dev/null
-hash executable_name &>/dev/null
-command -v executable_name &>/dev/null
-
-# As a test.
-if type -p executable_name &>/dev/null; then
-    # Program is in PATH.
-fi
-
-# Inverse.
-if ! type -p executable_name &>/dev/null; then
-    # Program is not in PATH.
-fi
-
-# Example (Exit early if program isn't installed).
-if ! type -p convert &>/dev/null; then
-    printf '%s\n' "error: convert isn't installed, exiting..."
-    exit 1
-fi
-```
-
-## Get the current date using `strftime`
-
-Bash’s `printf` has a built-in method of getting the date which we can use
-in place of the `date` command in a lot of cases.
-
-**CAVEAT:** Requires `bash` 4+
+## Convert an RGB color to hex
 
 **Example Function:**
 
 ```sh
-date() {
-    # Usage: date "format"
-    # See: 'man strftime' for format.
-    printf "%($1)T\\n" "-1"
+rgb_to_hex() {
+    # Usage: rgb_to_hex "r" "g" "b"
+    printf '#%02x%02x%02x\n' "$1" "$2" "$3"
 }
 ```
 
 **Example Usage:**
 
 ```shell
-# Using above function.
-$ date "%a %d %b  - %l:%M %p"
-Fri 15 Jun  - 10:00 AM
-
-# Using printf directly.
-$ printf '%(%a %d %b  - %l:%M %p)T\n' "-1"
-Fri 15 Jun  - 10:00 AM
-
-# Assigning a variable using printf.
-$ printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
-$ printf '%s\n' "$date"
-Fri 15 Jun  - 10:00 AM
+$ rgb_to_hex "255" "255" "255"
+#FFFFFF
 ```
 
-## Generate a UUID V4
 
-**Example Function:**
+# Code Golf
 
-```sh
-uuid() {
-    # Usage: uuid
-    C="89ab"
+## Shorter `for` loop syntax
 
-    for ((N=0;N<16;++N)); do
-        B="$((RANDOM%256))"
+```shell
+# Tiny C Style.
+for((;i++<10;)){ echo "$i";}
 
-        case "$N" in
-            6)  printf '4%x' "$((B%16))" ;;
-            8)  printf '%c%x' "${C:$RANDOM%${#C}:1}" "$((B%16))" ;;
+# Undocumented method.
+for i in {1..10};{ echo "$i";}
 
-            3|5|7|9)
-                printf '%02x-' "$B"
-            ;;
+# Expansion.
+for i in {1..10}; do echo "$i"; done
 
-            *)
-                printf '%02x' "$B"
-            ;;
-        esac
-    done
+# C Style.
+for((i=0;i<=10;i++)); do echo "$i"; done
+```
 
-    printf '\n'
+## Shorter infinite loops
+
+```shell
+# Normal method
+while :; do echo hi; done
+
+# Shorter
+for((;;)){ echo hi;}
+```
+
+## Shorter function declaration
+
+```shell
+# Normal method
+f(){ echo hi;}
+
+# Using a subshell
+f()(echo hi)
+
+# Using arithmetic
+# You can use this to assign integer values.
+# Example: f a=1
+#          f a++
+f()(($1))
+
+# Using tests, loops etc.
+# NOTE: You can also use ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’.
+f()if true; then echo "$1"; fi
+f()for i in "$@"; do echo "$i"; done
+```
+
+## Shorter `if` syntax
+
+```shell
+# One line
+# Note: The 3rd statement may run when the 1st is true
+[[ "$var" == hello ]] && echo hi || echo bye
+[[ "$var" == hello ]] && { echo hi; echo there; } || echo bye
+
+# Multi line (no else, single statement)
+# Note: The exit status may not be the same as with an if statement
+[[ "$var" == hello ]] && \
+    echo hi
+
+# Multi line (no else)
+[[ "$var" == hello ]] && {
+    echo hi
+    # ...
 }
 ```
 
-**Example Usage:**
+## Simpler `case` statement to set variable
+
+We can use the `:` builtin to avoid repeating `variable=` in a case
+statement. The `$_` variable stores the last argument of the last
+successful command. `:` always succeeds so we can abuse it to store the
+variable value.
 
 ```shell
-$ uuid
-d5b6c731-1310-4c24-9fe3-55d556d44374
-```
+# Modified snippet from Neofetch.
+case "$OSTYPE" in
+    "darwin"*)
+        : "MacOS"
+    ;;
 
-## Progress bars
+    "linux"*)
+        : "Linux"
+    ;;
 
-This is a simple way of drawing progress bars without needing a for loop
-in the function itself.
+    *"bsd"* | "dragonfly" | "bitrig")
+        : "BSD"
+    ;;
 
-**Example Function:**
+    "cygwin" | "msys" | "win32")
+        : "Windows"
+    ;;
 
-```sh
-bar() {
-    # Usage: bar 1 10
-    #            ^----- Elapsed Percentage (0-100).
-    #               ^-- Total length in chars.
-    ((elapsed=$1*$2/100))
+    *)
+        printf '%s\n' "Unknown OS detected, aborting..." >&2
+        exit 1
+    ;;
+esac
 
-    # Create the bar with spaces.
-    printf -v prog  "%${elapsed}s"
-    printf -v total "%$(($2-elapsed))s"
-
-    printf '%s\r' "[${prog// /-}${total}]"
-}
-```
-
-**Example Usage:**
-
-```shell
-for ((i=0;i<=100;i++)); do
-    # Pure bash micro sleeps (for the example).
-    (:;:) && (:;:) && (:;:) && (:;:) && (:;:)
-
-    # Print the bar.
-    bar "$i" "10"
-done
-
-printf '\n'
-```
-
-## Get the list of functions from your script
-
-```sh
-get_functions() {
-    # Usage: get_functions
-    IFS=$'\n' read -d "" -ra functions < <(declare -F)
-    printf '%s\n' "${functions[@]//declare -f }"
-}
-```
-
-## Bypass shell aliases
-
-```shell
-# alias
-ls
-
-# command
-# shellcheck disable=SC1001
-\ls
-```
-
-## Bypass shell functions
-
-```shell
-# function
-ls
-
-# command
-command ls
+# Finally, set the variable.
+os="$_"
 ```
 
 <!-- CHAPTER END -->

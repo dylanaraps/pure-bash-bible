@@ -1,188 +1,94 @@
-# File handling
+# Loops
 
-**CAVEAT:** `bash` doesn't handle binary data properly in versions `< 4.4`.
+## Loop over a range of numbers
 
-## Read a file to a string
-
-Alternative to the `cat` command.
+Don't use `seq`.
 
 ```shell
-file_data="$(<"file")"
+# Loop from 0-100 (no variable support).
+for i in {0..100}; do
+    printf '%s\n' "$i"
+done
 ```
 
-## Read a file to an array (*by line*)
+## Loop over a variable range of numbers
 
-Alternative to the `cat` command.
+Don't use `seq`.
 
 ```shell
-# Bash <4
-IFS=$'\n' read -d "" -ra file_data < "file"
-
-# Bash 4+
-mapfile -t file_data < "file"
+# Loop from 0-VAR.
+VAR=50
+for ((i=0;i<=VAR;i++)); do
+    printf '%s\n' "$i"
+done
 ```
 
-## Get the first N lines of a file
-
-Alternative to the `head` command.
-
-**CAVEAT:** Requires `bash` 4+
-
-**Example Function:**
-
-```sh
-head() {
-    # Usage: head "n" "file"
-    mapfile -tn "$1" line < "$2"
-    printf '%s\n' "${line[@]}"
-}
-```
-
-**Example Usage:**
+## Loop over an array
 
 ```shell
-$ head 2 ~/.bashrc
-# Prompt
-PS1='➜ '
+arr=(apples oranges tomatoes)
 
-$ head 1 ~/.bashrc
-# Prompt
+# Just elements.
+for element in "${arr[@]}"; do
+    printf '%s\n' "$element"
+done
 ```
 
-## Get the last N lines of a file
-
-Alternative to the `tail` command.
-
-**CAVEAT:** Requires `bash` 4+
-
-**Example Function:**
-
-```sh
-tail() {
-    # Usage: tail "n" "file"
-    mapfile -tn 0 line < "$2"
-    printf '%s\n' "${line[@]: -$1}"
-}
-```
-
-**Example Usage:**
+## Loop over an array with an index
 
 ```shell
-$ tail 2 ~/.bashrc
-# Enable tmux.
-# [[ -z "$TMUX"  ]] && exec tmux
+arr=(apples oranges tomatoes)
 
-$ tail 1 ~/.bashrc
-# [[ -z "$TMUX"  ]] && exec tmux
+# Elements and index.
+for i in "${!arr[@]}"; do
+    printf '%s\n' "${arr[$i]}"
+done
+
+# Alternative method.
+for ((i=0;i<${#arr[@]};i++)); do
+    printf '%s\n' "${arr[$i]}"
+done
 ```
 
-## Get the number of lines in a file
-
-Alternative to `wc -l`.
-
-**Example Function (bash 4):**
-
-```sh
-lines() {
-    # Usage: lines "file"
-    mapfile -tn 0 lines < "$1"
-    printf '%s\n' "${#lines[@]}"
-}
-```
-
-**Example Function (bash 3):**
-
-This method uses less memory than the `mapfile` method and it's more
-compatible but it's slower for bigger files.
-
-```sh
-lines_loop() {
-    # Usage: lines_loop "file"
-    count=0
-    while IFS= read -r _; do
-        ((count++))
-    done < "$1"
-    printf '%s\n' "$count"
-}
-```
-
-**Example Usage:**
+## Loop over the contents of a file
 
 ```shell
-$ lines ~/.bashrc
-48
-
-$ lines_loop ~/.bashrc
-48
+while read -r line; do
+    printf '%s\n' "$line"
+done < "file"
 ```
 
-## Count files or directories in directory
+## Loop over files and directories
 
-This works by passing the output of the glob as function arguments. We
-then count the arguments and print the number.
-
-**Example Function:**
-
-```sh
-count() {
-    # Usage: count /path/to/dir/*
-    #        count /path/to/dir/*/
-    printf '%s\n' "$#"
-}
-```
-
-**Example Usage:**
+Don’t use `ls`.
 
 ```shell
-# Count all files in dir.
-$ count ~/Downloads/*
-232
+# Greedy example.
+for file in *; do
+    printf '%s\n' "$file"
+done
 
-# Count all dirs in dir.
-$ count ~/Downloads/*/
-45
+# PNG files in dir.
+for file in ~/Pictures/*.png; do
+    printf '%s\n' "$file"
+done
 
-# Count all jpg files in dir.
-$ count ~/Pictures/*.jpg
-64
-```
+# Iterate over directories.
+for dir in ~/Downloads/*/; do
+    printf '%s\n' "$dir"
+done
 
-## Create an empty file
+# Brace Expansion.
+for file in /path/to/parentdir/{file1,file2,subdir/file3}; do
+    printf '%s\n' "$file"
+done
 
-Alternative to `touch`.
-
-```shell
-# Shortest.
-:> file
-
-# Longer alternatives:
-echo -n > file
-printf '' > file
-```
-
-## Extract lines between two markers
-
-**Example Function:**
-
-```sh
-extract() {
-    # Usage: extract file "opening marker" "closing marker"
-    while IFS=$'\n' read -r line; do
-        [[ "$extract" && "$line" != "$3" ]] && \
-            printf '%s\n' "$line"
-
-        [[ "$line" == "$2" ]] && extract=1
-        [[ "$line" == "$3" ]] && extract=
-    done < "$1"
-}
-```
-
-**Example Usage:**
-
-```shell
-# Extract code blocks from MarkDown file.
-$ extract ~/projects/pure-bash/README.md '```sh' '```'
-# Output here...
+# Iterate recursively.
+shopt -s globstar
+for file in ~/Pictures/**/*; do
+    printf '%s\n' "$file"
+done
+shopt -u globstar
 ```
 
 <!-- CHAPTER END -->

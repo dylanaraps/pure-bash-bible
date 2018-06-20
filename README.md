@@ -14,7 +14,7 @@ src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 
 <br>
 
-The goal of this repository is to document known and unknown methods of
+The goal of this book is to document known and unknown methods of
 doing various tasks using only built-in `bash` features. Using the snippets
 from this bible can help to remove unneeded dependencies from your scripts
 and in most cases make them that little bit faster. I came across these
@@ -45,6 +45,7 @@ scripts and not full blown utilities.
 
 <!-- vim-markdown-toc GFM -->
 
+* [Introduction](#introduction)
 * [Strings](#strings)
     * [Trim leading and trailing white-space from string](#trim-leading-and-trailing-white-space-from-string)
     * [Trim all white-space from string and truncate spaces](#trim-all-white-space-from-string-and-truncate-spaces)
@@ -155,6 +156,17 @@ scripts and not full blown utilities.
 <!-- vim-markdown-toc -->
 
 <br>
+
+<!-- CHAPTER START -->
+# Introduction
+
+A collection of pure `bash` alternatives to external processes and programs. The `bash` scripting language is more powerful than people realise and you can accomplish most tasks without the need or dependency of external programs.
+
+Calling an external process in `bash` is expensive and excessive use will cause a noticeable slowdown. By sticking to built-in methods (*where possible*) your scripts and programs will be faster, require less dependencies and you'll gain a better understanding of the language itself.
+
+The contents of this book provide a reference for solving the problems encountered when writing programs and scripts in `bash`. The examples are in function format showcasing how to incorporate these solutions into your code.
+
+<!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
 # Strings
