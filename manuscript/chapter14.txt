@@ -1,99 +1,78 @@
-# Internal Variables
+# Information about the terminal
 
-**NOTE**: This list does not include every internal variable (*You can
-help by adding a missing entry!*).
+## Get the terminal size in lines and columns (*from a script*)
 
-For a complete list, see:
-http://tldp.org/LDP/abs/html/internalvariables.html
+This is handy when writing scripts in pure bash and `stty`/`tput` can’t be
+called.
 
-## Get the location to the `bash` binary
+**Example Function:**
 
-```shell
-"$BASH"
+```sh
+get_term_size() {
+    # Usage: get_term_size
+
+    # (:;:) is a micro sleep to ensure the variables are
+    # exported immediately.
+    shopt -s checkwinsize; (:;:)
+    printf '%s\n' "$LINES $COLUMNS"
+}
 ```
 
-## Get the version of the current running `bash` process
+**Example Usage:**
 
 ```shell
-# As a string.
-"$BASH_VERSION"
-
-# As an array.
-"${BASH_VERSINFO[@]}"
+# Output: LINES COLUMNS
+$ get_term_size
+15 55
 ```
 
-## Open the user's preferred text editor
+## Get the terminal size in pixels
 
-```shell
-"$EDITOR" "$file"
+**CAVEAT**: This does not work in some terminal emulators.
 
-# NOTE: This variable may be empty, set a fallback value.
-"${EDITOR:-vi}" "$file"
+**Example Function:**
+
+```sh
+get_window_size() {
+    # Usage: get_window_size
+    printf '%b' "${TMUX:+\\ePtmux;\\e}\\e[14t${TMUX:+\\e\\\\}"
+    IFS=';t' read -d t -t 0.05 -sra term_size
+    printf '%s\n' "${term_size[1]}x${term_size[2]}"
+}
 ```
 
-## Get the name of the current function
+**Example Usage:**
 
 ```shell
-# Current function.
-"${FUNCNAME[0]}"
+# Output: WIDTHxHEIGHT
+$ get_window_size
+1200x800
 
-# Parent function.
-"${FUNCNAME[1]}"
-
-# So on and so forth.
-"${FUNCNAME[2]}"
-"${FUNCNAME[3]}"
-
-# All functions including parents.
-"${FUNCNAME[@]}"
+# Output (fail):
+$ get_window_size
+x
 ```
 
-## Get the host-name of the system
+## Get the current cursor position
 
-```shell
-"$HOSTNAME"
+This is useful when creating a TUI in pure bash.
 
-# NOTE: This variable may be empty.
-# Optionally set a fallback to the hostname command.
-"${HOSTNAME:-$(hostname)}"
+**Example Function:**
+
+```sh
+get_cursor_pos() {
+    # Usage: get_cursor_pos
+    IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
+    printf '%s\n' "$x $y"
+}
 ```
 
-## Get the architecture of the Operating System
+**Example Usage:**
 
 ```shell
-"$HOSTTYPE"
-```
-
-## Get the name of the Operating System / Kernel
-
-This can be used to add conditional support for different Operating
-Systems without needing to call `uname`.
-
-```shell
-"$OSTYPE"
-```
-
-## Get the current working directory
-
-This is an alternative to the `pwd` built-in.
-
-```shell
-"$PWD"
-```
-
-## Get the number of seconds the script has been running
-
-```shell
-"$SECONDS"
-```
-
-## Get a pseudorandom integer
-
-Each time `$RANDOM` is used, a different integer between `0` and `32767` is returned. This variable should not be used for anything related to security (*this includes encryption keys etc*).
-
-
-```shell
-"$RANDOM"
+# Output: X Y
+$ get_cursor_pos
+1 8
 ```
 
 <!-- CHAPTER END -->

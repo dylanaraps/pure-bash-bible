@@ -41,7 +41,6 @@ scripts and not full blown utilities.
 
 <br>
 
-<!-- CHAPTER START -->
 # Table of Contents
 
 <!-- vim-markdown-toc GFM -->
@@ -154,8 +153,6 @@ scripts and not full blown utilities.
 * [Afterword](#afterword)
 
 <!-- vim-markdown-toc -->
-
-<!-- CHAPTER END -->
 
 <br>
 
@@ -1864,7 +1861,6 @@ command ls
 
 <!-- CHAPTER END -->
 
-<!-- CHAPTER START -->
 # Afterword
 
 Thanks for reading! If this bible helped you in any way and you'd like to give back, consider donating. Donations give me the time to make this the best resource possible. Can't donate? That's OK, star the repo and share it with your friends!

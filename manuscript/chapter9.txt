@@ -1,41 +1,30 @@
-# Brace Expansion
+# Arithmetic
 
-## Ranges
+## Simpler syntax to set variables
 
 ```shell
-# Syntax: {<START>..<END>}
+# Simple math
+((var=1+2))
 
-# Print numbers 1-100.
-echo {1..100}
+# Decrement/Increment variable
+((var++))
+((var--))
+((var+=1))
+((var-=1))
 
-# Print range of floats.
-echo 1.{1..9}
-
-# Print chars a-z.
-echo {a..z}
-echo {A..Z}
-
-# Nesting.
-echo {A..Z}{0..9}
-
-# Print zero-padded numbers.
-# CAVEAT: bash 4+
-echo {01..100}
-
-# Change increment amount.
-# Syntax: {<START>..<END>..<INCREMENT>}
-# CAVEAT: bash 4+
-echo {1..10..2} # Increment by 2.
+# Using variables
+((var=var2*arr[2]))
 ```
 
-## String Lists
+## Ternary tests
 
 ```shell
-echo {apples,oranges,pears,grapes}
-
-# Example Usage:
-# Remove dirs Movies, Music and ISOS from ~/Downloads/.
-rm -rf ~/Downloads/{Movies,Music,ISOS}
+# Set the value of var to var2 if var2 is greater than var.
+# var: variable to set.
+# var2>var: Condition to test.
+# ?var2: If the test succeeds.
+# :var: If the test fails.
+((var=var2>var?var2:var))
 ```
 
 <!-- CHAPTER END -->

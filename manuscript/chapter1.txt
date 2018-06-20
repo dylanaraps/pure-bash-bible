@@ -1,375 +1,129 @@
-# Strings
+# Arrays
 
-## Trim leading and trailing white-space from string
+## Reverse an array
 
-This is an alternative to `sed`, `awk`, `perl` and other tools. The
-function below works by finding all leading and trailing white-space and
-removing it from the start and end of the string. The `:` built-in is used in place of a temporary variable.
+Enabling `extdebug` allows access to the `BASH_ARGV` array which stores
+the current function’s arguments in reverse.
 
 **Example Function:**
 
 ```sh
-trim_string() {
-    # Usage: trim_string "   example   string    "
-    : "${1#"${1%%[![:space:]]*}"}"
-    : "${_%"${_##*[![:space:]]}"}"
-    printf '%s\n' "$_"
+reverse_array() {
+    # Usage: reverse_array "array"
+    shopt -s extdebug
+    f()(printf '%s\n' "${BASH_ARGV[@]}"); f "$@"
+    shopt -u extdebug
 }
 ```
 
 **Example Usage:**
 
 ```shell
-$ trim_string "    Hello,  World    "
-Hello,  World
+$ reverse_array 1 2 3 4 5
+5
+4
+3
+2
+1
 
-$ name="   John Black  "
-$ trim_string "$name"
-John Black
+$ arr=(red blue green)
+$ reverse_array "${arr[@]}"
+green
+blue
+red
 ```
 
+## Remove duplicate array elements
 
-## Trim all white-space from string and truncate spaces
+Create a temporary associative array. When setting associative array
+values and a duplicate assignment occurs, bash overwrites the key. This
+allows us to effectively remove array duplicates.
 
-This is an alternative to `sed`, `awk`, `perl` and other tools. The
-function below works by abusing word splitting to create a new string
-without leading/trailing white-space and with truncated spaces.
+**CAVEAT:** Requires `bash` 4+
 
 **Example Function:**
 
 ```sh
-# shellcheck disable=SC2086,SC2048
-trim_all() {
-    # Usage: trim_all "   example   string    "
-    set -f
-    set -- $*
-    printf '%s\n' "$*"
-    set +f
+remove_array_dups() {
+    # Usage: remove_array_dups "array"
+    declare -A tmp_array
+
+    for i in "$@"; do
+        [[ "$i" ]] && IFS=" " tmp_array["${i:- }"]=1
+    done
+
+    printf '%s\n' "${!tmp_array[@]}"
 }
 ```
 
 **Example Usage:**
 
 ```shell
-$ trim_all "    Hello,    World    "
-Hello, World
-
-$ name="   John   Black  is     my    name.    "
-$ trim_all "$name"
-John Black is my name.
-```
-
-## Use regex on a string
-
-We can use the result of `bash`'s regex matching to replace `sed` for a
-large number of use-cases.
-
-**CAVEAT**: This is one of the few platform dependant `bash` features.
-`bash` will use whatever regex engine is installed on the user's system.
-Stick to POSIX regex features if aiming for compatibility.
-
-**CAVEAT**: This example only prints the first matching group. When using
-multiple capture groups some modification is needed.
-
-**Example Function:**
-
-```sh
-regex() {
-    # Usage: regex "string" "regex"
-    [[ $1 =~ $2 ]] && printf '%s\n' "${BASH_REMATCH[1]}"
-}
-```
-
-**Example Usage:**
-
-```shell
-$ # Trim leading white-space.
-$ regex '    hello' '^\s*(.*)'
-hello
-
-$ # Validate a hex color.
-$ regex "#FFFFFF" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$'
-#FFFFFF
-
-$ # Validate a hex color (invalid).
-$ regex "red" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$'
-# no output (invalid)
-```
-
-**Example Usage in script:**
-
-```shell
-is_hex_color() {
-    if [[ "$1" =~ ^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$ ]]; then
-        printf '%s\n' "${BASH_REMATCH[1]}"
-    else
-        printf '%s\n' "error: $1 is an invalid color."
-        return 1
-    fi
-}
-
-read -r color
-is_hex_color "$color" || color="#FFFFFF"
-
-# Do stuff.
-```
-
-
-## Split a string on a delimiter
-
-This is an alternative to `cut`, `awk` and other tools.
-
-**Example Function:**
-
-```sh
-split() {
-   # Usage: split "string" "delimiter"
-   IFS=$'\n' read -d "" -ra arr <<< "${1//$2/$'\n'}"
-   printf '%s\n' "${arr[@]}"
-}
-```
-
-**Example Usage:**
-
-```shell
-$ split "apples,oranges,pears,grapes" ","
-apples
-oranges
-pears
-grapes
-
-$ split "1, 2, 3, 4, 5" ", "
+$ remove_array_dups 1 1 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 5
 1
 2
 3
 4
 5
 
-# Multi char delimiters work too!
-$ split "hello---world---my---name---is---john" "---"
-hello
-world
-my
-name
-is
-john
+$ arr=(red red green blue blue)
+$ remove_array_dups "${arr[@]}"
+red
+green
+blue
 ```
 
-## Change a string to lowercase
-
-**CAVEAT:** Requires `bash` 4+
+## Random array element
 
 **Example Function:**
 
 ```sh
-lower() {
-    # Usage: lower "string"
-    printf '%s\n' "${1,,}"
+random_array_element() {
+    # Usage: random_array_element "array"
+    local arr=("$@")
+    printf '%s\n' "${arr[RANDOM % $#]}"
 }
 ```
 
 **Example Usage:**
 
 ```shell
-$ lower "HELLO"
-hello
+$ array=(red green blue yellow brown)
+$ random_array_element "${array[@]}"
+yellow
 
-$ lower "HeLlO"
-hello
-
-$ lower "hello"
-hello
+# You can also just pass multiple arguments.
+$ random_array_element 1 2 3 4 5 6 7
+3
 ```
 
-## Change a string to uppercase
+## Cycle through an array
 
-**CAVEAT:** Requires `bash` 4+
-
-**Example Function:**
+Each time the `printf` is called, the next array element is printed. When
+the print hits the last array element it starts from the first element
+again.
 
 ```sh
-upper() {
-    # Usage: upper "string"
-    printf '%s\n' "${1^^}"
+arr=(a b c d)
+
+cycle() {
+    printf '%s ' "${arr[${i:=0}]}"
+    ((i=i>=${#arr[@]}-1?0:++i))
 }
 ```
 
-**Example Usage:**
 
-```shell
-$ upper "hello"
-HELLO
+## Toggle between two values
 
-$ upper "HeLlO"
-HELLO
-
-$ upper "HELLO"
-HELLO
-```
-
-## Trim quotes from a string
-
-**Example Function:**
+This works the same as above, this is just a different use case.
 
 ```sh
-trim_quotes() {
-    # Usage: trim_quotes "string"
-    : "${1//\'}"
-    printf '%s\n' "${_//\"}"
+arr=(true false)
+
+cycle() {
+    printf '%s ' "${arr[${i:=0}]}"
+    ((i=i>=${#arr[@]}-1?0:++i))
 }
-```
-
-**Example Usage:**
-
-```shell
-$ var="'Hello', \"World\""
-$ trim_quotes "$var"
-Hello, World
-```
-
-## Strip all instances of pattern from string
-
-**Example Function:**
-
-```sh
-strip_all() {
-    # Usage: strip_all "string" "pattern"
-    printf '%s\n' "${1//$2}"
-}
-```
-
-**Example Usage:**
-
-```shell
-$ strip_all "The Quick Brown Fox" "[aeiou]"
-Th Qck Brwn Fx
-
-$ strip_all "The Quick Brown Fox" "[[:space:]]"
-TheQuickBrownFox
-
-$ strip_all "The Quick Brown Fox" "Quick "
-The Brown Fox
-```
-
-## Strip first occurrence of pattern from string
-
-**Example Function:**
-
-```sh
-strip() {
-    # Usage: strip "string" "pattern"
-    printf '%s\n' "${1/$2}"
-}
-```
-
-**Example Usage:**
-
-```shell
-$ strip "The Quick Brown Fox" "[aeiou]"
-Th Quick Brown Fox
-
-$ strip "The Quick Brown Fox" "[[:space:]]"
-TheQuick Brown Fox
-```
-
-## Strip pattern from start of string
-
-**Example Function:**
-
-```sh
-lstrip() {
-    # Usage: lstrip "string" "pattern"
-    printf '%s\n' "${1##$2}"
-}
-```
-
-**Example Usage:**
-
-```shell
-$ lstrip "The Quick Brown Fox" "The "
-Quick Brown Fox
-```
-
-## Strip pattern from end of string
-
-**Example Function:**
-
-```sh
-rstrip() {
-    # Usage: rstrip "string" "pattern"
-    printf '%s\n' "${1%%$2}"
-}
-```
-
-**Example Usage:**
-
-```shell
-$ rstrip "The Quick Brown Fox" " Fox"
-The Quick Brown
-```
-
-## Check if string contains a sub-string
-
-**Using a test:**
-
-```shell
-if [[ "$var" == *sub_string* ]]; then
-    printf '%s\n' "sub_string is in var."
-fi
-
-# Inverse (substring not in string).
-if [[ "$var" != *sub_string* ]]; then
-    printf '%s\n' "sub_string is not in var."
-fi
-
-# This works for arrays too!
-if [[ "${arr[*]}" == *sub_string* ]]; then
-    printf '%s\n' "sub_string is in array."
-fi
-```
-
-**Using a case statement:**
-
-```shell
-case "$var" in
-    *sub_string*)
-        # Do stuff
-    ;;
-
-    *sub_string2*)
-        # Do more stuff
-    ;;
-
-    *)
-        # Else
-    ;;
-esac
-```
-
-## Check if string starts with sub-string
-
-```shell
-if [[ "$var" == sub_string* ]]; then
-    printf '%s\n' "var starts with sub_string."
-fi
-
-# Inverse (var doesn't start with sub_string).
-if [[ "$var" != sub_string* ]]; then
-    printf '%s\n' "var does not start with sub_string."
-fi
-```
-
-## Check if string ends with sub-string
-
-```shell
-if [[ "$var" == *sub_string ]]; then
-    printf '%s\n' "var ends with sub_string."
-fi
-
-# Inverse (var doesn't start with sub_string).
-if [[ "$var" != *sub_string ]]; then
-    printf '%s\n' "var does not end with sub_string."
-fi
 ```
 
 <!-- CHAPTER END -->

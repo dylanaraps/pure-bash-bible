@@ -1,115 +1,376 @@
-# Table of Contents
+# Strings
 
-<!-- vim-markdown-toc GFM -->
+## Trim leading and trailing white-space from string
 
-* [Strings](#strings)
-    * [Trim leading and trailing white-space from string](#trim-leading-and-trailing-white-space-from-string)
-    * [Trim all white-space from string and truncate spaces](#trim-all-white-space-from-string-and-truncate-spaces)
-    * [Use regex on a string](#use-regex-on-a-string)
-    * [Split a string on a delimiter](#split-a-string-on-a-delimiter)
-    * [Change a string to lowercase](#change-a-string-to-lowercase)
-    * [Change a string to uppercase](#change-a-string-to-uppercase)
-    * [Trim quotes from a string](#trim-quotes-from-a-string)
-    * [Strip all instances of pattern from string](#strip-all-instances-of-pattern-from-string)
-    * [Strip first occurrence of pattern from string](#strip-first-occurrence-of-pattern-from-string)
-    * [Strip pattern from start of string](#strip-pattern-from-start-of-string)
-    * [Strip pattern from end of string](#strip-pattern-from-end-of-string)
-    * [Check if string contains a sub-string](#check-if-string-contains-a-sub-string)
-    * [Check if string starts with sub-string](#check-if-string-starts-with-sub-string)
-    * [Check if string ends with sub-string](#check-if-string-ends-with-sub-string)
-* [Arrays](#arrays)
-    * [Reverse an array](#reverse-an-array)
-    * [Remove duplicate array elements](#remove-duplicate-array-elements)
-    * [Random array element](#random-array-element)
-    * [Cycle through an array](#cycle-through-an-array)
-    * [Toggle between two values](#toggle-between-two-values)
-* [Loops](#loops)
-    * [Loop over a range of numbers](#loop-over-a-range-of-numbers)
-    * [Loop over a variable range of numbers](#loop-over-a-variable-range-of-numbers)
-    * [Loop over an array](#loop-over-an-array)
-    * [Loop over an array with an index](#loop-over-an-array-with-an-index)
-    * [Loop over the contents of a file](#loop-over-the-contents-of-a-file)
-    * [Loop over files and directories](#loop-over-files-and-directories)
-* [File handling](#file-handling)
-    * [Read a file to a string](#read-a-file-to-a-string)
-    * [Read a file to an array (*by line*)](#read-a-file-to-an-array-by-line)
-    * [Get the first N lines of a file](#get-the-first-n-lines-of-a-file)
-    * [Get the last N lines of a file](#get-the-last-n-lines-of-a-file)
-    * [Get the number of lines in a file](#get-the-number-of-lines-in-a-file)
-    * [Count files or directories in directory](#count-files-or-directories-in-directory)
-    * [Create an empty file](#create-an-empty-file)
-    * [Extract lines between two markers](#extract-lines-between-two-markers)
-* [File Paths](#file-paths)
-    * [Get the directory name of a file path](#get-the-directory-name-of-a-file-path)
-    * [Get the base-name of a file path](#get-the-base-name-of-a-file-path)
-* [Variables](#variables)
-    * [Assign and access a variable using a variable](#assign-and-access-a-variable-using-a-variable)
-* [Escape Sequences](#escape-sequences)
-    * [Text Colors](#text-colors)
-    * [Text Attributes](#text-attributes)
-    * [Cursor Movement](#cursor-movement)
-    * [Erasing Text](#erasing-text)
-* [Parameter Expansion](#parameter-expansion)
-    * [Indirection](#indirection)
-    * [Replacement](#replacement)
-    * [Length](#length)
-    * [Expansion](#expansion)
-    * [Case Modification](#case-modification)
-    * [Default Value](#default-value)
-* [Brace Expansion](#brace-expansion)
-    * [Ranges](#ranges)
-    * [String Lists](#string-lists)
-* [Arithmetic](#arithmetic)
-    * [Simpler syntax to set variables](#simpler-syntax-to-set-variables)
-    * [Ternary tests](#ternary-tests)
-* [Traps](#traps)
-    * [Do something on script exit](#do-something-on-script-exit)
-    * [Ignore terminal interrupt (CTRL+C, SIGINT)](#ignore-terminal-interrupt-ctrlc-sigint)
-    * [React to window resize.](#react-to-window-resize)
-    * [Do something before every command.](#do-something-before-every-command)
-    * [Do something when a shell function or a sourced file finishes executing](#do-something-when-a-shell-function-or-a-sourced-file-finishes-executing)
-* [Performance](#performance)
-    * [Disable Unicode](#disable-unicode)
-* [Obsolete Syntax](#obsolete-syntax)
-    * [Shebang](#shebang)
-    * [Command Substitution](#command-substitution)
-    * [Function Declaration](#function-declaration)
-* [Internal Variables](#internal-variables)
-    * [Get the location to the `bash` binary](#get-the-location-to-the-bash-binary)
-    * [Get the version of the current running `bash` process](#get-the-version-of-the-current-running-bash-process)
-    * [Open the user's preferred text editor](#open-the-users-preferred-text-editor)
-    * [Get the name of the current function](#get-the-name-of-the-current-function)
-    * [Get the host-name of the system](#get-the-host-name-of-the-system)
-    * [Get the architecture of the Operating System](#get-the-architecture-of-the-operating-system)
-    * [Get the name of the Operating System / Kernel](#get-the-name-of-the-operating-system--kernel)
-    * [Get the current working directory](#get-the-current-working-directory)
-    * [Get the number of seconds the script has been running](#get-the-number-of-seconds-the-script-has-been-running)
-    * [Get a pseudorandom integer](#get-a-pseudorandom-integer)
-* [Information about the terminal](#information-about-the-terminal)
-    * [Get the terminal size in lines and columns (*from a script*)](#get-the-terminal-size-in-lines-and-columns-from-a-script)
-    * [Get the terminal size in pixels](#get-the-terminal-size-in-pixels)
-    * [Get the current cursor position](#get-the-current-cursor-position)
-* [Conversion](#conversion)
-    * [Convert a hex color to RGB](#convert-a-hex-color-to-rgb)
-    * [Convert an RGB color to hex](#convert-an-rgb-color-to-hex)
-* [Code Golf](#code-golf)
-    * [Shorter `for` loop syntax](#shorter-for-loop-syntax)
-    * [Shorter infinite loops](#shorter-infinite-loops)
-    * [Shorter function declaration](#shorter-function-declaration)
-    * [Shorter `if` syntax](#shorter-if-syntax)
-    * [Simpler `case` statement to set variable](#simpler-case-statement-to-set-variable)
-* [Other](#other)
-    * [Use `read` as an alternative to the `sleep` command](#use-read-as-an-alternative-to-the-sleep-command)
-    * [Check if a program is in the user's PATH](#check-if-a-program-is-in-the-users-path)
-    * [Get the current date using `strftime`](#get-the-current-date-using-strftime)
-    * [Generate a UUID V4](#generate-a-uuid-v4)
-    * [Progress bars](#progress-bars)
-    * [Get the list of functions from your script](#get-the-list-of-functions-from-your-script)
-    * [Bypass shell aliases](#bypass-shell-aliases)
-    * [Bypass shell functions](#bypass-shell-functions)
-* [Afterword](#afterword)
+This is an alternative to `sed`, `awk`, `perl` and other tools. The
+function below works by finding all leading and trailing white-space and
+removing it from the start and end of the string. The `:` built-in is used in place of a temporary variable.
 
-<!-- vim-markdown-toc -->
+**Example Function:**
+
+```sh
+trim_string() {
+    # Usage: trim_string "   example   string    "
+    : "${1#"${1%%[![:space:]]*}"}"
+    : "${_%"${_##*[![:space:]]}"}"
+    printf '%s\n' "$_"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ trim_string "    Hello,  World    "
+Hello,  World
+
+$ name="   John Black  "
+$ trim_string "$name"
+John Black
+```
+
+
+## Trim all white-space from string and truncate spaces
+
+This is an alternative to `sed`, `awk`, `perl` and other tools. The
+function below works by abusing word splitting to create a new string
+without leading/trailing white-space and with truncated spaces.
+
+**Example Function:**
+
+```sh
+# shellcheck disable=SC2086,SC2048
+trim_all() {
+    # Usage: trim_all "   example   string    "
+    set -f
+    set -- $*
+    printf '%s\n' "$*"
+    set +f
+}
+```
+
+**Example Usage:**
+
+```shell
+$ trim_all "    Hello,    World    "
+Hello, World
+
+$ name="   John   Black  is     my    name.    "
+$ trim_all "$name"
+John Black is my name.
+```
+
+## Use regex on a string
+
+We can use the result of `bash`'s regex matching to replace `sed` for a
+large number of use-cases.
+
+**CAVEAT**: This is one of the few platform dependant `bash` features.
+`bash` will use whatever regex engine is installed on the user's system.
+Stick to POSIX regex features if aiming for compatibility.
+
+**CAVEAT**: This example only prints the first matching group. When using
+multiple capture groups some modification is needed.
+
+**Example Function:**
+
+```sh
+regex() {
+    # Usage: regex "string" "regex"
+    [[ $1 =~ $2 ]] && printf '%s\n' "${BASH_REMATCH[1]}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ # Trim leading white-space.
+$ regex '    hello' '^\s*(.*)'
+hello
+
+$ # Validate a hex color.
+$ regex "#FFFFFF" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$'
+#FFFFFF
+
+$ # Validate a hex color (invalid).
+$ regex "red" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$'
+# no output (invalid)
+```
+
+**Example Usage in script:**
+
+```shell
+is_hex_color() {
+    if [[ "$1" =~ ^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$ ]]; then
+        printf '%s\n' "${BASH_REMATCH[1]}"
+    else
+        printf '%s\n' "error: $1 is an invalid color."
+        return 1
+    fi
+}
+
+read -r color
+is_hex_color "$color" || color="#FFFFFF"
+
+# Do stuff.
+```
+
+
+## Split a string on a delimiter
+
+This is an alternative to `cut`, `awk` and other tools.
+
+**Example Function:**
+
+```sh
+split() {
+   # Usage: split "string" "delimiter"
+   IFS=$'\n' read -d "" -ra arr <<< "${1//$2/$'\n'}"
+   printf '%s\n' "${arr[@]}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ split "apples,oranges,pears,grapes" ","
+apples
+oranges
+pears
+grapes
+
+$ split "1, 2, 3, 4, 5" ", "
+1
+2
+3
+4
+5
+
+# Multi char delimiters work too!
+$ split "hello---world---my---name---is---john" "---"
+hello
+world
+my
+name
+is
+john
+```
+
+## Change a string to lowercase
+
+**CAVEAT:** Requires `bash` 4+
+
+**Example Function:**
+
+```sh
+lower() {
+    # Usage: lower "string"
+    printf '%s\n' "${1,,}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ lower "HELLO"
+hello
+
+$ lower "HeLlO"
+hello
+
+$ lower "hello"
+hello
+```
+
+## Change a string to uppercase
+
+**CAVEAT:** Requires `bash` 4+
+
+**Example Function:**
+
+```sh
+upper() {
+    # Usage: upper "string"
+    printf '%s\n' "${1^^}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ upper "hello"
+HELLO
+
+$ upper "HeLlO"
+HELLO
+
+$ upper "HELLO"
+HELLO
+```
+
+## Trim quotes from a string
+
+**Example Function:**
+
+```sh
+trim_quotes() {
+    # Usage: trim_quotes "string"
+    : "${1//\'}"
+    printf '%s\n' "${_//\"}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ var="'Hello', \"World\""
+$ trim_quotes "$var"
+Hello, World
+```
+
+## Strip all instances of pattern from string
+
+**Example Function:**
+
+```sh
+strip_all() {
+    # Usage: strip_all "string" "pattern"
+    printf '%s\n' "${1//$2}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ strip_all "The Quick Brown Fox" "[aeiou]"
+Th Qck Brwn Fx
+
+$ strip_all "The Quick Brown Fox" "[[:space:]]"
+TheQuickBrownFox
+
+$ strip_all "The Quick Brown Fox" "Quick "
+The Brown Fox
+```
+
+## Strip first occurrence of pattern from string
+
+**Example Function:**
+
+```sh
+strip() {
+    # Usage: strip "string" "pattern"
+    printf '%s\n' "${1/$2}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ strip "The Quick Brown Fox" "[aeiou]"
+Th Quick Brown Fox
+
+$ strip "The Quick Brown Fox" "[[:space:]]"
+TheQuick Brown Fox
+```
+
+## Strip pattern from start of string
+
+**Example Function:**
+
+```sh
+lstrip() {
+    # Usage: lstrip "string" "pattern"
+    printf '%s\n' "${1##$2}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ lstrip "The Quick Brown Fox" "The "
+Quick Brown Fox
+```
+
+## Strip pattern from end of string
+
+**Example Function:**
+
+```sh
+rstrip() {
+    # Usage: rstrip "string" "pattern"
+    printf '%s\n' "${1%%$2}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ rstrip "The Quick Brown Fox" " Fox"
+The Quick Brown
+```
+
+## Check if string contains a sub-string
+
+**Using a test:**
+
+```shell
+if [[ "$var" == *sub_string* ]]; then
+    printf '%s\n' "sub_string is in var."
+fi
+
+# Inverse (substring not in string).
+if [[ "$var" != *sub_string* ]]; then
+    printf '%s\n' "sub_string is not in var."
+fi
+
+# This works for arrays too!
+if [[ "${arr[*]}" == *sub_string* ]]; then
+    printf '%s\n' "sub_string is in array."
+fi
+```
+
+**Using a case statement:**
+
+```shell
+case "$var" in
+    *sub_string*)
+        # Do stuff
+    ;;
+
+    *sub_string2*)
+        # Do more stuff
+    ;;
+
+    *)
+        # Else
+    ;;
+esac
+```
+
+## Check if string starts with sub-string
+
+```shell
+if [[ "$var" == sub_string* ]]; then
+    printf '%s\n' "var starts with sub_string."
+fi
+
+# Inverse (var doesn't start with sub_string).
+if [[ "$var" != sub_string* ]]; then
+    printf '%s\n' "var does not start with sub_string."
+fi
+```
+
+## Check if string ends with sub-string
+
+```shell
+if [[ "$var" == *sub_string ]]; then
+    printf '%s\n' "var ends with sub_string."
+fi
+
+# Inverse (var doesn't start with sub_string).
+if [[ "$var" != *sub_string ]]; then
+    printf '%s\n' "var does not end with sub_string."
+fi
+```
 
 <!-- CHAPTER END -->
 

@@ -1,56 +1,67 @@
-# Escape Sequences
+# Parameter Expansion
 
-Contrary to popular belief, there's no issue in using raw escape sequences. Using `tput` just abstracts the same ANSI escape sequences. What's worse is that `tput` isn't actually portable, there are a number of different `tput` variants on different Operating Systems each with different commands (*try and run `tput setaf 3` on a FreeBSD system*). The easiest solution ends up being raw ANSI sequences.
+## Indirection
 
-## Text Colors
-
-**NOTE:** Sequences requiring RGB values only work in True-Color Terminal Emulators.
-
-| Sequence | What does it do? | Value |
-| -------- | ---------------- | ----- |
-| `\e[38;5;<NUM>m` | Set text foreground color. | `0-255`
-| `\e[48;5;<NUM>m` | Set text background color. | `0-255`
-| `\e[38;2;<R>;<G>;<B>m` | Set text foreground color to RGB color. | `R`, `G`, `B`
-| `\e[48;2;<R>;<G>;<B>m` | Set text background color to RGB color. | `R`, `G`, `B`
-
-## Text Attributes
-
-| Sequence | What does it do? |
-| -------- | ---------------- |
-| `\e[m`  | Reset text formatting and colors.
-| `\e[1m` | Bold text. |
-| `\e[2m` | Faint text. |
-| `\e[3m` | Italic text. |
-| `\e[4m` | Underline text. |
-| `\e[5m` | Slow blink. |
-| `\e[7m` | Swap foreground and background colors. |
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${!VAR}` | Access a variable based on the value of `VAR`. See: [link](#assign-and-access-a-variable-using-a-variable)
+| `${!VAR*}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
+| `${!VAR@}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
 
 
-## Cursor Movement
+## Replacement
 
-| Sequence | What does it do? | Value |
-| -------- | ---------------- | ----- |
-| `\e[<LINE>;<COLUMN>H` | Move cursor to absolute position. | `line`, `column`
-| `\e[H` | Move cursor to home position (`0,0`). |
-| `\e[<NUM>A` | Move cursor up N lines. | `num`
-| `\e[<NUM>B` | Move cursor down N lines. | `num`
-| `\e[<NUM>C` | Move cursor right N columns. | `num`
-| `\e[<NUM>D` | Move cursor left N columns. | `num`
-| `\e[s` | Save cursor position. |
-| `\e[u` | Restore cursor position. |
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${VAR#PATTERN}` | Remove shortest match of pattern from start of string. |
+| `${VAR##PATTERN}` | Remove longest match of pattern from start of string. |
+| `${VAR%PATTERN}` | Remove shortest match of pattern from end of string. |
+| `${VAR%%PATTERN}` | Remove longest match of pattern from end of string. |
+| `${VAR/PATTERN/REPLACE}` | Replace first match with string.
+| `${VAR//PATTERN/REPLACE}` | Replace all matches with string.
+| `${VAR/PATTERN}` | Remove first match.
+| `${VAR//PATTERN}` | Remove all matches.
+
+## Length
+
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${#VAR}` | Length of var in characters.
+| `${#ARR[@]}` | Length of array in elements.
+
+## Expansion
+
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${VAR:OFFSET}` | Remove first `N` chars from variable.
+| `${VAR:OFFSET:LENGTH}` | Get substring from `N` character to `N` character. <br> (`${VAR:10:10}`: Get sub-string from char `10` to char `20`)
+| `${VAR:: OFFSET}` | Get first `N` chars from variable.
+| `${VAR:: -OFFSET}` | Remove last `N` chars from variable.
+| `${VAR: -OFFSET}` | Get last `N` chars from variable.
+| `${VAR:OFFSET:-OFFSET}` | Cut first `N` chars and last `N` chars. | `bash 4.2+` |
+
+## Case Modification
+
+| Parameter | What does it do? | CAVEAT |
+| --------- | ---------------- | ------ |
+| `${VAR^}` | Uppercase first character. | `bash 4+` |
+| `${VAR^^}` | Uppercase all characters. | `bash 4+` |
+| `${VAR,}` | Lowercase first character. | `bash 4+` |
+| `${VAR,,}` | Lowercase all characters. | `bash 4+` |
 
 
-## Erasing Text
+## Default Value
 
-| Sequence | What does it do? |
-| -------- | ---------------- |
-| `\e[K` | Erase from cursor position to end of line.
-| `\e[1K` | Erase from cursor position to start of line.
-| `\e[2K` | Erase the entire current line.
-| `\e[J` | Erase from the current line to the bottom of the screen.
-| `\e[1J` | Erase from the current line to the top of the screen.
-| `\e[2J` | Clear the screen.
-| `\e[2J\e[H` | Clear the screen and move cursor to `0,0`.
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${VAR:-STRING}` | If `VAR` is empty or unset, use `STRING` as it's value.
+| `${VAR-STRING}` | If `VAR` is unset, use `STRING` as it's value.
+| `${VAR:=STRING}` | If `VAR` is empty or unset, set the value of `VAR` to `STRING`.
+| `${VAR=STRING}` | If `VAR` is unset, set the value of `VAR` to `STRING`.
+| `${VAR:+STRING}` | If `VAR` isn't empty, use `STRING` as it's value.
+| `${VAR+STRING}` | If `VAR` is set, use `STRING` as it's value.
+| `${VAR:?STRING}` | Display an error if empty or unset.
+| `${VAR?STRING}` | Display an error if unset.
 
 
 <!-- CHAPTER END -->
