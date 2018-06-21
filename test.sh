@@ -74,28 +74,24 @@ test_head() {
     printf '%s\n%s\n\n\n' "hello" "world" > test_file
     result="$(head 2 test_file)"
     assert_equals "$result" $'hello\nworld'
-    rm test_file
 }
 
 test_tail() {
     printf '\n\n\n%s\n%s\n' "hello" "world" > test_file
     result="$(tail 2 test_file)"
     assert_equals "$result" $'hello\nworld'
-    rm test_file
 }
 
 test_lines() {
     printf '\n\n\n\n\n\n\n\n' > test_file
     result="$(lines test_file)"
     assert_equals "$result" "8"
-    rm test_file
 }
 
 test_lines_loop() {
     printf '\n\n\n\n\n\n\n\n' > test_file
     result="$(lines_loop test_file)"
     assert_equals "$result" "8"
-    rm test_file
 }
 
 test_count() {
@@ -148,7 +144,6 @@ test_extract() {
     printf '{\nhello, world\n}\n' > test_file
     result="$(extract test_file "{" "}")"
     assert_equals "$result" "hello, world"
-    rm test_file
 }
 
 test_split() {
@@ -170,7 +165,7 @@ assert_equals() {
 }
 
 main() {
-    trap 'rm readme_code' EXIT
+    trap 'rm readme_code test_file' EXIT
 
     # Extract code blocks from the README.
     while IFS=$'\n' read -r line; do
