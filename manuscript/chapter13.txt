@@ -1,51 +1,13 @@
-# OBSOLETE SYNTAX
+# PERFORMANCE
 
-## Shebang
+## Disable Unicode
 
-Use `#!/usr/bin/env bash` instead of `#!/bin/bash`.
-
-- The former searches the user's `PATH` to find the `bash` binary.
-- The latter assumes it is always installed to `/bin/` which can cause issues.
+If unicode is not required, it can be disabled for a performance increase. Results may vary however there have been noticeable improvements in [neofetch](https://github.com/dylanaraps/neofetch) and other programs.
 
 ```shell
-# Right:
-
-    #!/usr/bin/env bash
-
-# Wrong:
-
-    #!/bin/bash
-```
-
-## Command Substitution
-
-Use `$()` instead of `` ` ` ``.
-
-```shell
-# Right.
-var="$(command)"
-
-# Wrong.
-var=`command`
-
-# $() can easily be nested whereas `` cannot.
-var="$(command "$(command)")"
-```
-
-## Function Declaration
-
-Do not use the `function` keyword, it reduces compatibility with older versions of `bash`.
-
-```shell
-# Right.
-do_something() {
-    # ...
-}
-
-# Wrong.
-function do_something() {
-    # ...
-}
+# Disable unicode.
+LC_ALL=C
+LANG=C
 ```
 
 <!-- CHAPTER END -->

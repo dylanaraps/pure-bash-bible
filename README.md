@@ -93,7 +93,13 @@ See something that is incorrectly described, buggy or outright wrong? Open an is
 * [BRACE EXPANSION](#brace-expansion)
     * [Ranges](#ranges)
     * [String Lists](#string-lists)
-* [ARITHMETIC](#arithmetic)
+* [ARITHMETIC OPERATORS](#arithmetic-operators)
+    * [Assignment](#assignment)
+    * [Arithmetic](#arithmetic)
+    * [Bitwise](#bitwise)
+    * [Logical](#logical)
+    * [Miscellaneous](#miscellaneous)
+* [ARITHMETIC](#arithmetic-1)
     * [Simpler syntax to set variables](#simpler-syntax-to-set-variables)
     * [Ternary Tests](#ternary-tests)
 * [TRAPS](#traps)
@@ -1188,6 +1194,65 @@ echo {apples,oranges,pears,grapes}
 # Remove dirs Movies, Music and ISOS from ~/Downloads/.
 rm -rf ~/Downloads/{Movies,Music,ISOS}
 ```
+
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
+
+# ARITHMETIC OPERATORS
+
+## Assignment
+
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `=` | Initialize or change the value of a variable.
+
+## Arithmetic
+
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `+` | Addition
+| `-` | Subtraction
+| `*` | Multiplication
+| `/` | Division
+| `**` | Exponentiation
+| `%` | Modulo
+| `+=` | Plus-Equal (*Increment a variable.*)
+| `-=` | Minus-Equal (*Decrement a variable.*)
+| `*=` | Times-Equal (*Multiply a variable.*)
+| `/=` | Slash-Equal (*Divide a variable.*)
+| `%=` | Mod-Equal (*Remainder of dividing a variable.*)
+
+## Bitwise
+
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `<<` | Bitwise Left Shift
+| `<<=` | Left-Shift-Equal
+| `>>` | Bitwise Right Shift
+| `>>=` | Right-Shift-Equal
+| `&` | Bitwise AND
+| `&=` | Bitwise AND-Equal
+| `\|` | Bitwise OR
+| `\|=` | Bitwise OR-Equal
+| `~` | Bitwise NOT
+| `^` | Bitwise XOR
+| `^=` | Bitwise XOR-Equal
+
+## Logical
+
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `!` | NOT
+| `&&` | AND
+| `\|\|` | OR
+
+## Miscellaneous
+
+| Operators | What does it do? | Example |
+| --------- | ---------------- | ------- |
+| `,` | Comma Separator | `((a=1,b=2,c=3))`
+
 
 <!-- CHAPTER END -->
 

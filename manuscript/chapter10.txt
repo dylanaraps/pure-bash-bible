@@ -1,31 +1,58 @@
-# ARITHMETIC
 
-## Simpler syntax to set variables
+# ARITHMETIC OPERATORS
 
-```shell
-# Simple math
-((var=1+2))
+## Assignment
 
-# Decrement/Increment variable
-((var++))
-((var--))
-((var+=1))
-((var-=1))
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `=` | Initialize or change the value of a variable.
 
-# Using variables
-((var=var2*arr[2]))
-```
+## Arithmetic
 
-## Ternary Tests
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `+` | Addition
+| `-` | Subtraction
+| `*` | Multiplication
+| `/` | Division
+| `**` | Exponentiation
+| `%` | Modulo
+| `+=` | Plus-Equal (*Increment a variable.*)
+| `-=` | Minus-Equal (*Decrement a variable.*)
+| `*=` | Times-Equal (*Multiply a variable.*)
+| `/=` | Slash-Equal (*Divide a variable.*)
+| `%=` | Mod-Equal (*Remainder of dividing a variable.*)
 
-```shell
-# Set the value of var to var2 if var2 is greater than var.
-# var: variable to set.
-# var2>var: Condition to test.
-# ?var2: If the test succeeds.
-# :var: If the test fails.
-((var=var2>var?var2:var))
-```
+## Bitwise
+
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `<<` | Bitwise Left Shift
+| `<<=` | Left-Shift-Equal
+| `>>` | Bitwise Right Shift
+| `>>=` | Right-Shift-Equal
+| `&` | Bitwise AND
+| `&=` | Bitwise AND-Equal
+| `\|` | Bitwise OR
+| `\|=` | Bitwise OR-Equal
+| `~` | Bitwise NOT
+| `^` | Bitwise XOR
+| `^=` | Bitwise XOR-Equal
+
+## Logical
+
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `!` | NOT
+| `&&` | AND
+| `\|\|` | OR
+
+## Miscellaneous
+
+| Operators | What does it do? | Example |
+| --------- | ---------------- | ------- |
+| `,` | Comma Separator | `((a=1,b=2,c=3))`
+
 
 <!-- CHAPTER END -->
 
