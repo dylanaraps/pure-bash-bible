@@ -105,8 +105,8 @@ See something that is incorrectly described, buggy or outright wrong? Open an is
 * [TRAPS](#traps)
     * [Do something on script exit](#do-something-on-script-exit)
     * [Ignore terminal interrupt (CTRL+C, SIGINT)](#ignore-terminal-interrupt-ctrlc-sigint)
-    * [React to window resize.](#react-to-window-resize)
-    * [Do something before every command.](#do-something-before-every-command)
+    * [React to window resize](#react-to-window-resize)
+    * [Do something before every command](#do-something-before-every-command)
     * [Do something when a shell function or a sourced file finishes executing](#do-something-when-a-shell-function-or-a-sourced-file-finishes-executing)
 * [PERFORMANCE](#performance)
     * [Disable Unicode](#disable-unicode)
@@ -1311,14 +1311,14 @@ trap 'printf \\e[2J\\e[H\\e[m' EXIT
 trap '' INT
 ```
 
-## React to window resize.
+## React to window resize
 
 ```shell
 # Call a function on window resize.
 trap 'code_here' SIGWINCH
 ```
 
-## Do something before every command.
+## Do something before every command
 
 ```shell
 trap 'code_here' DEBUG

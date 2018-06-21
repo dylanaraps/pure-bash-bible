@@ -20,14 +20,14 @@ trap 'printf \\e[2J\\e[H\\e[m' EXIT
 trap '' INT
 ```
 
-## React to window resize.
+## React to window resize
 
 ```shell
 # Call a function on window resize.
 trap 'code_here' SIGWINCH
 ```
 
-## Do something before every command.
+## Do something before every command
 
 ```shell
 trap 'code_here' DEBUG
