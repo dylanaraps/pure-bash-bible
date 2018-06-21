@@ -916,11 +916,12 @@ Alternative to `touch`.
 
 ```shell
 # Shortest.
-:> file
+>file
 
 # Longer alternatives:
-echo -n > file
-printf '' > file
+:>file
+echo -n >file
+printf '' >file
 ```
 
 ## Extract lines between two markers
