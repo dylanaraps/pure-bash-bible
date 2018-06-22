@@ -112,6 +112,9 @@ test_basename() {
 test_hex_to_rgb() {
     result="$(hex_to_rgb "#FFFFFF")"
     assert_equals "$result" "255 255 255"
+
+    result="$(hex_to_rgb "000000")"
+    assert_equals "$result" "0 0 0"
 }
 
 test_rgb_to_hex() {
@@ -158,7 +161,7 @@ assert_equals() {
     else
         ((fail+=1))
         status=$'\e[31m✖'
-        local err="($1 != $2)"
+        local err="(\"$1\" != \"$2\")"
     fi
 
     printf ' %s\e[m | %s\n' "$status" "${FUNCNAME[1]/test_} $err"
@@ -184,10 +187,10 @@ main() {
     # Generate the list of tests to run.
     IFS=$'\n' read -d "" -ra funcs < <(declare -F)
     for func in "${funcs[@]//declare -f }"; do
-        [[ "$func" == test_* ]] && { "$func"; ((tot+=1)); }
+        [[ "$func" == test_* ]] && "$func";
     done
 
-    comp="Completed $tot tests. ${pass:-0} passed, ${fail:-0} failed."
+    comp="Completed $((fail+pass)) tests. ${pass:-0} passed, ${fail:-0} failed."
     printf '%s\n%s\n\n' "${comp//?/-}" "$comp"
 
     # If a test failed, exit with '1'.
