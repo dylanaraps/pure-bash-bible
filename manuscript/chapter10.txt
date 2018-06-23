@@ -1,58 +1,59 @@
 
-# ARITHMETIC OPERATORS
+# CONDITIONAL EXPRESSIONS
 
-## Assignment
+## File Conditionals
 
-| Operators | What does it do? |
-| --------- | ---------------- |
-| `=` | Initialize or change the value of a variable.
+| Expression | Value  | What does it do? |
+| ---------- | ------ | ---------------- |
+| `-a`       | `file` | If file exists.
+| `-b`       | `file` | If file exists and is a block special file.
+| `-c`       | `file` | If file exists and is a character special file.
+| `-d`       | `file` | If file exists and is a directory.
+| `-e`       | `file` | If file exists.
+| `-f`       | `file` | If file exists and is a regular file.
+| `-g`       | `file` | If file exists and its set-group-id bit is set.
+| `-h`       | `file` | If file exists and is a symbolic link.
+| `-k`       | `file` | If file exists and its sticky-bit is set
+| `-p`       | `file` | If file exists and is a named pipe (*FIFO*).
+| `-r`       | `file` | If file exists and is readable.
+| `-s`       | `file` | If file exists and its size is greater than zero.
+| `-t`       | `fd`   | If file descriptor is open and refers to a terminal.
+| `-u`       | `file` | If file exists and its set-user-id bit is set.
+| `-w`       | `file` | If file exists and is writable.
+| `-x`       | `file` | If file exists and is executable.
+| `-G`       | `file` | If file exists and is owned by the effective group ID.
+| `-L`       | `file` | If file exists and is a symbolic link.
+| `-N`       | `file` | If file exists and has been modified since last read.
+| `-O`       | `file` | If file exists and is owned by the effective user ID.
+| `-S`       | `file` | If file exists and is a socket.
 
-## Arithmetic
+## File Comparisons
 
-| Operators | What does it do? |
-| --------- | ---------------- |
-| `+` | Addition
-| `-` | Subtraction
-| `*` | Multiplication
-| `/` | Division
-| `**` | Exponentiation
-| `%` | Modulo
-| `+=` | Plus-Equal (*Increment a variable.*)
-| `-=` | Minus-Equal (*Decrement a variable.*)
-| `*=` | Times-Equal (*Multiply a variable.*)
-| `/=` | Slash-Equal (*Divide a variable.*)
-| `%=` | Mod-Equal (*Remainder of dividing a variable.*)
+| Expression | What does it do? |
+| ---------- | ---------------- |
+| `file -ef file2` | If both files refer to the same inode and device numbers.
+| `file -nt file2` | If `file` is newer than `file2` (*uses modification ime*) or `file` exists and `file2` does not.
+| `file -ot file2` | If `file` is older than `file2` (*uses modification ime*) or `file2` exists and `file` does not.
 
-## Bitwise
+## Variable Conditionals
 
-| Operators | What does it do? |
-| --------- | ---------------- |
-| `<<` | Bitwise Left Shift
-| `<<=` | Left-Shift-Equal
-| `>>` | Bitwise Right Shift
-| `>>=` | Right-Shift-Equal
-| `&` | Bitwise AND
-| `&=` | Bitwise AND-Equal
-| `\|` | Bitwise OR
-| `\|=` | Bitwise OR-Equal
-| `~` | Bitwise NOT
-| `^` | Bitwise XOR
-| `^=` | Bitwise XOR-Equal
+| Expression | Value | What does it do? |
+| ---------- | ----- | ---------------- |
+| `-o`       | `opt` | If shell option is enabled.
+| `-v`       | `var` | If variable has a value assigned.
+| `-R`       | `var` | If variable is a name reference.
+| `-z`       | `var` | If the length of string is zero.
+| `-n`       | `var` | If the length of string is non-zero.
 
-## Logical
+## Variable Comparisons
 
-| Operators | What does it do? |
-| --------- | ---------------- |
-| `!` | NOT
-| `&&` | AND
-| `\|\|` | OR
-
-## Miscellaneous
-
-| Operators | What does it do? | Example |
-| --------- | ---------------- | ------- |
-| `,` | Comma Separator | `((a=1,b=2,c=3))`
-
+| Expression | What does it do? |
+| ---------- | ---------------- |
+| `var = var2` | Equal to.
+| `var == var2` | Equal to (*synonym for `=`*).
+| `var != var2` | Not equal to.
+| `var < var2` | Less than (*in ASCII alphabetical order.*)
+| `var > var2` | Greater than (*in ASCII alphabetical order.*)
 
 <!-- CHAPTER END -->
 

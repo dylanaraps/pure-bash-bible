@@ -1,145 +1,78 @@
-# CONVERSION
+# INFORMATION ABOUT THE TERMINAL
 
-## Convert a hex color to RGB
+## Get the terminal size in lines and columns (*from a script*)
+
+This is handy when writing scripts in pure bash and `stty`/`tput` can’t be
+called.
 
 **Example Function:**
 
 ```sh
-hex_to_rgb() {
-    # Usage: hex_to_rgb "#FFFFFF"
-    : "${1/\#}"
-    ((r=16#${_:0:2},g=16#${_:2:2},b=16#${_:4:2}))
-    printf '%s\n' "$r $g $b"
+get_term_size() {
+    # Usage: get_term_size
+
+    # (:;:) is a micro sleep to ensure the variables are
+    # exported immediately.
+    shopt -s checkwinsize; (:;:)
+    printf '%s\n' "$LINES $COLUMNS"
 }
 ```
 
 **Example Usage:**
 
 ```shell
-$ hex_to_rgb "#FFFFFF"
-255 255 255
+# Output: LINES COLUMNS
+$ get_term_size
+15 55
 ```
 
+## Get the terminal size in pixels
 
-## Convert an RGB color to hex
+**CAVEAT**: This does not work in some terminal emulators.
 
 **Example Function:**
 
 ```sh
-rgb_to_hex() {
-    # Usage: rgb_to_hex "r" "g" "b"
-    printf '#%02x%02x%02x\n' "$1" "$2" "$3"
+get_window_size() {
+    # Usage: get_window_size
+    printf '%b' "${TMUX:+\\ePtmux;\\e}\\e[14t${TMUX:+\\e\\\\}"
+    IFS=';t' read -d t -t 0.05 -sra term_size
+    printf '%s\n' "${term_size[1]}x${term_size[2]}"
 }
 ```
 
 **Example Usage:**
 
 ```shell
-$ rgb_to_hex "255" "255" "255"
-#FFFFFF
+# Output: WIDTHxHEIGHT
+$ get_window_size
+1200x800
+
+# Output (fail):
+$ get_window_size
+x
 ```
 
+## Get the current cursor position
 
-# CODE GOLF
+This is useful when creating a TUI in pure bash.
 
-## Shorter `for` loop syntax
+**Example Function:**
 
-```shell
-# Tiny C Style.
-for((;i++<10;)){ echo "$i";}
-
-# Undocumented method.
-for i in {1..10};{ echo "$i";}
-
-# Expansion.
-for i in {1..10}; do echo "$i"; done
-
-# C Style.
-for((i=0;i<=10;i++)); do echo "$i"; done
-```
-
-## Shorter infinite loops
-
-```shell
-# Normal method
-while :; do echo hi; done
-
-# Shorter
-for((;;)){ echo hi;}
-```
-
-## Shorter function declaration
-
-```shell
-# Normal method
-f(){ echo hi;}
-
-# Using a subshell
-f()(echo hi)
-
-# Using arithmetic
-# This can be used to assign integer values.
-# Example: f a=1
-#          f a++
-f()(($1))
-
-# Using tests, loops etc.
-# NOTE: ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’ can also be used.
-f()if true; then echo "$1"; fi
-f()for i in "$@"; do echo "$i"; done
-```
-
-## Shorter `if` syntax
-
-```shell
-# One line
-# Note: The 3rd statement may run when the 1st is true
-[[ "$var" == hello ]] && echo hi || echo bye
-[[ "$var" == hello ]] && { echo hi; echo there; } || echo bye
-
-# Multi line (no else, single statement)
-# Note: The exit status may not be the same as with an if statement
-[[ "$var" == hello ]] && \
-    echo hi
-
-# Multi line (no else)
-[[ "$var" == hello ]] && {
-    echo hi
-    # ...
+```sh
+get_cursor_pos() {
+    # Usage: get_cursor_pos
+    IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
+    printf '%s\n' "$x $y"
 }
 ```
 
-## Simpler `case` statement to set variable
-
-The `:` built-in can be used to avoid repeating `variable=` in a case statement. The `$_` variable stores the last argument of the last command. `:` always succeeds so it can be used to store the variable value.
+**Example Usage:**
 
 ```shell
-# Modified snippet from Neofetch.
-case "$OSTYPE" in
-    "darwin"*)
-        : "MacOS"
-    ;;
-
-    "linux"*)
-        : "Linux"
-    ;;
-
-    *"bsd"* | "dragonfly" | "bitrig")
-        : "BSD"
-    ;;
-
-    "cygwin" | "msys" | "win32")
-        : "Windows"
-    ;;
-
-    *)
-        printf '%s\n' "Unknown OS detected, aborting..." >&2
-        exit 1
-    ;;
-esac
-
-# Finally, set the variable.
-os="$_"
+# Output: X Y
+$ get_cursor_pos
+1 8
 ```
 
 <!-- CHAPTER END -->

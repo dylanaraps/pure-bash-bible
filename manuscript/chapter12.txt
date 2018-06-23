@@ -1,42 +1,30 @@
-# TRAPS
+# ARITHMETIC
 
-Traps allow a script to execute code on various signals. In [pxltrm](https://github.com/dylanaraps/pxltrm) (*a pixel art editor written in bash*)  traps are used to redraw the user interface on window resize. Another use case is cleaning up temporary files on script exit.
-
-Traps should be added near the start of scripts so any early errors are also caught.
-
-**NOTE:** For a full list of signals, see `trap -l`.
-
-
-## Do something on script exit
+## Simpler syntax to set variables
 
 ```shell
-# Clear screen on script exit.
-trap 'printf \\e[2J\\e[H\\e[m' EXIT
+# Simple math
+((var=1+2))
+
+# Decrement/Increment variable
+((var++))
+((var--))
+((var+=1))
+((var-=1))
+
+# Using variables
+((var=var2*arr[2]))
 ```
 
-## Ignore terminal interrupt (CTRL+C, SIGINT)
+## Ternary Tests
 
 ```shell
-trap '' INT
-```
-
-## React to window resize
-
-```shell
-# Call a function on window resize.
-trap 'code_here' SIGWINCH
-```
-
-## Do something before every command
-
-```shell
-trap 'code_here' DEBUG
-```
-
-## Do something when a shell function or a sourced file finishes executing
-
-```shell
-trap 'code_here' RETURN
+# Set the value of var to var2 if var2 is greater than var.
+# var: variable to set.
+# var2>var: Condition to test.
+# ?var2: If the test succeeds.
+# :var: If the test fails.
+((var=var2>var?var2:var))
 ```
 
 <!-- CHAPTER END -->
