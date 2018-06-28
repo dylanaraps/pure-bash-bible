@@ -152,6 +152,7 @@ See something that is incorrectly described, buggy or outright wrong? Open an is
     * [Get the list of functions in a script](#get-the-list-of-functions-in-a-script)
     * [Bypass shell aliases](#bypass-shell-aliases)
     * [Bypass shell functions](#bypass-shell-functions)
+    * [Run a command in the background](#run-a-command-in-the-background)
 * [AFTERWORD](#afterword)
 
 <!-- vim-markdown-toc -->
@@ -1976,6 +1977,18 @@ ls
 
 # command
 command ls
+```
+
+## Run a command in the background
+
+This will run the given command and keep it running, even after the terminal or SSH connection is terminated. All output is ignored.
+
+```sh
+bkr() {
+    (nohup "$@" &>/dev/null &)
+}
+
+bkr ./some_script.sh # some_script.sh is now running in the background
 ```
 
 <!-- CHAPTER END -->
