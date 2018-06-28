@@ -32,8 +32,8 @@
 | Expression | What does it do? |
 | ---------- | ---------------- |
 | `file -ef file2` | If both files refer to the same inode and device numbers.
-| `file -nt file2` | If `file` is newer than `file2` (*uses modification ime*) or `file` exists and `file2` does not.
-| `file -ot file2` | If `file` is older than `file2` (*uses modification ime*) or `file2` exists and `file` does not.
+| `file -nt file2` | If `file` is newer than `file2` (*uses modification time*) or `file` exists and `file2` does not.
+| `file -ot file2` | If `file` is older than `file2` (*uses modification time*) or `file2` exists and `file` does not.
 
 ## Variable Conditionals
 
