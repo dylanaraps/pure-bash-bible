@@ -17,11 +17,11 @@ src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 <img src="https://s3.amazonaws.com/titlepages.leanpub.com/bash/hero" width="40%" align="right">
 </a>
 
-The goal of this book is to document known and unknown methods of doing various tasks using only built-in `bash` features. Using the snippets from this bible can help to remove unneeded dependencies from scripts and in most cases make them that little bit faster. I came across these tips and discovered a few while developing [neofetch](https://github.com/dylanaraps/neofetch), [pxltrm](https://github.com/dylanaraps/pxltrm) and some other smaller projects.
+The goal of this book is to document known and unknown methods of doing various tasks using only built-in `bash` features. Using the snippets from this bible can help remove unneeded dependencies from scripts and in most cases make them faster. I came across these tips and discovered a few while developing [neofetch](https://github.com/dylanaraps/neofetch), [pxltrm](https://github.com/dylanaraps/pxltrm) and other smaller projects.
 
-The snippets below are linted using `shellcheck` and tests have been written where applicable. Want to contribute? Have a read of the [CONTRIBUTING.md](https://github.com/dylanaraps/pure-bash-bible/blob/master/CONTRIBUTING.md). It outlines how the unit tests work and what is required when adding snippets to the bible.
+The snippets below are linted using `shellcheck` and tests have been written where applicable. Want to contribute? Read the [CONTRIBUTING.md](https://github.com/dylanaraps/pure-bash-bible/blob/master/CONTRIBUTING.md). It outlines how the unit tests work and what is required when adding snippets to the bible.
 
-See something that is incorrectly described, buggy or outright wrong? Open an issue or send a pull request. If the bible is missing something, open an issue and a solution will be found.
+See something incorrectly described, buggy or outright wrong? Open an issue or send a pull request. If the bible is missing something, open an issue and a solution will be found.
 
 <br>
 <p align="center"><b>This book is also available to purchase on leanpub. https://leanpub.com/bash</b></p>
@@ -162,11 +162,11 @@ See something that is incorrectly described, buggy or outright wrong? Open an is
 <!-- CHAPTER START -->
 # FOREWORD
 
-A collection of pure `bash` alternatives to external processes and programs. The `bash` scripting language is more powerful than people realise and most tasks can be accomplished without the need for or dependence on external programs.
+A collection of pure `bash` alternatives to external processes and programs. The `bash` scripting language is more powerful than people realise and most tasks can be accomplished without depending on external programs.
 
 Calling an external process in `bash` is expensive and excessive use will cause a noticeable slowdown. Scripts and programs written using built-in methods (*where applicable*) will be faster, require less dependencies and afford a better understanding of the language itself.
 
-The content of this book provides a reference for solving problems encountered when writing programs and scripts in `bash`. Examples are in function format showcasing how to incorporate these solutions into code.
+The contents of this book provide a reference for solving problems encountered when writing programs and scripts in `bash`. Examples are in function formats showcasing how to incorporate these solutions into code.
 
 <!-- CHAPTER END -->
 
