@@ -1,0 +1,33 @@
+SRC=README.md
+
+all: pdf epub
+
+epub: pure-bash-bible.epub
+
+pure-bash-bible.epub: $(SRC)
+	./build.sh
+	pandoc -f markdown -t epub \
+	-V title:'pure bash bible' \
+	-o $@ \
+	manuscript/chapter?.txt manuscript/chapter??.txt
+
+pdf: pure-bash-bible_letter.pdf pure-bash-bible_a4.pdf
+
+pure-bash-bible_letter.pdf: $(SRC)
+	./build.sh
+	pandoc -f markdown -t latex --latex-engine=xelatex \
+	-V lang:en -V papersize:letterpaper -V title-meta:'pure bash bible' \
+	-V geometry:margin=5em \
+	-o $@ \
+	manuscript/chapter?.txt manuscript/chapter??.txt
+
+pure-bash-bible_a4.pdf: $(SRC)
+	./build.sh
+	pandoc -f markdown -t latex --latex-engine=xelatex \
+	-V lang:en -V papersize:a4paper -V title-meta:'pure bash bible' \
+	-V geometry:margin=5em \
+	-o $@ \
+	manuscript/chapter?.txt manuscript/chapter??.txt
+
+.PHONY clean:
+	rm -rf pure-bash-bible_*.pdf pure-bash-bible.epub
