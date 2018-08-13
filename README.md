@@ -1013,6 +1013,30 @@ $ basename ~/Pictures/Downloads/
 Downloads
 ```
 
+## Find parent directory that contains a certain file or directory
+
+**Example Function:**
+
+```sh
+parent_find() {
+  [[ $1 == '/' ]] && return 1
+
+  [[ -e "$1/$2" ]] && printf '%s\n' "$1" && return 0
+
+  parent_find "$(dirname "$(realpath "$1")")" "$2"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ pwd
+/home/black/Projects/awesome/src/assets
+
+$ parent_find "$PWD" .git
+/home/black/Projects/awesome/
+```
+
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
