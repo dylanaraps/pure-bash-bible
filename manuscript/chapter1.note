@@ -1,0 +1,23 @@
+#!/bin/bash -eu
+# shellcheck disable=SC2086,SC2048
+
+header() { printf '\n=== %s\n\n' "$@"; }
+
+header "Alternative implementation of trim_all with simpler code"
+
+trim_all() {
+    # Usage: trim_all "   example   string    "
+    echo $*
+}
+
+trim_all "    Hello,    World    "
+
+header "An analogous implementation of trim_quotes"
+
+trim_quotes() {
+    # Usage: trim_quotes "string"
+    eval echo $*
+}
+
+var="'Hello', \"World\""
+trim_quotes "$var"

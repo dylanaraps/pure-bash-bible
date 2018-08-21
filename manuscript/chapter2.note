@@ -1,0 +1,53 @@
+#!/bin/bash -eu
+# shellcheck disable=SC2086,SC2048
+
+header() { printf '\n=== %s\n\n' "$@"; }
+
+test_run() {
+  for i in {0..10}; do
+    cycle "$@"
+  done
+  echo
+}
+
+header "The original, which has a bug"
+
+arr=(a b c d)
+
+set +eu  # do not die on the bug
+cycle() {
+    # array must be named "arr"
+    printf '%s ' "${arr[${i:=0}]}"
+    ((i=i>=${#arr[@]}-1?0:++i))
+}
+
+
+test_run
+
+header "An alternative, which works as documented."
+
+set -eu  # we return you to our original programming
+
+arr=(a b c d)
+
+i=0       # initialize
+cycle() {
+    # array must be named "arr"
+    local size=${#arr[@]}
+    printf '%s ' ${arr[((i++%size))]}
+}
+
+test_run
+
+header "Here's one that works with a simple argument list"
+
+# usage "cycle args"
+i=0       # initialize
+cycle() {
+    local j size=$#
+    (( j = i++ %size + 1))
+    printf '%s ' ${!j}
+}
+
+
+test_run a b c d
