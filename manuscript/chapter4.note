@@ -1,0 +1,26 @@
+#!/bin/bash -eu
+# shellcheck disable=SC2218
+
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '\n\t= %s =\n\n' "$@"; }
+
+header "Read a file into a string"
+ 
+# shellcheck disable=SC2046
+contents() { echo $(<"$1"); }
+
+contents /etc/passwd | head -2
+
+header "A more flexible version, which also preserves newlines"
+
+contents() {
+    # usage: contents [filename]
+    local c
+    c=$(<"${1:-/dev/stdin}")
+    echo "$c"  # preserve newlines
+}
+
+subhead "filename as argument"
+contents /etc/passwd | head -2
+subhead "input from stdin"
+contents < /etc/passwd | head -2
