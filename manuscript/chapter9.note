@@ -1,0 +1,17 @@
+#!/bin/bash -eu
+
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '\n\t= %s =\n\n' "$@"; }
+
+header "Brace expansion will count backwards"
+
+countdown() {
+  echo {10..1}..
+}
+
+countdown
+echo BLASTOFF!
+
+header "Brace expansion can say the alphabet backwards, too"
+
+echo {z..a}
