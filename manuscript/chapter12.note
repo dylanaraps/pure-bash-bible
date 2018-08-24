@@ -1,0 +1,15 @@
+#!/bin/bash
+
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '\n\t= %s =\n\n' "$@"; }
+
+header "Double parens tolerate space around operators"
+
+increment_x() {
+  (( x = x + $1 ))  # note the space
+}
+
+x=69
+echo $x
+increment_x 96
+echo $x
