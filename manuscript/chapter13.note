@@ -1,0 +1,45 @@
+#!/bin/bash
+# shellcheck disable=SC2064
+
+header() { printf '\n=== %s\n\n' "$@"; }
+
+tmpfile()  {
+	rm -rf "$1"
+	mktemp "$1" > /dev/null
+	trap "rm -f $1" USR1    # this would normally be EXIT
+}
+
+header "call trap immediately after creating tempfiles to make sure they're cleaned up"
+
+tmpfile foo      # create a file
+echo hello > foo # put something in it
+cat foo          # verify it's there
+
+header "and the signal removes it"
+
+kill -s USR1 $$  # send myself the signal to trigger the trap
+ls foo
+
+header "calling trap a second time overrides the first"
+
+tmpfile foo
+tmpfile bar
+
+kill -s USR1 $$
+ls foo bar
+
+header "bar is gone, foo is still there"
+header "here's a typical way to handle this"
+
+better_tmpfile() {
+	TMPFILES+=" $1"
+	rm -rf "$1"
+	mktemp "$1" > /dev/null
+	trap 'rm -f $TMPFILES' USR1
+}
+
+better_tmpfile foo
+better_tmpfile bar
+
+kill -s USR1 $$
+ls foo bar
