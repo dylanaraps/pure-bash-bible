@@ -1,0 +1,17 @@
+#!/bin/bash -eu
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '\n\t= %s =\n\n' "$@"; }
+
+header "The close brace must be on its own (virtual) line"
+
+subhead "here's a multi-line definition"
+foo() {
+  echo hello
+ }
+type foo
+foo
+
+subhead "and here's a one-line definition"
+foo() { echo hello; }
+type foo
+foo
