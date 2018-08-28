@@ -1,0 +1,28 @@
+#!/bin/bash -eu
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '== %s =\n\t' "$@"; }
+
+header "The two variables guaranteed to be set in a POSIX shell are HOME and LOGNAME"
+
+echo "Home is '$HOME', LOGNAME is '$LOGNAME'"
+
+header "SECONDS counts up since the last time it was set"
+
+print_seconds() { echo "SECONDS is '$SECONDS'"; }
+
+timers() {
+	subhead "SECONDS is set to 0 at the beginning of the script"
+	print_seconds
+	subhead "you can set seconds to a negative number"
+	SECONDS=-5
+	print_seconds
+	subhead "now sleep for a second"
+	sleep 1
+	print_seconds
+	subhead "now set seconds to a big number"
+	SECONDS=1000
+	sleep 1
+	print_seconds
+}
+
+timers
