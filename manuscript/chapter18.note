@@ -1,0 +1,45 @@
+#!/bin/bash
+
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '\n==\t%s =\n\n' "$@"; }
+
+header ": is no-op that always succeeds, just like 'true'"
+
+cat <<__EOF__
+In early versions of the shell, there was no comment character,
+so comments were inserted into scripts with ':'
+__EOF__
+
+test_commenting() {
+	# '#' starts a comment
+	: '":"' can also start a comment, but it is still a command
+	echo notice neither comment above did anything
+}
+
+test_commenting
+
+header "However, the semantics are different"
+header "Everything after the ':' is an argument, so expanded by the shell before exeuting the command"
+
+subhead "'set -x' won't show blank lines or comments, but ':' is a command!"
+set -x
+test_commenting
+{ set +x; } &> /dev/null
+subhead "(this can be useful for debugging scripts)"
+
+subhead "':' is a common idiom for setting defaults"
+
+set_a_default() {
+	set -x
+	unset x
+	{ set +x; } &> /dev/null
+	echo "x is '$x'"
+	# shellcheck disable=SC2016
+	echo 'now use ": ${x:=69}" to set x as a side effect'
+	{ set +x; } &> /dev/null
+	: "${x:=69}"
+	{ set +x; } &> /dev/null
+	echo "x is '$x'"
+}
+
+set_a_default
