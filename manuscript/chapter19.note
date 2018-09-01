@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+#shellcheck disable=SC2162
+
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '== %s =\n\t' "$@"; }
+
+header "read may be more accurate than sleep for fractional times"
+
+set -x
+time sleep 0.001
+time read -t 0.001
+{ set +x; } &>/dev/null
+
+header "hash won't print a path without a '-t' flag"
+
+set -x
+hash bash
+hash -t bash
+{ set +x; } &>/dev/null
+
+header 'A useful alternative for the date in prompts is "\T"'
+
+set -x
+PS4='[$(date +%T)] '
+sleep 1
+echo method 1
+PS4='[$(printf "%()T")] '
+sleep 1
+echo method 2
+PS4='[\T] '
+sleep 1
+echo method 3
+{ set +x; } &>/dev/null
+unset PS4
+
+header "Pick a random line from a /etc/passwd"
+while read line; do echo -e $RANDOM'\t'"$line"; done < /etc/passwd | sort -n | cut -f 2 | head -1
+
+header "Or, if you're really obsessed with doing it all in the shell"
+
+unset a
+while read line; do a[$RANDOM]="$line?"; done < /etc/passwd
+echo "${a[*]}" | while read -d '?' line ; do echo "$line"; break; done
+unset a
+
