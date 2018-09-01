@@ -1,4 +1,6 @@
 #!/bin/bash -eu
+#shellcheck disable=SC2218
+
 header() { printf '\n=== %s\n\n' "$@"; }
 subhead() { printf '\n\t= %s =\n\n' "$@"; }
 

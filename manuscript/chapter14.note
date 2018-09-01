@@ -1,22 +1,20 @@
 #!/bin/bash
-# shellcheck disable=SC2086,SC2048
+# shellcheck disable=SC2012,SC2086,SC2048,SC2164
 
 header() { printf '\n=== %s\n\n' "$@"; }
 subhead() { printf '\n\t= %s =\n\n' "$@"; }
 
-header "LC_ALL=C suffices, overrides LANG"
+header "No need to set LANG, since LC_ALL=C overrides it"
 
 rm -rf /tmp/X; mkdir /tmp/X; cd $_; touch /tmp/X/{a,B}
 trap 'rm -rf /tmp/X' EXIT
 
 ansi-collation() {
-	printf "Does LC_ALL=$LC_ALL, LANG=$LANG have normal sort order? "
+	printf "Does LC_ALL=%s, LANG=%s have ASCII sort order? " $LC_ALL $LANG
 	[[ $(ls | head -1) = B ]] && echo yes || echo no
 }
 
-LC_ALL=C ansi-collation
-LC_ALL=et_EE.ISO8859-15 ansi-collation
-LANG=et_EE.ISO8859-15 ansi-collation
 LC_ALL=et_EE.ISO8859-15 LANG=C ansi-collation
 LC_ALL=C LANG=et_EE.ISO8859-15 ansi-collation
+LC_ALL=C ansi-collation
 
