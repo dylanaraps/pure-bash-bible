@@ -1,0 +1,19 @@
+#!/bin/bash -eu
+# shellcheck disable=SC1117,SC2059
+
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '\n\t= %s =\n\n' "$@"; }
+
+header "$'string' interprets escapes within the quoted string"
+
+s1=$'\e[3mthis\e[m is with the dollar'
+s2='and \e[3mthis\e[m is without it'
+
+subhead "so does printf"
+with_printf() { printf "$s1\n$s2\n"; }
+with_printf
+
+subhead "but echo -e does not!"
+with_echo() { echo -e "$s1\n$s2\n"; }
+with_echo
+

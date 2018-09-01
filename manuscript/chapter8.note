@@ -1,0 +1,35 @@
+#!/bin/bash -eu
+# shellcheck disable=SC2119,SC2120
+
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '\n\t= %s =\n\n' "$@"; }
+
+header "Here's an idiom in common use"
+
+show_default() {
+  : "${greeting:=hello}"
+  echo $greeting, world
+}
+
+subhead "First, without setting the variable"
+show_default
+
+subhead "Now, with setting it"
+greeting=goodbye
+show_default
+
+header "Here's how to guard against unset variables, but not crash"
+
+go_beyond() {
+  echo "first, with a variable hallpass ${1-}"
+  echo "next, without a variable hallpass $1"
+}
+
+subhead "ignoring unset variables"
+set +eu 
+go_beyond && echo plus ultra
+
+subhead "erroring out on unset variables"
+set -eu 
+go_beyond && echo plus ultra
+

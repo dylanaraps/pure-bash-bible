@@ -1,0 +1,27 @@
+#!/bin/bash -eu
+# shellcheck disable=SC2086,SC2048
+
+header() { printf '\n=== %s\n\n' "$@"; }
+
+header "A simpler loop through a file"
+
+mycat() {
+    ## usage: mycat < file
+
+    while read -r line; do
+        echo "$line"   # or do something with the line, here
+    done 
+}
+
+mycat < /etc/passwd | head -2
+
+header "A simpler ls alternative"
+
+myls() {
+  # usage: myls file [file ...]
+  for file; do echo "$file"; done
+}
+
+# shellcheck disable=SC2035
+myls ./* | head -2 
+

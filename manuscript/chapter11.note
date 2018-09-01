@@ -1,0 +1,24 @@
+#!/bin/bash
+# shellcheck disable=SC2016
+
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '\n\t= %s =\n\n' "$@"; }
+
+header '"(())" does arithmetic, "$(())"returns a value'
+
+add_to_x() {
+  (( ++x ))
+}
+
+add_to_x_in_subprocess() {
+  x=$(( ++x ))
+}
+
+x=69
+echo $x
+add_to_x 1
+echo $x
+add_to_x_in_subprocess 1
+echo $x
+
+header 'Note that inside double-parens, no dereferencing "$" is needed for vars'

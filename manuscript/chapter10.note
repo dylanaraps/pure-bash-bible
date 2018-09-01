@@ -1,0 +1,26 @@
+#!/bin/bash
+# shellcheck disable=SC2086,SC2218
+
+header() { printf '\n=== %s\n\n' "$@"; }
+subhead() { printf '\n\t= %s =\n\n' "$@"; }
+
+header "without arguments, 'test' tests for a null, empty, or blank string"
+
+empty_test() {
+  echo empty_test has "$#" arguments
+  [ -z "$1" ] && echo "'$1' is empty"
+  [ $1 ] || echo "'$1' is empty or blank"
+}
+
+empty_test
+empty_test ""
+empty_test "    "
+
+header "without arguments, [[]] doesn't behave the same way"
+empty_test() {
+  [[ $1 ]] || echo "'$1' is empty or blank"
+}
+
+empty_test
+empty_test ""
+empty_test "    "
