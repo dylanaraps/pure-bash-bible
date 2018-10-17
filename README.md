@@ -1877,6 +1877,8 @@ Fri 15 Jun  - 10:00 AM
 
 ## Generate a UUID V4
 
+**CAVEAT**: The generated value is not cryptographically secure.
+
 **Example Function:**
 
 ```sh
