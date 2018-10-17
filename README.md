@@ -164,7 +164,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
 
 A collection of pure `bash` alternatives to external processes and programs. The `bash` scripting language is more powerful than people realise and most tasks can be accomplished without depending on external programs.
 
-Calling an external process in `bash` is expensive and excessive use will cause a noticeable slowdown. Scripts and programs written using built-in methods (*where applicable*) will be faster, require less dependencies and afford a better understanding of the language itself.
+Calling an external process in `bash` is expensive and excessive use will cause a noticeable slowdown. Scripts and programs written using built-in methods (*where applicable*) will be faster, require fewer dependencies and afford a better understanding of the language itself.
 
 The contents of this book provide a reference for solving problems encountered when writing programs and scripts in `bash`. Examples are in function formats showcasing how to incorporate these solutions into code.
 
@@ -237,7 +237,7 @@ John Black is my name.
 The result of `bash`'s regex matching can be used to replace `sed` for a
 large number of use-cases.
 
-**CAVEAT**: This is one of the few platform dependant `bash` features.
+**CAVEAT**: This is one of the few platform dependent `bash` features.
 `bash` will use whatever regex engine is installed on the user's system.
 Stick to POSIX regex features if aiming for compatibility.
 
