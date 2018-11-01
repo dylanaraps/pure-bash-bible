@@ -329,7 +329,7 @@ is
 john
 ```
 
-## Match, split, and Select fields from a string
+## Match split Select on a delimiter
 
 This is an extention to "Split string on a delimiter" and is meant to more closely mimic the basic functionality of AWK.
 
