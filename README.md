@@ -41,6 +41,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Trim all white-space from string and truncate spaces](#trim-all-white-space-from-string-and-truncate-spaces)
     * [Use regex on a string](#use-regex-on-a-string)
     * [Split a string on a delimiter](#split-a-string-on-a-delimiter)
+    * [Match, split, and Select fields from a string](#match-split-select-on-a-delimiter)
     * [Change a string to lowercase](#change-a-string-to-lowercase)
     * [Change a string to uppercase](#change-a-string-to-uppercase)
     * [Trim quotes from a string](#trim-quotes-from-a-string)
@@ -326,6 +327,38 @@ my
 name
 is
 john
+```
+
+## Match, split, and Select fields from a string
+
+This is an extention to "Split string on a delimiter" and is meant to more closely mimic the basic functionality of AWK.
+
+**Example Function:**
+
+```sh
+cmdparse() {
+    if [[ -z $1 ]] || [[ $1 == help ]] || [[ -z $2 ]] || [[ -z $3 ]] || [[ -z $4 ]]; then
+        printf '%s\n' "USAGE: cmdparse \"<command>\" \"<match_substring_list>\" \"<selected_column>\" \"<field_delimiter>\""
+        return
+    fi
+    read -d $'\s' -ra match_list <<< "${2}"
+    while read -d $'\n' -r line; do
+        read -d "" -ra field <<< "${line//$4/$'\n'}"
+        for match in ${match_list[@]}
+            do
+                if [[ $line =~ $match ]]; then
+                    printf '%s\n' "${field[$3]}"
+                fi
+            done
+    done < <($1)
+}
+```
+
+**Example Usage:**
+
+```shell
+$ cmdparse "free" "Mem" 2 $'\t'
+3821820
 ```
 
 ## Change a string to lowercase
