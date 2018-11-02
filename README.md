@@ -344,7 +344,7 @@ cmdparse() {
     read -d $'\s' -ra match_list <<< "${2}"
     while read -d $'\n' -r line; do
         read -d "" -ra field <<< "${line//$4/$'\n'}"
-        for match in ${match_list[@]}
+        for match in "${match_list[@]}"
             do
                 if [[ $line =~ $match ]]; then
                     printf '%s\n' "${field[$3]}"
