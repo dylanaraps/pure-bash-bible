@@ -64,7 +64,7 @@ John Black is my name.
 The result of `bash`'s regex matching can be used to replace `sed` for a
 large number of use-cases.
 
-**CAVEAT**: This is one of the few platform dependant `bash` features.
+**CAVEAT**: This is one of the few platform dependent `bash` features.
 `bash` will use whatever regex engine is installed on the user's system.
 Stick to POSIX regex features if aiming for compatibility.
 

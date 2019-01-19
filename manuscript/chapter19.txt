@@ -82,7 +82,20 @@ $ printf '%s\n' "$date"
 Fri 15 Jun  - 10:00 AM
 ```
 
+## Get the username of the current user
+
+**CAVEAT:** Requires `bash` 4.4+
+
+```shell
+$ : \\u
+# Expand the parameter as if it were a prompt string
+$ printf '%s\n' "${_@P}"
+black
+```
+
 ## Generate a UUID V4
+
+**CAVEAT**: The generated value is not cryptographically secure.
 
 **Example Function:**
 
