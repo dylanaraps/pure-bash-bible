@@ -274,7 +274,7 @@ $ regex "red" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$'
 
 ```shell
 is_hex_color() {
-    if [[ "$1" =~ ^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$ ]]; then
+    if [[ $1 =~ ^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$ ]]; then
         printf '%s\n' "${BASH_REMATCH[1]}"
     else
         printf '%s\n' "error: $1 is an invalid color."
@@ -487,17 +487,17 @@ The Quick Brown
 **Using a test:**
 
 ```shell
-if [[ "$var" == *sub_string* ]]; then
+if [[ $var == *sub_string* ]]; then
     printf '%s\n' "sub_string is in var."
 fi
 
 # Inverse (substring not in string).
-if [[ "$var" != *sub_string* ]]; then
+if [[ $var != *sub_string* ]]; then
     printf '%s\n' "sub_string is not in var."
 fi
 
 # This works for arrays too!
-if [[ "${arr[*]}" == *sub_string* ]]; then
+if [[ ${arr[*]} == *sub_string* ]]; then
     printf '%s\n' "sub_string is in array."
 fi
 ```
@@ -523,12 +523,12 @@ esac
 ## Check if string starts with sub-string
 
 ```shell
-if [[ "$var" == sub_string* ]]; then
+if [[ $var == sub_string* ]]; then
     printf '%s\n' "var starts with sub_string."
 fi
 
 # Inverse (var does not start with sub_string).
-if [[ "$var" != sub_string* ]]; then
+if [[ $var != sub_string* ]]; then
     printf '%s\n' "var does not start with sub_string."
 fi
 ```
@@ -536,12 +536,12 @@ fi
 ## Check if string ends with sub-string
 
 ```shell
-if [[ "$var" == *sub_string ]]; then
+if [[ $var == *sub_string ]]; then
     printf '%s\n' "var ends with sub_string."
 fi
 
 # Inverse (var does not end with sub_string).
-if [[ "$var" != *sub_string ]]; then
+if [[ $var != *sub_string ]]; then
     printf '%s\n' "var does not end with sub_string."
 fi
 ```
@@ -600,7 +600,7 @@ remove_array_dups() {
     declare -A tmp_array
 
     for i in "$@"; do
-        [[ "$i" ]] && IFS=" " tmp_array["${i:- }"]=1
+        [[ $i ]] && IFS=" " tmp_array["${i:- }"]=1
     done
 
     printf '%s\n' "${!tmp_array[@]}"
@@ -723,12 +723,12 @@ arr=(apples oranges tomatoes)
 
 # Elements and index.
 for i in "${!arr[@]}"; do
-    printf '%s\n' "${arr[$i]}"
+    printf '%s\n' "${arr[i]}"
 done
 
 # Alternative method.
 for ((i=0;i<${#arr[@]};i++)); do
-    printf '%s\n' "${arr[$i]}"
+    printf '%s\n' "${arr[i]}"
 done
 ```
 
@@ -945,11 +945,11 @@ printf '' >file
 extract() {
     # Usage: extract file "opening marker" "closing marker"
     while IFS=$'\n' read -r line; do
-        [[ "$extract" && "$line" != "$3" ]] && \
+        [[ $extract && $line != "$3" ]] &&
             printf '%s\n' "$line"
 
-        [[ "$line" == "$2" ]] && extract=1
-        [[ "$line" == "$3" ]] && extract=
+        [[ $line == "$2" ]] && extract=1
+        [[ $line == "$3" ]] && extract=
     done < "$1"
 }
 ```
@@ -1022,14 +1022,28 @@ Downloads
 ## Assign and access a variable using a variable
 
 ```shell
-hello_world="test"
+$ hello_world="value"
 
 # Create the variable name.
-var1="world"
-var2="hello_${var1}"
+$ var="world"
+$ ref="hello_$var"
 
-# Print the value of the variable name stored in 'hello_$var1'.
-printf '%s\n' "${!var2}"
+# Print the value of the variable name stored in 'hello_$var'.
+$ printf '%s\n' "${!ref}"
+value
+```
+
+Alternatively, on `bash` 4.3+:
+
+```shell
+$ hello_world="value"
+$ var="world"
+
+# Declare a nameref.
+$ declare -n ref=hello_$var
+
+$ printf '%s\n' "$ref"
+value
 ```
 
 <!-- CHAPTER END -->
@@ -1101,7 +1115,7 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 | --------- | ---------------- |
 | `${!VAR}` | Access a variable based on the value of `VAR`.
 | `${!VAR*}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
-| `${!VAR@}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
+| `${!VAR@}` | Expand to `IFS` separated list of variable names starting with `VAR`. If double-quoted, each variable name expands to a separate word. |
 
 
 ## Replacement
@@ -1741,16 +1755,16 @@ f()for i in "$@"; do echo "$i"; done
 ```shell
 # One line
 # Note: The 3rd statement may run when the 1st is true
-[[ "$var" == hello ]] && echo hi || echo bye
-[[ "$var" == hello ]] && { echo hi; echo there; } || echo bye
+[[ $var == hello ]] && echo hi || echo bye
+[[ $var == hello ]] && { echo hi; echo there; } || echo bye
 
 # Multi line (no else, single statement)
 # Note: The exit status may not be the same as with an if statement
-[[ "$var" == hello ]] && \
+[[ $var == hello ]] &&
     echo hi
 
 # Multi line (no else)
-[[ "$var" == hello ]] && {
+[[ $var == hello ]] && {
     echo hi
     # ...
 }
@@ -1882,7 +1896,7 @@ Fri 15 Jun  - 10:00 AM
 
 ```shell
 $ : \\u
-# Expand the parameter as if it were a prompt string
+# Expand the parameter as if it were a prompt string.
 $ printf '%s\n' "${_@P}"
 black
 ```

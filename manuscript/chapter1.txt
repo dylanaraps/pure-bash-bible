@@ -100,7 +100,7 @@ $ regex "red" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$'
 
 ```shell
 is_hex_color() {
-    if [[ "$1" =~ ^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$ ]]; then
+    if [[ $1 =~ ^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$ ]]; then
         printf '%s\n' "${BASH_REMATCH[1]}"
     else
         printf '%s\n' "error: $1 is an invalid color."
@@ -313,17 +313,17 @@ The Quick Brown
 **Using a test:**
 
 ```shell
-if [[ "$var" == *sub_string* ]]; then
+if [[ $var == *sub_string* ]]; then
     printf '%s\n' "sub_string is in var."
 fi
 
 # Inverse (substring not in string).
-if [[ "$var" != *sub_string* ]]; then
+if [[ $var != *sub_string* ]]; then
     printf '%s\n' "sub_string is not in var."
 fi
 
 # This works for arrays too!
-if [[ "${arr[*]}" == *sub_string* ]]; then
+if [[ ${arr[*]} == *sub_string* ]]; then
     printf '%s\n' "sub_string is in array."
 fi
 ```
@@ -349,12 +349,12 @@ esac
 ## Check if string starts with sub-string
 
 ```shell
-if [[ "$var" == sub_string* ]]; then
+if [[ $var == sub_string* ]]; then
     printf '%s\n' "var starts with sub_string."
 fi
 
 # Inverse (var does not start with sub_string).
-if [[ "$var" != sub_string* ]]; then
+if [[ $var != sub_string* ]]; then
     printf '%s\n' "var does not start with sub_string."
 fi
 ```
@@ -362,12 +362,12 @@ fi
 ## Check if string ends with sub-string
 
 ```shell
-if [[ "$var" == *sub_string ]]; then
+if [[ $var == *sub_string ]]; then
     printf '%s\n' "var ends with sub_string."
 fi
 
 # Inverse (var does not end with sub_string).
-if [[ "$var" != *sub_string ]]; then
+if [[ $var != *sub_string ]]; then
     printf '%s\n' "var does not end with sub_string."
 fi
 ```

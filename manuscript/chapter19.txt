@@ -88,7 +88,7 @@ Fri 15 Jun  - 10:00 AM
 
 ```shell
 $ : \\u
-# Expand the parameter as if it were a prompt string
+# Expand the parameter as if it were a prompt string.
 $ printf '%s\n' "${_@P}"
 black
 ```
