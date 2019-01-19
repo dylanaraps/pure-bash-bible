@@ -147,6 +147,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Use `read` as an alternative to the `sleep` command](#use-read-as-an-alternative-to-the-sleep-command)
     * [Check if a program is in the user's PATH](#check-if-a-program-is-in-the-users-path)
     * [Get the current date using `strftime`](#get-the-current-date-using-strftime)
+    * [Get the username of the current user](#get-the-username-of-the-current-user)
     * [Generate a UUID V4](#generate-a-uuid-v4)
     * [Progress bars](#progress-bars)
     * [Get the list of functions in a script](#get-the-list-of-functions-in-a-script)
@@ -1873,6 +1874,17 @@ Fri 15 Jun  - 10:00 AM
 $ printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
 $ printf '%s\n' "$date"
 Fri 15 Jun  - 10:00 AM
+```
+
+## Get the username of the current user
+
+**CAVEAT:** Requires `bash` 4.4+
+
+```shell
+$ : \\u
+# Expand the parameter as if it were a prompt string
+$ printf '%s\n' "${_@P}"
+black
 ```
 
 ## Generate a UUID V4
