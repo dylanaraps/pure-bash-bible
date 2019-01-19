@@ -6,7 +6,7 @@
 | --------- | ---------------- |
 | `${!VAR}` | Access a variable based on the value of `VAR`.
 | `${!VAR*}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
-| `${!VAR@}` | Expand to `IFS` separated list of variable names starting with `VAR`. |
+| `${!VAR@}` | Expand to `IFS` separated list of variable names starting with `VAR`. If double-quoted, each variable name expands to a separate word. |
 
 
 ## Replacement
