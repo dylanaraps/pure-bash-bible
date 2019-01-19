@@ -27,5 +27,14 @@ $ printf '%s\n' "$ref"
 value
 ```
 
+## Name a variable based on another variable
+
+```shell
+$ var="world"
+$ declare hello_$var=value
+$ printf '%s\n' "$hello_world"
+value
+```
+
 <!-- CHAPTER END -->
 

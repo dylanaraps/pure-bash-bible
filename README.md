@@ -78,6 +78,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Get the base-name of a file path](#get-the-base-name-of-a-file-path)
 * [VARIABLES](#variables)
     * [Assign and access a variable using a variable](#assign-and-access-a-variable-using-a-variable)
+    * [Name a variable based on another variable](#name-a-variable-based-on-another-variable)
 * [ESCAPE SEQUENCES](#escape-sequences)
     * [Text Colors](#text-colors)
     * [Text Attributes](#text-attributes)
@@ -1043,6 +1044,15 @@ $ var="world"
 $ declare -n ref=hello_$var
 
 $ printf '%s\n' "$ref"
+value
+```
+
+## Name a variable based on another variable
+
+```shell
+$ var="world"
+$ declare hello_$var=value
+$ printf '%s\n' "$hello_world"
 value
 ```
 
