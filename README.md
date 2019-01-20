@@ -1051,7 +1051,7 @@ value
 
 ```shell
 $ var="world"
-$ declare hello_$var=value
+$ declare "hello_$var=value"
 $ printf '%s\n' "$hello_world"
 value
 ```

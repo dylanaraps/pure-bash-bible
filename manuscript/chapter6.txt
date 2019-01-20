@@ -21,7 +21,7 @@ $ hello_world="value"
 $ var="world"
 
 # Declare a nameref.
-$ declare -n ref=hello_$var
+$ declare -n "ref=hello_$var"
 
 $ printf '%s\n' "$ref"
 value
