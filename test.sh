@@ -53,6 +53,16 @@ test_rstrip() {
     assert_equals "$result" "Hello"
 }
 
+test_urlencode() {
+	result="$(urlencode "https://github.com/dylanaraps/pure-bash-bible")"
+	assert_equals "$result" "https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible"
+}
+
+test_urldecode() {
+	result="$(urldecode "https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible")"
+	assert_equals "$result" "https://github.com/dylanaraps/pure-bash-bible"
+}
+
 test_reverse_array() {
     IFS=$'\n' read -d "" -ra result < <(reverse_array 1 2 3 4 5)
     assert_equals "${result[*]}" "5 4 3 2 1"
