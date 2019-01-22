@@ -308,6 +308,55 @@ $ rstrip "The Quick Brown Fox" " Fox"
 The Quick Brown
 ```
 
+## Percent-encode a string
+
+**Example Function:**
+
+```sh
+urlencode() {
+    # Usage: urlencode "string"
+    for (( i = 0; i < ${#1}; i++ )); do
+        : "${1:i:1}"
+        case "$_" in
+            [a-zA-Z0-9.~_-])
+                printf '%s' "$_"
+            ;;
+
+            *)
+                printf '%%%02X' "'$_"
+            ;;
+        esac
+    done
+    printf '\n'
+}
+```
+
+**Example Usage:**
+
+```shell
+$ urlencode "https://github.com/dylanaraps/pure-bash-bible"
+https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible
+```
+
+## Decode a percent-encoded string
+
+**Example Function:**
+
+```sh
+urldecode() {
+	# Usage: urldecode "string"
+	: "${1//+/ }"
+	printf '%b\n' "${_//%/\\x}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ urldecode "https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible"
+https://github.com/dylanaraps/pure-bash-bible
+```
+
 ## Check if string contains a sub-string
 
 **Using a test:**

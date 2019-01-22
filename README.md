@@ -48,6 +48,8 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Strip first occurrence of pattern from string](#strip-first-occurrence-of-pattern-from-string)
     * [Strip pattern from start of string](#strip-pattern-from-start-of-string)
     * [Strip pattern from end of string](#strip-pattern-from-end-of-string)
+    * [Percent-encode a string](#percent-encode-a-string)
+    * [Decode a percent-encoded string](#decode-a-percent-encoded-string)
     * [Check if string contains a sub-string](#check-if-string-contains-a-sub-string)
     * [Check if string starts with sub-string](#check-if-string-starts-with-sub-string)
     * [Check if string ends with sub-string](#check-if-string-ends-with-sub-string)
@@ -481,6 +483,56 @@ rstrip() {
 ```shell
 $ rstrip "The Quick Brown Fox" " Fox"
 The Quick Brown
+```
+
+## Percent-encode a string
+
+**Example Function:**
+
+```sh
+urlencode() {
+    # Usage: urlencode "string"
+    local LC_ALL=C
+    for (( i = 0; i < ${#1}; i++ )); do
+        : "${1:i:1}"
+        case "$_" in
+            [a-zA-Z0-9.~_-])
+                printf '%s' "$_"
+            ;;
+
+            *)
+                printf '%%%02X' "'$_"
+            ;;
+        esac
+    done
+    printf '\n'
+}
+```
+
+**Example Usage:**
+
+```shell
+$ urlencode "https://github.com/dylanaraps/pure-bash-bible"
+https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible
+```
+
+## Decode a percent-encoded string
+
+**Example Function:**
+
+```sh
+urldecode() {
+    # Usage: urldecode "string"
+    : "${1//+/ }"
+    printf '%b\n' "${_//%/\\x}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ urldecode "https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible"
+https://github.com/dylanaraps/pure-bash-bible
 ```
 
 ## Check if string contains a sub-string
