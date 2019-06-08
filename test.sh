@@ -54,13 +54,13 @@ test_rstrip() {
 }
 
 test_urlencode() {
-	result="$(urlencode "https://github.com/dylanaraps/pure-bash-bible")"
-	assert_equals "$result" "https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible"
+    result="$(urlencode "https://github.com/dylanaraps/pure-bash-bible")"
+    assert_equals "$result" "https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible"
 }
 
 test_urldecode() {
-	result="$(urldecode "https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible")"
-	assert_equals "$result" "https://github.com/dylanaraps/pure-bash-bible"
+    result="$(urldecode "https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible")"
+    assert_equals "$result" "https://github.com/dylanaraps/pure-bash-bible"
 }
 
 test_reverse_array() {
