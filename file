@@ -1,0 +1,37 @@
+
+-> Running tests on the Pure Bash Bible..
+-----------------------------------------
+ [32m✔[m | bar 
+ [32m✔[m | basename 
+ [32m✔[m | count 
+ [32m✔[m | cycle 
+ [32m✔[m | date 
+ [32m✔[m | dirname 
+ [32m✔[m | extract 
+ [32m✔[m | get_functions 
+ [32m✔[m | head 
+ [32m✔[m | hex_to_rgb 
+ [32m✔[m | hex_to_rgb 
+ [32m✔[m | lines 
+ [32m✔[m | lines_loop 
+ [32m✔[m | lower 
+ [32m✔[m | lstrip 
+ [32m✔[m | read_sleep 
+ [32m✔[m | regex 
+ [31m✖[m | remove_array_dups ("5 4 3 2 1" != "1 2 3 4 5")
+ [31m✖[m | reverse_array ("5 4 3 2 1 5 4 3 2 1" != "5 4 3 2 1")
+ [32m✔[m | rgb_to_hex 
+ [32m✔[m | rstrip 
+ [32m✔[m | split 
+ [32m✔[m | strip 
+ [32m✔[m | strip_all 
+ [32m✔[m | tail 
+ [32m✔[m | trim_all 
+ [32m✔[m | trim_quotes 
+ [32m✔[m | trim_string 
+ [32m✔[m | upper 
+ [32m✔[m | urldecode 
+ [32m✔[m | urlencode 
+----------------------------------------
+Completed 31 tests. 29 passed, 2 failed.
+

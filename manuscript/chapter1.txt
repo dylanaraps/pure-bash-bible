@@ -117,6 +117,8 @@ is_hex_color "$color" || color="#FFFFFF"
 
 ## Split a string on a delimiter
 
+**CAVEAT:** Requires `bash` 4+
+
 This is an alternative to `cut`, `awk` and other tools.
 
 **Example Function:**
@@ -315,6 +317,7 @@ The Quick Brown
 ```sh
 urlencode() {
     # Usage: urlencode "string"
+    local LC_ALL=C
     for (( i = 0; i < ${#1}; i++ )); do
         : "${1:i:1}"
         case "$_" in
@@ -344,9 +347,9 @@ https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible
 
 ```sh
 urldecode() {
-	# Usage: urldecode "string"
-	: "${1//+/ }"
-	printf '%b\n' "${_//%/\\x}"
+    # Usage: urldecode "string"
+    : "${1//+/ }"
+    printf '%b\n' "${_//%/\\x}"
 }
 ```
 

@@ -294,6 +294,8 @@ is_hex_color "$color" || color="#FFFFFF"
 
 ## Split a string on a delimiter
 
+**CAVEAT:** Requires `bash` 4+
+
 This is an alternative to `cut`, `awk` and other tools.
 
 **Example Function:**
