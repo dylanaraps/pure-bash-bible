@@ -43,6 +43,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Split a string on a delimiter](#split-a-string-on-a-delimiter)
     * [Change a string to lowercase](#change-a-string-to-lowercase)
     * [Change a string to uppercase](#change-a-string-to-uppercase)
+    * [Reverse a string case](#reverse-a-string-case)
     * [Trim quotes from a string](#trim-quotes-from-a-string)
     * [Strip all instances of pattern from string](#strip-all-instances-of-pattern-from-string)
     * [Strip first occurrence of pattern from string](#strip-first-occurrence-of-pattern-from-string)
