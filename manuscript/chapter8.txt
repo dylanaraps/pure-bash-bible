@@ -48,6 +48,8 @@
 | `${VAR^^}` | Uppercase all characters. | `bash 4+` |
 | `${VAR,}` | Lowercase first character. | `bash 4+` |
 | `${VAR,,}` | Lowercase all characters. | `bash 4+` |
+| `${VAR~}` | Reverse case of first character. | `bash 4+` |
+| `${VAR~~}` | Reverse case of all characters. | `bash 4+` |
 
 
 ## Default Value

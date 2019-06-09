@@ -28,6 +28,11 @@ test_upper() {
     assert_equals "$result" "HELLO"
 }
 
+test_reverse_case() {
+    result="$(reverse_case "HeLlO")"
+    assert_equals "$result" "hElLo"
+}
+
 test_trim_quotes() {
     result="$(trim_quotes "\"te'st' 'str'ing\"")"
     assert_equals "$result" "test string"
