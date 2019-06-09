@@ -386,6 +386,32 @@ $ upper "HELLO"
 HELLO
 ```
 
+## Reverse a string case
+
+**CAVEAT:** Requires `bash` 4+
+
+**Example Function:**
+
+```sh
+reverse_case() {
+    # Usage: reverse_case "string"
+    printf '%s\n' "${1~~}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ reverse_case "hello"
+HELLO
+
+$ reverse_case "HeLlO"
+hElLo
+
+$ reverse_case "HELLO"
+hello
+```
+
 ## Trim quotes from a string
 
 **Example Function:**
@@ -1221,6 +1247,8 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 | `${VAR^^}` | Uppercase all characters. | `bash 4+` |
 | `${VAR,}` | Lowercase first character. | `bash 4+` |
 | `${VAR,,}` | Lowercase all characters. | `bash 4+` |
+| `${VAR~}` | Reverse case of first character. | `bash 4+` |
+| `${VAR~~}` | Reverse case of all characters. | `bash 4+` |
 
 
 ## Default Value
