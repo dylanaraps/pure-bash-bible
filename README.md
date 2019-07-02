@@ -1913,7 +1913,7 @@ Surprisingly, `sleep` is an external command and not a `bash` built-in.
 read_sleep() {
     # Usage: sleep 1
     #        sleep 0.2
-    read -rst "${1:-1}" -N 999
+    read -rt "$1" <> <(:) || :
 }
 ```
 
@@ -1923,6 +1923,18 @@ read_sleep() {
 read_sleep 1
 read_sleep 0.1
 read_sleep 30
+```
+
+For performance-critical situations, where it is not economic to open and close an excessive number of file descriptors, the allocation of a file descriptor may be done only once for all invocations of `read`:
+
+(See the generic original implementation at https://blog.dhampir.no/content/sleeping-without-a-subprocess-in-bash-and-how-to-sleep-forever)
+
+```shell
+exec {sleep_fd}<> <(:)
+while some_quick_test; do
+    # equivalent of sleep 0.001
+    read -t 0.001 -u $sleep_fd
+done
 ```
 
 ## Check if a program is in the user's PATH
