@@ -1911,8 +1911,8 @@ Surprisingly, `sleep` is an external command and not a `bash` built-in.
 
 ```sh
 read_sleep() {
-    # Usage: sleep 1
-    #        sleep 0.2
+    # Usage: read_sleep 1
+    #        read_sleep 0.2
     read -rt "$1" <> <(:) || :
 }
 ```
