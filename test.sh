@@ -69,8 +69,10 @@ test_urldecode() {
 }
 
 test_reverse_array() {
+    shopt -s compat44
     IFS=$'\n' read -d "" -ra result < <(reverse_array 1 2 3 4 5)
     assert_equals "${result[*]}" "5 4 3 2 1"
+    shopt -u compat44
 }
 
 test_remove_array_dups() {

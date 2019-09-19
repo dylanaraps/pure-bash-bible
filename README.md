@@ -641,6 +641,8 @@ fi
 Enabling `extdebug` allows access to the `BASH_ARGV` array which stores
 the current function’s arguments in reverse.
 
+**CAVEAT**: Requires `shopt -s compat44` in `bash` 5.0+.
+
 **Example Function:**
 
 ```sh
