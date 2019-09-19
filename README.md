@@ -878,13 +878,8 @@ file_data="$(<"file")"
 Alternative to the `cat` command.
 
 ```shell
-# Bash <4 (discarding empty lines).
+# Bash <4
 IFS=$'\n' read -d "" -ra file_data < "file"
-
-# Bash <4 (preserving empty lines).
-while read -r line; do
-    file_data+=("$line")
-done < "file"
 
 # Bash 4+
 mapfile -t file_data < "file"
@@ -1066,11 +1061,7 @@ Alternative to the `dirname` command.
 ```sh
 dirname() {
     # Usage: dirname "path"
-    dir=${1%%/}
-
-    [[ $dir == */* ]] || dir=.
-
-    printf '%s\n' "${dir%/*}"
+    printf '%s\n' "${1%/*}/"
 }
 ```
 
@@ -1078,10 +1069,10 @@ dirname() {
 
 ```shell
 $ dirname ~/Pictures/Wallpapers/1.jpg
-/home/black/Pictures/Wallpapers
+/home/black/Pictures/Wallpapers/
 
 $ dirname ~/Pictures/Downloads/
-/home/black/Pictures
+/home/black/Pictures/
 ```
 
 ## Get the base-name of a file path
@@ -1169,15 +1160,18 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 
 ## Text Attributes
 
+**NOTE:** Prepend 2 to any code below to turn it's effect off
+(examples: 21=bold text off, 22=faint text off, 23=italic text off).
+
 | Sequence | What does it do? |
 | -------- | ---------------- |
-| `\e[m`  | Reset text formatting and colors.
+| `\e[m` | Reset text formatting and colors. |
 | `\e[1m` | Bold text. |
 | `\e[2m` | Faint text. |
 | `\e[3m` | Italic text. |
 | `\e[4m` | Underline text. |
-| `\e[5m` | Slow blink. |
-| `\e[7m` | Swap foreground and background colors. |
+| `\e[5m` | Blinking text. |
+| `\e[7m` | Highlighted text. |
 | `\e[8m` | Hidden text. |
 | `\e[9m` | Strike-through text. |
 
