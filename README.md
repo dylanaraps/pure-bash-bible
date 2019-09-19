@@ -1067,9 +1067,8 @@ Alternative to the `dirname` command.
 dirname() {
     # Usage: dirname "path"
     dir=${1%%/}
+    [[ "${dir##*/*}" ]] && dir=.
     dir=${dir%/*}
-
-    [[ $1 == */* ]] || dir=.
 
     printf '%s\n' "${dir:-/}"
 }

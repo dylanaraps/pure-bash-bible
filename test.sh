@@ -129,6 +129,9 @@ test_dirname() {
 
     result="$(dirname "/foo/foo")"
     assert_equals "$result" "/foo"
+
+    result="$(dirname "something/")"
+    assert_equals "$result" "."
 }
 
 test_basename() {
