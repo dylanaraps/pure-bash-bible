@@ -1173,6 +1173,8 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 | `\e[4m` | Underline text. |
 | `\e[5m` | Slow blink. |
 | `\e[7m` | Swap foreground and background colors. |
+| `\e[8m` | Hidden text. |
+| `\e[9m` | Strike-through text. |
 
 
 ## Cursor Movement
