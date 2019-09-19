@@ -646,6 +646,7 @@ the current function’s arguments in reverse.
 ```sh
 reverse_array() {
     # Usage: reverse_array "array"
+
     shopt -s extdebug
     f()(printf '%s\n' "${BASH_ARGV[@]}"); f "$@"
     shopt -u extdebug
@@ -675,7 +676,7 @@ Create a temporary associative array. When setting associative array
 values and a duplicate assignment occurs, bash overwrites the key. This
 allows us to effectively remove array duplicates.
 
-**CAVEAT:** Requires `bash` 4+
+**CAVEAT:** Requires `bash` 4+, resulting array is printed reordered
 
 **Example Function:**
 
@@ -2129,10 +2130,13 @@ This will run the given command and keep it running, even after the terminal or 
 bkr() {
     (nohup "$@" &>/dev/null &)
 }
+```
+
+```shell
+# Background
 
 bkr ./some_script.sh # some_script.sh is now running in the background
 ```
-
 <!-- CHAPTER END -->
 
 # AFTERWORD

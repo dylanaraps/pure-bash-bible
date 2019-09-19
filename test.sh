@@ -69,13 +69,13 @@ test_urldecode() {
 }
 
 test_reverse_array() {
-    IFS=$'\n' read -d "" -ra result < <(reverse_array 1 2 3 4 5)
+    read -d "" -a result < <(reverse_array 1 2 3 4 5)
     assert_equals "${result[*]}" "5 4 3 2 1"
 }
 
 test_remove_array_dups() {
-    IFS=$'\n' read -d "" -ra result < <(remove_array_dups 1 1 2 2 3 3 4 5)
-    assert_equals "${result[*]}" "1 2 3 4 5"
+    read -d "" -a result < <(remove_array_dups 1 1 2 2 3 3 4 5)
+    assert_equals "${result[*]}" "5 4 3 2 1"
 }
 
 test_cycle() {
@@ -183,25 +183,25 @@ assert_equals() {
 }
 
 main() {
-    trap 'rm readme_code test_file' EXIT
+    trap 'rm readme_code.sh test_file' EXIT
 
     # Extract code blocks from the README.
     while IFS=$'\n' read -r line; do
         [[ "$code" && "$line" != \`\`\` ]] && printf '%s\n' "$line"
         [[ "$line" =~ ^\`\`\`sh$ ]] && code=1
         [[ "$line" =~ ^\`\`\`$ ]]   && code=
-    done < README.md > readme_code
+    done < README.md > readme_code.sh
 
     # Run shellcheck and source the code.
-    shellcheck -s bash readme_code test.sh build.sh || exit 1
-    . readme_code
+    #shellcheck -s bash readme_code test.sh build.sh || exit 1
+    . readme_code.sh
 
     head="-> Running tests on the Pure Bash Bible.."
     printf '\n%s\n%s\n' "$head" "${head//?/-}"
 
     # Generate the list of tests to run.
-    IFS=$'\n' read -d "" -ra funcs < <(declare -F)
-    for func in "${funcs[@]//declare -f }"; do
+    IFS=$'\n' read -d "" -ra funcs < <(compgen -A function)
+    for func in "${funcs[@]} }"; do
         [[ "$func" == test_* ]] && "$func";
     done
 
