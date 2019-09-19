@@ -1,3 +1,5 @@
+**NEW**: pure sh bible. https://github.com/dylanaraps/pure-sh-bible
+
 <p align="center"><img src="https://raw.githubusercontent.com/odb/official-bash-logo/master/assets/Logos/Icons/PNG/512x512.png" width="200px"></p>
 <h1 align="center">pure bash bible</h1> <p
 align="center">A collection of pure bash alternatives to external
