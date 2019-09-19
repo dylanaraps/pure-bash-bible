@@ -5,6 +5,8 @@
 Enabling `extdebug` allows access to the `BASH_ARGV` array which stores
 the current function’s arguments in reverse.
 
+**CAVEAT**: Requires `shopt -s compat44` in `bash` 5.0+.
+
 **Example Function:**
 
 ```sh
@@ -40,6 +42,8 @@ values and a duplicate assignment occurs, bash overwrites the key. This
 allows us to effectively remove array duplicates.
 
 **CAVEAT:** Requires `bash` 4+
+
+**CAVEAT:** List order may not stay the same.
 
 **Example Function:**
 

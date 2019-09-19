@@ -129,6 +129,21 @@ test_dirname() {
 
     result="$(dirname "something/")"
     assert_equals "$result" "."
+
+    result="$(dirname "//")"
+    assert_equals "$result" "/"
+
+    result="$(dirname "//foo")"
+    assert_equals "$result" "/"
+
+    result="$(dirname "")"
+    assert_equals "$result" "."
+
+    result="$(dirname "something//")"
+    assert_equals "$result" "."
+
+    result="$(dirname "something/////////////////////")"
+    assert_equals "$result" "."
 }
 
 test_basename() {

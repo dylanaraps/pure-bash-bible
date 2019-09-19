@@ -1070,7 +1070,8 @@ Alternative to the `dirname` command.
 ```sh
 dirname() {
     # Usage: dirname "path"
-    dir=${1%%/}
+    dir=${1:-.}
+    dir=${dir%%${dir##*[!/]}}
     [[ "${dir##*/*}" ]] && dir=.
     dir=${dir%/*}
 
