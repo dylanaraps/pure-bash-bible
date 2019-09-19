@@ -9,7 +9,11 @@ Alternative to the `dirname` command.
 ```sh
 dirname() {
     # Usage: dirname "path"
-    printf '%s\n' "${1%/*}/"
+    dir=${1%%/}
+
+    [[ $dir == */* ]] || dir=.
+
+    printf '%s\n' "${dir%/*}"
 }
 ```
 
@@ -17,10 +21,10 @@ dirname() {
 
 ```shell
 $ dirname ~/Pictures/Wallpapers/1.jpg
-/home/black/Pictures/Wallpapers/
+/home/black/Pictures/Wallpapers
 
 $ dirname ~/Pictures/Downloads/
-/home/black/Pictures/
+/home/black/Pictures
 ```
 
 ## Get the base-name of a file path

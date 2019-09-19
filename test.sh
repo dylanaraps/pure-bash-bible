@@ -116,7 +116,7 @@ test_count() {
 
 test_dirname() {
     result="$(dirname "/home/black/Pictures/Wallpapers/1.jpg")"
-    assert_equals "$result" "/home/black/Pictures/Wallpapers/"
+    assert_equals "$result" "/home/black/Pictures/Wallpapers"
 }
 
 test_basename() {
