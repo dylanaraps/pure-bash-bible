@@ -1101,11 +1101,13 @@ Alternative to the `basename` command.
 ```sh
 basename() {
     # Usage: basename "path" ["suffix"]
-    dir=${1%${1##*[!/]}}
-    dir=${dir##*/}
-    dir=${dir%"$2"}
+    local tmp
 
-    printf '%s\n' "${dir:-/}"
+    tmp=${1%${1##*[!/]}}
+    tmp=${tmp##*/}
+    tmp=${tmp%"${2/$1}"}
+
+    printf '%s\n' "${tmp:-/}"
 }
 ```
 
