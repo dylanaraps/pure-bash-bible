@@ -679,6 +679,8 @@ allows us to effectively remove array duplicates.
 
 **CAVEAT:** Requires `bash` 4+
 
+**CAVEAT:** List order may not stay the same.
+
 **Example Function:**
 
 ```sh

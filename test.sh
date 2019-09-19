@@ -75,11 +75,6 @@ test_reverse_array() {
     shopt -u compat44
 }
 
-test_remove_array_dups() {
-    IFS=$'\n' read -d "" -ra result < <(remove_array_dups 1 1 2 2 3 3 4 5)
-    assert_equals "${result[*]}" "1 2 3 4 5"
-}
-
 test_cycle() {
     # shellcheck disable=2034
     arr=(a b c d)
