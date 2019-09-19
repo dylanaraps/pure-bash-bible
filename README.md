@@ -1,4 +1,6 @@
-**NEW**: pure sh bible. https://github.com/dylanaraps/pure-sh-bible
+**NEW**: [pure sh bible](https://github.com/dylanaraps/pure-sh-bible) (📖 A collection of pure POSIX sh alternatives to external processes).
+
+<br>
 
 <p align="center"><img src="https://raw.githubusercontent.com/odb/official-bash-logo/master/assets/Logos/Icons/PNG/512x512.png" width="200px"></p>
 <h1 align="center">pure bash bible</h1> <p
