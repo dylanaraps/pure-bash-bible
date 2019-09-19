@@ -1100,7 +1100,7 @@ Alternative to the `basename` command.
 
 ```sh
 basename() {
-    # Usage: basename "path"
+    # Usage: basename "path" ["suffix"]
     dir=${1%${1##*[!/]}}
     dir=${dir##*/}
     dir=${dir%"$2"}
