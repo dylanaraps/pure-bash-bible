@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck source=/dev/null
+# shellcheck source=/dev/null disable=2178,2128
 #
 # Tests for the Pure Bash Bible.
 
@@ -117,6 +117,18 @@ test_count() {
 test_dirname() {
     result="$(dirname "/home/black/Pictures/Wallpapers/1.jpg")"
     assert_equals "$result" "/home/black/Pictures/Wallpapers"
+
+    result="$(dirname "/")"
+    assert_equals "$result" "/"
+
+    result="$(dirname "/foo")"
+    assert_equals "$result" "/"
+
+    result="$(dirname ".")"
+    assert_equals "$result" "."
+
+    result="$(dirname "/foo/foo")"
+    assert_equals "$result" "/foo"
 }
 
 test_basename() {
