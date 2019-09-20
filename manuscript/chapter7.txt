@@ -15,15 +15,18 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 
 ## Text Attributes
 
+**NOTE:** Prepend 2 to any code below to turn it's effect off
+(examples: 21=bold text off, 22=faint text off, 23=italic text off).
+
 | Sequence | What does it do? |
 | -------- | ---------------- |
-| `\e[m`  | Reset text formatting and colors.
+| `\e[m` | Reset text formatting and colors. |
 | `\e[1m` | Bold text. |
 | `\e[2m` | Faint text. |
 | `\e[3m` | Italic text. |
 | `\e[4m` | Underline text. |
-| `\e[5m` | Slow blink. |
-| `\e[7m` | Swap foreground and background colors. |
+| `\e[5m` | Blinking text. |
+| `\e[7m` | Highlighted text. |
 | `\e[8m` | Hidden text. |
 | `\e[9m` | Strike-through text. |
 
