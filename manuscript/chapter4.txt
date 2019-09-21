@@ -164,30 +164,32 @@ echo -n >file
 printf '' >file
 ```
 
-## Use `exec` to change the shell's file descriptors
+## Use `exec` to redirect script output to different file descriptors
 
-Use `exec` to redirection any output to the given file descriptors. In the example, stdout and stderr are both being redirected such that output of any commands afterwards will go to that file.
+`exec` can be used to redirect script output to file descriptors. In the example below, `stdout` and `stderr` are redirected to `myoutput.log` (a file).
 
 **Example Function:**
 
 ```sh
 log_all_output() {
     # Usage: log_all_output log_filename
-    exec > "$1" 2>&1
+    exec &>"$1"
 }
 ```
 
 **Example Usage:**
 
 ```shell
-echo This is not logged
-echo Nor is this error >&2
+# These are *not* logged.
+printf 'This is a message.\n'
+printf 'This is an error message.\n' >&2
 
-# all output will go to this file
+# All script output will go to 'myoutput.log'.
 log_all_output myoutput.log
 
-echo normal output
-echo this is an error >&2
+# These are now logged.
+printf 'This is a message.\n'
+printf 'This is an error message.\n' >&2
 ```
 
 ## Extract lines between two markers

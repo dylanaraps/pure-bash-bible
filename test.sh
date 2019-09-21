@@ -208,11 +208,11 @@ test_split() {
 test_log_all_output() {
     (
 	log_all_output test.log
-	echo xx stdout
-	echo yy stderr >&2
+	printf stdout
+	printf stderr >&2
     )
-    contents="$(<"test.log")"
-    assert_equals "$contents" $'xx stdout\nyy stderr'
+    contents="$(<test.log)"
+    assert_equals "$contents" "stdoutstderr"
 }
 
 assert_equals() {
