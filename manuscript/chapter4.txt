@@ -164,9 +164,9 @@ echo -n >file
 printf '' >file
 ```
 
-## Use `exec` to change the shell's file descriptors.
+## Use `exec` to change the shell's file descriptors
 
-Calling `exec` with redirection to a file can be used for logging all output.
+Use `exec` to redirection any output to the given file descriptors. In the example, stdout and stderr are both being redirected such that output of any commands afterwards will go to that file.
 
 **Example Function:**
 
