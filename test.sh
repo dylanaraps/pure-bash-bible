@@ -205,6 +205,16 @@ test_split() {
     assert_equals "${result[*]}" "hello world my name is john"
 }
 
+test_log_all_output() {
+    (
+	log_all_output test.log
+	echo xx stdout
+	echo yy stderr >&2
+    )
+    contents="$(<"test.log")"
+    assert_equals "$contents" $'xx stdout\nyy stderr'
+}
+
 assert_equals() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))
@@ -219,7 +229,7 @@ assert_equals() {
 }
 
 main() {
-    trap 'rm readme_code test_file' EXIT
+    trap 'rm readme_code test_file test.log' EXIT
 
     # Extract code blocks from the README.
     while IFS=$'\n' read -r line; do

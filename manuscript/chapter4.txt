@@ -164,6 +164,32 @@ echo -n >file
 printf '' >file
 ```
 
+## Use `exec` to change the shell's file descriptors.
+
+Calling `exec` with redirection to a file can be used for logging all output.
+
+**Example Function:**
+
+```sh
+log_all_output() {
+    # Usage: log_all_output log_filename
+    exec > "$1" 2>&1
+}
+```
+
+**Example Usage:**
+
+```shell
+echo This is not logged
+echo Nor is this error >&2
+
+# all output will go to this file
+log_all_output myoutput.log
+
+echo normal output
+echo this is an error >&2
+```
+
 ## Extract lines between two markers
 
 **Example Function:**
