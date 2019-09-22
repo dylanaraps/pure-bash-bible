@@ -1040,14 +1040,14 @@ printf '' >file
 ```sh
 log_all_output() {
     # Usage: log_all_output log_filename
-	exec 6>&1         # save stdout
-	exec 7>&2         # save stderr
+    exec 6>&1         # save stdout
+    exec 7>&2         # save stderr
     exec &>"$1"
 }
 
 stop_logging_output() {
-	exec 1>&6 6>&-   # Restore stdout
-	exec 2>&7 7>&-   # Restore stderr
+    exec 1>&6 6>&-   # Restore stdout
+    exec 2>&7 7>&-   # Restore stderr
 }
 ```
 
