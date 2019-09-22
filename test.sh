@@ -210,7 +210,10 @@ test_log_all_output() {
 	log_all_output test.log
 	printf stdout
 	printf stderr >&2
-    )
+	stop_logging_output
+	printf stdout
+	printf stderr >&2
+    ) &> /dev/null
     contents="$(<test.log)"
     assert_equals "$contents" "stdoutstderr"
 }
