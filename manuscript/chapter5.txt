@@ -9,15 +9,24 @@ Alternative to the `dirname` command.
 ```sh
 dirname() {
     # Usage: dirname "path"
-    dir=${1:-.}
-    dir=${dir%%${dir##*[!/]}}
+    local tmp=${1:-.}
 
-    [[ "${dir##*/*}" ]] && dir=.
+    [[ $tmp != *[!/]* ]] && {
+        printf '/\n'
+        return
+    }
 
-    dir=${dir%/*}
-    dir=${dir%%${dir##*[!/]}}
+    tmp=${tmp%%"${tmp##*[!/]}"}
 
-    printf '%s\n' "${dir:-/}"
+    [[ $tmp != */* ]] && {
+        printf '.\n'
+        return
+    }
+
+    tmp=${tmp%/*}
+    tmp=${tmp%%"${tmp##*[!/]}"}
+
+    printf '%s\n' "${tmp:-/}"
 }
 ```
 
