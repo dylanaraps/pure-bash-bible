@@ -1055,22 +1055,22 @@ stop_logging_output() {
 
 ```shell
 # These are *not* logged.
-printf 'This is a normal message.\n'
-printf 'This is a normal error message.\n' >&2
+printf 'This is a message.\n'
+printf 'This is an error message.\n' >&2
 
 # All script output will go to 'myoutput.log'.
 log_all_output myoutput.log
 
 # These are now logged.
-printf 'This is a logged message.\n'
-printf 'This is a logged  error message.\n' >&2
+printf 'This is a message.\n'
+printf 'This is an error message.\n' >&2
 
 # Return to normal.
 stop_logging_output
 
 # These are not logged.
-printf 'This is a normal message.\n'
-printf 'This is a normal error message.\n' >&2
+printf 'This is a message.\n'
+printf 'This is an error message.\n' >&2
 ```
 
 ## Extract lines between two markers
