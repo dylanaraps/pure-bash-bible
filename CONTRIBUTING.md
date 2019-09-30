@@ -5,7 +5,7 @@
 * [Adding Code to the Bible.](#adding-code-to-the-bible)
 * [Special meanings for code blocks.](#special-meanings-for-code-blocks)
 * [Writing tests](#writing-tests)
-* [Running the tests](#running-the-tests)
+* [Running tests](#running-the-tests)
 
 <!-- vim-markdown-toc -->
 
