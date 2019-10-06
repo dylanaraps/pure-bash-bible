@@ -15,14 +15,14 @@
 <img src="https://s3.amazonaws.com/titlepages.leanpub.com/bash/hero" width="40%" align="right">
 </a>
 
-Bu kitabın amacı, yalnızca yerleşik `bash` özelliklerini kullanarak çeşitli görevler yapmanın yaygın olarak bilinen ve daha az bilinen yöntemlerini belgelendirmektir. Bu İncil'den pasajları kullanmak, gereksiz bağımlılıkları komut dosyalarından kaldırmanıza yardımcı olabilir ve çoğu durumda onları daha hızlı hale getirebilir. [neofetch](https://github.com/dylanaraps/neofetch) , [pxltrm](https://github.com/dylanaraps/pxltrm) ve daha küçük projeler geliştirirken bu ipuçlarıyla karşılaştım ve birkaç tane keşfettim.
+Bu kitabın amacı, yalnızca yerleşik `bash` özelliklerini kullanarak çeşitli görevler yapmanın yaygın olarak bilinen ve ya bilinmeyen yöntemlerini belgelendirmektir. Bu İncil'den pasajları kullanmak, gereksiz bağımlılıkları komut dosyalarından kaldırmanıza yardımcı olabilir ve çoğu durumda onları daha hızlı hale getirebilir. [neofetch](https://github.com/dylanaraps/neofetch) , [pxltrm](https://github.com/dylanaraps/pxltrm) ve daha küçük projeler geliştirirken bu ipuçlarıyla karşılaştım ve birkaç tane keşfettim.
 
-Aşağıdaki snippet'ler `shellcheck` kullanılarak ve uygun olan yerlerde yasılan testler kontrol edilmiştir. Katkıda bulunmak ister misiniz? [CONTRIBUTING.md](https://github.com/dylanaraps/pure-bash-bible/blob/master/CONTRIBUTING.md) dosyasını okuyun. Unit testlerinin nasıl çalıştığı ve İncil'e snippet eklerken neyin gerekli olduğu ana hatlarıyla o dosyada belirtilir.
+Belgedeki kod parçaları `shellcheck` kullanılarak ve uygun olan yerlerde yazılan testlerle kontrol edilmiştir. Katkıda bulunmak ister misiniz? [CONTRIBUTING.md](https://github.com/dylanaraps/pure-bash-bible/blob/master/CONTRIBUTING.md) dosyasını okuyun. Unit testlerinin nasıl çalıştığı ve İncil'e kod parçası eklerken neyin gerekli olduğu ana hatlarıyla o dosyada belirtilmiştir.
 
-Yanlış tanımlanmış, hatalı ya da düpedüz yanlış bir şey mi gördünüz? Bir sorun açın veya PR gönderin. İncil bir şey eksik ise, bir sorun açın ve bir çözüm bulunacaktır.
+Yanlış tanımlanmış, hatalı ya da düpedüz yanlış bir şey mi gördünüz? Bir sorun açın veya PR gönderin. İncil'de bir şey eksik ise, bir sorun açın ve bir çözüm bulunacaktır.
 
 <br>
-<p align="center"><b>Bu kitap aynı zamanda leanpub'dan da satın alınabilir. https://leanpub.com/bash</b></p>
+<p align="center"><b>Bu kitap aynı zamanda Leanpub üzerinden de satın alınabilir. https://leanpub.com/bash</b></p>
 <p align="center"><b>Ya da bana bir kahve alabilirsin.</b>
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7QNJNKS3WYVS"><img src="https://img.shields.io/badge/don-paypal-yellow.svg"></a> <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/don-patreon-yellow.svg"> </a><a href="https://liberapay.com/2211/"><img src="https://img.shields.io/badge/don-liberapay-yellow.svg"></a>
 </p>
@@ -34,7 +34,7 @@ Yanlış tanımlanmış, hatalı ya da düpedüz yanlış bir şey mi gördünü
 <!-- vim-markdown-toc GFM -->
 
 - [ÖNSÖZ](#%C3%B6ns%C3%B6z)
-- [DÜZ METİNLER](#teller)
+- [METİNLER](#metinler)
     - [Metnin başında ve sonundaki boşlukları temizleme](#dize-gelen-beyaz-bo%C5%9Fluk-%C3%B6nde-gelen-ve-sondaki-trim)
     - [Tüm fazla boşlukları kırpma](#t%C3%BCm-beyaz-bo%C5%9Fluklar%C4%B1-dize-ve-kesilmi%C5%9F-bo%C5%9Fluklardan-k%C4%B1rp)
     - [Bir metinde regex kullanma](#bir-dizgede-regex-kullan%C4%B1n)
@@ -176,7 +176,7 @@ Bu kitabın içeriği, programları ve komut dosyalarını `bash` yazarken karş
 
 <!-- CHAPTER START -->
 
-# TELLER
+# METİNLER
 
 ## Dizeden beyaz boşluk bırakarak önde ve sonunda boşluk bırak
 
