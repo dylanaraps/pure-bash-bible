@@ -184,7 +184,7 @@ Bu `sed` , `awk` , `perl` ve diğer araçlara bir alternatiftir.
 Aşağıdaki fonksiyon tüm lider ve sondaki beyaz boşluğu bulup çalışır.
 dizenin başlangıcından ve sonundan kaldırılıyor. Yerleşik `:` geçici bir değişken yerine kullanılır.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 trim_string() {
@@ -212,7 +212,7 @@ Bu `sed` , `awk` , `perl` ve diğer araçlara bir alternatiftir.
 Aşağıdaki işlev, yeni bir dize oluşturmak için sözcük bölmeyi kötüye kullanarak çalışır
 öndeki / sondaki beyaz boşluk olmadan ve kesik boşluklarla.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 # shellcheck disable=SC2086,SC2048
@@ -248,7 +248,7 @@ Uyumluluk amaçlanıyorsa POSIX regex özelliklerine bağlı kalın.
 **CAVEAT** : Bu örnek yalnızca ilk eşleşen grubu yazdırır. Kullanırken
 çoklu yakalama grupları bazı değişikliklere ihtiyaç duyuyor.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 regex() {
@@ -297,7 +297,7 @@ is_hex_color "$color" || color="#FFFFFF"
 
 Bu `cut` , `awk` ve diğer takımlara bir alternatiftir.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 split() {
@@ -337,7 +337,7 @@ john
 
 **CAVEAT:** `bash` 4+ gerektirir
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 lower() {
@@ -363,7 +363,7 @@ hello
 
 **CAVEAT:** `bash` 4+ gerektirir
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 upper() {
@@ -389,7 +389,7 @@ HELLO
 
 **CAVEAT:** `bash` 4+ gerektirir
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 reverse_case() {
@@ -413,7 +413,7 @@ hello
 
 ## Bir dizgeden alıntıları kırpma
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 trim_quotes() {
@@ -433,7 +433,7 @@ Hello, World
 
 ## Dizideki tüm desen örneklerini soyun
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 strip_all() {
@@ -457,7 +457,7 @@ The Brown Fox
 
 ## Dizeden desenin ilk oluşumunu sıyırma
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 strip() {
@@ -478,7 +478,7 @@ TheQuick Brown Fox
 
 ## Dize başlangıcından itibaren şerit deseni
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 lstrip() {
@@ -496,7 +496,7 @@ Quick Brown Fox
 
 ## Dizenin sonundan şerit deseni
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 rstrip() {
@@ -514,7 +514,7 @@ The Quick Brown
 
 ## Bir dize yüzde kodlamak
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 urlencode() {
@@ -545,7 +545,7 @@ https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible
 
 ## Yüzde kodlanmış bir dizenin kodunu çözme
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 urldecode() {
@@ -639,7 +639,7 @@ geçerli işlevin argümanları ters.
 
 **CAVEAT** : `bash` 5.0+ içinde `shopt -s compat44` gerektirir.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 reverse_array() {
@@ -677,7 +677,7 @@ dizi kopyalarını etkin bir şekilde silmemize izin verir.
 
 **CAVEAT:** Liste sırası aynı kalmayabilir.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 remove_array_dups() {
@@ -711,7 +711,7 @@ blue
 
 ## Rasgele dizi elemanı
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 random_array_element() {
@@ -897,7 +897,7 @@ mapfile -t file_data < "file"
 
 **CAVEAT:** `bash` 4+ gerektirir
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 head() {
@@ -924,7 +924,7 @@ $ head 1 ~/.bashrc
 
 **CAVEAT:** `bash` 4+ gerektirir
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 tail() {
@@ -988,7 +988,7 @@ $ lines_loop ~/.bashrc
 
 Bu, işlevin çıktısını işleve iletip argüman sayısını sayarak çalışır.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 count() {
@@ -1030,7 +1030,7 @@ printf '' >file
 
 ## İki işaretleyici arasındaki çizgileri ayıkla
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 extract() {
@@ -1063,7 +1063,7 @@ $ extract ~/projects/pure-bash/README.md '```sh' '```'
 
 `dirname` komutuna alternatif.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 dirname() {
@@ -1103,7 +1103,7 @@ $ dirname ~/Pictures/Downloads/
 
 `basename` komutuna alternatif.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 basename() {
@@ -1720,7 +1720,7 @@ Bu, dahili `pwd` bir alternatiftir.
 `stty` saf bash ve `stty` / `tput` yazarken kullanışlıdır.
 aranan.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 get_term_size() {
@@ -1745,7 +1745,7 @@ $ get_term_size
 
 **CAVEAT** : Bu, bazı terminal emülatörlerinde çalışmaz.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 get_window_size() {
@@ -1772,7 +1772,7 @@ x
 
 Bu, saf bash'te bir TUI oluştururken kullanışlıdır.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 get_cursor_pos() {
@@ -1798,7 +1798,7 @@ $ get_cursor_pos
 
 ## Altıgen rengi RGB'ye dönüştürme
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 hex_to_rgb() {
@@ -1819,7 +1819,7 @@ $ hex_to_rgb "#FFFFFF"
 
 ## RGB rengini hex'e dönüştürme
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 rgb_to_hex() {
@@ -1949,7 +1949,7 @@ os="$_"
 
 **CAVEAT:** `bash` 4+ gerektirir
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 read_sleep() {
@@ -2010,7 +2010,7 @@ Bash'in `printf` , `date` komutunun yerine kullanılabilecek tarihi almak için 
 
 **CAVEAT:** `bash` 4+ gerektirir
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 date() {
@@ -2052,7 +2052,7 @@ black
 
 **CAVEAT** : Üretilen değer kriptografik olarak güvenli değil.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 uuid() {
@@ -2092,7 +2092,7 @@ d5b6c731-1310-4c24-9fe3-55d556d44374
 Bu, for döngüsüne ihtiyaç duymadan ilerleme çubuklarını çizmenin basit bir yoludur
 fonksiyonun kendisinde.
 
-**Örnek İşlev:**
+**Örnek Fonksiyon:**
 
 ```sh
 bar() {
