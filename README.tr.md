@@ -1581,7 +1581,7 @@ Kullanım `#!/usr/bin/env bash` yerine `#!/bin/bash` .
 
 ## Komut Değiştirme
 
-` Yerine `$()` kullanın.`
+`` `` Yerine `$()` kullanın.
 
 ```shell
 # Right.
