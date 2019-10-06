@@ -33,130 +33,130 @@ Yanlış tanımlanmış, hatalı ya da düpedüz yanlış bir şey mi gördünü
 
 <!-- vim-markdown-toc GFM -->
 
-- [ÖNSÖZ](#%C3%B6ns%C3%B6z)
-- [METİNLER](#metinler)
-    - [Metnin başında ve sonundaki boşlukları temizleme](#dize-gelen-beyaz-bo%C5%9Fluk-%C3%B6nde-gelen-ve-sondaki-trim)
-    - [Tüm fazla boşlukları kırpma](#t%C3%BCm-beyaz-bo%C5%9Fluklar%C4%B1-dize-ve-kesilmi%C5%9F-bo%C5%9Fluklardan-k%C4%B1rp)
-    - [Bir metinde regex kullanma](#bir-dizgede-regex-kullan%C4%B1n)
-    - [Bir sınırlayıcı ile metni bölme](#s%C4%B1n%C4%B1rlay%C4%B1c%C4%B1da-bir-dize-b%C3%B6lme)
-    - [Bir metni küçük harfe dönüşürme](#dizeyi-k%C3%BC%C3%A7%C3%BCk-harfe-d%C3%B6n%C3%BC%C5%9Ft%C3%BCr)
-    - [Bir metni büyük harfe dönüşürme](#bir-dizeyi-b%C3%BCy%C3%BCk-harfe-d%C3%B6n%C3%BC%C5%9Ft%C3%BCr)
-    - [Metin harf büyüklüğünü ters çevirme](#bir-dize-harfini-ters-%C3%A7evir)
-    - [Metinden tırnakları kırpma](#bir-dizeden-t%C4%B1rnak)
-    - [Metindeki tüm desen örneklerini kırpma](#dizideki-t%C3%BCm-desen-%C3%B6rneklerini-%C3%A7%C4%B1kar)
-    - [Metinde bir desenin ilk örneğini kırpma](#dize-desen-ilk-olu%C5%9Fumunu-%C5%9Ferit)
-    - [Metnin başındaki bir deseni kırpma](#dizenin-ba%C5%9F%C4%B1ndan-itibaren-%C5%9Ferit-deseni)
-    - [Metnin sonundaki bir deseni kırpma](#dize-sonundan-%C5%9Ferit-deseni)
-    - [Bir metnin percent-encode çevirimini yapma](#y%C3%BCzde-bir-dize-kodlamak)
-    - [Bir metnin percent-encode geri çevirimini yapma](#y%C3%BCzde-kodlanm%C4%B1%C5%9F-bir-dizgenin-kodunu-%C3%A7%C3%B6z)
-    - [Metnin bir alt metni içerip içermediğini kontrol etme](#dize-alt-dize-i%C3%A7erip-i%C3%A7ermedi%C4%9Fini-kontrol-edin)
-    - [Metnin bir alt metinle başlayıp başlamadığını kontrol etme](#dizenin-alt-dizeyle-ba%C5%9Flay%C4%B1p-ba%C5%9Flamad%C4%B1%C4%9F%C4%B1n%C4%B1-kontrol-edin)
-    - [Metnin bir alt metinle bitip bitmediğini kontrol etme](#dizenin-alt-dizeyle-bitip-bitmedi%C4%9Fini-kontrol-edin)
-- [DİZİLER](#diziler)
-    - [Diziyi ters çevirme](#dizi-ters)
-    - [Yinelenen dizi öğelerini kaldırma](#yinelenen-dizi-%C3%B6%C4%9Felerini-kald%C4%B1r%C4%B1n)
-    - [Rasgele dizi elemanı](#rastgele-dizi-eleman%C4%B1)
-    - [Bir dizi içerisinde dolaşma](#dizi-i%C3%A7inde-dola%C5%9Fmak)
-    - [İki değer arasında geçiş yapma](#iki-de%C4%9Fer-aras%C4%B1nda-ge%C3%A7i%C5%9F-yapmak)
-- [DÖNGÜLER](#d%C3%B6ng%C3%BCler)
-    - [Bir sayı aralığında döngü](#bir-say%C4%B1-aral%C4%B1%C4%9F%C4%B1-%C3%BCzerinde-d%C3%B6ng%C3%BC)
-    - [Değişken sayı aralığında döngü](#de%C4%9Fi%C5%9Fken-say%C4%B1-aral%C4%B1%C4%9F%C4%B1nda-d%C3%B6ng%C3%BC)
-    - [Bir dizi içinde döngü](#bir-dizi-%C3%BCzerinde-d%C3%B6ng%C3%BC)
-    - [Dizinli bir dizi içinde döngü](#bir-dizini-olan-bir-dizi-%C3%BCzerinde-d%C3%B6ng%C3%BC)
-    - [Bir dosyanın içeriği içinde döngü](#bir-dosyan%C4%B1n-i%C3%A7eri%C4%9Fi-%C3%BCzerinde-d%C3%B6ng%C3%BC)
-    - [Dosyalar ve dizinler içinde döngü](#dosyalar-ve-dizinler-%C3%BCzerinde-d%C3%B6ng%C3%BC)
-- [DOSYA YÖNETİMİ](#dosya-y%C3%B6netimi)
-    - [Bir dosya içeriğini metin değişkenine dönüştürme](#bir-dosyay%C4%B1-dizeye-okumak)
-    - [Dosya içeriğini diziye dönüştürme (*satır satır*)](#bir-dosyay%C4%B1-bir-diziye-sat%C4%B1r-sat%C4%B1r-oku)
-    - [Bir dosyanın ilk N satırını alma](#bir-dosyan%C4%B1n-ilk-n-sat%C4%B1r%C4%B1n%C4%B1-almak)
-    - [Bir dosyanın son N satırını alma](#bir-dosyan%C4%B1n-son-n-sat%C4%B1r%C4%B1n%C4%B1-almak)
-    - [Bir dosyadaki satır sayısını alma](#bir-dosyadaki-sat%C4%B1r-say%C4%B1s%C4%B1n%C4%B1-almak)
-    - [Dizindeki dosyaları veya dizinleri sayma](#dizindeki-dosyalar%C4%B1-veya-dizinleri-saymak)
-    - [Boş bir dosya oluşturma](#bo%C5%9F-bir-dosya-olu%C5%9Ftur)
-    - [İki işaret arasındaki satırlar ayıklama](#iki-i%C5%9Faretleyici-aras%C4%B1ndaki-%C3%A7izgileri-ay%C4%B1klamak)
-- [DOSYA YOLLARI](#dosya-yollar%C4%B1)
-    - [Bir dosya yolunun dizin adını alma](#bir-dosya-yolunun-dizin-ad%C4%B1n%C4%B1-al)
-    - [Bir dosya yolunun taban adını alma](#bir-dosya-yolunun-taban-ad%C4%B1n%C4%B1-al)
-- [DEĞİŞKENLER](#de%C4%9Fi%C5%9Fkenler)
-    - [Bir değişkeni kullanarak bir değişken atama ve erişme](#bir-de%C4%9Fi%C5%9Fkeni-kullanarak-bir-de%C4%9Fi%C5%9Fken-atama-ve-eri%C5%9Fme)
-    - [Başka bir değişkeni temel alan bir değişken adı](#ba%C5%9Fka-bir-de%C4%9Fi%C5%9Fkeni-temel-alan-bir-de%C4%9Fi%C5%9Fken-ad%C4%B1)
-- [KIRPMA SERİLERİ](#ka%C3%A7%C4%B1%C5%9F-dizileri)
-    - [Metin Renkleri](#metin-renkleri)
-    - [Metin Nitelikleri](#metin-%C3%B6zellikleri)
-    - [İmleç Hareketi](#imle%C3%A7-hareketi)
-    - [Metin Silme](#metni-silme)
-- [PARAMETRE GENİŞLETME](#parametre-geni%C5%9Fletme)
-    - [Dolaylama](#dolayl%C4%B1-s%C3%B6z)
-    - [Yer değiştirme](#de%C4%9Fi%C5%9Ftirme)
-    - [Uzunluk](#uzunluk)
-    - [Genişleme](#geni%C5%9Fleme)
-    - [Büyük/Küçük Harf Değişikliği](#vaka-de%C4%9Fi%C5%9Fikli%C4%9Fi)
-    - [Ön tanımlı değer](#varsay%C4%B1lan-de%C4%9Fer)
-- [BRACE GENİŞLETME](#ayra%C3%A7-geni%C5%9Fletme)
-    - [aralıklar](#aral%C4%B1klar)
-    - [Dize Listeleri](#dize-listeleri)
-- [KOŞULLU ANLATIMLAR](#ko%C5%9Fullu-ifadeler)
-    - [Dosya Koşulları](#dosya-ko%C5%9Fullamalar%C4%B1)
-    - [Dosya Karşılaştırmaları](#dosya-kar%C5%9F%C4%B1la%C5%9Ft%C4%B1rmalar%C4%B1)
-    - [Değişken Koşullamalar](#de%C4%9Fi%C5%9Fken-%C5%9Fartlamalar)
-    - [Değişken Karşılaştırmalar](#de%C4%9Fi%C5%9Fken-kar%C5%9F%C4%B1la%C5%9Ft%C4%B1rmalar)
-- [ARİTMETİK OPERATÖRLER](#aritmetik-operat%C3%B6rler)
-    - [Görev](#g%C3%B6rev)
-    - [Aritmetik](#aritmetik)
-    - [Bitsel](#bitd%C3%BCzeyi)
-    - [Mantık](#mant%C4%B1kl%C4%B1)
-    - [Çeşitli](#%C3%A7e%C5%9Fitli)
-- [ARİTMETİK](#aritmetik-1)
-    - [Değişkenleri ayarlamak için daha basit sözdizimi](#de%C4%9Fi%C5%9Fkenleri-ayarlamak-i%C3%A7in-basit-s%C3%B6zdizimi)
-    - [Üçlü testler](#%C3%BC%C3%A7l%C3%BC-testler)
-- [TRAP'ler](#tuzaklar%C4%B1)
-    - [Script çıkışında bir şey yap](#script-%C3%A7%C4%B1k%C4%B1%C5%9F%C4%B1nda-bir-%C5%9Fey-yap)
-    - [Terminal kesmesini yoksay (CTRL+C, SIGINT)](#terminal-kesme-ctrlc-i%C5%9Faretini-yoksay)
-    - [Pencereyi boyutlandırılmasına tepki verme](#yeniden-boyutland%C4%B1rmak)
-    - [Her komuttan önce bir şeyler yapma](#her-komuttan-%C3%B6nce-bir-%C5%9Feyler-yap)
-    - [Bir kabuk işlevi veya kaynak bir dosya yürütmeyi bitirdiğinde bir şey yapma](#bir-kabuk-i%C5%9Flevi-veya-kaynak-bir-dosya-y%C3%BCr%C3%BCtmeyi-bitirdi%C4%9Finde-bir-%C5%9Fey-yap%C4%B1n)
-- [VERİM](#verim)
-    - [Unicode'u devre dışı bırak](#unicode'u-devre-d%C4%B1%C5%9F%C4%B1-b%C4%B1rak)
-- [ESKİMİŞ SÖZDİZİMİ](#eski-s%C3%B6zdizimi)
-    - [Shebang](#mesele)
-    - [Komut Değiştirme](#komut-de%C4%9Fi%C5%9Ftirme)
-    - [Fonksiyon Tanımlama](#i%C5%9Flev-bildirimi)
-- [İÇ DEĞİŞKENLER](#i%C3%A7-de%C4%9Fi%C5%9Fkenler)
-    - [`bash` komutunun yerini bulma](#bash-ikilisinin-yerini-al)
-    - [Geçerli çalışan `bash` işleminin sürümünü bulma](#ge%C3%A7erli-%C3%A7al%C4%B1%C5%9Fan-bash-i%C5%9Fleminin-s%C3%BCr%C3%BCm%C3%BCn%C3%BC-al)
-    - [Kullanıcının tercih ettiği metin düzenleyicisini açma](#kullan%C4%B1c%C4%B1lar%C4%B1-tercih-metin-edit%C3%B6r%C3%BCn%C3%BC-a%C3%A7)
-    - [Mevcut işlevin adını alma](#ge%C3%A7erli-i%C5%9Flevin-ad%C4%B1n%C4%B1-al)
-    - [Sistemin ana bilgisayar adını alma](#sistemin-ana-bilgisayar-ad%C4%B1n%C4%B1-al)
-    - [İşletim Sisteminin mimarisini edinin](#i%CC%87%C5%9Fletim-sisteminin-mimarisini-edinin)
-    - [İşletim Sistemi / Çekirdek adını alın](#i%C5%9Fletim-sistemi-%C3%A7ekirde%C4%9Finin-ad%C4%B1n%C4%B1-al)
-    - [Geçerli çalışma dizinini al](#ge%C3%A7erli-%C3%A7al%C4%B1%C5%9Fma-dizinini-al)
-    - [Komut dosyasının çalıştığı saniye sayısını alın](#beti%C4%9Fin-%C3%A7al%C4%B1%C5%9Ft%C4%B1%C4%9F%C4%B1-saniye-say%C4%B1s%C4%B1n%C4%B1-al)
-    - [Sahte bir tamsayı alın](#sahte-bir-tamsay%C4%B1-almak)
-- [TERMİNAL HAKKINDA BİLGİLER](#terminal-hakk%C4%B1nda-bilgi)
-    - [Terminal boyutunu satırlar ve sütunlar halinde alın (*bir betikten*)](#bir-b%C3%BCltenden-sat%C4%B1r-ve-s%C3%BCtun-cinsinden-terminal-boyutunu-almak)
-    - [Terminal boyutunu piksel cinsinden alın](#terminal-boyutunu-piksel-cinsinden-almak)
-    - [Mevcut imleç pozisyonunu al](#mevcut-imle%C3%A7-pozisyonunu-al)
-- [DÖNÜŞTÜRMEK](#d%C3%B6n%C3%BC%C5%9Ft%C3%BCrmek)
-    - [Altıgen rengi RGB'ye dönüştürme](#alt%C4%B1gen-rengi-rgb'ye-d%C3%B6n%C3%BC%C5%9Ft%C3%BCr)
-    - [RGB rengini hex'e dönüştürme](#rgb-rengini-hex'e-%C3%A7evir)
-- [KOD GOLF](#kod-golf)
-    - [Kısa `for` döngüsü sözdizimi](#d%C3%B6ng%C3%BC-s%C3%B6zdizimi-i%C3%A7in-daha-k%C4%B1sa)
-    - [Daha kısa sonsuz döngüler](#k%C4%B1sa-sonsuz-d%C3%B6ng%C3%BCler)
-    - [Daha kısa fonksiyon bildirimi](#k%C4%B1sa-fonksiyon-bildirimi)
-    - [Daha kısa `if` sözdizimi](#s%C3%B6zdizimi-daha-k%C4%B1sa)
-    - [Değişkeni ayarlamak için basit `case` ifadesi](#de%C4%9Fi%C5%9Fken-ayarlamak-i%C3%A7in-basit-vaka-ifadesi)
-- [DİĞER](#di%C4%9Fer)
-    - [`sleep` komutuna alternatif olarak `read` kullanın](#uyku-komutuna-alternatif-olarak-okuma-kullan%C4%B1n)
-    - [Bir programın kullanıcının PATH'sinde olup olmadığını kontrol edin](#bir-program%C4%B1n-kullan%C4%B1c%C4%B1-yolunda-olup-olmad%C4%B1%C4%9F%C4%B1n%C4%B1-kontrol-edin)
-    - [`strftime` kullanarak geçerli tarihi alın](#strftime-kullanarak-ge%C3%A7erli-tarihi-al)
-    - [Mevcut kullanıcının kullanıcı adını al](#mevcut-kullan%C4%B1c%C4%B1n%C4%B1n-kullan%C4%B1c%C4%B1-ad%C4%B1n%C4%B1-al)
-    - [Bir UUID V4 oluşturun](#bir-uuid-v4-olu%C5%9Fturmak)
-    - [İlerleme çubukları](#ilerleme-%C3%A7ubuklar%C4%B1)
-    - [Bir komut dosyasındaki işlevlerin listesini alın](#komut-dosyas%C4%B1ndaki-i%C5%9Flevlerin-listesini-alma)
-    - [Kabuk takma isimlerini atla](#bypass-kabuk-takma-adlar%C4%B1)
-    - [Bypass kabuk fonksiyonları](#bypass-kabuk-fonksiyonlar%C4%B1)
-    - [Arka planda bir komut çalıştır](#arka-planda-bir-komut-%C3%A7al%C4%B1%C5%9Ft%C4%B1rmak)
-- [Sonsöz](#sons%C3%B6z)
+- [ÖNSÖZ](#foreword)
+- [METİNLER](#strings)
+    - [Metnin başında ve sonundaki boşlukları temizleme](#trim-leading-and-trailing-white-space-from-string)
+    - [Tüm fazla boşlukları kırpma](#trim-all-white-space-from-string-and-truncate-spaces)
+    - [Bir metinde regex kullanma](#use-regex-on-a-string)
+    - [Bir sınırlayıcı ile metni bölme](#split-a-string-on-a-delimiter)
+    - [Bir metni küçük harfe dönüştürme](#dizeyi-k%C3%BC%C3%A7%C3%BCk-harfe-d%C3%B6n%C3%BC%C5%9Ft%C3%BCr)
+    - [Bir metni büyük harfe dönüştürme](#bir-dizeyi-b%C3%BCy%C3%BCk-harfe-d%C3%B6n%C3%BC%C5%9Ft%C3%BCr)
+    - [Metin harf büyüklüğünü ters çevirme](#reverse-a-string-case)
+    - [Metinden tırnakları kırpma](#trim-quotes-from-a-string)
+    - [Metindeki tüm desen örneklerini kırpma](#strip-all-instances-of-pattern-from-string)
+    - [Metinde bir desenin ilk örneğini kırpma](#strip-first-occurrence-of-pattern-from-string)
+    - [Metnin başındaki bir deseni kırpma](#strip-pattern-from-start-of-string)
+    - [Metnin sonundaki bir deseni kırpma](#strip-pattern-from-end-of-string)
+    - [Bir metnin percent-encode çevirimini yapma](#percent-encode-a-string)
+    - [Bir metnin percent-encode geri çevirimini yapma](#decode-a-percent-encoded-string)
+    - [Metnin bir alt metni içerip içermediğini kontrol etme](#check-if-string-contains-a-sub-string)
+    - [Metnin bir alt metinle başlayıp başlamadığını kontrol etme](#check-if-string-starts-with-sub-string)
+    - [Metnin bir alt metinle bitip bitmediğini kontrol etme](#check-if-string-ends-with-sub-string)
+- [DİZİLER](#arrays)
+    - [Diziyi ters çevirme](#reverse-an-array)
+    - [Yinelenen dizi öğelerini kaldırma](#remove-duplicate-array-elements)
+    - [Rasgele dizi elemanı](#random-array-element)
+    - [Bir dizi içerisinde dolaşma](#cycle-through-an-array)
+    - [İki değer arasında geçiş yapma](#toggle-between-two-values)
+- [DÖNGÜLER](#loops)
+    - [Bir sayı aralığında döngü](#loop-over-a-range-of-numbers)
+    - [Değişken sayı aralığında döngü](#loop-over-a-variable-range-of-numbers)
+    - [Bir dizi içinde döngü](#loop-over-an-array)
+    - [Dizinli bir dizi içinde döngü](#loop-over-an-array-with-an-index)
+    - [Bir dosyanın içeriği içinde döngü](#loop-over-the-contents-of-a-file)
+    - [Dosyalar ve dizinler içinde döngü](#loop-over-files-and-directories)
+- [DOSYA YÖNETİMİ](#file-handling)
+    - [Bir dosya içeriğini metin değişkenine dönüştürme](#read-a-file-to-a-string)
+    - [Dosya içeriğini diziye dönüştürme (*satır satır*)](#read-a-file-to-an-array-by-line)
+    - [Bir dosyanın ilk N satırını alma](#get-the-first-n-lines-of-a-file)
+    - [Bir dosyanın son N satırını alma](#get-the-last-n-lines-of-a-file)
+    - [Bir dosyadaki satır sayısını alma](#get-the-number-of-lines-in-a-file)
+    - [Dizindeki dosyaları veya dizinleri sayma](#count-files-or-directories-in-directory)
+    - [Boş bir dosya oluşturma](#create-an-empty-file)
+    - [İki işaret arasındaki satırları ayıklama](#iki-i%C5%9Faretleyici-aras%C4%B1ndaki-%C3%A7izgileri-ay%C4%B1klamak)
+- [DOSYA YOLLARI](#file-paths)
+    - [Bir dosya yolunun dizin adını alma](#get-the-directory-name-of-a-file-path)
+    - [Bir dosya yolunun taban adını alma](#get-the-base-name-of-a-file-path)
+- [DEĞİŞKENLER](#variables)
+    - [Bir değişkeni kullanarak bir değişken atama ve erişme](#assign-and-access-a-variable-using-a-variable)
+    - [Başka bir değişkeni temel alan bir değişken adı](#name-a-variable-based-on-another-variable)
+- [KIRPMA SERİLERİ](#escape-sequences)
+    - [Metin Renkleri](#text-colors)
+    - [Metin Nitelikleri](#text-attributes)
+    - [İmleç Hareketi](#cursor-movement)
+    - [Metin Silme](#erasing-text)
+- [PARAMETRE GENİŞLETME](#parameter-expansion)
+    - [Dolaylama](#indirection)
+    - [Yer değiştirme](#replacement)
+    - [Uzunluk](#length)
+    - [Genişleme](#expansion)
+    - [Büyük/Küçük Harf Değişikliği](#case-modification)
+    - [Ön tanımlı değer](#default-value)
+- [BRACE GENİŞLETME](#brace-expansion)
+    - [aralıklar](#ranges)
+    - [Dize Listeleri](#string-lists)
+- [KOŞULLU ANLATIMLAR](#conditional-expressions)
+    - [Dosya Koşulları](#file-conditionals)
+    - [Dosya Karşılaştırmaları](#file-comparisons)
+    - [Değişken Koşullamalar](#variable-conditionals)
+    - [Değişken Karşılaştırmalar](#variable-comparisons)
+- [ARİTMETİK OPERATÖRLER](#arithmetic-operators)
+    - [Görev](#assignment)
+    - [Aritmetik](#arithmetic)
+    - [Bitsel](#bitwise)
+    - [Mantık](#logical)
+    - [Çeşitli](#miscellaneous)
+- [ARİTMETİK](#arithmetic-1)
+    - [Değişkenleri ayarlamak için daha basit sözdizimi](#simpler-syntax-to-set-variables)
+    - [Üçlü testler](#ternary-tests)
+- [TRAP'ler](#traps)
+    - [Script çıkışında bir şey yap](#do-something-on-script-exit)
+    - [Terminal kesmesini yoksay (CTRL+C, SIGINT)](#ignore-terminal-interrupt-ctrlc-sigint)
+    - [Pencereyi boyutlandırılmasına tepki verme](#react-to-window-resize)
+    - [Her komuttan önce bir şeyler yapma](#do-something-before-every-command)
+    - [Bir kabuk işlevi veya kaynak bir dosya yürütmeyi bitirdiğinde bir şey yapma](#do-something-when-a-shell-function-or-a-sourced-file-finishes-executing)
+- [VERİM](#performance)
+    - [Unicode'u devre dışı bırak](#disable-unicode)
+- [ESKİMİŞ SÖZDİZİMİ](#obsolete-syntax)
+    - [Shebang](#shebang)
+    - [Komut Değiştirme](#command-substitution)
+    - [Fonksiyon Tanımlama](#function-declaration)
+- [İÇ DEĞİŞKENLER](#internal-variables)
+    - [`bash` komutunun yerini bulma](#get-the-location-to-the-bash-binary)
+    - [Geçerli çalışan `bash` işleminin sürümünü bulma](#get-the-version-of-the-current-running-bash-process)
+    - [Kullanıcının tercih ettiği metin düzenleyicisini açma](#open-the-users-preferred-text-editor)
+    - [Mevcut işlevin adını alma](#get-the-name-of-the-current-function)
+    - [Sistemin ana bilgisayar adını alma](#get-the-host-name-of-the-system)
+    - [İşletim Sisteminin mimarisinin adını bulma](#i%CC%87%C5%9Fletim-sisteminin-mimarisini-edinin)
+    - [İşletim Sistemi / Çekirdek adını alın](#get-the-name-of-the-operating-system--kernel)
+    - [Geçerli çalışma dizinini al](#get-the-current-working-directory)
+    - [Komut dosyasının çalıştığı saniye sayısını alın](#get-the-number-of-seconds-the-script-has-been-running)
+    - [Sahte bir tamsayı alın](#get-a-pseudorandom-integer)
+- [TERMİNAL HAKKINDA BİLGİLER](#information-about-the-terminal)
+    - [Terminal boyutunu satırlar ve sütunlar halinde alın (*bir betikten*)](#get-the-terminal-size-in-lines-and-columns-from-a-script)
+    - [Terminal boyutunu piksel cinsinden alın](#get-the-terminal-size-in-pixels)
+    - [Mevcut imleç pozisyonunu al](#get-the-current-cursor-position)
+- [DÖNÜŞTÜRMEK](#conversion)
+    - [Altıgen rengi RGB'ye dönüştürme](#convert-a-hex-color-to-rgb)
+    - [RGB rengini hex'e dönüştürme](#convert-an-rgb-color-to-hex)
+- [KOD GOLFÜ](#kod-golf)
+    - [Kısa `for` döngüsü sözdizimi](#shorter-for-loop-syntax)
+    - [Daha kısa sonsuz döngüler](#shorter-infinite-loops)
+    - [Daha kısa fonksiyon bildirimi](#shorter-function-declaration)
+    - [Daha kısa `if` sözdizimi](#shorter-if-syntax)
+    - [Değişkeni ayarlamak için basit `case` ifadesi](#simpler-case-statement-to-set-variable)
+- [DİĞER](#other)
+    - [`sleep` komutuna alternatif olarak `read` kullanın](#use-read-as-an-alternative-to-the-sleep-command)
+    - [Bir programın kullanıcının PATH'sinde olup olmadığını kontrol edin](#check-if-a-program-is-in-the-users-path)
+    - [`strftime` kullanarak geçerli tarihi alın](#get-the-current-date-using-strftime)
+    - [Mevcut kullanıcının kullanıcı adını al](#get-the-username-of-the-current-user)
+    - [Bir UUID V4 oluşturun](#generate-a-uuid-v4)
+    - [İlerleme çubukları](#progress-bars)
+    - [Bir komut dosyasındaki işlevlerin listesini alın](#get-the-list-of-functions-in-a-script)
+    - [Kabuk takma isimlerini atla](#bypass-shell-aliases)
+    - [Bypass kabuk fonksiyonları](#bypass-shell-functions)
+    - [Arka planda bir komut çalıştır](#run-a-command-in-the-background)
+- [Sonsöz](#afterword)
 
 <!-- vim-markdown-toc -->
 
@@ -178,7 +178,7 @@ Bu kitabın içeriği, programları ve komut dosyalarını `bash` yazarken karş
 
 # METİNLER
 
-## Dizeden beyaz boşluk bırakarak önde ve sonunda boşluk bırak
+## Metnin başında ve sonundaki boşlukları temizleme
 
 Bu `sed` , `awk` , `perl` ve diğer araçlara bir alternatiftir.
 Aşağıdaki fonksiyon tüm lider ve sondaki beyaz boşluğu bulup çalışır.
@@ -206,7 +206,7 @@ $ trim_string "$name"
 John Black
 ```
 
-## Tüm beyaz boşlukları dize ve kesilmiş boşluklardan kırpın
+## Tüm fazla boşlukları kırpma
 
 Bu `sed` , `awk` , `perl` ve diğer araçlara bir alternatiftir.
 Aşağıdaki işlev, yeni bir dize oluşturmak için sözcük bölmeyi kötüye kullanarak çalışır
@@ -236,17 +236,16 @@ $ trim_all "$name"
 John Black is my name.
 ```
 
-## Bir dizede regex kullanın
+## Bir metinde regex kullanma
 
-Sonucu `bash` 'ın regex eşleştirme yerine kullanılabilecek `sed` bir için
-çok sayıda kullanım durumu.
+Çok sayıda durum için `bash`'in regex eşleştirme sonucu `sed` yerine kullanılabilir.
 
 **CAVEAT** : Bu, platforma bağımlı birkaç `bash` özelliğinden biridir.
-`bash` , kullanıcının sisteminde yüklü olan ne regex motoru kullanır.
+`bash` , kullanıcının sisteminde yüklü olan regex motorunu kullanır.
 Uyumluluk amaçlanıyorsa POSIX regex özelliklerine bağlı kalın.
 
-**CAVEAT** : Bu örnek yalnızca ilk eşleşen grubu yazdırır. Kullanırken
-çoklu yakalama grupları bazı değişikliklere ihtiyaç duyuyor.
+**CAVEAT** : Bu örnek yalnızca ilk eşleşen grubu yazdırır. 
+Çoklu yakalama grupları kullanmak için bazı değişikliklere ihtiyaç vardır.
 
 **Örnek Fonksiyon:**
 
@@ -291,11 +290,11 @@ is_hex_color "$color" || color="#FFFFFF"
 # Do stuff.
 ```
 
-## Sınırlayıcıda bir dize bölme
+## Bir sınırlayıcı ile metni bölme
 
 **CAVEAT:** `bash` 4+ gerektirir
 
-Bu `cut` , `awk` ve diğer takımlara bir alternatiftir.
+Bu `cut` , `awk` ve diğer araçlara bir alternatiftir.
 
 **Örnek Fonksiyon:**
 
@@ -333,7 +332,7 @@ is
 john
 ```
 
-## Bir dizeyi küçük harfe değiştirme
+## Bir metni küçük harfe dönüştürme
 
 **CAVEAT:** `bash` 4+ gerektirir
 
@@ -359,7 +358,7 @@ $ lower "hello"
 hello
 ```
 
-## Bir dizeyi büyük harfe değiştirme
+## Bir metni büyük harfe dönüştürme
 
 **CAVEAT:** `bash` 4+ gerektirir
 
@@ -385,7 +384,7 @@ $ upper "HELLO"
 HELLO
 ```
 
-## Bir dize harfini ters çevir
+## Metin harf büyüklüğünü ters çevirme
 
 **CAVEAT:** `bash` 4+ gerektirir
 
@@ -411,7 +410,7 @@ $ reverse_case "HELLO"
 hello
 ```
 
-## Bir dizgeden alıntıları kırpma
+## Metinden tırnakları kırpma
 
 **Örnek Fonksiyon:**
 
@@ -431,7 +430,7 @@ $ trim_quotes "$var"
 Hello, World
 ```
 
-## Dizideki tüm desen örneklerini soyun
+## Metindeki tüm desen örneklerini kırpma
 
 **Örnek Fonksiyon:**
 
@@ -455,7 +454,7 @@ $ strip_all "The Quick Brown Fox" "Quick "
 The Brown Fox
 ```
 
-## Dizeden desenin ilk oluşumunu sıyırma
+## Metinde bir desenin ilk örneğini kırpma
 
 **Örnek Fonksiyon:**
 
@@ -476,7 +475,7 @@ $ strip "The Quick Brown Fox" "[[:space:]]"
 TheQuick Brown Fox
 ```
 
-## Dize başlangıcından itibaren şerit deseni
+## Metnin başındaki bir deseni kırpma
 
 **Örnek Fonksiyon:**
 
@@ -494,7 +493,7 @@ $ lstrip "The Quick Brown Fox" "The "
 Quick Brown Fox
 ```
 
-## Dizenin sonundan şerit deseni
+## Metnin sonundaki bir deseni kırpma
 
 **Örnek Fonksiyon:**
 
@@ -512,7 +511,7 @@ $ rstrip "The Quick Brown Fox" " Fox"
 The Quick Brown
 ```
 
-## Bir dize yüzde kodlamak
+## Bir metnin percent-encode çevirimini yapma
 
 **Örnek Fonksiyon:**
 
@@ -543,7 +542,7 @@ $ urlencode "https://github.com/dylanaraps/pure-bash-bible"
 https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible
 ```
 
-## Yüzde kodlanmış bir dizenin kodunu çözme
+## Bir metnin percent-encode geri çevirimini yapma
 
 **Örnek Fonksiyon:**
 
@@ -562,7 +561,7 @@ $ urldecode "https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible"
 https://github.com/dylanaraps/pure-bash-bible
 ```
 
-## Dize alt dize içerip içermediğini kontrol edin
+## Metnin bir alt metni içerip içermediğini kontrol etme
 
 **Bir test kullanmak:**
 
@@ -600,7 +599,7 @@ case "$var" in
 esac
 ```
 
-## Dizenin alt dizeyle başlayıp başlamadığını kontrol edin
+## Metnin bir alt metinle başlayıp başlamadığını kontrol etme
 
 ```shell
 if [[ $var == sub_string* ]]; then
@@ -613,7 +612,7 @@ if [[ $var != sub_string* ]]; then
 fi
 ```
 
-## Dizenin alt dizeyle bitip bitmediğini kontrol edin
+## Metnin bir alt metinle bitip bitmediğini kontrol etme
 
 ```shell
 if [[ $var == *sub_string ]]; then
@@ -632,10 +631,9 @@ fi
 
 # DİZİLER
 
-## Bir diziyi ters çevir
+## Diziyi ters çevirme
 
-`extdebug` etkinleştirmek, depolayan `BASH_ARGV` dizisine erişime izin verir
-geçerli işlevin argümanları ters.
+`extdebug`'ı etkinleştirmek, geçerli fonksiyonun argümanlarını ters sırada saklayan `BASH_ARGV` dizisine erişime izin verir.
 
 **CAVEAT** : `bash` 5.0+ içinde `shopt -s compat44` gerektirir.
 
@@ -667,7 +665,7 @@ blue
 red
 ```
 
-## Yinelenen dizi öğelerini kaldırın
+## Yinelenen dizi öğelerini kaldırma
 
 Geçici bir ilişkisel dizi oluşturun. İlişkisel dizi ayarlarken
 değerleri ve yinelenen bir atama oluşur, bash anahtarın üzerine yazar. Bu
@@ -733,11 +731,9 @@ $ random_array_element 1 2 3 4 5 6 7
 3
 ```
 
-## Bir dizi arasında dolaş
+## Bir dizi içerisinde dolaşma
 
-`printf` her çağrıldığında, bir sonraki dizi elemanı yazdırılır. Ne zaman
-Baskı ilk elemandan başladığı son dizi elemanına isabet eder.
-tekrar.
+`printf` her çağrıldığında, bir sonraki dizi elemanı yazdırılır. Ne zaman son dizi elemanına isabet eder, o zaman tekrar ilk elamandan başlar.
 
 ```sh
 arr=(a b c d)
@@ -748,7 +744,7 @@ cycle() {
 }
 ```
 
-## İki değer arasında geçiş yap
+## İki değer arasında geçiş yapma
 
 Bu yukarıdakiyle aynı şekilde çalışır, bu sadece farklı bir kullanım durumudur.
 
@@ -767,9 +763,9 @@ cycle() {
 
 # DÖNGÜLER
 
-## Bir dizi sayının üzerinde döngü
+## Bir sayı aralığında döngü
 
-`seq` alternatif.
+`seq` komutuna bir alternatiftir.
 
 ```shell
 # Loop from 0-100 (no variable support).
@@ -780,7 +776,7 @@ done
 
 ## Değişken sayı aralığında döngü
 
-`seq` alternatif.
+`seq` komutuna bir alternatiftir.
 
 ```shell
 # Loop from 0-VAR.
@@ -790,7 +786,7 @@ for ((i=0;i<=VAR;i++)); do
 done
 ```
 
-## Bir dizi üzerinde döngü
+## Bir dizi içinde döngü
 
 ```shell
 arr=(apples oranges tomatoes)
@@ -801,7 +797,7 @@ for element in "${arr[@]}"; do
 done
 ```
 
-## Dizinli bir dizi üzerinde döngü
+## Dizinli bir dizi içinde döngü
 
 ```shell
 arr=(apples oranges tomatoes)
@@ -817,7 +813,7 @@ for ((i=0;i<${#arr[@]};i++)); do
 done
 ```
 
-## Bir dosyanın içeriği üzerinde döngü
+## Bir dosyanın içeriği içinde döngü
 
 ```shell
 while read -r line; do
@@ -825,7 +821,7 @@ while read -r line; do
 done < "file"
 ```
 
-## Dosyalar ve dizinler üzerinde döngü
+## Dosyalar ve dizinler içinde döngü
 
 `ls` kullanma.
 
@@ -866,7 +862,7 @@ shopt -u globstar
 
 **CAVEAT:** `bash` , `< 4.4` sürümlerinde ikili verileri düzgün **işlemiyor** .
 
-## Bir dizgeye dosya okumak
+## Bir dosya içeriğini metin değişkenine dönüştürme
 
 `cat` komutuna alternatif.
 
@@ -874,7 +870,7 @@ shopt -u globstar
 file_data="$(<"file")"
 ```
 
-## Bir dosyayı bir diziye okuma ( *satır satır* )
+## Dosya içeriğini diziye dönüştürme ( *satır satır* )
 
 `cat` komutuna alternatif.
 
@@ -891,7 +887,7 @@ done < "file"
 mapfile -t file_data < "file"
 ```
 
-## Bir dosyanın ilk N satırını al
+## Bir dosyanın ilk N satırını alma
 
 `head` komutuna alternatif.
 
@@ -918,7 +914,7 @@ $ head 1 ~/.bashrc
 # Prompt
 ```
 
-## Bir dosyanın son N satırını al
+## Bir dosyanın son N satırını alma
 
 `tail` komutuna alternatif.
 
@@ -945,9 +941,9 @@ $ tail 1 ~/.bashrc
 # [[ -z "$TMUX"  ]] && exec tmux
 ```
 
-## Bir dosyadaki satır sayısını al
+## Bir dosyadaki satır sayısını alma
 
-`wc -l` alternatif.
+`wc -l` komutuna alternatif.
 
 **Örnek İşlev (bash 4):**
 
@@ -961,7 +957,7 @@ lines() {
 
 **Örnek İşlev (bash 3):**
 
-Bu yöntem `mapfile` yönteminden daha az bellek kullanır ve `bash` 3'te çalışır ancak daha büyük dosyalar için daha yavaştır.
+Bu yöntem `mapfile` yönteminden daha az bellek kullanır ve `bash` 3'te çalışır ancak büyük dosyalar için daha yavaştır.
 
 ```sh
 lines_loop() {
@@ -984,7 +980,7 @@ $ lines_loop ~/.bashrc
 48
 ```
 
-## Dizindeki dosyaları veya dizinleri say
+## Dizindeki dosyaları veya dizinleri sayma
 
 Bu, işlevin çıktısını işleve iletip argüman sayısını sayarak çalışır.
 
@@ -1014,9 +1010,9 @@ $ count ~/Pictures/*.jpg
 64
 ```
 
-## Boş bir dosya oluştur
+## Boş bir dosya oluşturma
 
-`touch` alternatif.
+`touch` komutuna alternatif.
 
 ```shell
 # Shortest.
@@ -1028,7 +1024,7 @@ echo -n >file
 printf '' >file
 ```
 
-## İki işaretleyici arasındaki çizgileri ayıkla
+## İki işaret arasındaki satırları ayıklama
 
 **Örnek Fonksiyon:**
 
@@ -1059,7 +1055,7 @@ $ extract ~/projects/pure-bash/README.md '```sh' '```'
 
 # DOSYA YOLLARI
 
-## Bir dosya yolunun dizin adını alın
+## Bir dosya yolunun dizin adını alma
 
 `dirname` komutuna alternatif.
 
@@ -1099,7 +1095,7 @@ $ dirname ~/Pictures/Downloads/
 /home/black/Pictures
 ```
 
-## Bir dosya yolunun taban adını alın
+## Bir dosya yolunun taban adını alma
 
 `basename` komutuna alternatif.
 
@@ -1177,20 +1173,20 @@ value
 
 <!-- CHAPTER START -->
 
-# KAÇIŞ DİZİLERİ
+# KIRPMA SERİLERİ
 
-Popüler inanışın aksine, ham kaçış dizilerinin kullanılmasında bir sorun yoktur. `tput` , manuel olarak yazdırılan ile aynı ANSI dizilerini özetler. Daha da kötüsü, `tput` aslında taşınabilir değil. Her biri farklı komut ve sentakslara sahip bir dizi `tput` varyasyonu vardır ( *FreeBSD sisteminde `tput setaf 3` deneyin* ). Ham diziler gayet iyi.
+Popüler inanışın aksine, ham kırpma serilerinin kullanılmasında bir sorun yoktur. `tput`, manuel olarak yazdırılan ile aynı ANSI serilerini soyutlar. Daha da kötüsü, `tput` aslında taşınabilir değil. Her biri farklı komut ve sözdüzümüne sahip bir dizi `tput` varyasyonu vardır (*FreeBSD sisteminde `tput setaf 3` deneyin*). Ham dizileri kullanmak iyidir.
 
 ## Metin Renkleri
 
 **NOT:** RGB değerleri gerektiren diziler sadece Gerçek Renkli Terminal Emülatörlerinde çalışır.
 
-Sıra | Bu ne işe yarıyor? | Değer, kıymet
+Seri | Bu ne işe yarıyor? | Değer, kıymet
 --- | --- | ---
-`\e[38;5;<NUM>m` | Metin ön plan rengini ayarlayın. | `0-255`
-`\e[48;5;<NUM>m` | Metin arka plan rengini ayarlayın. | `0-255`
-`\e[38;2;<R>;<G>;<B>m` | Metin ön plan rengini RGB renk olarak ayarlayın. | `R`, `G`, `B`
-`\e[48;2;<R>;<G>;<B>m` | Metin arka plan rengini RGB rengine ayarlayın. | `R`, `G`, `B`
+`\e[38;5;<NUM>m` | Metin ön plan rengini ayarlar. | `0-255`
+`\e[48;5;<NUM>m` | Metin arka plan rengini ayarlar. | `0-255`
+`\e[38;2;<R>;<G>;<B>m` | Metin ön plan rengini RGB renk olarak ayarlar. | `R`, `G`, `B`
+`\e[48;2;<R>;<G>;<B>m` | Metin arka plan rengini RGB rengine ayarlar. | `R`, `G`, `B`
 
 ## Metin Nitelikleri
 
@@ -1213,32 +1209,32 @@ Sıra | Bu ne işe yarıyor?
 
 Sıra | Bu ne işe yarıyor? | Değer, kıymet
 --- | --- | ---
-`\e[<LINE>;<COLUMN>H` | İmleci mutlak konuma getirin. | `line`, `column`
-`\e[H` | İmleci başlangıç konumuna getirin ( `0,0` ). | 
+`\e[<LINE>;<COLUMN>H` | İmleci mutlak konuma getirir. | `line`, `column`
+`\e[H` | İmleci başlangıç konumuna getirir ( `0,0` ). | 
 `\e[<NUM>A` | İmleci N satır yukarı kaydır. | `num`
-`\e[<NUM>B` | İmleci N satır aşağı hareket ettirin. | `num`
-`\e[<NUM>C` | İmleci sağ N sütununa getirin. | `num`
-`\e[<NUM>D` | İmleci N sütunlarına getirin. | `num`
-`\e[s` | İmleç konumunu kaydet. | 
-`\e[u` | İmleç konumunu geri yükle. | 
+`\e[<NUM>B` | İmleci N satır aşağı hareket ettirir. | `num`
+`\e[<NUM>C` | İmleci sağ N sütununa getirir. | `num`
+`\e[<NUM>D` | İmleci N sütunlarına getirir. | `num`
+`\e[s` | İmleç konumunu kaydeder. | 
+`\e[u` | İmleç konumunu geri yükler. | 
 
 ## Metin Silme
 
-Sıra | Bu ne işe yarıyor?
+Seri | Bu ne işe yarıyor?
 --- | ---
-`\e[K` | İmleç konumundan satırın sonuna kadar silin.
-`\e[1K` | Satırın başına imleç konumundan silin.
-`\e[2K` | Geçerli çizginin tamamını silin.
-`\e[J` | Geçerli satırdan ekranın altına doğru silin.
-`\e[1J` | Geçerli satırdan ekranın üstüne silin.
-`\e[2J` | Ekranı temizle.
-`\e[2J\e[H` | Ekranı temizleyin ve imleci `0,0` getirin.
+`\e[K` | İmleç konumundan satırın sonuna kadar siler.
+`\e[1K` | Satırın başına imleç konumundan siler.
+`\e[2K` | Geçerli çizginin tamamını siler.
+`\e[J` | Geçerli satırdan ekranın altına doğru siler.
+`\e[1J` | Geçerli satırdan ekranın üstüne siler.
+`\e[2J` | Ekranı temizler.
+`\e[2J\e[H` | Ekranı temizleyin ve imleci `0,0` getirir.
 
 <!-- CHAPTER END -->
 
 <!-- CHAPTER START -->
 
-# PARAMETRE GENİŞLETİMİ
+# PARAMETRE GENİŞLETME
 
 ## Dolaylama
 
@@ -1248,7 +1244,7 @@ Parametre | Bu ne işe yarıyor?
 `${!VAR*}` | `VAR` ile başlayan değişken isimlerinin `IFS` ayrılmış listesine genişletin.
 `${!VAR@}` | `VAR` ile başlayan değişken isimlerinin `IFS` ayrılmış listesine genişletin. Çift tırnak işaretli ise, her değişken ismi ayrı bir kelimeye genişler.
 
-## Değiştirme
+## Yer Değiştirme
 
 Parametre | Bu ne işe yarıyor?
 --- | ---
@@ -1272,25 +1268,25 @@ Parametre | Bu ne işe yarıyor?
 
 Parametre | Bu ne işe yarıyor?
 --- | ---
-`${VAR:OFFSET}` | İlk `N` karakterini değişkenden kaldır.
-`${VAR:OFFSET:LENGTH}` | Dan alt dize alın `N` karakterine `N` karakteri. <br> ( `${VAR:10:10}` : `10` karakterden `20` karaktere kadar alt dizgiyi al)
-`${VAR:: OFFSET}` | Değişkenden ilk `N` karakteri al.
-`${VAR:: -OFFSET}` | Değişkenden son `N` karakteri çıkar.
-`${VAR: -OFFSET}` | Değişkenden son `N` karakteri al.
-`${VAR:OFFSET:-OFFSET}` | İlk `N` karakterini ve son `N` karakterini kesin.
+`${VAR:OFFSET}` | İlk `N` karakterini değişkenden kaldırır.
+`${VAR:OFFSET:LENGTH}` | `N` karakterinden başlayarak `N` karakter alt dizi alır. <br> ( `${VAR:10:10}` : `10` karakterden `20` karaktere kadar alt dizgiyi alır)
+`${VAR:: OFFSET}` | Değişkenden ilk `N` karakteri alır.
+`${VAR:: -OFFSET}` | Değişkenden son `N` karakteri çıkarır.
+`${VAR: -OFFSET}` | Değişkenden son `N` karakteri alır.
+`${VAR:OFFSET:-OFFSET}` | İlk `N` karakterini ve son `N` karakterini keser.
 
 ## Büyük/Küçük Harf Değişimi
 
 Parametre | Bu ne işe yarıyor? | UYARI
 --- | --- | ---
-`${VAR^}` | Büyük harf ilk karakter. | `bash 4+`
+`${VAR^}` | İlk karakteri büyük harf yapar. | `bash 4+`
 `${VAR^^}` | Tüm karakterleri büyük harf yapar. | `bash 4+`
-`${VAR,}` | Küçük harf ilk karakter. | `bash 4+`
-`${VAR,,}` | Tüm karakterleri küçük harf. | `bash 4+`
-`${VAR~}` | İlk karakterin tersi durumda. | `bash 4+`
-`${VAR~~}` | Tüm karakterlerin tam tersi durumda. | `bash 4+`
+`${VAR,}` | İlk karakteri küçük harf yapar. | `bash 4+`
+`${VAR,,}` | Tüm karakterleri küçük harf yapar. | `bash 4+`
+`${VAR~}` | İlk karakteri tersi duruma çevirir. | `bash 4+`
+`${VAR~~}` | Tüm karakterleri tersi duruma çevirir. | `bash 4+`
 
-## Varsayılan değer
+## Ön tanımlı değer
 
 Parametre | Bu ne işe yarıyor?
 --- | ---
@@ -1387,9 +1383,9 @@ ifade | Bu ne işe yarıyor?
 `file -nt file2` | `file` `file2` daha yeni ise ( *değişiklik zamanı kullanır* ) veya `file` varsa ve `file2` gelmez.
 `file -ot file2` | `file` `file2` daha eskiyse ( *değişiklik zamanını kullanır* ) veya `file2` varsa ve `file` yok.
 
-## Değişken Koşullamalar
+## Değişken Koşullamaları
 
-ifade | Değer, kıymet | Bu ne işe yarıyor?
+ifade | Değer | Bu ne işe yarıyor?
 --- | --- | ---
 `-o` | `opt` | Kabuk seçeneği etkinse.
 `-v` | `var` | Değişken atanmış bir değere sahipse.
@@ -1397,7 +1393,7 @@ ifade | Değer, kıymet | Bu ne işe yarıyor?
 `-z` | `var` | Dize uzunluğu sıfır ise.
 `-n` | `var` | Dize uzunluğu sıfır değilse.
 
-## Değişken Karşılaştırmalar
+## Değişken Karşılaştırmaları
 
 ifade | Bu ne işe yarıyor?
 --- | ---
@@ -1413,7 +1409,7 @@ ifade | Bu ne işe yarıyor?
 
 # ARİTMETİK OPERATÖRLER
 
-## Görev
+## Atama
 
 Operatörler | Bu ne işe yarıyor?
 --- | ---
@@ -1445,8 +1441,8 @@ Operatörler | Bu ne işe yarıyor?
 `>>=` | Sağ-Shift-Eşit
 `&` | Bit tabanlı AND
 `&=` | Bit tabanlı AND-Equal
-`\|` | Bit tabanlı OR
-`\|=` | Bit tabanlı OR-Equal
+`|` | Bit tabanlı OR
+`|=` | Bit tabanlı OR-Equal
 `~` | Bit tabanlı NOT
 `^` | Bit tabanlı XOR
 `^=` | Bit tabanlı XOR-Equal
@@ -1457,7 +1453,7 @@ Operatörler | Bu ne işe yarıyor?
 --- | ---
 `!` | DEĞİL
 `&&` | VE
-`\|\|` | VEYA
+`||` | VEYA
 
 ## Çeşitli
 
@@ -1504,7 +1500,7 @@ Operatörler | Bu ne işe yarıyor? | Örnek
 
 # TUZAKLAR
 
-Tuzaklar bir komut dosyasının çeşitli sinyallerde kod çalıştırmasına izin verir. [Pxltrm'de](https://github.com/dylanaraps/pxltrm) ( *bash ile yazılmış bir piksel sanat editörü* ) tuzaklar, pencereyi yeniden boyutlandırmadaki kullanıcı arayüzünü yeniden çizmek için kullanılır. Diğer bir kullanım senaryosu, komut dosyası çıkışındaki geçici dosyaları temizlemektir.
+Tuzaklar (Trap) bir komut dosyasının çeşitli sinyallerde kod çalıştırmasına izin verir. [Pxltrm'de](https://github.com/dylanaraps/pxltrm) ( *bash ile yazılmış bir piksel sanat editörü* ) tuzaklar, pencereyi yeniden boyutlandırmadaki kullanıcı arayüzünü yeniden çizmek için kullanılır. Diğer bir kullanım senaryosu, komut dosyası çıkışındaki geçici dosyaları temizlemektir.
 
 Tuzaklar, komut dosyalarının başlangıcına yakın olarak eklenmelidir, böylece erken hatalar da yakalanır.
 
@@ -1517,26 +1513,26 @@ Tuzaklar, komut dosyalarının başlangıcına yakın olarak eklenmelidir, böyl
 trap 'printf \\e[2J\\e[H\\e[m' EXIT
 ```
 
-## Terminal kesmesini yoksay (CTRL + C, SIGINT)
+## Terminal kapanmasını yoksayma (CTRL+C, SIGINT)
 
 ```shell
 trap '' INT
 ```
 
-## Pencereyi yeniden boyutlandır
+## Pencereyi boyutlandırılmasına tepki verme
 
 ```shell
 # Call a function on window resize.
 trap 'code_here' SIGWINCH
 ```
 
-## Her emirden önce bir şeyler yapın.
+## Her komuttan önce bir şeyler yapma
 
 ```shell
 trap 'code_here' DEBUG
 ```
 
-## Bir kabuk işlevi veya kaynak bir dosya yürütmeyi bitirdiğinde bir şey yapın
+## Bir kabuk işlevi veya kaynak bir dosya yürütmeyi bitirdiğinde bir şey yapma
 
 ```shell
 trap 'code_here' RETURN
@@ -1548,7 +1544,7 @@ trap 'code_here' RETURN
 
 # VERİM
 
-## Unicode'u devre dışı bırak
+## Unicode'u devre dışı bırakma
 
 Unicode gerekli değilse, performans artışı için devre dışı bırakılabilir. Sonuçlar değişebilir ancak [neofetch](https://github.com/dylanaraps/neofetch) ve diğer programlarda gözle görülür gelişmeler oldu.
 
@@ -1562,16 +1558,16 @@ LANG=C
 
 <!-- CHAPTER START -->
 
-# OBSOLETE SYNTAX
+# ESKİMİŞ SÖZDİZİMİ
 
-## mesele
+## Shebang
 
 Kullanım `#!/usr/bin/env bash` yerine `#!/bin/bash` .
 
-- Eski `bash` ikilisini bulmak için kullanıcının `PATH` arar.
-- İkincisi, her zaman `/bin/` yüklendiğini ve bunun sorunlara yol açabileceğini varsayar.
+- Önceki `bash`'ini bulmak için kullanıcının `PATH`'inde arama yapar.
+- İkincisi, her zaman `/bin/` altında olduğunu varsaya ve bunun sorunlara yol açabileceğini unutmayın.
 
-**NOT** : `#!/bin/bash` veya ikili `#!/bin/bash` başka bir doğrudan yol kullanmak için birinin iyi bir nedeni olabileceği zamanlar olabilir.
+**NOT** : `#!/bin/bash` veya ikili başka bir doğrudan yol kullanmak için iyi bir neden olabileceği zamanlar olabilir.
 
 ```shell
 # Right:
@@ -1598,7 +1594,7 @@ var=`command`
 var="$(command "$(command)")"
 ```
 
-## İşlev Beyanı
+## Fonksiyon Tanımlama
 
 `function` anahtar sözcüğünü kullanmayın, `bash` eski sürümleriyle uyumluluğu azaltır.
 
@@ -1620,13 +1616,13 @@ function do_something() {
 
 # İÇ DEĞİŞKENLER
 
-## `bash` ikilisinin yerini al
+## `bash` komutunun yerini bulma
 
 ```shell
 "$BASH"
 ```
 
-## Geçerli çalışan `bash` işleminin sürümünü edinin
+## Geçerli çalışan `bash` işleminin sürümünü bulma
 
 ```shell
 # As a string.
@@ -1636,7 +1632,7 @@ function do_something() {
 "${BASH_VERSINFO[@]}"
 ```
 
-## Kullanıcının tercih ettiği metin düzenleyicisini açın
+## Kullanıcının tercih ettiği metin düzenleyicisini açma
 
 ```shell
 "$EDITOR" "$file"
@@ -1645,7 +1641,7 @@ function do_something() {
 "${EDITOR:-vi}" "$file"
 ```
 
-## Mevcut işlevin adını alın
+## Mevcut fonksiyonun adını alma
 
 ```shell
 # Current function.
@@ -1662,7 +1658,7 @@ function do_something() {
 "${FUNCNAME[@]}"
 ```
 
-## Sistemin ana bilgisayar adını al
+## Sistemin ana bilgisayar adını alma
 
 ```shell
 "$HOSTNAME"
@@ -1672,22 +1668,21 @@ function do_something() {
 "${HOSTNAME:-$(hostname)}"
 ```
 
-## İşletim Sisteminin mimarisini edinin
+## İşletim Sisteminin mimarisinin adını bulma
 
 ```shell
 "$HOSTTYPE"
 ```
 
-## İşletim Sistemi / Çekirdek adını alın
+## İşletim Sistemi / Çekirdek adını alma
 
-Bu, farklı İşletim için koşullu destek eklemek için kullanılabilir
-`uname` çağırmaya gerek duymayan sistemler.
+Bu, `uname` çağırmaya gerek duyma farklı işletim sistemldaneri için koşullu destek eklemekte kullanılabilir.
 
 ```shell
 "$OSTYPE"
 ```
 
-## Geçerli çalışma dizinini al
+## Geçerli çalışma dizinini alma
 
 Bu, dahili `pwd` bir alternatiftir.
 
@@ -1695,15 +1690,15 @@ Bu, dahili `pwd` bir alternatiftir.
 "$PWD"
 ```
 
-## Komut dosyasının çalıştığı saniye sayısını alın
+## Komut dosyasının çalıştığı saniye sayısını alma
 
 ```shell
 "$SECONDS"
 ```
 
-## Sahte bir tamsayı alın
+## Sahte bir tamsayı oluşturma
 
-`$RANDOM` her kullanıldığında, `0` ile `32767` arasında farklı bir tam sayı döndürülür. Bu değişken güvenlikle ilgili hiçbir şey için kullanılmamalıdır ( *buna şifreleme anahtarlarını vb* . *İçerir* ).
+`$RANDOM` her kullanıldığında, `0` ile `32767` arasında farklı bir tam sayı döndürür. Bu değişken güvenlikle ilgili hiçbir şey için kullanılmamalıdır (*bu şifreleme anahtarlarını* vb içerir).
 
 ```shell
 "$RANDOM"
@@ -1715,10 +1710,9 @@ Bu, dahili `pwd` bir alternatiftir.
 
 # TERMİNAL HAKKINDA BİLGİLER
 
-## Terminal boyutunu satırlar ve sütunlar halinde alın ( *bir betikten* )
+## Terminal boyutunu satırlar ve sütunlar halinde alma (*bir betikten*)
 
-`stty` saf bash ve `stty` / `tput` yazarken kullanışlıdır.
-aranan.
+`stty`/{code2}tput{/code2} kullanılmadan saf bash yazarken kullanışlıdır.
 
 **Örnek Fonksiyon:**
 
@@ -1741,7 +1735,7 @@ $ get_term_size
 15 55
 ```
 
-## Terminal boyutunu piksel cinsinden alın
+## Terminal boyutunu piksel cinsinden alma
 
 **CAVEAT** : Bu, bazı terminal emülatörlerinde çalışmaz.
 
@@ -1768,7 +1762,7 @@ $ get_window_size
 x
 ```
 
-## Mevcut imleç pozisyonunu al
+## Mevcut imleç pozisyonunu alma
 
 Bu, saf bash'te bir TUI oluştururken kullanışlıdır.
 
@@ -1796,7 +1790,7 @@ $ get_cursor_pos
 
 # DÖNÜŞTÜRMEK
 
-## Altıgen rengi RGB'ye dönüştürme
+## Hex rengi RGB'ye dönüştürme
 
 **Örnek Fonksiyon:**
 
@@ -1835,9 +1829,9 @@ $ rgb_to_hex "255" "255" "255"
 #FFFFFF
 ```
 
-# KOD GOLF
+# KOD GOLFÜ
 
-## Döngü sözdizimi `for` kısa
+## Kısa `for` döngüsü sözdizimi
 
 ```shell
 # Tiny C Style.
@@ -1863,7 +1857,7 @@ while :; do echo hi; done
 for((;;)){ echo hi;}
 ```
 
-## Daha kısa fonksiyon bildirimi
+## Daha kısa fonksiyon tanımlama
 
 ```shell
 # Normal method
@@ -1906,7 +1900,7 @@ f()for i in "$@"; do echo "$i"; done
 
 ## Değişkeni ayarlamak için basit `case` ifadesi
 
-`:` Yerleşik bir `variable=` tekrarlamaktan kaçınmak için kullanılabilir `variable=` bir durum ifadesinde. `$_` Değişkeni, son komutun son argümanını saklar. `:` her zaman başarılı olur, böylece değişken değerini saklamak için kullanılabilir.
+Yerleşik `:` tekrar tekrar `variable=` kullanmaktan kaçınmak için kullanılabilir. `$_` değişkeni çalıştırılan son komutun son argümanını tutar. `:` her zaman başarılıdır, dolayısıyla değişkeni kaydetmek için kullanılabilir.
 
 ```shell
 # Modified snippet from Neofetch.
@@ -1943,9 +1937,9 @@ os="$_"
 
 # DİĞER
 
-## `sleep` komutuna alternatif olarak `read` kullanın
+## `sleep` komutuna alternatif olarak `read` kullanma
 
-Şaşırtıcı bir şekilde, `sleep` bir `bash` yerleşik değil harici bir komuttur.
+Şaşırtıcı bir şekilde, `sleep` bir `bash` yerleşik komutu değildir, harici bir komuttur.
 
 **CAVEAT:** `bash` 4+ gerektirir
 
@@ -1969,7 +1963,7 @@ read_sleep 30
 
 Aşırı sayıda dosya tanımlayıcısının açılması ve kapatılmasının ekonomik olmadığı performans açısından kritik olan durumlar için, bir dosya tanımlayıcısının tahsisi, tüm `read` çağrıları için yalnızca bir kez yapılabilir:
 
-(https://blog.dhampir.no/content/sleeping-without-a-subprocess-in-bash-and-how-to-sleep-forever adresindeki genel orijinal uygulamaya bakın)
+(https://blog.dhampir.no/content/sleeping-without-a-subprocess-in-bash-and-how-to-sleep-forever adresindeki orijinal uygulamaya bakın)
 
 ```shell
 exec {sleep_fd}<> <(:)
@@ -1979,7 +1973,7 @@ while some_quick_test; do
 done
 ```
 
-## Bir programın kullanıcının PATH'sinde olup olmadığını kontrol edin
+## Bir programın kullanıcının PATH'sinde olup olmadığını kontrol etme
 
 ```shell
 # There are 3 ways to do this and either one can be used.
@@ -2004,9 +1998,9 @@ if ! type -p convert &>/dev/null; then
 fi
 ```
 
-## `strftime` kullanarak geçerli tarihi alın
+## `strftime` kullanarak geçerli tarihi alma
 
-Bash'in `printf` , `date` komutunun yerine kullanılabilecek tarihi almak için yerleşik bir metoda sahiptir.
+Bash'in, `date` komutunun yerine kullanılabilecek tarihi almak için `printf` gibi yerleşik bir metoda sahiptir.
 
 **CAVEAT:** `bash` 4+ gerektirir
 
@@ -2037,7 +2031,7 @@ $ printf '%s\n' "$date"
 Fri 15 Jun  - 10:00 AM
 ```
 
-## Mevcut kullanıcının kullanıcı adını al
+## Mevcut kullanıcının kullanıcı adını alma
 
 **CAVEAT:** `bash` 4.4+ gerektirir
 
@@ -2048,9 +2042,9 @@ $ printf '%s\n' "${_@P}"
 black
 ```
 
-## Bir UUID V4 oluşturun
+## Bir UUID V4 oluşturma
 
-**CAVEAT** : Üretilen değer kriptografik olarak güvenli değil.
+**CAVEAT** : Üretilen değer kriptografik olarak güvenli değildir.
 
 **Örnek Fonksiyon:**
 
@@ -2089,8 +2083,7 @@ d5b6c731-1310-4c24-9fe3-55d556d44374
 
 ## İlerleme çubukları
 
-Bu, for döngüsüne ihtiyaç duymadan ilerleme çubuklarını çizmenin basit bir yoludur
-fonksiyonun kendisinde.
+Bu, fonksiyonun kendisinde for döngüsüne ihtiyaç duymadan ilerleme çubuklarını çizmenin basit bir yoludur.
 
 **Örnek Fonksiyon:**
 
@@ -2123,7 +2116,7 @@ done
 printf '\n'
 ```
 
-## Bir komut dosyasındaki işlevlerin listesini alın
+## Bir komut dosyasındaki işlevlerin listesini alma
 
 ```sh
 get_functions() {
@@ -2133,7 +2126,7 @@ get_functions() {
 }
 ```
 
-## Kabuk takma isimlerini atla
+## Kabuktaki takma isimleri atlama
 
 ```shell
 # alias
@@ -2144,7 +2137,7 @@ ls
 \ls
 ```
 
-## Bypass kabuk fonksiyonları
+## Kabuk fonksiyonları atlama
 
 ```shell
 # function
@@ -2154,7 +2147,7 @@ ls
 command ls
 ```
 
-## Arka planda bir komut çalıştır
+## Arka planda bir komut çalıştırma
 
 Bu, verilen komutu çalıştıracak ve terminal veya SSH bağlantısı sonlandırıldıktan sonra bile çalışmaya devam edecektir. Tüm çıktılar dikkate alınmaz.
 
@@ -2170,7 +2163,7 @@ bkr ./some_script.sh # some_script.sh is now running in the background
 
 # Sonsöz
 
-Okuduğunuz için teşekkürler! Bu incil size herhangi bir şekilde yardımcı olduysa ve geri vermek istiyorsanız bağış yapmayı düşünün. Bağışlar, bunu mümkün olan en iyi kaynağı yapmam için zaman veriyor. Bağış yapamaz mısın? Sorun değil, depoya yıldız ekleyin ve arkadaşlarınızla paylaşın!
+Okuduğunuz için teşekkürler! Bu incil size herhangi bir şekilde yardımcı olduysa ve karşılığını vermek istiyorsanız bağış yapmayı düşünebilirsiniz. Bağışlar, mümkün olan en iyi kaynağı harcayabilmem için bana zaman veriyor. Bağış yapamaz mısın? Sorun değil, depoya yıldız verin ve arkadaşlarınızla paylaşın!
 
 <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/donate-patreon-yellow.svg"></a>
 
