@@ -240,11 +240,11 @@ John Black is my name.
 
 Çok sayıda durum için `bash`'in regex eşleştirme sonucu `sed` yerine kullanılabilir.
 
-**CAVEAT** : Bu, platforma bağımlı birkaç `bash` özelliğinden biridir.
+**UYARI** : Bu, platforma bağımlı birkaç `bash` özelliğinden biridir.
 `bash` , kullanıcının sisteminde yüklü olan regex motorunu kullanır.
 Uyumluluk amaçlanıyorsa POSIX regex özelliklerine bağlı kalın.
 
-**CAVEAT** : Bu örnek yalnızca ilk eşleşen grubu yazdırır. 
+**UYARI** : Bu örnek yalnızca ilk eşleşen grubu yazdırır. 
 Çoklu yakalama grupları kullanmak için bazı değişikliklere ihtiyaç vardır.
 
 **Örnek Fonksiyon:**
@@ -635,7 +635,7 @@ fi
 
 `extdebug`'ı etkinleştirmek, geçerli fonksiyonun argümanlarını ters sırada saklayan `BASH_ARGV` dizisine erişime izin verir.
 
-**CAVEAT** : `bash` 5.0+ içinde `shopt -s compat44` gerektirir.
+**UYARI** : `bash` 5.0+ içinde `shopt -s compat44` gerektirir.
 
 **Örnek Fonksiyon:**
 
@@ -1737,7 +1737,7 @@ $ get_term_size
 
 ## Terminal boyutunu piksel cinsinden alma
 
-**CAVEAT** : Bu, bazı terminal emülatörlerinde çalışmaz.
+**UYARI** : Bu, bazı terminal emülatörlerinde çalışmaz.
 
 **Örnek Fonksiyon:**
 
@@ -2044,7 +2044,7 @@ black
 
 ## Bir UUID V4 oluşturma
 
-**CAVEAT** : Üretilen değer kriptografik olarak güvenli değildir.
+**UYARI** : Üretilen değer kriptografik olarak güvenli değildir.
 
 **Örnek Fonksiyon:**
 
