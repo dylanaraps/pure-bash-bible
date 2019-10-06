@@ -188,7 +188,7 @@ dizenin başlangıcından ve sonundan kaldırılıyor. Yerleşik `:` geçici bir
 
 ```sh
 trim_string() {
-    # Usage: trim_string "   example   string    "
+    # Kullanım: trim_string "   example   string    "
     : "${1#"${1%%[![:space:]]*}"}"
     : "${_%"${_##*[![:space:]]}"}"
     printf '%s\n' "$_"
@@ -217,7 +217,7 @@ Aşağıdaki işlev, yeni bir dize oluşturmak için sözcük bölmeyi kötüye 
 ```sh
 # shellcheck disable=SC2086,SC2048
 trim_all() {
-    # Usage: trim_all "   example   string    "
+    # Kullanım: trim_all "   example   string    "
     set -f
     set -- $*
     printf '%s\n' "$*"
@@ -251,7 +251,7 @@ Uyumluluk amaçlanıyorsa POSIX regex özelliklerine bağlı kalın.
 
 ```sh
 regex() {
-    # Usage: regex "string" "regex"
+    # Kullanım: regex "string" "regex"
     [[ $1 =~ $2 ]] && printf '%s\n' "${BASH_REMATCH[1]}"
 }
 ```
@@ -259,15 +259,15 @@ regex() {
 **Örnek Kullanım:**
 
 ```shell
-$ # Trim leading white-space.
+$ # Baştaki boşlukları temizle.
 $ regex '    hello' '^\s*(.*)'
 hello
 
-$ # Validate a hex color.
+$ # Hex kodunu doğrular.
 $ regex "#FFFFFF" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$'
 #FFFFFF
 
-$ # Validate a hex color (invalid).
+$ # Hex kodunu doğrular (geçersiz).
 $ regex "red" '^(#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$'
 # no output (invalid)
 ```
@@ -292,7 +292,7 @@ is_hex_color "$color" || color="#FFFFFF"
 
 ## Bir sınırlayıcı ile metni bölme
 
-**CAVEAT:** `bash` 4+ gerektirir
+**UYARI:** `bash` 4+ gerektirir
 
 Bu `cut` , `awk` ve diğer araçlara bir alternatiftir.
 
@@ -300,7 +300,7 @@ Bu `cut` , `awk` ve diğer araçlara bir alternatiftir.
 
 ```sh
 split() {
-   # Usage: split "string" "delimiter"
+   # Kullanım: split "string" "delimiter"
    IFS=$'\n' read -d "" -ra arr <<< "${1//$2/$'\n'}"
    printf '%s\n' "${arr[@]}"
 }
@@ -334,13 +334,13 @@ john
 
 ## Bir metni küçük harfe dönüştürme
 
-**CAVEAT:** `bash` 4+ gerektirir
+**UYARI:** `bash` 4+ gerektirir
 
 **Örnek Fonksiyon:**
 
 ```sh
 lower() {
-    # Usage: lower "string"
+    # Kullanım: lower "string"
     printf '%s\n' "${1,,}"
 }
 ```
@@ -360,13 +360,13 @@ hello
 
 ## Bir metni büyük harfe dönüştürme
 
-**CAVEAT:** `bash` 4+ gerektirir
+**UYARI:** `bash` 4+ gerektirir
 
 **Örnek Fonksiyon:**
 
 ```sh
 upper() {
-    # Usage: upper "string"
+    # Kullanım: upper "string"
     printf '%s\n' "${1^^}"
 }
 ```
@@ -386,13 +386,13 @@ HELLO
 
 ## Metin harf büyüklüğünü ters çevirme
 
-**CAVEAT:** `bash` 4+ gerektirir
+**UYARI:** `bash` 4+ gerektirir
 
 **Örnek Fonksiyon:**
 
 ```sh
 reverse_case() {
-    # Usage: reverse_case "string"
+    # Kullanım: reverse_case "string"
     printf '%s\n' "${1~~}"
 }
 ```
@@ -416,7 +416,7 @@ hello
 
 ```sh
 trim_quotes() {
-    # Usage: trim_quotes "string"
+    # Kullanım: trim_quotes "string"
     : "${1//\'}"
     printf '%s\n' "${_//\"}"
 }
@@ -436,7 +436,7 @@ Hello, World
 
 ```sh
 strip_all() {
-    # Usage: strip_all "string" "pattern"
+    # Kullanım: strip_all "string" "pattern"
     printf '%s\n' "${1//$2}"
 }
 ```
@@ -460,7 +460,7 @@ The Brown Fox
 
 ```sh
 strip() {
-    # Usage: strip "string" "pattern"
+    # Kullanım: strip "string" "pattern"
     printf '%s\n' "${1/$2}"
 }
 ```
@@ -481,7 +481,7 @@ TheQuick Brown Fox
 
 ```sh
 lstrip() {
-    # Usage: lstrip "string" "pattern"
+    # Kullanım: lstrip "string" "pattern"
     printf '%s\n' "${1##$2}"
 }
 ```
@@ -499,7 +499,7 @@ Quick Brown Fox
 
 ```sh
 rstrip() {
-    # Usage: rstrip "string" "pattern"
+    # Kullanım: rstrip "string" "pattern"
     printf '%s\n' "${1%%$2}"
 }
 ```
@@ -517,7 +517,7 @@ The Quick Brown
 
 ```sh
 urlencode() {
-    # Usage: urlencode "string"
+    # Kullanım: urlencode "string"
     local LC_ALL=C
     for (( i = 0; i < ${#1}; i++ )); do
         : "${1:i:1}"
@@ -548,7 +548,7 @@ https%3A%2F%2Fgithub.com%2Fdylanaraps%2Fpure-bash-bible
 
 ```sh
 urldecode() {
-    # Usage: urldecode "string"
+    # Kullanım: urldecode "string"
     : "${1//+/ }"
     printf '%b\n' "${_//%/\\x}"
 }
@@ -570,12 +570,12 @@ if [[ $var == *sub_string* ]]; then
     printf '%s\n' "sub_string is in var."
 fi
 
-# Inverse (substring not in string).
+# Negatif (alt metin metin içinde yok).
 if [[ $var != *sub_string* ]]; then
     printf '%s\n' "sub_string is not in var."
 fi
 
-# This works for arrays too!
+# Diziler için de çalışır!
 if [[ ${arr[*]} == *sub_string* ]]; then
     printf '%s\n' "sub_string is in array."
 fi
@@ -641,7 +641,7 @@ fi
 
 ```sh
 reverse_array() {
-    # Usage: reverse_array "array"
+    # Kullanım: reverse_array "array"
     shopt -s extdebug
     f()(printf '%s\n' "${BASH_ARGV[@]}"); f "$@"
     shopt -u extdebug
@@ -671,15 +671,15 @@ Geçici bir ilişkisel dizi oluşturun. İlişkisel dizi ayarlarken
 değerleri ve yinelenen bir atama oluşur, bash anahtarın üzerine yazar. Bu
 dizi kopyalarını etkin bir şekilde silmemize izin verir.
 
-**CAVEAT:** `bash` 4+ gerektirir
+**UYARI:** `bash` 4+ gerektirir
 
-**CAVEAT:** Liste sırası aynı kalmayabilir.
+**UYARI:** Liste sırası aynı kalmayabilir.
 
 **Örnek Fonksiyon:**
 
 ```sh
 remove_array_dups() {
-    # Usage: remove_array_dups "array"
+    # Kullanım: remove_array_dups "array"
     declare -A tmp_array
 
     for i in "$@"; do
@@ -713,7 +713,7 @@ blue
 
 ```sh
 random_array_element() {
-    # Usage: random_array_element "array"
+    # Kullanım: random_array_element "array"
     local arr=("$@")
     printf '%s\n' "${arr[RANDOM % $#]}"
 }
@@ -726,7 +726,7 @@ $ array=(red green blue yellow brown)
 $ random_array_element "${array[@]}"
 yellow
 
-# Multiple arguments can also be passed.
+# Birden fazla da argüman geçilebilir.
 $ random_array_element 1 2 3 4 5 6 7
 3
 ```
@@ -779,7 +779,7 @@ done
 `seq` komutuna bir alternatiftir.
 
 ```shell
-# Loop from 0-VAR.
+# 0-VAR aralığında döngü.
 VAR=50
 for ((i=0;i<=VAR;i++)); do
     printf '%s\n' "$i"
@@ -791,7 +791,7 @@ done
 ```shell
 arr=(apples oranges tomatoes)
 
-# Just elements.
+# Sadce öğeler.
 for element in "${arr[@]}"; do
     printf '%s\n' "$element"
 done
@@ -802,12 +802,12 @@ done
 ```shell
 arr=(apples oranges tomatoes)
 
-# Elements and index.
+# Öğeler ve indeksler.
 for i in "${!arr[@]}"; do
     printf '%s\n' "${arr[i]}"
 done
 
-# Alternative method.
+# Alternatif metod.
 for ((i=0;i<${#arr[@]};i++)); do
     printf '%s\n' "${arr[i]}"
 done
@@ -826,27 +826,27 @@ done < "file"
 `ls` kullanma.
 
 ```shell
-# Greedy example.
+# Açgözlü örnek.
 for file in *; do
     printf '%s\n' "$file"
 done
 
-# PNG files in dir.
+# Dizindeki PNG dosyaları.
 for file in ~/Pictures/*.png; do
     printf '%s\n' "$file"
 done
 
-# Iterate over directories.
+# Dizinler arasında gezinme.
 for dir in ~/Downloads/*/; do
     printf '%s\n' "$dir"
 done
 
-# Brace Expansion.
+# Çift genişletme.
 for file in /path/to/parentdir/{file1,file2,subdir/file3}; do
     printf '%s\n' "$file"
 done
 
-# Iterate recursively.
+# Rekörsif ilerleme.
 shopt -s globstar
 for file in ~/Pictures/**/*; do
     printf '%s\n' "$file"
@@ -860,7 +860,7 @@ shopt -u globstar
 
 # DOSYA YÖNETİMİ
 
-**CAVEAT:** `bash` , `< 4.4` sürümlerinde ikili verileri düzgün **işlemiyor** .
+**UYARI:** `bash` , `< 4.4` sürümlerinde ikili verileri düzgün **işlemiyor** .
 
 ## Bir dosya içeriğini metin değişkenine dönüştürme
 
@@ -875,10 +875,10 @@ file_data="$(<"file")"
 `cat` komutuna alternatif.
 
 ```shell
-# Bash <4 (discarding empty lines).
+# Bash <4 (boş satırları atlar).
 IFS=$'\n' read -d "" -ra file_data < "file"
 
-# Bash <4 (preserving empty lines).
+# Bash <4 (boş satırları korur).
 while read -r line; do
     file_data+=("$line")
 done < "file"
@@ -891,13 +891,13 @@ mapfile -t file_data < "file"
 
 `head` komutuna alternatif.
 
-**CAVEAT:** `bash` 4+ gerektirir
+**UYARI:** `bash` 4+ gerektirir
 
 **Örnek Fonksiyon:**
 
 ```sh
 head() {
-    # Usage: head "n" "file"
+    # Kullanım: head "n" "file"
     mapfile -tn "$1" line < "$2"
     printf '%s\n' "${line[@]}"
 }
@@ -918,13 +918,13 @@ $ head 1 ~/.bashrc
 
 `tail` komutuna alternatif.
 
-**CAVEAT:** `bash` 4+ gerektirir
+**UYARI:** `bash` 4+ gerektirir
 
 **Örnek Fonksiyon:**
 
 ```sh
 tail() {
-    # Usage: tail "n" "file"
+    # Kullanım: tail "n" "file"
     mapfile -tn 0 line < "$2"
     printf '%s\n' "${line[@]: -$1}"
 }
@@ -934,7 +934,7 @@ tail() {
 
 ```shell
 $ tail 2 ~/.bashrc
-# Enable tmux.
+# tmux aktifleştir.
 # [[ -z "$TMUX"  ]] && exec tmux
 
 $ tail 1 ~/.bashrc
@@ -949,7 +949,7 @@ $ tail 1 ~/.bashrc
 
 ```sh
 lines() {
-    # Usage: lines "file"
+    # Kullanım: lines "file"
     mapfile -tn 0 lines < "$1"
     printf '%s\n' "${#lines[@]}"
 }
@@ -961,7 +961,7 @@ Bu yöntem `mapfile` yönteminden daha az bellek kullanır ve `bash` 3'te çalı
 
 ```sh
 lines_loop() {
-    # Usage: lines_loop "file"
+    # Kullanım: lines_loop "file"
     count=0
     while IFS= read -r _; do
         ((count++))
@@ -988,7 +988,7 @@ Bu, işlevin çıktısını işleve iletip argüman sayısını sayarak çalış
 
 ```sh
 count() {
-    # Usage: count /path/to/dir/*
+    # Kullanım: count /path/to/dir/*
     #        count /path/to/dir/*/
     printf '%s\n' "$#"
 }
@@ -1030,7 +1030,7 @@ printf '' >file
 
 ```sh
 extract() {
-    # Usage: extract file "opening marker" "closing marker"
+    # Kullanım: extract file "opening marker" "closing marker"
     while IFS=$'\n' read -r line; do
         [[ $extract && $line != "$3" ]] &&
             printf '%s\n' "$line"
@@ -1063,7 +1063,7 @@ $ extract ~/projects/pure-bash/README.md '```sh' '```'
 
 ```sh
 dirname() {
-    # Usage: dirname "path"
+    # Kullanım: dirname "path"
     local tmp=${1:-.}
 
     [[ $tmp != *[!/]* ]] && {
@@ -1103,7 +1103,7 @@ $ dirname ~/Pictures/Downloads/
 
 ```sh
 basename() {
-    # Usage: basename "path" ["suffix"]
+    # Kullanım: basename "path" ["suffix"]
     local tmp
 
     tmp=${1%"${1##*[!/]}"}
@@ -1138,11 +1138,11 @@ Downloads
 ```shell
 $ hello_world="value"
 
-# Create the variable name.
+# Değişken ismini oluşturun.
 $ var="world"
 $ ref="hello_$var"
 
-# Print the value of the variable name stored in 'hello_$var'.
+# 'hello_$var' isimli değişkenin değerini yazdırır.
 $ printf '%s\n' "${!ref}"
 value
 ```
@@ -1153,7 +1153,7 @@ Alternatif olarak, `bash` 4.3+ üzerinde:
 $ hello_world="value"
 $ var="world"
 
-# Declare a nameref.
+# nameref tanımlar.
 $ declare -n ref=hello_$var
 
 $ printf '%s\n' "$ref"
@@ -1308,29 +1308,29 @@ Parametre | Bu ne işe yarıyor?
 ## Aralıklar
 
 ```shell
-# Syntax: {<START>..<END>}
+# Sözdizimi: {<START>..<END>}
 
-# Print numbers 1-100.
+# 1-100 arası sayıları yazar.
 echo {1..100}
 
-# Print range of floats.
+# floats aralığında sayıları basar.
 echo 1.{1..9}
 
-# Print chars a-z.
+# a-z arasında karakterleri yazdırır.
 echo {a..z}
 echo {A..Z}
 
-# Nesting.
+# İç içe gömülme.
 echo {A..Z}{0..9}
 
-# Print zero-padded numbers.
-# CAVEAT: bash 4+
+# Sıfır ile uzatılan sayılar yazdırır.
+# UYARI: bash 4+
 echo {01..100}
 
-# Change increment amount.
-# Syntax: {<START>..<END>..<INCREMENT>}
-# CAVEAT: bash 4+
-echo {1..10..2} # Increment by 2.
+# Artış değerini değiştir.
+# Sözdizimi: {<START>..<END>..<INCREMENT>}
+# UYARI: bash 4+
+echo {1..10..2} # 2 ile artırır.
 ```
 
 ## Metin Listeleri
@@ -1338,8 +1338,8 @@ echo {1..10..2} # Increment by 2.
 ```shell
 echo {apples,oranges,pears,grapes}
 
-# Example Usage:
-# Remove dirs Movies, Music and ISOS from ~/Downloads/.
+# Örnek kullanım:
+# Movies, Music ve ISOS dizinlerini ~/Downloads/ dizininden siler.
 rm -rf ~/Downloads/{Movies,Music,ISOS}
 ```
 
@@ -1470,27 +1470,27 @@ Operatörler | Bu ne işe yarıyor? | Örnek
 ## Değişkenleri ayarlamak için daha basit sözdizimi
 
 ```shell
-# Simple math
+# Basit matematik
 ((var=1+2))
 
-# Decrement/Increment variable
+# Değişkeni artır/azalt
 ((var++))
 ((var--))
 ((var+=1))
 ((var-=1))
 
-# Using variables
+# Değişken kullanımı
 ((var=var2*arr[2]))
 ```
 
 ## Üçlü Testler
 
 ```shell
-# Set the value of var to var2 if var2 is greater than var.
-# var: variable to set.
-# var2>var: Condition to test.
-# ?var2: If the test succeeds.
-# :var: If the test fails.
+# var2 değişkenin değerini var değişkenine eşitler, eğer var2 var'dan büyükse.
+# var: atanacak değişken.
+# var2>var: Koşul.
+# ?var2: Test geçiyorsa.
+# :var: Test geçmiyorsa.
 ((var=var2>var?var2:var))
 ```
 
@@ -1509,7 +1509,7 @@ Tuzaklar, komut dosyalarının başlangıcına yakın olarak eklenmelidir, böyl
 ## Script çıkışında bir şey yap
 
 ```shell
-# Clear screen on script exit.
+# Betiğin çıkış anında ekranı temizler.
 trap 'printf \\e[2J\\e[H\\e[m' EXIT
 ```
 
@@ -1522,7 +1522,7 @@ trap '' INT
 ## Pencereyi boyutlandırılmasına tepki verme
 
 ```shell
-# Call a function on window resize.
+# Pencere boyutu değiştirilirse kod çalışır.
 trap 'code_here' SIGWINCH
 ```
 
@@ -1549,7 +1549,7 @@ trap 'code_here' RETURN
 Unicode gerekli değilse, performans artışı için devre dışı bırakılabilir. Sonuçlar değişebilir ancak [neofetch](https://github.com/dylanaraps/neofetch) ve diğer programlarda gözle görülür gelişmeler oldu.
 
 ```shell
-# Disable unicode.
+# unicode etkisizleştir.
 LC_ALL=C
 LANG=C
 ```
@@ -1570,11 +1570,11 @@ Kullanım `#!/usr/bin/env bash` yerine `#!/bin/bash` .
 **NOT** : `#!/bin/bash` veya ikili başka bir doğrudan yol kullanmak için iyi bir neden olabileceği zamanlar olabilir.
 
 ```shell
-# Right:
+# Doğru:
 
     #!/usr/bin/env bash
 
-# Less right:
+# Daha az doğru:
 
     #!/bin/bash
 ```
@@ -1584,13 +1584,13 @@ Kullanım `#!/usr/bin/env bash` yerine `#!/bin/bash` .
 `` `` Yerine `$()` kullanın.
 
 ```shell
-# Right.
+# Doğru.
 var="$(command)"
 
-# Wrong.
+# Yanlış.
 var=`command`
 
-# $() can easily be nested whereas `` cannot.
+# $() iç içe kullanılabilir ama `` kullanılamaz.
 var="$(command "$(command)")"
 ```
 
@@ -1599,12 +1599,12 @@ var="$(command "$(command)")"
 `function` anahtar sözcüğünü kullanmayın, `bash` eski sürümleriyle uyumluluğu azaltır.
 
 ```shell
-# Right.
+# Doğru.
 do_something() {
     # ...
 }
 
-# Wrong.
+# Yanlış.
 function do_something() {
     # ...
 }
@@ -1625,10 +1625,10 @@ function do_something() {
 ## Geçerli çalışan `bash` işleminin sürümünü bulma
 
 ```shell
-# As a string.
+# Metin şeklinde.
 "$BASH_VERSION"
 
-# As an array.
+# Dizi şeklinde.
 "${BASH_VERSINFO[@]}"
 ```
 
@@ -1637,24 +1637,24 @@ function do_something() {
 ```shell
 "$EDITOR" "$file"
 
-# NOTE: This variable may be empty, set a fallback value.
+# NOT: Bu değişken boş olabilir, yedek bir değer hazırlayın.
 "${EDITOR:-vi}" "$file"
 ```
 
 ## Mevcut fonksiyonun adını alma
 
 ```shell
-# Current function.
+# Çalışan fonksiyon.
 "${FUNCNAME[0]}"
 
-# Parent function.
+# Üst fonksiyon.
 "${FUNCNAME[1]}"
 
-# So on and so forth.
+# Sonrası ve ondan sonrası.
 "${FUNCNAME[2]}"
 "${FUNCNAME[3]}"
 
-# All functions including parents.
+# Üst fonksiyonları ile birlikte bütün fonksiyonlar.
 "${FUNCNAME[@]}"
 ```
 
@@ -1663,8 +1663,8 @@ function do_something() {
 ```shell
 "$HOSTNAME"
 
-# NOTE: This variable may be empty.
-# Optionally set a fallback to the hostname command.
+# NOT: Bu değişken boş olabilir.
+# Yedek bir değer atayabilirsiniz.
 "${HOSTNAME:-$(hostname)}"
 ```
 
@@ -1718,10 +1718,10 @@ Bu, dahili `pwd` bir alternatiftir.
 
 ```sh
 get_term_size() {
-    # Usage: get_term_size
+    # Kullanım: get_term_size
 
-    # (:;:) is a micro sleep to ensure the variables are
-    # exported immediately.
+    # (:;:) küçük bir bekleme işlemidir, böylece
+    # değişkenlerin oluşmasını sağlar.
     shopt -s checkwinsize; (:;:)
     printf '%s\n' "$LINES $COLUMNS"
 }
@@ -1730,7 +1730,7 @@ get_term_size() {
 **Örnek Kullanım:**
 
 ```shell
-# Output: LINES COLUMNS
+# Çıktı: Satırlar Sutünlar
 $ get_term_size
 15 55
 ```
@@ -1743,7 +1743,7 @@ $ get_term_size
 
 ```sh
 get_window_size() {
-    # Usage: get_window_size
+    # Kullanım: get_window_size
     printf '%b' "${TMUX:+\\ePtmux;\\e}\\e[14t${TMUX:+\\e\\\\}"
     IFS=';t' read -d t -t 0.05 -sra term_size
     printf '%s\n' "${term_size[1]}x${term_size[2]}"
@@ -1753,7 +1753,7 @@ get_window_size() {
 **Örnek Kullanım:**
 
 ```shell
-# Output: WIDTHxHEIGHT
+# Output: GenişlikXYükseklik
 $ get_window_size
 1200x800
 
@@ -1770,7 +1770,7 @@ Bu, saf bash'te bir TUI oluştururken kullanışlıdır.
 
 ```sh
 get_cursor_pos() {
-    # Usage: get_cursor_pos
+    # Kullanım: get_cursor_pos
     IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
     printf '%s\n' "$x $y"
 }
@@ -1779,7 +1779,7 @@ get_cursor_pos() {
 **Örnek Kullanım:**
 
 ```shell
-# Output: X Y
+# Çıktı: X Y
 $ get_cursor_pos
 1 8
 ```
@@ -1796,7 +1796,7 @@ $ get_cursor_pos
 
 ```sh
 hex_to_rgb() {
-    # Usage: hex_to_rgb "#FFFFFF"
+    # Kullanım: hex_to_rgb "#FFFFFF"
     #        hex_to_rgb "000000"
     : "${1/\#}"
     ((r=16#${_:0:2},g=16#${_:2:2},b=16#${_:4:2}))
@@ -1817,7 +1817,7 @@ $ hex_to_rgb "#FFFFFF"
 
 ```sh
 rgb_to_hex() {
-    # Usage: rgb_to_hex "r" "g" "b"
+    # Kullanım: rgb_to_hex "r" "g" "b"
     printf '#%02x%02x%02x\n' "$1" "$2" "$3"
 }
 ```
@@ -1834,46 +1834,46 @@ $ rgb_to_hex "255" "255" "255"
 ## Kısa `for` döngüsü sözdizimi
 
 ```shell
-# Tiny C Style.
+# Kısa C Stili.
 for((;i++<10;)){ echo "$i";}
 
-# Undocumented method.
+# Belgelenmemiş yöntem.
 for i in {1..10};{ echo "$i";}
 
-# Expansion.
+# Genişleme.
 for i in {1..10}; do echo "$i"; done
 
-# C Style.
+# C Stili.
 for((i=0;i<=10;i++)); do echo "$i"; done
 ```
 
 ## Daha kısa sonsuz döngüler
 
 ```shell
-# Normal method
+# Normal metod
 while :; do echo hi; done
 
-# Shorter
+# Daha kısa
 for((;;)){ echo hi;}
 ```
 
 ## Daha kısa fonksiyon tanımlama
 
 ```shell
-# Normal method
+# Normal metod
 f(){ echo hi;}
 
-# Using a subshell
+# Alt kabuk kullanma
 f()(echo hi)
 
-# Using arithmetic
-# This can be used to assign integer values.
-# Example: f a=1
+# Aritmetik kullanma
+# Sayısal değerler atamak için kullanılabilir.
+# Örnek: f a=1
 #          f a++
 f()(($1))
 
-# Using tests, loops etc.
-# NOTE: ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’ can also be used.
+# Test, döngü vb. kullanma.
+# NOT: ‘while’, ‘until’, ‘case’, ‘(())’, ‘[[]]’ da kullanılabilir.
 f()if true; then echo "$1"; fi
 f()for i in "$@"; do echo "$i"; done
 ```
@@ -1881,17 +1881,17 @@ f()for i in "$@"; do echo "$i"; done
 ## Daha kısa `if` sözdizimi
 
 ```shell
-# One line
-# Note: The 3rd statement may run when the 1st is true
+# Tek satır
+# Not: Üçüncüsü ancak birincisi true dönerse çalışır
 [[ $var == hello ]] && echo hi || echo bye
 [[ $var == hello ]] && { echo hi; echo there; } || echo bye
 
-# Multi line (no else, single statement)
-# Note: The exit status may not be the same as with an if statement
+# Çok satırlı (else yok, tek ifade)
+# Not: if ifadesinde olduğu gibi exit durumu aynı olmayabilir
 [[ $var == hello ]] &&
     echo hi
 
-# Multi line (no else)
+# Çok satırlı (else yok)
 [[ $var == hello ]] && {
     echo hi
     # ...
@@ -1903,7 +1903,7 @@ f()for i in "$@"; do echo "$i"; done
 Yerleşik `:` tekrar tekrar `variable=` kullanmaktan kaçınmak için kullanılabilir. `$_` değişkeni çalıştırılan son komutun son argümanını tutar. `:` her zaman başarılıdır, dolayısıyla değişkeni kaydetmek için kullanılabilir.
 
 ```shell
-# Modified snippet from Neofetch.
+# Neofetch'ten alıntı.
 case "$OSTYPE" in
     "darwin"*)
         : "MacOS"
@@ -1927,7 +1927,7 @@ case "$OSTYPE" in
     ;;
 esac
 
-# Finally, set the variable.
+# Sonunda değişken ataması yapın.
 os="$_"
 ```
 
@@ -1941,13 +1941,13 @@ os="$_"
 
 Şaşırtıcı bir şekilde, `sleep` bir `bash` yerleşik komutu değildir, harici bir komuttur.
 
-**CAVEAT:** `bash` 4+ gerektirir
+**UYARI:** `bash` 4+ gerektirir
 
 **Örnek Fonksiyon:**
 
 ```sh
 read_sleep() {
-    # Usage: read_sleep 1
+    # Kullanım: read_sleep 1
     #        read_sleep 0.2
     read -rt "$1" <> <(:) || :
 }
@@ -1976,22 +1976,22 @@ done
 ## Bir programın kullanıcının PATH'sinde olup olmadığını kontrol etme
 
 ```shell
-# There are 3 ways to do this and either one can be used.
+# Bunun üç yolu var ve herhangi biri kullanılabilir.
 type -p executable_name &>/dev/null
 hash executable_name &>/dev/null
 command -v executable_name &>/dev/null
 
-# As a test.
+# Test olarak.
 if type -p executable_name &>/dev/null; then
     # Program is in PATH.
 fi
 
-# Inverse.
+# Ters çevirerek.
 if ! type -p executable_name &>/dev/null; then
     # Program is not in PATH.
 fi
 
-# Example (Exit early if program is not installed).
+# Örnek (Program eğer kurulu değilse Exit yapılır).
 if ! type -p convert &>/dev/null; then
     printf '%s\n' "error: convert is not installed, exiting..."
     exit 1
@@ -2002,13 +2002,13 @@ fi
 
 Bash'in, `date` komutunun yerine kullanılabilecek tarihi almak için `printf` gibi yerleşik bir metoda sahiptir.
 
-**CAVEAT:** `bash` 4+ gerektirir
+**UYARI:** `bash` 4+ gerektirir
 
 **Örnek Fonksiyon:**
 
 ```sh
 date() {
-    # Usage: date "format"
+    # Kullanım: date "format"
     # See: 'man strftime' for format.
     printf "%($1)T\\n" "-1"
 }
@@ -2017,15 +2017,15 @@ date() {
 **Örnek Kullanım:**
 
 ```shell
-# Using above function.
+# Üstteki fonksiyonu kullanarak.
 $ date "%a %d %b  - %l:%M %p"
 Fri 15 Jun  - 10:00 AM
 
-# Using printf directly.
+# Direk printf kullanarak.
 $ printf '%(%a %d %b  - %l:%M %p)T\n' "-1"
 Fri 15 Jun  - 10:00 AM
 
-# Assigning a variable using printf.
+# printf kullanarak bir değişken atama.
 $ printf -v date '%(%a %d %b  - %l:%M %p)T\n' '-1'
 $ printf '%s\n' "$date"
 Fri 15 Jun  - 10:00 AM
@@ -2033,11 +2033,11 @@ Fri 15 Jun  - 10:00 AM
 
 ## Mevcut kullanıcının kullanıcı adını alma
 
-**CAVEAT:** `bash` 4.4+ gerektirir
+**UYARI:** `bash` 4.4+ gerektirir
 
 ```shell
 $ : \\u
-# Expand the parameter as if it were a prompt string.
+# Girilen metinden parametreyi ayıklama.
 $ printf '%s\n' "${_@P}"
 black
 ```
@@ -2050,7 +2050,7 @@ black
 
 ```sh
 uuid() {
-    # Usage: uuid
+    # Kullanım: uuid
     C="89ab"
 
     for ((N=0;N<16;++N)); do
@@ -2089,12 +2089,12 @@ Bu, fonksiyonun kendisinde for döngüsüne ihtiyaç duymadan ilerleme çubuklar
 
 ```sh
 bar() {
-    # Usage: bar 1 10
+    # Kullanım: bar 1 10
     #            ^----- Elapsed Percentage (0-100).
     #               ^-- Total length in chars.
     ((elapsed=$1*$2/100))
 
-    # Create the bar with spaces.
+    # Boşluklarla çubuk oluşturun.
     printf -v prog  "%${elapsed}s"
     printf -v total "%$(($2-elapsed))s"
 
@@ -2106,10 +2106,10 @@ bar() {
 
 ```shell
 for ((i=0;i<=100;i++)); do
-    # Pure bash micro sleeps (for the example).
+    # Ham bash uyku fonksiyonları (örneğin).
     (:;:) && (:;:) && (:;:) && (:;:) && (:;:)
 
-    # Print the bar.
+    # Çubuğu yazın.
     bar "$i" "10"
 done
 
@@ -2120,7 +2120,7 @@ printf '\n'
 
 ```sh
 get_functions() {
-    # Usage: get_functions
+    # Kullanım: get_functions
     IFS=$'\n' read -d "" -ra functions < <(declare -F)
     printf '%s\n' "${functions[@]//declare -f }"
 }
@@ -2156,7 +2156,7 @@ bkr() {
     (nohup "$@" &>/dev/null &)
 }
 
-bkr ./some_script.sh # some_script.sh is now running in the background
+bkr ./some_script.sh # some_script.sh şimdi arkaplanda çalışıyor
 ```
 
 <!-- CHAPTER END -->
