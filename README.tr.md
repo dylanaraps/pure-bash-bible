@@ -1445,8 +1445,8 @@ Operatörler | Bu ne işe yarıyor?
 `>>=` | Sağ-Shift-Eşit
 `&` | Bit tabanlı AND
 `&=` | Bit tabanlı AND-Equal
-`|` | Bit tabanlı OR
-`|=` | Bit tabanlı OR-Equal
+`\|` | Bit tabanlı OR
+`\|=` | Bit tabanlı OR-Equal
 `~` | Bit tabanlı NOT
 `^` | Bit tabanlı XOR
 `^=` | Bit tabanlı XOR-Equal
@@ -1457,7 +1457,7 @@ Operatörler | Bu ne işe yarıyor?
 --- | ---
 `!` | DEĞİL
 `&&` | VE
-`||` | VEYA
+`\|\|` | VEYA
 
 ## Çeşitli
 
