@@ -105,6 +105,16 @@ $ printf '%s\n' "${_@P}"
 black
 ```
 
+## Get the home of the current user
+
+NOTE: use the previous section to set $USER if it's missing. It's usually set
+by the login shell.
+
+```shell
+$ eval echo ~$USER
+/home/myuser
+```
+
 ## Generate a UUID V4
 
 **CAVEAT**: The generated value is not cryptographically secure.
