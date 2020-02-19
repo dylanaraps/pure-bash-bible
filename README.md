@@ -835,6 +835,7 @@ Don’t use `ls`.
 
 ```shell
 # Greedy example.
+shopt -s nullglob
 for file in *; do
     printf '%s\n' "$file"
 done
@@ -848,6 +849,7 @@ done
 for dir in ~/Downloads/*/; do
     printf '%s\n' "$dir"
 done
+shopt -u nullglob
 
 # Brace Expansion.
 for file in /path/to/parentdir/{file1,file2,subdir/file3}; do
@@ -1005,14 +1007,17 @@ count() {
 
 ```shell
 # Count all files in dir.
+$ shopt -s nullglob
 $ count ~/Downloads/*
 232
 
 # Count all dirs in dir.
+$ shopt -s nullglob
 $ count ~/Downloads/*/
 45
 
 # Count all jpg files in dir.
+$ shopt -s nullglob
 $ count ~/Pictures/*.jpg
 64
 ```
