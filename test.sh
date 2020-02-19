@@ -205,6 +205,18 @@ test_split() {
     assert_equals "${result[*]}" "hello world my name is john"
 }
 
+test_hd() {
+    result="$(echo -e '\e[5mHello,\tWorld\e[m\0' | hd)"
+    expects=$'00000000  1b 5b 35 6d 48 65 6c 6c  6f 2c 09 57 6f 72 6c 64  |.[5mHello,.World|\n'
+    expects+=$'00000010  1b 5b 6d 00 0a                                    |.[m..|\n'
+    expects+=$'00000015  '
+    assert_equals "$result" "$expects"
+
+    echo -e '\e[5mHello,\tWorld\e[m\0' > test_file
+    result="$(hd test_file)"
+    assert_equals "${result}" "$expects"
+}
+
 assert_equals() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))
