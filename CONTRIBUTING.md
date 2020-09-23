@@ -5,7 +5,7 @@
 * [Adding Code to the Bible.](#adding-code-to-the-bible)
 * [Special meanings for code blocks.](#special-meanings-for-code-blocks)
 * [Writing tests](#writing-tests)
-* [Running tests](#running-the-tests)
+* [Running tests](#running-tests)
 
 <!-- vim-markdown-toc -->
 
@@ -65,7 +65,7 @@ Steps:
 2. The test script will automatically execute it. :+1:
 
 
-## Running the tests
+## Running tests
 
 Running `test.sh` also runs `shellcheck` on the code.
 
