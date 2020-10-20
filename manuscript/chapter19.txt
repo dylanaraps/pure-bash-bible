@@ -219,10 +219,26 @@ This will run the given command and keep it running, even after the terminal or 
 bkr() {
     (nohup "$@" &>/dev/null &)
 }
+
+bkr ./some_script.sh # some_script.sh is now running in the background
 ```
 
-```shell
-bkr ./some_script.sh # some_script.sh is now running in the background
+## Capture the return value of a function without command substitution
+
+**CAVEAT:** Requires `bash` 4+
+
+This uses local namerefs to avoid using `var=$(some_func)` style command substitution for function output capture.
+
+```sh
+to_upper() {
+  local -n ptr=${1}
+
+  ptr=${ptr^^}
+}
+
+foo="bar"
+to_upper foo
+printf "%s\n" "${foo}" # BAR
 ```
 
 <!-- CHAPTER END -->
