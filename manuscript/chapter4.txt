@@ -164,6 +164,48 @@ echo -n >file
 printf '' >file
 ```
 
+## Use `exec` to redirect script output to different file descriptors
+
+`exec` can be used to redirect script output to file descriptors. In the example below, `stdout` and `stderr` are redirected to `myoutput.log` (a file).
+
+**Example Function:**
+
+```sh
+log_all_output() {
+    # Usage: log_all_output log_filename
+    exec 6>&1         # save stdout
+    exec 7>&2         # save stderr
+    exec &>"$1"
+}
+
+stop_logging_output() {
+    exec 1>&6 6>&-   # Restore stdout
+    exec 2>&7 7>&-   # Restore stderr
+}
+```
+
+**Example Usage:**
+
+```shell
+# These are *not* logged.
+printf 'This is a message.\n'
+printf 'This is an error message.\n' >&2
+
+# All script output will go to 'myoutput.log'.
+log_all_output myoutput.log
+
+# These are now logged.
+printf 'This is a message.\n'
+printf 'This is an error message.\n' >&2
+
+# Return to normal.
+stop_logging_output
+
+# These are not logged.
+printf 'This is a message.\n'
+printf 'This is an error message.\n' >&2
+```
+
 ## Extract lines between two markers
 
 **Example Function:**
