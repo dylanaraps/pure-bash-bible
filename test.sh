@@ -160,6 +160,16 @@ test_basename() {
     assert_equals "$result" "1.jpg"
 }
 
+test_parent_find() {
+  local dir="$PWD/"
+
+  cd ./manuscript/
+
+  assert_equals "$dir" "$(parent_find "$PWD" .git)"
+
+  cd ../
+}
+
 test_hex_to_rgb() {
     result="$(hex_to_rgb "#FFFFFF")"
     assert_equals "$result" "255 255 255"
