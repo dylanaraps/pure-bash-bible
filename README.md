@@ -63,6 +63,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Random array element](#random-array-element)
     * [Cycle through an array](#cycle-through-an-array)
     * [Toggle between two values](#toggle-between-two-values)
+    * [join string into lists](#join-string-into-lists)
 * [LOOPS](#loops)
     * [Loop over a range of numbers](#loop-over-a-range-of-numbers)
     * [Loop over a variable range of numbers](#loop-over-a-variable-range-of-numbers)
@@ -765,6 +766,43 @@ cycle() {
     printf '%s ' "${arr[${i:=0}]}"
     ((i=i>=${#arr[@]}-1?0:++i))
 }
+```
+
+## join string into lists
+
+This function is same to the python' function `join`  or perl function `join`.
+
++ function
+
+```bash
+function join_list {
+    local delimiter=$1
+    local list=($@)
+    echo ${list[@]}
+    local len=${#list[@]}
+    (( tail_1 = $len - 1 ))
+    (( tail_2 = $len - 2 ))
+    if [ ${len} -gt 1 ];
+    then
+        for i in $(seq 0 ${tail_2});
+        do
+            local item=${list[${i}]}
+            echo -n ${item}${delimiter}
+        done
+        echo ${list[${tail_1}]}
+    else
+        echo ${list[0]}
+    fi
+}
+```
+
++ usage
+
+```bash
+$ l=$(seq 0 10)
+$ join_list , ${l[@]}
+
+0,1,2,3,4,5,6,7,8,9,10
 ```
 
 <!-- CHAPTER END -->
