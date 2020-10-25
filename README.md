@@ -160,6 +160,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Get the list of functions in a script](#get-the-list-of-functions-in-a-script)
     * [Bypass shell aliases](#bypass-shell-aliases)
     * [Bypass shell functions](#bypass-shell-functions)
+    * [Copy shell functions](#copy-shell-functions)
     * [Run a command in the background](#run-a-command-in-the-background)
     * [Capture function return without command substitution](#capture-the-return-value-of-a-function-without-command-substitution)
 * [AFTERWORD](#afterword)
@@ -2156,6 +2157,30 @@ ls
 
 # command
 command ls
+```
+
+## Copy shell functions
+
+This will copy the declaration of the first argument into the second.
+
+```sh
+cp_function() {
+    test -n "$(declare -f "$1")" || return 
+    eval "${_/$1/$2}"
+}
+```
+
+**Example Usage:**
+
+Keep in mind that `cp_function` will not change the body of the given function, so recursive calls will not be translated.
+
+```shell
+$ f(){ [[ $1 -le 1 ]] && echo 1 || echo "$(( $1 * $(f $(($1 - 1))) ))"; }
+$ cp_function f factorial; declare -f factorial
+factorial () 
+{ 
+    [[ $1 -le 1 ]] && echo 1 || echo "$(( $1 * $(f $(($1 - 1))) ))"
+}
 ```
 
 ## Run a command in the background
