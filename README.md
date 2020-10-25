@@ -2133,7 +2133,8 @@ printf '\n'
 get_functions() {
     # Usage: get_functions
     IFS=$'\n' read -d "" -ra functions < <(declare -F)
-    printf '%s\n' "${functions[@]//declare -f }"
+    functions=("${functions[@]#* }")
+    printf '%s\n' "${functions[@]#* }"
 }
 ```
 
