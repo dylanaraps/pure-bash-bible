@@ -33,12 +33,12 @@
 
 | Parameter | What does it do? |
 | --------- | ---------------- |
-| `${VAR:OFFSET}` | Remove first `N` chars from variable.
-| `${VAR:OFFSET:LENGTH}` | Get substring from `N` character to `N` character. <br> (`${VAR:10:10}`: Get sub-string from char `10` to char `20`)
-| `${VAR:: OFFSET}` | Get first `N` chars from variable.
-| `${VAR:: -OFFSET}` | Remove last `N` chars from variable.
-| `${VAR: -OFFSET}` | Get last `N` chars from variable.
-| `${VAR:OFFSET:-OFFSET}` | Cut first `N` chars and last `N` chars. | `bash 4.2+` |
+| `${VAR:OFFSET}` | Remove first `OFFSET` chars from variable.
+| `${VAR:OFFSET:LENGTH}` | Get substring from `OFFSET` character to `LENGTH` character. `OFFSET` is zero-based. <br> (`${VAR:10:10}`: Get sub-string from char `10` to char `20`)
+| `${VAR:: OFFSET}` | Get first `OFFSET` chars from variable.
+| `${VAR:: -OFFSET}` | Remove last `OFFSET` chars from variable.
+| `${VAR: -OFFSET}` | Get last `OFFSET` chars from variable.
+| `${VAR:OFFSET:-OFFSET2}` | Cut first `OFFSET` chars and last `OFFSET2` chars. | `bash 4.2+` |
 
 ## Case Modification
 
