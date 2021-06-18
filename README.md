@@ -308,7 +308,7 @@ This is an alternative to `cut`, `awk` and other tools.
 ```sh
 split() {
    # Usage: split "string" "delimiter"
-   IFS=$'\n' read -d "" -ra arr <<< "${1//$2/$'\n'}"
+   mapfile -t arr <<< "${1//$2/$'\n'}"
    printf '%s\n' "${arr[@]}"
 }
 ```
