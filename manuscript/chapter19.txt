@@ -241,5 +241,63 @@ to_upper foo
 printf "%s\n" "${foo}" # BAR
 ```
 
+## Parse command line arguments
+
+This script will accept three command line arguments:
+
+- `-t <tag>` or `--tag <tag>`, a tag name
+- `-s`, which will enable silent mode if present
+- `<name>`, a required positional argument that follows the flags
+
+It utilizes the `shift` built-in to push arguments off the positional parameter
+list as it finds them.
+
+```sh
+function usage() {
+    echo "Usage: script [-t|--tag <tag>] [-s] <name>"
+    exit 1
+}
+
+tag=
+verbose=true
+
+while true; do
+    if [[ $1 == "-t" || $1 == "--tag" ]]; then
+        tag=$2
+        shift 2
+    elif [[ $1 == "-s" ]]; then
+        verbose=false
+        shift
+    else
+        break
+    fi
+done
+
+if [ $# -lt 1 ]; then
+    usage
+fi
+
+name=$1
+
+printf 'tag: %s, verbose: %s, name: %s\n' "$tag" "$verbose" "$name"
+```
+
+## Example usage:
+
+```shell
+$ script -t bananas
+Usage: script [-t|--tag <tag>] [-s] <name>
+
+$ script -s -t sometag bananas
+tag: sometag
+verbose: false
+name: bananas
+
+$ script -s bananas
+tag:
+verbose: false
+name: bananas
+```
+
 <!-- CHAPTER END -->
 
