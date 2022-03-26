@@ -1909,6 +1909,36 @@ f()for i in "$@"; do echo "$i"; done
 }
 ```
 
+Important note: using the `&&` syntax in a function can lead to
+unexpected results.  For example:
+
+```shell
+func_example1() {
+    if [ $1 -gt 11 ]; then
+        return
+    fi
+}
+
+func_example2() {
+    [ $1 -gt 11 ] && return
+}
+
+arg=10
+
+func_example1 $arg
+echo func_example1: $?
+
+func_example2 $arg
+echo func_example2: $?
+```
+
+results in
+
+```shell
+func_example1: 0
+func_example2: 1
+```
+
 ## Simpler `case` statement to set variable
 
 The `:` built-in can be used to avoid repeating `variable=` in a case statement. The `$_` variable stores the last argument of the last command. `:` always succeeds so it can be used to store the variable value.
