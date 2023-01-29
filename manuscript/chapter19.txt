@@ -180,6 +180,41 @@ done
 printf '\n'
 ```
 
+You may also consider using unicode characters to draw a more granular progress bar:
+
+**Example Function:**
+
+```sh
+function progress () { 
+  local symbols=(" " "\u258F" "\u258E" "\u258D" "\u258C" "\u258B" "\u258A" "\u2589" "\u2588")
+  local n=$(($1/8))
+  local m=$(($1%8))
+  local i=0
+  local k=$(($2/8))
+  for((i=0;i<n;i++));do 
+    echo -ne "${symbols[8]}"
+  done
+  echo -ne "${symbols[$m]}"
+  for((i=n+1;i<=k;i++));do 
+    echo -ne " "
+  done
+  echo "$1 / $2"
+}
+```
+
+**Example Usage:**
+
+```shell
+for ((i=0;i<=100;i++)); do
+    # Pure bash micro sleeps (for the example).
+    (:;:) && (:;:) && (:;:) && (:;:) && (:;:)
+
+    # Print the bar.
+    progress "$i" "100"
+done
+printf '\n'
+```
+
 ## Get the list of functions in a script
 
 ```sh

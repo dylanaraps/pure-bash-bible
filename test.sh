@@ -189,6 +189,11 @@ test_bar() {
     assert_equals "${result//$'\r'}" "[-----     ]"
 }
 
+test_progress() {
+    result="$(progress 13 100)"
+    assert_equals '█▋           13 / 100'
+}
+
 test_get_functions() {
     IFS=$'\n' read -d "" -ra functions < <(get_functions)
     assert_equals "${functions[0]}" "assert_equals"
