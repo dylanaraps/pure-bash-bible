@@ -199,6 +199,16 @@ trim_string() {
 }
 ```
 
+```sh
+trim_string_fast() {
+    local -
+    set -f
+    echo $1
+}
+```
+
+The `local -` makes `$-` local so that `set -f` is only effective within this function.
+
 **Example Usage:**
 
 ```shell
@@ -223,10 +233,10 @@ without leading/trailing white-space and with truncated spaces.
 # shellcheck disable=SC2086,SC2048
 trim_all() {
     # Usage: trim_all "   example   string    "
+    local -
     set -f
     set -- $*
     printf '%s\n' "$*"
-    set +f
 }
 ```
 
@@ -1893,9 +1903,10 @@ f()for i in "$@"; do echo "$i"; done
 
 ```shell
 # One line
-# Note: The 3rd statement may run when the 1st is true
+# Note: The 3rd statement may run when the 1st is true and 2nd false
 [[ $var == hello ]] && echo hi || echo bye
-[[ $var == hello ]] && { echo hi; echo there; } || echo bye
+# Note: The 3rd statement wont run when the 1st is true and 2nd false
+[[ $var == hello ]] && { echo hi; echo there; :; } || echo bye
 
 # Multi line (no else, single statement)
 # Note: The exit status may not be the same as with an if statement
@@ -2164,7 +2175,7 @@ This will run the given command and keep it running, even after the terminal or 
 
 ```sh
 bkr() {
-    (nohup "$@" &>/dev/null &)
+    ("$@" &>/dev/null &)
 }
 
 bkr ./some_script.sh # some_script.sh is now running in the background
@@ -2182,11 +2193,61 @@ to_upper() {
 
   ptr=${ptr^^}
 }
+# Alternative: to_upper() { eval "${1}"="${!1^^}";}
 
 foo="bar"
 to_upper foo
 printf "%s\n" "${foo}" # BAR
 ```
+
+
+## Making a string safe for passing as argument to another command
+
+This is useful when executing a script on a remote system without copying the script (and when the remote shell is not Bash)
+
+```sh
+mk_safe_arg() {
+    # Escape all single-' with '"'"'
+    echo "${1//\'/\'\"\'\"\'}"
+}
+
+# A bash script for testing
+cat >s.sh<<-'__EOF__'
+#! /usr/bin/env bash
+echo "Hello single-' and double-\" and '$USER' on '$HOSTNAME'"
+__EOF__
+# Load the script into the variable s
+s="$(mk_safe_arg "$(<s.sh)")"
+
+# Execute the script remotely without copying the script
+ssh user@host "bash -c '$s'"
+
+# Execute locally (for testing)
+sh -c "bash -c '$s'"
+```
+
+## Capturing STDERR without capturing STDOUT.
+
+The STDOUT passes through and STDERR is stored in `err`.
+```sh
+{ err="$( { echo 1>&2 "Hello-STDERR"; exit 123; } 2>&1 1>&3 3>&- )"; } 3>&1
+echo "ret=$?, err=$err"
+# ret=123, err=Hello-STDERR
+```
+
+The inner `{..}` writes to STDERR and exits with error code 123. The STDERR from the inner `{..}` is redirected to STDOUT with `2>&1`. The normal STDOUT is redirected to the newly created File Descriptor '3' with `1>&3 3>&-`. The outter `{..}` redirects File Descriptor '3' back to STDOUT with `3>&1`.
+
+The variable `err` then contains the STDERR of the inner `{..}`.
+
+## Block coomments
+
+```sh
+:<<-'###COMMENT-BLOCK'
+This is a block comment in bash
+Test $HOME $(id) `id` {} (:;)
+###COMMENT-BLOCK
+```
+
 
 <!-- CHAPTER END -->
 
