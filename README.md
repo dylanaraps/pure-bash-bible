@@ -2199,6 +2199,7 @@ to_upper foo
 printf "%s\n" "${foo}" # BAR
 ```
 
+
 ## Making a string safe for passing as argument to another command
 
 This is useful when executing a script on a remote system without copying the script (and when the remote shell is not Bash)
@@ -2245,6 +2246,7 @@ This is a block comment in bash
 Test $HOME $(id) `id` {} (:;)
 ###COMMENT-BLOCK
 ```
+
 
 <!-- CHAPTER END -->
 
