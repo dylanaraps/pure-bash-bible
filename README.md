@@ -2193,6 +2193,7 @@ to_upper() {
 
   ptr=${ptr^^}
 }
+# Alternative: to_upper() { eval "${1}"="${!1^^}";}
 
 foo="bar"
 to_upper foo
