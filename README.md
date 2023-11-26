@@ -161,8 +161,8 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Bypass shell aliases](#bypass-shell-aliases)
     * [Bypass shell functions](#bypass-shell-functions)
     * [Run a command in the background](#run-a-command-in-the-background)
+    * [Capture function return without command substitution](#capture-the-return-value-of-a-function-without-command-substitution)
     * [Display a hexidecimal dump](#Display-a-hexidecimal-dump)
-
 * [AFTERWORD](#afterword)
 
 <!-- vim-markdown-toc -->
@@ -2221,6 +2221,23 @@ $ hd test_file
 00000000  1b 5b 35 6d 48 65 6c 6c  6f 2c 09 57 6f 72 6c 64  |.[5mHello,.World|
 00000010  1b 5b 6d 00 0a                                    |.[m..|
 00000015
+
+## Capture the return value of a function without command substitution
+
+**CAVEAT:** Requires `bash` 4+
+
+This uses local namerefs to avoid using `var=$(some_func)` style command substitution for function output capture.
+
+```sh
+to_upper() {
+  local -n ptr=${1}
+
+  ptr=${ptr^^}
+}
+
+foo="bar"
+to_upper foo
+printf "%s\n" "${foo}" # BAR
 ```
 
 <!-- CHAPTER END -->
