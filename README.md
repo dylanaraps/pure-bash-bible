@@ -162,6 +162,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Bypass shell functions](#bypass-shell-functions)
     * [Run a command in the background](#run-a-command-in-the-background)
     * [Capture function return without command substitution](#capture-the-return-value-of-a-function-without-command-substitution)
+    * [Display a hexidecimal dump](#Display-a-hexidecimal-dump)
 * [AFTERWORD](#afterword)
 
 <!-- vim-markdown-toc -->
@@ -2169,6 +2170,57 @@ bkr() {
 
 bkr ./some_script.sh # some_script.sh is now running in the background
 ```
+
+## Display a hexidecimal dump
+
+This is an alternative to `hd` or `hexdump -C`.
+
+**Example Function:**
+
+```sh
+hd() {
+  if (($#)); then
+    hd <"$1"
+    return
+  fi
+  local IFS='' # disables interpretation of \t, \n and space
+  local LANG=C # allows characters > 0x7F
+  local bytes=0 char chars=''
+  declare -i bytes
+  printf '%08x  ' 0
+  while read -s -d '' -r -n 1 char; do  # -d '' allows newlines, -r allows \
+    printf '%02x ' "'$char" # see https://pubs.opengroup.org/onlinepubs/009695399/utilities/printf.html
+    [[ "$char" =~ [[:print:]] ]] || char='.' # display non-printables as a dot
+    chars+=$char
+    ((++bytes % 8)) && continue
+    printf ' '
+    ((bytes % 16)) && continue
+    printf '|%s|\n%08x  ' "$chars" "$bytes"
+    chars=''
+  done
+
+  if [[ "$chars" ]]; then
+    len=${#chars}
+    ((len > 7 && len--, len += (16 - (bytes % 16)) * 3 + 4))
+    printf "%${len}s\n%08x  " "|$chars|" "$bytes"
+  fi
+  printf '\n'
+}
+```
+
+**Example Usage:**
+
+```shell
+$ echo -e '\e[5mHello,\tWorld\e[m\0' | hd
+00000000  1b 5b 35 6d 48 65 6c 6c  6f 2c 09 57 6f 72 6c 64  |.[5mHello,.World|
+00000010  1b 5b 6d 00 0a                                    |.[m..|
+00000015
+
+$ echo -e '\e[5mHello,\tWorld\e[m\0' >test_file
+$ hd test_file
+00000000  1b 5b 35 6d 48 65 6c 6c  6f 2c 09 57 6f 72 6c 64  |.[5mHello,.World|
+00000010  1b 5b 6d 00 0a                                    |.[m..|
+00000015
 
 ## Capture the return value of a function without command substitution
 
