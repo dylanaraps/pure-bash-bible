@@ -1846,7 +1846,7 @@ $ rgb_to_hex "255" "255" "255"
 
 ```shell
 # Tiny C Style.
-for((;i++<10;)){ echo "$i";}
+for((i=0;i++<10;)){ echo "$i";}
 
 # Undocumented method.
 for i in {1..10};{ echo "$i";}
